@@ -1,0 +1,322 @@
+/* ── Page shell ──────────────────────────────────────────────────────────── */
+.org-page {
+  display: flex;
+  flex-direction: column;
+  background: #f1f5f9;
+}
+
+/* ── Page header: title + legend ─────────────────────────────────────────── */
+.org-page-header {
+  background: linear-gradient(135deg, #1a3461 0%, #2563a8 100%);
+  padding: 14px 20px 12px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.org-page-title {
+  margin: 0 0 8px;
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.3px;
+}
+
+/* ── Legend ──────────────────────────────────────────────────────────────── */
+.org-legend {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px;
+}
+
+.leg {
+  display: inline-flex;
+  align-items: center;
+  font-size: clamp(10px, 1vw, 12px);
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 20px;
+  border: 1.5px solid transparent;
+  white-space: nowrap;
+}
+
+.leg-white  { background: #f8fafc; border-color: #94a3b8; color: #334155; }
+.leg-blue   { background: #dbeafe; border-color: #3b82f6; color: #1d4ed8; }
+.leg-green  { background: #dcfce7; border-color: #22c55e; color: #15803d; }
+.leg-purple { background: #ede9fe; border-color: #8b5cf6; color: #5b21b6; }
+.leg-yellow { background: #fef9c3; border-color: #eab308; color: #854d0e; }
+
+/* ── Scroll wrapper ──────────────────────────────────────────────────────────── */
+.org-scroll-area {
+  padding: 12px 12px 16px;
+  box-sizing: border-box;
+}
+
+/* ── Column headers row ──────────────────────────────────────────────────── */
+.org-col-headers {
+  display: grid;
+  grid-template-columns: 36px repeat(8, 1fr);
+  gap: 4px;
+  margin-bottom: 0;
+}
+
+.org-col-head {
+  background: #1a3461;
+  color: #e2e8f0;
+  font-size: clamp(8px, 0.85vw, 11px);
+  font-weight: 700;
+  text-align: center;
+  padding: 7px 4px;
+  border-radius: 6px 6px 0 0;
+  line-height: 1.3;
+  letter-spacing: 0.1px;
+}
+
+/* ── Grid container: SVG overlay positioned here ─────────────────────────── */
+.org-grid {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ── SVG connector overlay ───────────────────────────────────────────────── */
+.org-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 4;   /* above cards (z-index:3) so lines are never hidden */
+}
+
+/* ── Grid row ────────────────────────────────────────────────────────────── */
+.org-row {
+  display: grid;
+  grid-template-columns: 36px repeat(8, 1fr);
+  gap: 4px;
+  padding: 6px 4px;   /* 6px top/bottom — creates a visible inter-row gap for connector bus lines */
+  border-bottom: 1px solid #f1f5f9;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  min-height: 50px;
+}
+
+.org-row:nth-child(even) {
+  background: #fafbff;
+}
+
+.org-row:last-child {
+  border-bottom: none;
+}
+
+/* Collapse empty rows to nothing */
+.org-row-empty {
+  min-height: 0 !important;
+  padding: 0;
+  border-bottom: none;
+  overflow: hidden;
+}
+
+/* ── Level badge ─────────────────────────────────────────────────────────── */
+.org-row-gutter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.org-level-badge {
+  font-size: clamp(8px, 0.85vw, 10px);
+  font-weight: 700;
+  color: #64748b;
+  background: #e2e8f0;
+  border-radius: 4px;
+  padding: 2px 3px;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* ── Cell ────────────────────────────────────────────────────────────────── */
+.org-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+/* ── Role card ───────────────────────────────────────────────────────────── */
+.org-card {
+  width: 100%;
+  padding: 5px 5px;
+  border-radius: 5px;
+  border: 1.5px solid transparent;
+  font-size: clamp(8px, 0.8vw, 10.5px);
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.15s, transform 0.15s;
+  cursor: default;
+  position: relative;
+  z-index: 3;
+  word-break: break-word;
+  /* Ensure card never visually overflows its row cell (protects busY calculation) */
+  box-sizing: border-box;
+}
+
+.org-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
+  transform: translateY(-1px);
+  z-index: 10;
+}
+
+/* ── Card color variants ─────────────────────────────────────────────────── */
+.org-white  { background: #f8fafc; border-color: #94a3b8; color: #1e293b; }
+.org-blue   { background: #dbeafe; border-color: #3b82f6; color: #1d4ed8; }
+.org-green  { background: #dcfce7; border-color: #16a34a; color: #14532d; }
+.org-purple { background: #ede9fe; border-color: #7c3aed; color: #3b0764; }
+.org-yellow { background: #fef9c3; border-color: #ca8a04; color: #713f12; }
+
+/* ── Responsive: below 900px — restore horizontal scroll ────────────────── */
+@media (max-width: 900px) {
+  .org-scroll-area {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .org-col-headers,
+  .org-grid {
+    min-width: 620px;
+  }
+  .org-row,
+  .org-col-headers {
+    grid-template-columns: 28px repeat(8, 1fr);
+  }
+}
+
+/* ── Responsive: 320px – 600px ────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .org-page-header {
+    padding: 10px 10px 8px;
+  }
+
+  .org-scroll-area {
+    padding: 8px 6px 12px;
+  }
+
+  .org-legend { gap: 4px; }
+
+  .leg {
+    font-size: 9.5px;
+    padding: 2px 7px;
+  }
+
+  .org-col-head {
+    font-size: 7.5px;
+    padding: 5px 2px;
+  }
+
+  .org-card {
+    font-size: 8px;
+    padding: 4px 3px;
+  }
+
+  .org-level-badge {
+    font-size: 8px;
+    padding: 1px 2px;
+  }
+
+  .org-row { min-height: 38px; }
+}
+
+@media (max-width: 380px) {
+  .org-col-head {
+    font-size: 7.5px;
+    padding: 4px 2px;
+  }
+
+  .org-card {
+    font-size: 8px;
+    padding: 3px 2px;
+  }
+}
+
+/* ── Tooltip popup (position:fixed — escapes all overflow containers) ─────── */
+.org-tip-popup {
+  position: fixed;
+  z-index: 9999;
+  background: #1e293b;
+  color: #f1f5f9;
+  padding: 10px 14px 12px;
+  border-radius: 8px;
+  max-width: 264px;
+  pointer-events: none;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
+  white-space: normal;
+  word-break: break-word;
+  text-align: left;
+}
+
+/* Position above the card — left is computed in JS, only shift up */
+.org-tip-popup.tip-above {
+  transform: translateY(-100%);
+}
+
+/* Position below the card — left is computed in JS, no transform needed */
+.org-tip-popup.tip-below {
+  transform: none;
+}
+
+/* Role name in bold white */
+.org-tip-title {
+  display: block;
+  font-size: clamp(11px, 1.1vw, 13px);
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 5px;
+  line-height: 1.3;
+}
+
+/* Description text */
+.org-tip-desc {
+  margin: 0;
+  font-size: clamp(10.5px, 1vw, 12px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+/* Arrow caret shared */
+.org-tip-caret {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+/* Caret pointing DOWN (tooltip is above the card) */
+.tip-above .org-tip-caret {
+  top: 100%;
+  /* left is set via inline style from JS (caretOffset) */
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: #1e293b;
+}
+
+/* Caret pointing UP (tooltip is below the card) */
+.tip-below .org-tip-caret {
+  bottom: 100%;
+  /* left is set via inline style from JS (caretOffset) */
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-bottom-color: #1e293b;
+}
+
+@media (max-width: 600px) {
+  .org-tip-popup {
+    padding: 8px 12px 10px;
+  }
+  .org-tip-title { font-size: 11px; }
+  .org-tip-desc  { font-size: 10.5px; }
+}
