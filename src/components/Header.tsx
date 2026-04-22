@@ -5,7 +5,7 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="site-header-inner">
-        <a href="/" className="site-logo" aria-label="Vinsinfo Home">
+        <a href="/org-chart-app/" className="site-logo" aria-label="Vinsinfo Home">
           <img src={logoSrc} alt="Vinsinfo" className="site-logo-img" />
         </a>
         <nav className="site-nav">
