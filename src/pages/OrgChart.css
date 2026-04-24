@@ -48,7 +48,7 @@
 
 /* ── Scroll wrapper ──────────────────────────────────────────────────────────── */
 .org-scroll-area {
-  padding: 12px 12px 16px;
+  padding: 12px 0px 16px;
   box-sizing: border-box;
 }
 

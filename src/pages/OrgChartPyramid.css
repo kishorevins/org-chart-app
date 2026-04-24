@@ -1,0 +1,151 @@
+/* ── Scroll wrapper ──────────────────────────────────────────────────────────── */
+.pyr-scroll-area {
+  padding: 20px 12px 32px;
+  box-sizing: border-box;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ── Outer centering container ───────────────────────────────────────────────── */
+.pyr-container {
+  max-width: 980px;
+  min-width: 480px;
+  margin: 0 auto;
+}
+
+/* ── Main measured grid (SVG + rows share this element) ─────────────────────── */
+.pyr-grid {
+  position: relative;
+  padding: 14px 0 10px;
+  /* Gradient background darkens slightly toward the bottom — enhances depth */
+  background: linear-gradient(
+    to bottom,
+    rgba(241, 245, 249, 0)   0%,
+    rgba(219, 234, 254, 0.18) 100%
+  );
+  border-radius: 6px;
+}
+
+/* ── SVG connector + pyramid outline overlay ─────────────────────────────────── */
+.pyr-svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  overflow: visible;
+  z-index: 4;  /* above cards */
+}
+
+/* ── Single level row ────────────────────────────────────────────────────────── */
+.pyr-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 4px 6px 4px 46px; /* left padding reserves space for the badge */
+  min-height: 44px;
+  position: relative;
+  /* Subtle alternating row tint */
+}
+
+.pyr-row:nth-child(even) {
+  background: rgba(248, 250, 252, 0.55);
+}
+
+/* ── Level badge ─────────────────────────────────────────────────────────────── */
+.pyr-badge {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: clamp(8px, 0.8vw, 10px);
+  font-weight: 700;
+  color: #64748b;
+  background: #e2e8f0;
+  border-radius: 4px;
+  padding: 2px 4px;
+  white-space: nowrap;
+  line-height: 1;
+  z-index: 5;
+}
+
+/* ── Cards wrapper — centred in the row ─────────────────────────────────────── */
+.pyr-cards {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+/* ── Individual role card ────────────────────────────────────────────────────── */
+.pyr-card {
+  width: 148px;
+  padding: 5px 6px;
+  border-radius: 5px;
+  border: 1.5px solid transparent;
+  font-size: clamp(8px, 0.78vw, 10.5px);
+  font-weight: 600;
+  line-height: 1.3;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.07);
+  transition: box-shadow 0.15s, transform 0.15s;
+  cursor: default;
+  position: relative;
+  z-index: 3;
+  word-break: break-word;
+  box-sizing: border-box;
+  flex-shrink: 0;
+}
+
+.pyr-card:hover {
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.13);
+  transform: translateY(-1px);
+  z-index: 10;
+}
+
+/* ─── Responsive ─────────────────────────────────────────────────────────────── */
+@media (max-width: 800px) {
+  .pyr-container {
+    min-width: 360px;
+  }
+
+  .pyr-card {
+    width: 120px;
+    font-size: 8.5px;
+  }
+
+  .pyr-cards {
+    gap: 5px;
+  }
+
+  .pyr-row {
+    padding-left: 40px;
+    min-height: 40px;
+  }
+}
+
+@media (max-width: 560px) {
+  .pyr-container {
+    min-width: 300px;
+  }
+
+  .pyr-card {
+    width: 96px;
+    font-size: 8px;
+    padding: 4px 3px;
+  }
+
+  .pyr-cards {
+    gap: 4px;
+  }
+
+  .pyr-row {
+    padding-left: 36px;
+    min-height: 36px;
+  }
+
+  .pyr-badge {
+    font-size: 8px;
+    padding: 1px 3px;
+  }
+}
