@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Framework | Level 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f7249;
+            --primary-light: #def7ec;
+            --secondary: #0f172a;
+            --accent: #064e3b;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ecfdf5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #166534);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0fff4;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-period {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .tag-quality {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-efficiency {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #def7ec;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Developer (Level 1) Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">The Foundation Builder: Establishing Technical Reliability and Process Adherence</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-tasks"></i>
+                        <span>Task Execution & Technical Foundations</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-sharp fa-code"></i>
+                        <span>The Learner & Contributor</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To build a foundation of technical excellence and reliability by delivering clean, maintainable code, effectively learning from the team, and contributing to a stable, predictable project environment.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Growth Killer to Avoid:</strong> Using code as a solitary activity. Your success comes from integration - not just writing code, but writing code that <strong>integrates seamlessly</strong> with the team's work. Avoid "lone genius" tendencies.
+            </div>
+
+            <!-- Category 1: Code Creation & Quality -->
+            <h2 class="section-title">
+                <i class="fas fa-code" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Code Creation & Quality (The Artisan)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To produce code that is correct, efficient, and can be easily understood and maintained by the team.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-brush" style="margin-right: 8px;"></i> Code Craftsmanship
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>cleanliness, readability</strong> and absence of critical defects in every line of code</li>
+                                        <li>Adherence to the team's <strong>established coding conventions</strong> and style guides</li>
+                                        <li>The <strong>functional correctness</strong> of code against requirements</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Zero high-severity bugs in first week post-deployment</li>
+                                        <li>100% pass rate for mandatory unit tests</li>
+                                        <li>Positive peer feedback on code clarity (90%+)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Defect Density</strong> (Bugs per lines of code)</li>
+                                        <li>✅ <strong>Static Analysis Score</strong> (e.g., SonarQube)</li>
+                                        <li>✅ <strong>Code Review Turnaround</strong> (Time to first review)</li>
+                                        <li>✅ <strong>Peer Review Feedback</strong> (Clarity rating)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Core Language Proficiency</span>
+                                        <span class="competency-tag">Basic Design Patterns</span>
+                                        <span class="competency-tag">Debugging</span>
+                                        <span class="competency-tag">Unit Testing</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Self-review code against standards <span class="kpi-badge">BEFORE PR</span></li>
+                                        <li>Ensure test coverage <span class="kpi-badge">BEFORE</span> task completion</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-code-branch" style="margin-right: 8px;"></i> Version Control & Integrity
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>atomicity and clarity</strong> of every commit</li>
+                                        <li>Ensuring <strong>local and remote branches</strong> stay synchronized</li>
+                                        <li>Preserving <strong>build stability</strong> in main branches</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>100% of commits with clear messages linked to task IDs</li>
+                                        <li>Cause zero build breaks in CI/CD pipeline</li>
+                                        <li>Maintain synchronization with development branch</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Commit Hygiene</strong> (Message clarity)</li>
+                                        <li>✅ <strong>Build Breakage Frequency</strong></li>
+                                        <li>✅ <strong>Branch Sync Frequency</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Git Fundamentals</span>
+                                        <span class="competency-tag">CI/CD Basics</span>
+                                        <span class="competency-tag">Attention to Detail</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Pull from integration branch <span class="kpi-badge sl-badge">DAILY (EOD)</span></li>
+                                        <li>Commit after <span class="kpi-badge sl-badge">logical work unit</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Task & Project Execution -->
+            <h2 class="section-title">
+                <i class="fas fa-tasks" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Task & Project Execution (The Executor)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To reliably and predictably execute assigned development tasks within the agreed scope, time, and process.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-hourglass" style="margin-right: 8px;"></i> Task Management
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>accurate understanding</strong> of every assigned task</li>
+                                        <li><strong>Proactive communication</strong> about progress and blockers</li>
+                                        <li>The <strong>completeness and timeliness</strong> of work log entries</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>95% task completion within agreed timeframe</li>
+                                        <li>100% of daily efforts logged with <24h lag</li>
+                                        <li>Zero deadline surprises due to uncommunicated blockers</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Estimation Accuracy</strong> (Planned vs. Actual)</li>
+                                        <li>✅ <strong>On-Time Completion %</strong></li>
+                                        <li>✅ <strong>Logging Compliance</strong> (% on time)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Requirement Analysis</span>
+                                        <span class="competency-tag">Time Management</span>
+                                        <span class="competency-tag">Proactive Communication</span>
+                                        <span class="competency-tag">Tool Proficiency</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Clarify scope with TL within <span class="kpi-badge sl-badge">4 HOURS</span> of assignment</li>
+                                        <li>Log daily effort <span class="kpi-badge sl-badge">BY EOD (NO EXCEPTIONS)</span></li>
+                                        <li>Flag potential delays <span class="kpi-badge sl-badge">IMMEDIATELY</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-clipboard-check" style="margin-right: 8px;"></i> Process Adherence
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Following <strong>all documented processes</strong> without exception</li>
+                                        <li><strong>Actively participating</strong> in required ceremonies</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Zero process violations in project audits</li>
+                                        <li>Contribute at least one meaningful point per ceremony</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Process Compliance Score</strong></li>
+                                        <li>✅ <strong>Ceremony Participation</strong> (Quality of contribution)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Discipline</span>
+                                        <span class="competency-tag">Active Listening</span>
+                                        <span class="competency-tag">Collaborative Mindset</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Follow Definition of Done <span class="kpi-badge sl-badge">FOR EVERY TASK</span></li>
+                                        <li>Be prepared for stand-up <span class="kpi-badge sl-badge">AT SCHEDULED TIME</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Knowledge & Collaboration -->
+            <h2 class="section-title">
+                <i class="fas fa-book-open" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Knowledge & Collaboration (The Integrator)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To build a deep understanding of the codebase and project, and to collaborate effectively as a trusted team member.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-brain" style="margin-right: 8px;"></i> Codebase Understanding
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Actively learning</strong> the existing codebase</li>
+                                        <li><strong>Documenting their own code</strong> clearly</li>
+                                        <li><strong>Maintaining resource documentation</strong> they own</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce clarification questions to TL by 20% over 6 months</li>
+                                        <li>Ensure 100% of new code has basic documentation</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Time to Ramp-Up</strong> on new code areas</li>
+                                        <li>✅ <strong>Documentation Coverage</strong> for owned code</li>
+                                        <li>✅ <strong>Code Reuse</strong> (Leveraging existing patterns)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Code Comprehension</span>
+                                        <span class="competency-tag">Analytical Thinking</span>
+                                        <span class="competency-tag">Technical Writing</span>
+                                        <span class="competency-tag">Knowledge Retention</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Research existing code <span class="kpi-badge sl-badge">UP TO 1 HOUR</span> before escalating</li>
+                                        <li>Update documentation <span class="kpi-badge sl-badge">CONCURRENTLY</span> with code changes</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-handshake" style="margin-right: 8px;"></i> Collaboration & Issue Resolution
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Effectively troubleshooting</strong> bugs before seeking help</li>
+                                        <li><strong>Clearly articulating</strong> doubts and blockers to TL</li>
+                                        <li><strong>Gathering and confirming requirements</strong> accurately</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Diagnose root cause of 80% of bugs independently</li>
+                                        <li>Achieve zero major rework due to misunderstood requirements</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Bug Resolution Time</strong> (with guidance)</li>
+                                        <li>✅ <strong>Rework Rate</strong> (% of tasks needing correction)</li>
+                                        <li>✅ <strong>Clarity of Questions</strong> (TL assessment)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Systematic Problem Solving</span>
+                                        <span class="competency-tag">Root Cause Analysis</span>
+                                        <span class="competency-tag">Clear Communication</span>
+                                        <span class="competency-tag">Requirement Elicitation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Follow debugging process <span class="kpi-badge sl-badge">BEFORE</span> approaching TL with bug</li>
+                                        <li>Summarize requirements understanding <span class="kpi-badge sl-badge">FOR TL CONFIRMATION</span> before starting</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="evolution-lens" style="background: linear-gradient(to right, var(--accent), #064e3b); color: white; border-radius: 12px; padding: 2rem; margin: 2.5rem 0;">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Developer Growth - Foundational Development (Level 1)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>The Level 1 Developer framework establishes the essential performance foundation - shifting from theoretical knowledge to workplace readiness:</strong>
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-times-circle" style="color: #fca5a5;"></i> Not Just Writing Code
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            Production code is different from tutorials or school projects. Your code must integrate with others' work and systems. Success is measured by <strong>integration success</strong>, not code volume.
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-exclamation-triangle" style="color: #fb923c;"></i> Proactive Communication > Silent Struggle
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            Stuck for 30+ minutes? Speak up! Waiting until the deadline is the biggest risk. Our greatest value isn't in finishing task X, but in <strong>managing workflow predictability</strong>.
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-book" style="color: #67e8f9;"></i> Reading (and Understanding) Code
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            80% of your development time involves reading/understanding code. Your ability to master existing code is <strong>more valuable</strong> than writing new code.
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-check-circle"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>You succeed when your team has confidence they can trust your first draft work to meet requirements and integrate smoothly.</strong> Not because it's perfect (it won't be), but because you follow process, test, communicate, and document consistently. Your first PR should be the exception, not the norm. Level 1 excellence is measured by how seamlessly your code moves through the workflow - not how many features you build.
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-bullseye"></i> The Level 1 Mindset Shift
+                </h3>
+                <p>Junior developers often believe their value is in <strong>writing lines of code</strong>. In a high-functioning team, your value is in <strong>reducing unpredictability and integration risk</strong>.</p>
+                <p style="margin: 1rem 0; background: #fffbf0; padding: 0.75rem; border-radius: 6px; border-left: 3px solid var(--warning);">
+                    <strong>How we measure Level 1 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: var(--success);">When the team trusts your first draft work</span> (PRs rarely need major rework)</li>
+                        <li><span style="font-weight: bold; color: var(--primary);">When others grasp your code through documentation</span> (without repeatedly asking you)</li>
+                        <li><span style="font-weight: bold; color: var(--warning);">When you identify blockers early</span> (your estimated 4 hours becomes 6, not 14)</li>
+                    </ul>
+                    This mindset shift moves you from being a "junior who needs oversight" to a "trusted team member" delivering reliable value.
+                </p>
+                <p><strong>Remember:</strong> The goal isn't to write more code; it's to <strong>write code that compiles into valuable customer features with minimal disruption to the team</strong>.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

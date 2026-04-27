@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Framework | Level 6</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f7249;
+            --primary-light: #def7ec;
+            --secondary: #0f172a;
+            --accent: #064e3b;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ecfdf5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #166534);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0fff4;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-period {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .tag-quality {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-efficiency {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #def7ec;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6ee7b7;
+        }
+        
+        .evolution-lens {
+            background: linear-gradient(to right, var(--accent), #064e3b);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Developer (Level 6) Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">The Architectural Authority: Driving Strategic Technical Execution Across the Enterprise</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-chess-king"></i>
+                        <span>Enterprise Technical Leadership & Strategic Delivery</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-sharp fa-crown"></i>
+                        <span>The Principal Technical Authority</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To serve as the primary technical authority for major enterprise systems—owning strategic execution, driving architectural consistency, and ensuring technical decisions align with long-term business objectives across the organization.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Growth Killer to Avoid:</strong> Becoming a "hands-off" strategist. Your success comes from <strong>maintaining technical credibility</strong> through continued hands-on work while scaling your impact. Avoid the trap of delegating all technical work and losing touch with implementation realities.
+            </div>
+
+            <!-- Category 1: Strategic Technical Execution -->
+            <h2 class="section-title">
+                <i class="fas fa-chess-king" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Strategic Technical Execution (The Delivery Orchestrator)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own and deliver complex technical initiatives that span multiple teams and systems, ensuring alignment with business strategy while maintaining architectural integrity and delivery predictability.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-tasks" style="margin-right: 8px;"></i> Strategic Planning & Module Ownership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>strategic alignment</strong> of technical execution with business goals</li>
+                                        <li><strong>Creating and owning</strong> execution plans for complex modules</li>
+                                        <li>The <strong>end-to-end delivery</strong> of major technical initiatives</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Deliver 100% of strategic initiatives on time and within scope</li>
+                                        <li>Ensure 95%+ alignment between technical execution and business outcomes</li>
+                                        <li>Reduce cross-team delivery dependencies by 40% through planning</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Strategic Initiative Delivery Rate</strong></li>
+                                        <li>✅ <strong>Business-Technical Alignment Score</strong></li>
+                                        <li>✅ <strong>Cross-Team Dependency Reduction</strong></li>
+                                        <li>✅ <strong>Technical Initiative ROI</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Planning</span>
+                                        <span class="competency-tag">Technical Roadmapping</span>
+                                        <span class="competency-tag">Complex Project Management</span>
+                                        <span class="competency-tag">Enterprise Architecture</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DEVELOP 3-PHASE EXECUTION PLAN</span> for all strategic initiatives</li>
+                                        <li><span class="kpi-badge">CONDUCT BI-WEEKLY ALIGNMENT CHECKS</span> with business stakeholders</li>
+                                        <li><span class="kpi-badge sl-badge">MAINTAIN DELIVERY FORECAST ACCURACY</span> within 10% variance</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-shield-halved" style="margin-right: 8px;"></i> Risk Management & Issue Resolution
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>proactive identification and mitigation</strong> of enterprise-level risks</li>
+                                        <li><strong>Ownership of major issue resolution</strong> across systems</li>
+                                        <li>The <strong>resilience and stability</strong> of critical technical initiatives</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Identify and mitigate 85%+ of potential enterprise risks before impact</li>
+                                        <li>Resolve 100% of P0/P1 enterprise issues within SLA</li>
+                                        <li>Reduce recurring enterprise issues by 60% year-over-year</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Risk Identification & Mitigation Rate</strong></li>
+                                        <li>✅ <strong>Enterprise Issue MTTR</strong></li>
+                                        <li>✅ <strong>Recurring Issue Elimination Rate</strong></li>
+                                        <li>✅ <strong>System Resilience Score</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Enterprise Risk Management</span>
+                                        <span class="competency-tag">Crisis Leadership</span>
+                                        <span class="competency-tag">Systems Resilience</span>
+                                        <span class="competency-tag">Decision Under Pressure</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">CONDUCT QUARTERLY ENTERPRISE RISK ASSESSMENTS</span></li>
+                                        <li><span class="kpi-badge">IMPLEMENT POST-MORTEM ACTION ITEMS</span> within 2 weeks</li>
+                                        <li><span class="kpi-badge sl-badge">MAINTAIN RISK REGISTER</span> with mitigation status visible to leadership</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Enterprise Technical Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-network-wired" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Enterprise Technical Leadership (The Architecture Guardian)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To establish and maintain technical standards across the enterprise, ensuring architectural consistency, quality, and alignment with strategic business objectives.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-building" style="margin-right: 8px;"></i> Enterprise Architecture & Design
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>strategic alignment</strong> of technical architecture with business goals</li>
+                                        <li><strong>Collaborating with Solution Architects</strong> on enterprise solutions</li>
+                                        <li>The <strong>technical soundness</strong> of enterprise-wide designs</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Ensure 100% of major designs undergo architectural review</li>
+                                        <li>Drive adoption of standardized patterns across 80%+ of systems</li>
+                                        <li>Reduce architectural inconsistencies by 50% year-over-year</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Architecture Review Coverage</strong></li>
+                                        <li>✅ <strong>Pattern Adoption Rate</strong></li>
+                                        <li>✅ <strong>Architectural Consistency Score</strong></li>
+                                        <li>✅ <strong>Design Debt Reduction</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Enterprise Architecture</span>
+                                        <span class="competency-tag">Solution Design</span>
+                                        <span class="competency-tag">Pattern Development</span>
+                                        <span class="competency-tag">Technical Governance</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">CONDUCT QUARTERLY ARCHITECTURE REVIEWS</span> with Solution Architects</li>
+                                        <li><span class="kpi-badge">MAINTAIN ENTERPRISE PATTERN LIBRARY</span> with usage metrics</li>
+                                        <li><span class="kpi-badge sl-badge">DOCUMENT ARCHITECTURAL DECISIONS</span> in central repository</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-code-pull-request" style="margin-right: 8px;"></i> Technical Quality & Standards
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>technical quality standards</strong> across enterprise systems</li>
+                                        <li><strong>Driving test automation</strong> and quality assurance practices</li>
+                                        <li>The <strong>infrastructure excellence</strong> through DevOps practices</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Establish and maintain quality standards for 100% of critical systems</li>
+                                        <li>Increase test automation coverage to 75%+ across enterprise systems</li>
+                                        <li>Reduce infrastructure-related incidents by 60% year-over-year</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Enterprise Quality Standard Adoption</strong></li>
+                                        <li>✅ <strong>Test Automation Coverage</strong></li>
+                                        <li>✅ <strong>Infrastructure Incident Reduction</strong></li>
+                                        <li>✅ <strong>DevOps Maturity Score</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Quality Engineering</span>
+                                        <span class="competency-tag">Test Strategy</span>
+                                        <span class="competency-tag">DevOps Leadership</span>
+                                        <span class="competency-tag">Technical Governance</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DEFINE ENTERPRISE QUALITY METRICS</span> with business impact</li>
+                                        <li><span class="kpi-badge">IMPLEMENT QUALITY GATES</span> in CI/CD pipelines</li>
+                                        <li><span class="kpi-badge sl-badge">CONDUCT BI-ANNUAL INFRASTRUCTURE AUDITS</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Organizational Impact & Thought Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-lightbulb" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Organizational Impact & Thought Leadership (The Innovation Catalyst)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To drive organizational transformation through technical innovation, thought leadership, and by establishing practices that become enterprise-wide standards.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-rocket" style="margin-right: 8px;"></i> Technical Innovation & Transformation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Identifying and driving</strong> strategic technical innovations</li>
+                                        <li><strong>Leading enterprise-wide</strong> technical transformations</li>
+                                        <li>The <strong>successful adoption</strong> of new technologies and practices</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Drive adoption of 1-2 strategic innovations annually with measurable impact</li>
+                                        <li>Ensure 80%+ adoption rate for enterprise transformation initiatives</li>
+                                        <li>Reduce time-to-market for new capabilities by 35% through innovation</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Innovation Impact Score</strong></li>
+                                        <li>✅ <strong>Transformation Adoption Rate</strong></li>
+                                        <li>✅ <strong>Time-to-Market Improvement</strong></li>
+                                        <li>✅ <strong>Technical Debt Avoidance</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Technical Innovation</span>
+                                        <span class="competency-tag">Change Leadership</span>
+                                        <span class="competency-tag">Technology Evaluation</span>
+                                        <span class="competency-tag">Transformation Management</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">CONDUCT QUARTERLY INNOVATION SCAN</span> of emerging technologies</li>
+                                        <li><span class="kpi-badge">DEVELOP TRANSFORMATION ROADMAPS</span> with measurable milestones</li>
+                                        <li><span class="kpi-badge sl-badge">MEASURE AND REPORT INNOVATION ROI</span> quarterly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chalkboard-user" style="margin-right: 8px;"></i> Thought Leadership & Knowledge Dissemination
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Establishing thought leadership</strong> within the organization</li>
+                                        <li><strong>Disseminating knowledge</strong> to elevate enterprise capability</li>
+                                        <li>The <strong>technical maturity</strong> of the engineering organization</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Deliver 4+ enterprise-level technical talks annually with high impact</li>
+                                        <li>Increase engineering organization maturity score by 25% year-over-year</li>
+                                        <li>Develop 2-3 enterprise technical leaders ready for advancement</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Thought Leadership Impact Score</strong></li>
+                                        <li>✅ <strong>Engineering Maturity Improvement</strong></li>
+                                        <li>✅ <strong>Technical Leader Development Rate</strong></li>
+                                        <li>✅ <strong>Knowledge Dissemination Reach</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Technical Communication</span>
+                                        <span class="competency-tag">Knowledge Management</span>
+                                        <span class="competency-tag">Enterprise Coaching</span>
+                                        <span class="competency-tag">Leadership Development</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">PUBLISH ENTERPRISE TECHNICAL GUIDES</span> quarterly</li>
+                                        <li><span class="kpi-badge">CONDUCT BI-ANNUAL ENGINEERING MATURITY ASSESSMENT</span></li>
+                                        <li><span class="kpi-badge sl-badge">DEVELOP SUCCESSOR PLANS</span> for critical technical roles</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="evolution-lens" style="background: linear-gradient(to right, var(--accent), #064e3b); color: white; border-radius: 12px; padding: 2rem; margin: 2.5rem 0;">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Developer Growth - Enterprise Authority (Level 6)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>The Level 6 Developer framework transitions accountability from strategic influence to enterprise authority:</strong>
+                </p>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: Architectural Detachment
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Creating beautiful architecture diagrams while losing touch with implementation realities, leading to impractical designs.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #6ee7b7;"><i class="fas fa-lightbulb"></i> Solution: The Hands-On Architecture Principle</div>
+                            <p style="color: rgba(255,255,255,0.9);">Maintain technical credibility by spending 20% of your time on hands-on implementation of the most challenging aspects of your designs. This keeps you grounded in reality and earns respect from implementation teams.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: Consensus Paralysis
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Spending excessive time seeking consensus on technical decisions, delaying critical initiatives.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #6ee7b7;"><i class="fas fa-lightbulb"></i> Solution: The Decisive Consultation Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">For critical decisions, consult widely but decide decisively. Document your rationale, the alternatives considered, and why you made the choice. This builds trust while maintaining velocity.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: Innovation Isolation
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Pursuing technical innovations without considering business impact or organizational readiness.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #6ee7b7;"><i class="fas fa-lightbulb"></i> Solution: The Innovation Impact Canvas</div>
+                            <p style="color: rgba(255,255,255,0.9);">For every innovation, document: 1) Business problem solved, 2) Technical approach, 3) Adoption path, 4) Measurable outcomes, 5) Success metrics. Only pursue innovations with clear business value and adoption strategy.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; color: #6ee7b7;">
+                            <i class="fas fa-thumbs-up"></i> From Strategic Advisor to Decision Authority
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            You've evolved from <em>"I recommend we do X"</em> to <em>"We will do X because..."</em>. <strong>When technical decisions require final approval, yours is the voice that settles the discussion</strong> because of your proven track record and deep understanding of enterprise implications.
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; color: #93c5fd;">
+                            <i class="fas fa-shield"></i> From Quality Guardian to Quality Standard-Setter
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            You don't just ensure quality in enterprise systems—you define what quality means for the organization. <strong>Your quality standards become the benchmark against which all technical work is measured</strong>, and your test automation frameworks become the enterprise standard.
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; color: #fcd34d;">
+                            <i class="fas fa-users"></i> From Talent Developer to Leadership Architect
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            Your impact isn't measured by individual mentorship but by how you've structured the organization's technical leadership pipeline. <strong>You've created self-sustaining leadership development systems that produce enterprise-ready technical leaders</strong> even when you're not directly involved.
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px; color: #a78bfa;">
+                            <i class="fas fa-chart-line"></i> From Innovation Catalyst to Enterprise Transformation Leader
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            You don't just identify opportunities for innovation—you lead enterprise-wide transformations that reshape how the organization delivers value. <strong>Your ability to connect emerging technologies with business strategy creates competitive advantages that endure beyond your direct involvement</strong>.
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-check-circle"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When your technical decisions become the organization's de facto standards.</strong> When business leaders defer to your technical judgment on strategic matters, and your architectural patterns are adopted across the enterprise without formal mandates. At Level 6, your ability to balance technical excellence with business impact creates sustainable competitive advantages for the organization.
+                    </p>
+                    
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem; margin-top: 1.25rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: white; margin-bottom: 0.75rem;">
+                            <i class="fas fa-bullseye"></i> Development Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Your architectural decisions consistently shape the organization's technical direction</li>
+                            <li>Business leaders rely on your technical judgment for strategic investment decisions</li>
+                            <li>Your technical standards become the enterprise benchmark without formal enforcement</li>
+                            <li>You've developed multiple technical leaders ready for enterprise-level responsibilities</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks successful transition to Level 7
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="alert-box">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-bullseye"></i> The Level 6 Mindset Shift
+                </h3>
+                <p>Level 6 developers often believe their value is in making perfect technical decisions. In reality, your value is in <strong>making timely decisions that balance technical excellence with business impact</strong> and creating systems where good decisions happen consistently even in your absence.</p>
+                <p style="margin: 1rem 0; background: #fffbf0; padding: 0.75rem; border-radius: 6px; border-left: 3px solid var(--warning);">
+                    <strong>How we measure Level 6 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: var(--success);">When business leaders defer to your technical judgment</span> on strategic investment decisions—your assessment of technical feasibility and impact carries decisive weight</li>
+                        <li><span style="font-weight: bold; color: var(--primary);">When your technical patterns become the enterprise standard</span> through organic adoption rather than mandated compliance</li>
+                        <li><span style="font-weight: bold; color: var(--warning);">When technical leaders you've developed</span> successfully lead enterprise initiatives without your direct involvement</li>
+                    </ul>
+                    This shift marks the transition from being a technical authority to an enterprise institution—someone whose technical judgment and leadership practices become embedded in the organization's DNA.
+                </p>
+                <p><strong>Remember:</strong> At Level 6, your job isn't to have all the answers—it's to <strong>create systems where the organization consistently makes sound technical decisions</strong> through the standards, practices, and leaders you establish.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Level 6 Developers
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: var(--primary);">
+                        <div class="killer-title" style="color: var(--primary);">
+                            <i class="fas fa-gem"></i> Technical Authority
+                        </div>
+                        <p>Maintain technical credibility while scaling your impact across the enterprise.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: var(--primary);"><i class="fas fa-check-circle"></i> Practical Action: The 20% Hands-On Rule</div>
+                            <p>Reserve 20% of your time for hands-on implementation of the most challenging aspects of your designs. Focus on proving the hardest parts work in practice, which builds credibility and informs better decisions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: var(--primary);">
+                        <div class="killer-title" style="color: var(--primary);">
+                            <i class="fas fa-chart-line"></i> Strategic Decision-Making
+                        </div>
+                        <p>Make decisions that balance technical excellence with business impact in complex enterprise environments.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: var(--primary);"><i class="fas fa-check-circle"></i> Practical Action: The Decision Impact Framework</div>
+                            <p>For major decisions, document: 1) Business impact (quantified), 2) Technical trade-offs, 3) Short/long-term consequences, 4) Alternatives considered. This creates transparency and builds organizational trust in your judgment.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: var(--primary);">
+                        <div class="killer-title" style="color: var(--primary);">
+                            <i class="fas fa-people-group"></i> Enterprise Leadership
+                        </div>
+                        <p>Develop technical leaders who can operate effectively at the enterprise level.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: var(--primary);"><i class="fas fa-check-circle"></i> Practical Action: The Successor Development Program</div>
+                            <p>Identify 2-3 high-potential engineers and create personalized development plans focused on enterprise leadership. Give them increasing responsibility for cross-organizational initiatives with your coaching.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including enterprise architecture principles, technical leadership models, and organizational transformation frameworks.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

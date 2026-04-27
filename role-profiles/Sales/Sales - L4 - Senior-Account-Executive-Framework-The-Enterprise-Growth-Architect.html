@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Account Executive Framework | The Enterprise Growth Architect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #dbeafe;
+            --secondary: #0f172a;
+            --accent: #5b21b6;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #e0f2fe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --executive-gold: #d97706;
+            --executive-gold-light: #fffbeb;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #5b21b6, #4c1d95);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0f9ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .evolution-lens {
+            background: linear-gradient(to right, var(--executive-gold), #ea580c);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .evolution-title {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .transformation {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            color: var(--secondary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .transformation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--executive-gold);
+        }
+        
+        ul {
+            padding-left: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(30, 58, 138, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 58, 138, 0.2);
+        }
+        
+        .tag-culture {
+            background: rgba(91, 33, 182, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(91, 33, 182, 0.2);
+        }
+        
+        .tag-governance {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            background: #ede9fe;
+            color: #5b21b6;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid #ddd6fe;
+        }
+        
+        .impact-tag {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #047857;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin: 0.15rem;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .red-flag {
+            background: #fee2e2;
+            border-left: 3px solid var(--danger);
+        }
+        
+        .pro-tip {
+            background: #fff7ed;
+            border-left: 3px solid var(--executive-gold);
+            padding: 0.75rem 1rem;
+            margin: 1.25rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .executive-badge {
+            background: linear-gradient(45deg, #d97706, #ea580c);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            table {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Senior Account Executive Framework</h1>
+                <div class="subtitle">The Enterprise Growth Architect: Shaping Market Strategy & Driving Portfolio Revenue</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Top 5% Enterprise Growth Leadership</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Portfolio Revenue & Market Strategy Ownership</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Core Purpose:</strong> To be the <strong>enterprise growth architect</strong> who owns strategic portfolio outcomes, shapes market strategy at scale, and drives enterprise-wide transformation – transforming customer relationships into strategic partnerships that deliver sustained competitive advantage while developing the next generation of revenue leadership.
+            </div>
+            
+            <!-- Core Purpose Section -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="category-title"><i class="fas fa-bullseye"></i> Core Responsibilities</h2>
+                    <div class="category-subtitle">The Enterprise Growth Architect in Action (2024)</div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.7;">
+                        As a Senior Account Executive, you are the <strong>strategic owner of enterprise-wide revenue outcomes</strong>, responsible for navigating the most complex multi-billion dollar opportunities, shaping market strategy, and driving portfolio growth – while developing revenue leadership talent and influencing cross-functional alignment at the executive level.
+                    </p>
+                    
+                    <div class="key-points" style="margin-bottom: 1.5rem;">
+                        <span class="impact-tag">Own $2M-$5M+ in annual portfolio quota</span>
+                        <span class="impact-tag">Drive 40%+ strategic expansion revenue</span>
+                        <span class="impact-tag">Maintain 90%+ forecast accuracy</span>
+                        <span class="impact-tag">Develop 3-5 revenue leaders</span>
+                    </div>
+                    
+                    <div class="alert-box">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                            <i class="fas fa-exclamation-triangle"></i> Strategic Reality Check
+                        </h3>
+                        <p>You've evolved from strategic deal owner to <strong>enterprise growth architect</strong>. Your role now centers on shaping how your company wins in the market at scale. Your ability to navigate C-suite dynamics, anticipate market shifts, and drive portfolio growth directly impacts market leadership and shareholder value. You're accountable for not just revenue, but for building strategic partnerships that deliver competitive advantage.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Senior AE Responsibilities -->
+            <h2 class="section-title">
+                <i class="fas fa-tasks" style="margin-right: 10px; color: var(--success);"></i>
+                Core Senior Account Executive Responsibilities
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Strategic Focus:</strong> Your leadership in portfolio strategy and market positioning determines enterprise-wide revenue growth, competitive advantage, and long-term market leadership.</p>
+            
+            <!-- Portfolio Growth Leadership -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-sitemap" style="margin-right: 8px;"></i> Portfolio Growth Leadership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">Activity</th>
+                                <th width="300px">Execution Standard</th>
+                                <th width="400px">Key Performance Indicators</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Strategic Portfolio Ownership</strong></td>
+                                <td>Own revenue outcomes across enterprise portfolio; align account strategy with market strategy; drive cross-account synergies</td>
+                                <td>90%+ quota attainment; 40%+ expansion revenue; 85%+ portfolio retention</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Enterprise Growth Strategy</strong></td>
+                                <td>Develop 3-year account growth plans; identify strategic expansion vectors; anticipate market shifts</td>
+                                <td>30%+ YoY portfolio growth; 5+ strategic expansion initiatives; 90%+ executive alignment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Executive Relationship Architecture</strong></td>
+                                <td>Build C-suite relationships; understand enterprise strategy; position as strategic advisor</td>
+                                <td>5+ executive contacts per portfolio; 95%+ executive satisfaction; 3+ strategic initiatives co-created</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Strategic Deal Architecture -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Strategic Deal Architecture
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">Activity</th>
+                                <th width="300px">Execution Standard</th>
+                                <th width="400px">Key Performance Indicators</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Complex Deal Leadership</strong></td>
+                                <td>Lead multi-threaded, multi-million dollar deals; navigate enterprise complexity; align executive stakeholders</td>
+                                <td>80%+ close rate on strategic deals; $2M-$5M+ portfolio quota; 25%+ deal velocity improvement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Strategic Solution Co-Creation</strong></td>
+                                <td>Partner with Pre-Sales on solution architecture; shape client vision; align to business outcomes</td>
+                                <td>95%+ solution adoption; 40%+ ROI demonstrated; 30%+ competitive displacement</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Commercial Negotiation Mastery</strong></td>
+                                <td>Own end-to-end commercial negotiations; develop pricing strategy; structure complex contracts</td>
+                                <td>90%+ margin preservation; 35%+ strategic pricing wins; 85%+ contract alignment</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Enterprise Leadership -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-crown" style="margin-right: 8px;"></i> Enterprise Leadership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">Activity</th>
+                                <th width="300px">Execution Standard</th>
+                                <th width="400px">Key Performance Indicators</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Executive Cross-Functional Alignment</strong></td>
+                                <td>Drive executive alignment across functions; lead strategic initiatives; influence market approach</td>
+                                <td>95%+ executive satisfaction; 30%+ cross-functional initiative completion; 10+ strategic meetings monthly</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Revenue Leadership Development</strong></td>
+                                <td>Formally mentor and coach AEs; develop structured growth plans; build leadership pipeline</td>
+                                <td>3-5 revenue leaders developed; 50%+ mentee quota attainment improvement; 100% development plan compliance</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Market Strategy Influence</strong></td>
+                                <td>Shape GTM strategy; contribute to sales playbooks; drive process improvements; influence product roadmap</td>
+                                <td>5+ strategic contributions quarterly; 3+ playbook transformations; 95%+ adoption of strategic recommendations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Productivity Killers -->
+            <h2 class="section-title">
+                <i class="fas fa-ban" style="margin-right: 10px; color: var(--danger);"></i>
+                Enterprise Productivity Killers & Fixes
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Based on 2024 Enterprise Sales Leadership Research</strong> – These are proven time-wasters that sabotage enterprise growth.</p>
+            
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="250px">Killer</th>
+                                <th width="250px">Impact</th>
+                                <th width="500px">Enterprise Fix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Portfolio Management by Individual Account</strong></td>
+                                <td>Enterprise AEs waste 40%+ time managing accounts in isolation rather than leveraging cross-account synergies (Gartner 2024)</td>
+                                <td><strong>→ "Portfolio Growth Matrix":</strong><br>- Map accounts by strategic alignment, growth potential, and competitive vulnerability<br>- Identify 3-5 cross-account expansion opportunities quarterly<br>- Dedicate 25% time to portfolio strategy development</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Reactive Executive Engagement</strong></td>
+                                <td>62% of strategic opportunities are missed due to lack of proactive executive relationship strategy (Forrester)</td>
+                                <td><strong>→ "Executive Relationship Blueprint":</strong><br>- Document executive priorities and communication preferences<br>- Create 90-day engagement plan per executive<br>- Co-develop strategic initiatives addressing their top business challenges</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Transactional Cross-Functional Leadership</strong></td>
+                                <td>Poor executive alignment causes 55% of strategic deal delays in enterprise sales (TSIA)</td>
+                                <td><strong>→ "Executive Alignment Framework":</strong><br>- Co-create executive-level success metrics<br>- Schedule monthly C-suite alignment sessions<br>- Document shared strategic initiatives with executive ownership</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <h2 class="section-title">
+                <i class="fas fa-chart-bar" style="margin-right: 10px; color: var(--warning);"></i>
+                Individual Performance Metrics
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Measuring Enterprise Impact:</strong> These KPIs determine your influence on market leadership and shareholder value.</p>
+            
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">KPI</th>
+                                <th width="200px">Target</th>
+                                <th width="500px">How to Achieve</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Portfolio Quota Attainment</strong></td>
+                                <td><span class="kpi-badge">$2M-$5M+</span></td>
+                                <td>Build 3.5:1 strategic pipeline; focus on high-impact expansion; drive portfolio synergies; maintain 80%+ close rate</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Strategic Expansion Revenue</strong></td>
+                                <td><span class="kpi-badge">40%+</span></td>
+                                <td>Implement portfolio growth matrix; identify strategic expansion vectors; align with CSM on enterprise outcomes</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Executive Forecast Accuracy</strong></td>
+                                <td><span class="kpi-badge">90%+</span></td>
+                                <td>Validate assumptions with executives; document strategic rationale; implement portfolio growth matrix; maintain executive alignment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Revenue Leadership Development</strong></td>
+                                <td><span class="kpi-badge">3-5 leaders</span></td>
+                                <td>Create structured development plans; provide executive coaching; share strategic deal experiences; monitor leadership progression</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Enterprise Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-chess-king" style="margin-right: 10px; color: var(--accent);"></i>
+                Enterprise Leadership Amplification
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>How Senior AEs Elevate the Entire Organization</strong> – Move from portfolio owner to market architect.</p>
+            
+            <div class="card">
+                <div class="card-body">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem;">
+                        <div class="transformation">
+                            <div class="transformation-header">
+                                <i class="fas fa-brain"></i>
+                                <span>Enterprise Growth Council</span>
+                            </div>
+                            <p>Lead quarterly cross-functional executive sessions to review portfolio strategy, identify enterprise-wide expansion opportunities, and develop strategic initiatives aligned with customer business outcomes</p>
+                            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--gray-300);">
+                                <strong>Impact:</strong> Increases strategic expansion revenue by 52% and drives enterprise-wide customer success through executive alignment
+                            </div>
+                        </div>
+                        
+                        <div class="transformation">
+                            <div class="transformation-header">
+                                <i class="fas fa-rocket"></i>
+                                <span>Strategic Deal Architecture Framework</span>
+                            </div>
+                            <p>Document and socialize winning approaches for enterprise deals; create templates for C-suite engagement; develop competitive displacement strategies</p>
+                            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--gray-300);">
+                                <strong>Impact:</strong> Reduces enterprise sales cycle by 35% and accelerates development of junior revenue leadership
+                            </div>
+                        </div>
+                        
+                        <div class="transformation">
+                            <div class="transformation-header">
+                                <i class="fas fa-user-graduate"></i>
+                                <span>Revenue Leadership Accelerator</span>
+                            </div>
+                            <p>Formal program for developing next-generation revenue leaders including strategic deal exposure, executive coaching, and leadership development frameworks</p>
+                            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--gray-300);">
+                                <strong>Impact:</strong> Increases mentee quota attainment by 60% and creates sustainable leadership pipeline for revenue organization
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Critical Don'ts -->
+            <div class="red-flag" style="padding: 1.5rem; border-radius: 0 8px 8px 0; margin: 2rem 0;">
+                <h2 style="display: flex; align-items: center; gap: 10px; color: var(--danger); margin-bottom: 1rem;">
+                    <i class="fas fa-times-circle"></i> Critical "Don'ts" for Enterprise Growth Architects
+                </h2>
+                <ul style="padding-left: 2rem;">
+                    <li style="margin-bottom: 0.75rem;"><strong>🚫 Never</strong> manage accounts in isolation without portfolio perspective<br><em>(Creates missed expansion opportunities and inconsistent customer experience)</em></li>
+                    <li style="margin-bottom: 0.75rem;"><strong>🚫 Never</strong> treat executive relationships as transactional rather than strategic partnerships<br><em>(Results in reactive selling and vulnerability to competition)</em></li>
+                    <li><strong>🚫 Never</strong> fail to document strategic insights and market intelligence at enterprise level<br><em>(Causes organizational knowledge gaps and repeated strategic mistakes)</em></li>
+                </ul>
+            </div>
+
+            <!-- Pro Tip Section -->
+            <div class="pro-tip">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem;">
+                    <i class="fas fa-lightbulb"></i> Enterprise Pro Tip for 2024
+                </h3>
+                <p>Implement a <strong>"Portfolio Value Dashboard"</strong> – real-time visualization of portfolio health across dimensions like strategic alignment, growth potential, competitive positioning, and executive engagement. Top-performing Senior AEs using this approach see 63% higher strategic expansion revenue and 45% faster enterprise deal velocity (Gartner 2024).</p>
+            </div>
+
+            <!-- Evolution Lens -->
+            <div class="evolution-lens">
+                <h2 class="evolution-title">
+                    <i class="fas fa-sync-alt"></i> Career Path & Enterprise Value
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                    <strong>Master these enterprise responsibilities, and you'll become the organization's most strategic growth asset.</strong> Top-performing Senior AEs progress to Regional Sales Leadership or Strategic Growth Officer roles in 12-18 months, with many advancing to VP or C-suite positions within 2-3 years.
+                </p>
+                
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-chess-rook"></i> Your Enterprise Value
+                        </h3>
+                        <ul style="color: rgba(255,255,255,0.95); margin-left: 1.25rem;">
+                            <li>Drive 55%+ of total enterprise revenue</li>
+                            <li>Identify 75%+ of strategic expansion revenue through portfolio planning</li>
+                            <li>Shape 45%+ of market strategy through enterprise insights</li>
+                            <li>Develop future revenue leadership through structured development</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-graduation-cap"></i> Career Progression Path
+                        </h3>
+                        <p style="color: rgba(255,255,255,0.95);">
+                            Excel in these enterprise responsibilities, and you'll be positioned for rapid advancement to Regional Sales Leadership or Strategic Growth Officer within 12-18 months. Top performers who demonstrate market leadership and strategic vision often progress to VP of Sales or CRO roles within 2-3 years.
+                        </p>
+                        <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <span class="role-badge">Regional Sales Leader</span>
+                            <span class="role-badge">Strategic Growth Officer</span>
+                            <span class="role-badge">VP of Sales</span>
+                            <span class="role-badge">Chief Revenue Officer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box" style="text-align: center; margin-top: 2rem;">
+                <h3 style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-landmark"></i> Architect Growth. Shape Markets. Lead Transformation.
+                </h3>
+                <p>Your work as a Senior Account Executive is the foundation of enterprise-wide market leadership. Your ability to navigate C-suite dynamics, drive portfolio growth, and develop revenue leadership creates the strategic advantage that positions your company for sustained competitive dominance and shareholder value creation.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

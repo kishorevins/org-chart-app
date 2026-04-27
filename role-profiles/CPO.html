@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #dbeafe;
+            --secondary: #0f172a;
+            --accent: #7e22ce;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #e0f2fe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --cpo-color: #1e40af;
+            --vp-color: #7e22ce;
+            --talent-color: #0f172a;
+            --skill-color: #047857;
+            --ops-color: #92400e;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+        
+        .role-header {
+            background: linear-gradient(135deg, var(--primary), #1d4ed8);
+            color: white;
+        }
+        
+        .vp-header {
+            background: linear-gradient(135deg, var(--vp-color), #6d28d9);
+            color: white;
+        }
+        
+        .talent-header {
+            background: linear-gradient(135deg, var(--talent-color), #1e293b);
+            color: white;
+        }
+        
+        .skill-header {
+            background: linear-gradient(135deg, var(--skill-color), #065f46);
+            color: white;
+        }
+        
+        .ops-header {
+            background: linear-gradient(135deg, var(--ops-color), #9a3412);
+            color: white;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .vp-card-header {
+            background: #f3e8ff;
+        }
+        
+        .talent-card-header {
+            background: #f1f5f9;
+        }
+        
+        .skill-card-header {
+            background: #ccfbf1;
+        }
+        
+        .ops-card-header {
+            background: #ffedd5;
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0f9ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .evolution-lens {
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .cpo-lens {
+            background: linear-gradient(to right, #1e40af, #3b82f6);
+            color: white;
+        }
+        
+        .vp-lens {
+            background: linear-gradient(to right, #7e22ce, #a855f7);
+            color: white;
+        }
+        
+        .talent-lens {
+            background: linear-gradient(to right, #0f172a, #334155);
+            color: white;
+        }
+        
+        .skill-lens {
+            background: linear-gradient(to right, #047857, #10b981);
+            color: white;
+        }
+        
+        .ops-lens {
+            background: linear-gradient(to right, #92400e, #ea580c);
+            color: white;
+        }
+        
+        .evolution-title {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .transformation {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            color: var(--secondary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .transformation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        ul {
+            padding-left: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .vp-section {
+            color: var(--vp-color);
+            border-bottom-color: var(--vp-color);
+        }
+        
+        .talent-section {
+            color: var(--talent-color);
+            border-bottom-color: var(--talent-color);
+        }
+        
+        .skill-section {
+            color: var(--skill-color);
+            border-bottom-color: var(--skill-color);
+        }
+        
+        .ops-section {
+            color: var(--ops-color);
+            border-bottom-color: var(--ops-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .vp-subheader {
+            background: #f3e8ff;
+            color: var(--vp-color);
+        }
+        
+        .talent-subheader {
+            background: #f0f9ff;
+            color: var(--talent-color);
+        }
+        
+        .skill-subheader {
+            background: #ccfbf1;
+            color: var(--skill-color);
+        }
+        
+        .ops-subheader {
+            background: #ffedd5;
+            color: var(--ops-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 64, 175, 0.2);
+        }
+        
+        .tag-culture {
+            background: rgba(126, 34, 206, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(126, 34, 206, 0.2);
+        }
+        
+        .tag-governance {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .cpo-highlight {
+            background: #dbeafe;
+            border-left-color: var(--cpo-color);
+        }
+        
+        .vp-highlight {
+            background: #ede9fe;
+            border-left-color: var(--vp-color);
+        }
+        
+        .talent-highlight {
+            background: #f1f5f9;
+            border-left-color: var(--talent-color);
+        }
+        
+        .skill-highlight {
+            background: #ccfbf1;
+            border-left-color: var(--skill-color);
+        }
+        
+        .ops-highlight {
+            background: #ffedd5;
+            border-left-color: var(--ops-color);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .role-separator {
+            height: 1px;
+            background: var(--border-color);
+            margin: 4rem 0;
+            position: relative;
+        }
+        
+        .role-separator::after {
+            content: "PEOPLE LEADERSHIP EXCELLENCE FRAMEWORK";
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 15px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            table {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1></h1>
+                <div class="subtitle">Strategic Role Definitions for High-Performance IT Organizations</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: July 19, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Future-Proof Talent Strategy</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Productivity-First Organization Design</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Framework Purpose:</strong> Define clear ownership boundaries, accountability metrics, and execution standards for critical people leadership roles in IT organizations. Eliminate role ambiguity to create <strong>rock-solid development teams</strong> capable of delivering complex projects with quality and reliability.
+            </div>
+            
+            <div class="highlight-box" style="background: #fef2f2; border-left-color: var(--danger);">
+                <strong>Productivity Killers to Eliminate:</strong> Role overlap, inconsistent promotion criteria, skill gaps in critical areas, and manual HR processes that consume 30%+ of leadership time (per 2024 <em>Harvard Business Review</em>).
+            </div>
+
+            <!-- CPO SECTION -->
+            <div class="role-separator"></div>
+            
+            <header class="role-header">
+                <h1>Role Name :  Chief People Officer (CPO)</h1>
+                <div class="subtitle">The Architect of Human Scalability</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: July 19, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Talent GPS Strategy</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Human Capital ROI Optimization</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="cpo-highlight">
+                <strong>Overarching Goal:</strong> Ensure the company grows ONLY as fast as its talent can support—without burning out people or culture. <strong>Own the talent balance sheet</strong> with the same rigor as the CFO owns the financial balance sheet.
+            </div>
+            
+            <div class="cpo-highlight" style="background: #fecaca; border-left-color: var(--danger);">
+                <strong>Growth Killer to Avoid:</strong> Letting talent gaps derail strategic initiatives (e.g., taking projects requiring skills you don't have). With AI reshaping roles monthly, 67% of critical skills become obsolete in 2 years (World Economic Forum 2024).
+            </div>
+
+            <!-- Category 1: Workforce Strategy & Scalability -->
+            <h2 class="section-title">
+                <i class="fas fa-users" style="margin-right: 10px; color: var(--cpo-color);"></i>
+                Category 1: Workforce Strategy & Scalability (The Talent GPS)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> Build and maintain the "talent GPS"—a dynamic map of current and future skills needed to execute business strategy. <strong>Prevent growth that breaks culture</strong> by blocking initiatives where talent gaps exist.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header talent-subheader">
+                    <i class="fas fa-map-marked-alt" style="margin-right: 8px;"></i> Workforce Planning & Talent GPS
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Build 3-year talent GPS mapping critical skills to business strategy</li>
+                                        <li>Block growth initiatives where talent gaps exist</li>
+                                        <li>Track talent balance sheet metrics (vacancy cost, bench strength)</li>
+                                        <li>Conduct quarterly talent gap risk assessments</li>
+                                        <li>Own culture retention strategy for high-performers</li>
+                                        <li>Design promotion frameworks visible to all employees</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Build <span class="kpi-badge">100% of strategic roles filled before project starts</span></li>
+                                        <li>Achieve <span class="kpi-badge">=90% culture retention rate</span> for high-performers</li>
+                                        <li>Quantify <span class="kpi-badge">talent gap impact on revenue</span> quarterly</li>
+                                        <li>Reduce <span class="kpi-badge">critical vacancy duration by 40%</span> YoY</li>
+                                        <li>Ensure <span class="kpi-badge">100% visibility into promotion criteria</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>% Strategic roles filled pre-project start</li>
+                                        <li>High-performer retention rate (3+ years)</li>
+                                        <li>Revenue impact of talent gaps</li>
+                                        <li>Critical vacancy duration (days)</li>
+                                        <li>Promotion criteria transparency score</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Workforce Planning</span>
+                                        <span class="competency-tag">Talent Gap Analytics</span>
+                                        <span class="competency-tag">Business Acumen</span>
+                                        <span class="competency-tag">Culture Engineering</span>
+                                        <span class="competency-tag">Change Leadership</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Talent GPS updated <span class="kpi-badge sl-badge">quarterly with business leaders</span></li>
+                                        <li>Block growth initiatives if <span class="kpi-badge sl-badge">talent gap >15%</span></li>
+                                        <li>Conduct <span class="kpi-badge sl-badge">"talent stress tests"</span> for strategic initiatives</li>
+                                        <li>Promotion criteria published <span class="kpi-badge sl-badge">in company knowledge base</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header talent-subheader">
+                    <i class="fas fa-balance-scale" style="margin-right: 8px;"></i> Promotion Frameworks & Fairness
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Design bias-resistant promotion rules</li>
+                                        <li>Audit promotions for demographic equity</li>
+                                        <li>Eliminate "promotion theater" (inflated titles)</li>
+                                        <li>Ensure promotion criteria align with business needs</li>
+                                        <li>Measure promotion impact on retention</li>
+                                        <li>Link promotions to skill development investments</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Maintain <span class="kpi-badge">=5% demographic variance in promotion rates</span></li>
+                                        <li>Reduce <span class="kpi-badge">"title inflation" by 100%</span></li>
+                                        <li>Achieve <span class="kpi-badge">=95% promotion criteria-business alignment</span></li>
+                                        <li>Ensure <span class="kpi-badge">promotions drive 20%+ retention lift</span></li>
+                                        <li>Verify <span class="kpi-badge">100% of promotions meet pre-set criteria</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Promotion rate variance by demographic</li>
+                                        <li>Title-to-seniority alignment score</li>
+                                        <li>Business impact of promoted roles</li>
+                                        <li>Regrettable attrition post-promotion</li>
+                                        <li>Promotion criteria adherence rate</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Equity Analytics</span>
+                                        <span class="competency-tag">Compensation Strategy</span>
+                                        <span class="competency-tag">Organizational Design</span>
+                                        <span class="competency-tag">Bias Mitigation</span>
+                                        <span class="competency-tag">Data Storytelling</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Conduct <span class="kpi-badge sl-badge">quarterly promotion equity audits</span></li>
+                                        <li>Implement <span class="kpi-badge sl-badge">"promotion pre-check" system</span> (blocks approvals if criteria unmet)</li>
+                                        <li>Require <span class="kpi-badge sl-badge">business impact evidence</span> for all promotions</li>
+                                        <li>Track <span class="kpi-badge sl-badge">promotion outcomes for 12 months</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Leadership Enablement -->
+            <h2 class="section-title talent-section">
+                <i class="fas fa-chess-king" style="margin-right: 10px; color: var(--talent-color);"></i>
+                Category 2: Leadership Enablement (The Autonomy Engine)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> Enable leaders to make decisions independently with clear guardrails. <strong>Eliminate "who fixes this?" ambiguity</strong> by defining decision rights with surgical precision.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header talent-subheader">
+                    <i class="fas fa-bolt" style="margin-right: 8px;"></i> Autonomy Toolkit Deployment
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Build decision autonomy toolkits for all levels</li>
+                                        <li>Create simple escalation flowcharts</li>
+                                        <li>Define financial/approval thresholds</li>
+                                        <li>Train leaders on decision frameworks</li>
+                                        <li>Measure decision speed impact</li>
+                                        <li>Eliminate unnecessary approval layers</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce <span class="kpi-badge">leadership decision time by 50%</span></li>
+                                        <li>Ensure <span class="kpi-badge">100% of leaders have autonomy toolkits</span></li>
+                                        <li>Eliminate <span class="kpi-badge">=3 redundant approval layers</span></li>
+                                        <li>Achieve <span class="kpi-badge">=90% toolkit adoption rate</span></li>
+                                        <li>Verify <span class="kpi-badge">decisions align with business goals 95%+ of time</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Decision velocity (time to resolution)</li>
+                                        <li>Autonomy toolkit adoption rate</li>
+                                        <li>Escalation rate to CPO</li>
+                                        <li>Decision quality score</li>
+                                        <li>Leader confidence index</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Decision Science</span>
+                                        <span class="competency-tag">Process Simplification</span>
+                                        <span class="competency-tag">Change Management</span>
+                                        <span class="competency-tag">Leadership Coaching</span>
+                                        <span class="competency-tag">Metrics Design</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Update autonomy toolkits <span class="kpi-badge sl-badge">bi-annually</span></li>
+                                        <li>Conduct <span class="kpi-badge sl-badge">decision simulations quarterly</span></li>
+                                        <li>Maintain <span class="kpi-badge sl-badge">"decision dashboard"</span> visible to all</li>
+                                        <li>Require <span class="kpi-badge sl-badge">autonomy certification</span> for new leaders</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Evolution Lens -->
+            <div class="evolution-lens cpo-lens">
+                <h2 class="evolution-title">
+                    <i class="fas fa-sync-alt"></i> Evolution Lens (The Human Capital Strategist)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7;">
+                    <strong>The CPO shifts from "HR leader" to "Human Capital Strategist" who treats talent as the primary growth engine.</strong> You stop counting hires and start measuring talent ROI.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "HR Head" to "Talent CFO"</span>
+                        </div>
+                        <p>Evolve from managing HR processes to owning the talent balance sheet with P&L rigor. Track vacancy costs like revenue loss.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Policy Maker" to "Bias Engineer"</span>
+                        </div>
+                        <p>Shift from creating rules to designing systems that prevent bias through architecture, not compliance.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Culture Owner" to "Culture Scientist"</span>
+                        </div>
+                        <p>Move from culture initiatives to measuring culture's impact on business outcomes with precision.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "People Leader" to Growth Gatekeeper</span>
+                        </div>
+                        <p>Transition from supporting growth to blocking unsustainable growth that breaks talent systems.</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-chart-pie"></i> Success Measured By
+                        </h3>
+                        <ul style="color: rgba(255,255,255,0.95); margin-left: 1.25rem;">
+                            <li><strong>Talent ROI:</strong> Revenue per strategic role filled</li>
+                            <li><strong>Culture health:</strong> High-performer retention rate</li>
+                            <li><strong>Growth sustainability:</strong> % strategic initiatives blocked due to talent gaps</li>
+                            <li><strong>Equity:</strong> Promotion rate variance by demographic</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-hammer"></i> Core Philosophy
+                        </h3>
+                        <p style="color: rgba(255,255,255,0.95);">Talent is the ONLY strategic differentiator in IT. Build systems that make talent gaps impossible to ignore before they derail projects.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Performance Insight
+                </h3>
+                <p>CPOs must dedicate <strong>at least 40% of their time</strong> to future-focused talent strategy (vs. operational HR). Measure success by <strong>talent gap prevention rate</strong>—the percentage of strategic initiatives that launched with 100% role readiness. If >15% of projects start with talent gaps, the talent GPS is broken.</p>
+            </div>
+
+            
+        </div>
+    </div>
+</body>
+</html>

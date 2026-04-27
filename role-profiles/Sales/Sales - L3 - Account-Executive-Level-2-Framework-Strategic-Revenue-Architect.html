@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Executive Level 2 Framework | Strategic Revenue Architect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #dbeafe;
+            --secondary: #0f172a;
+            --accent: #7e22ce;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #e0f2fe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #7e22ce, #6d28d9);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0f9ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .evolution-lens {
+            background: linear-gradient(to right, var(--accent), #7c3aed);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .evolution-title {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .transformation {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            color: var(--secondary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .transformation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        ul {
+            padding-left: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 64, 175, 0.2);
+        }
+        
+        .tag-culture {
+            background: rgba(126, 34, 206, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(126, 34, 206, 0.2);
+        }
+        
+        .tag-governance {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            background: #ede9fe;
+            color: #7e22ce;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid #ddd6fe;
+        }
+        
+        .impact-tag {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #047857;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin: 0.15rem;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .red-flag {
+            background: #fee2e2;
+            border-left: 3px solid var(--danger);
+        }
+        
+        .pro-tip {
+            background: #f0f9ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 1.25rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            table {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Account Executive Level 2 Framework</h1>
+                <div class="subtitle">The Strategic Revenue Architect: Owning Complex Deals & Driving Market Strategy</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Top 15% Strategic Revenue Ownership</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Strategic Account Growth & Market Expansion</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Core Purpose:</strong> To be the <strong>strategic revenue architect</strong> who owns complex multi-stakeholder deals, drives expansion within strategic accounts, and contributes to market strategy – transforming customer relationships into predictable, scalable revenue streams while mentoring the next generation of revenue professionals.
+            </div>
+            
+            <!-- Core Purpose Section -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="category-title"><i class="fas fa-bullseye"></i> Core Responsibilities</h2>
+                    <div class="category-subtitle">The Strategic Revenue Architect in Action (2024)</div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.7;">
+                        As an Account Executive Level 2, you are the <strong>strategic owner of revenue outcomes</strong>, responsible for navigating complex sales cycles, driving expansion within strategic accounts, and contributing to market strategy – while mentoring junior team members and collaborating cross-functionally to ensure customer success.
+                    </p>
+                    
+                    <div class="key-points" style="margin-bottom: 1.5rem;">
+                        <span class="impact-tag">Own $500K-$1.5M in annual quota</span>
+                        <span class="impact-tag">Drive 30%+ expansion revenue</span>
+                        <span class="impact-tag">Maintain 85%+ forecast accuracy</span>
+                        <span class="impact-tag">Mentor 2-3 junior AEs/SDRs</span>
+                    </div>
+                    
+                    <div class="alert-box">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                            <i class="fas fa-exclamation-triangle"></i> Strategic Reality Check
+                        </h3>
+                        <p>Your role has evolved from deal closer to <strong>revenue strategist</strong>. You're now accountable for not just closing deals, but for shaping how your company wins in the market. Your ability to navigate complex stakeholder landscapes, identify expansion opportunities, and contribute strategic insights directly impacts market share and long-term revenue growth.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core AE Level 2 Responsibilities -->
+            <h2 class="section-title">
+                <i class="fas fa-tasks" style="margin-right: 10px; color: var(--success);"></i>
+                Core AE Level 2 Responsibilities
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Strategic Focus:</strong> Your leadership in complex deals and market strategy directly determines sustainable revenue growth and competitive positioning.</p>
+            
+            <!-- Strategic Deal Ownership -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-sitemap" style="margin-right: 8px;"></i> Strategic Deal Ownership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">Activity</th>
+                                <th width="300px">Execution Standard</th>
+                                <th width="400px">Key Performance Indicators</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Complex Deal Management</strong></td>
+                                <td>Own end-to-end sales cycle for multi-stakeholder deals; navigate organizational complexity; align internal resources</td>
+                                <td>75%+ close rate on strategic deals; 25%+ expansion rate; $500K-$1.5M annual quota attainment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Strategic Pipeline Development</strong></td>
+                                <td>Proactively identify and create opportunities; drive pipeline progression; shape market approach</td>
+                                <td>3:1 pipeline coverage; 40%+ new logo pipeline; 20%+ pipeline growth quarterly</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Risk Management & Deal Recovery</strong></td>
+                                <td>Identify risks early; develop recovery plans; execute strategic interventions</td>
+                                <td>90%+ risk identification; 65%+ deal recovery rate; 15%+ sales cycle reduction</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Account Growth Strategy -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Account Growth Strategy
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">Activity</th>
+                                <th width="300px">Execution Standard</th>
+                                <th width="400px">Key Performance Indicators</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Expansion Execution</strong></td>
+                                <td>Identify and execute upsell/cross-sell opportunities; manage renewals strategically</td>
+                                <td>30%+ expansion revenue; 95%+ renewal rate; 2+ expansion triggers identified per account</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Strategic Relationship Building</strong></td>
+                                <td>Build executive relationships; understand business strategy; position as trusted advisor</td>
+                                <td>3+ executive contacts per account; 90%+ stakeholder satisfaction; 80%+ strategic alignment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Market Intelligence</strong></td>
+                                <td>Capture competitive insights; identify market trends; contribute to product strategy</td>
+                                <td>10+ competitive insights monthly; 5+ market trends documented quarterly</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Strategic Leadership -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-crown" style="margin-right: 8px;"></i> Strategic Leadership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">Activity</th>
+                                <th width="300px">Execution Standard</th>
+                                <th width="400px">Key Performance Indicators</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Cross-Functional Collaboration</strong></td>
+                                <td>Lead strategic initiatives with Marketing, CSM, Pre-Sales; drive alignment on customer outcomes</td>
+                                <td>90%+ cross-functional satisfaction; 25%+ joint initiatives completed; 15+ strategic meetings monthly</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mentorship & Development</strong></td>
+                                <td>Mentor junior AEs/SDRs; provide feedback; guide deal strategy; share best practices</td>
+                                <td>2-3 mentees developed; 85%+ mentee performance improvement; 100% mentorship compliance</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sales Strategy Contribution</strong></td>
+                                <td>Provide inputs to pricing strategy; contribute to market approach; shape sales playbooks</td>
+                                <td>3+ strategic contributions quarterly; 2+ playbook improvements; 90%+ adoption of recommendations</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Productivity Killers -->
+            <h2 class="section-title">
+                <i class="fas fa-ban" style="margin-right: 10px; color: var(--danger);"></i>
+                Strategic Productivity Killers & Fixes
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Based on 2024 Strategic AE Performance Research</strong> – These are proven time-wasters that sabotage strategic growth.</p>
+            
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="250px">Killer</th>
+                                <th width="250px">Impact</th>
+                                <th width="500px">Strategic Fix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Reactive Pipeline Management</strong></td>
+                                <td>Strategic AEs waste 35%+ time putting out fires instead of proactively shaping opportunities (Gartner 2024)</td>
+                                <td><strong>→ "Strategic Pipeline Canvas":</strong><br>- Map 90/60/30 day pipeline with strategic priorities<br>- Identify 2-3 critical path items per deal weekly<br>- Dedicate 20% time weekly to proactive opportunity creation</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Shallow Expansion Planning</strong></td>
+                                <td>68% of expansion opportunities are missed due to lack of strategic account planning (Forrester)</td>
+                                <td><strong>→ "Account Growth Blueprint":</strong><br>- Document customer business objectives quarterly<br>- Map solution capabilities to strategic initiatives<br>- Create 12-month expansion roadmap per strategic account</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Transactional Cross-Functional Collaboration</strong></td>
+                                <td>Poor cross-functional alignment causes 42% of strategic deal delays (TSIA)</td>
+                                <td><strong>→ "Strategic Alliance Framework":</strong><br>- Co-create success metrics with CSM/Pre-Sales<br>- Schedule bi-weekly strategic alignment sessions<br>- Document shared account plans with clear ownership</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <h2 class="section-title">
+                <i class="fas fa-chart-bar" style="margin-right: 10px; color: var(--warning);"></i>
+                Individual Performance Metrics
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Measuring Strategic Impact:</strong> These KPIs determine your influence on sustainable revenue growth and market leadership.</p>
+            
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">KPI</th>
+                                <th width="200px">Target</th>
+                                <th width="500px">How to Achieve</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Annual Quota Attainment</strong></td>
+                                <td><span class="kpi-badge">$500K-$1.5M</span></td>
+                                <td>Build 3:1 pipeline coverage; focus on strategic accounts; drive expansion revenue; maintain 75%+ close rate</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Expansion Revenue</strong></td>
+                                <td><span class="kpi-badge">30%+</span></td>
+                                <td>Develop account growth blueprints; identify expansion triggers; align with CSM on success metrics</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Forecast Accuracy</strong></td>
+                                <td><span class="kpi-badge">85%+</span></td>
+                                <td>Implement strategic pipeline canvas; validate assumptions weekly; document deal progression rationale</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Mentee Development</strong></td>
+                                <td><span class="kpi-badge">2-3 mentees</span></td>
+                                <td>Create development plans; provide structured feedback; share strategic deal experiences; monitor progress weekly</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Strategic Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-chess-king" style="margin-right: 10px; color: var(--accent);"></i>
+                Strategic Leadership Amplification
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>How Strategic AEs Elevate the Entire Revenue Organization</strong> – Move from revenue driver to market strategist.</p>
+            
+            <div class="card">
+                <div class="card-body">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem;">
+                        <div class="transformation">
+                            <div class="transformation-header">
+                                <i class="fas fa-brain"></i>
+                                <span>Strategic Account Council</span>
+                            </div>
+                            <p>Lead monthly cross-functional sessions with CSM, Pre-Sales, and Product to review strategic accounts, identify expansion opportunities, and develop joint success plans</p>
+                            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--gray-300);">
+                                <strong>Impact:</strong> Increases expansion revenue by 35% and drives holistic customer success through aligned strategy
+                            </div>
+                        </div>
+                        
+                        <div class="transformation">
+                            <div class="transformation-header">
+                                <i class="fas fa-rocket"></i>
+                                <span>Strategic Deal Playbook</span>
+                            </div>
+                            <p>Document and socialize winning approaches for complex deals; create templates for multi-stakeholder navigation; share competitive battle cards</p>
+                            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--gray-300);">
+                                <strong>Impact:</strong> Reduces sales cycle by 22% for complex deals and accelerates onboarding of junior team members
+                            </div>
+                        </div>
+                        
+                        <div class="transformation">
+                            <div class="transformation-header">
+                                <i class="fas fa-user-graduate"></i>
+                                <span>Mentorship Acceleration Program</span>
+                            </div>
+                            <p>Structured framework for developing junior AEs including shadowing opportunities, deal strategy sessions, and skill development plans</p>
+                            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--gray-300);">
+                                <strong>Impact:</strong> Increases mentee quota attainment by 40% and creates sustainable talent pipeline for revenue organization
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Critical Don'ts -->
+            <div class="red-flag" style="padding: 1.5rem; border-radius: 0 8px 8px 0; margin: 2rem 0;">
+                <h2 style="display: flex; align-items: center; gap: 10px; color: var(--danger); margin-bottom: 1rem;">
+                    <i class="fas fa-times-circle"></i> Critical "Don'ts" for Strategic Account Executives
+                </h2>
+                <ul style="padding-left: 2rem;">
+                    <li style="margin-bottom: 0.75rem;"><strong>🚫 Never</strong> operate in silos without cross-functional alignment<br><em>(Creates customer experience gaps and missed expansion opportunities)</em></li>
+                    <li style="margin-bottom: 0.75rem;"><strong>🚫 Never</strong> treat expansion as transactional rather than strategic<br><em>(Results in reactive selling and lower lifetime value)</em></li>
+                    <li><strong>🚫 Never</strong> fail to document strategic insights and market intelligence<br><em>(Causes organizational knowledge gaps and repeated mistakes)</em></li>
+                </ul>
+            </div>
+
+            <!-- Pro Tip Section -->
+            <div class="pro-tip">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem;">
+                    <i class="fas fa-lightbulb"></i> Strategic Pro Tip for 2024
+                </h3>
+                <p>Implement a <strong>"Strategic Account Scorecard"</strong> – quarterly assessment of each strategic account across dimensions like business alignment, relationship depth, expansion potential, and competitive vulnerability. Top-performing strategic AEs using this approach see 47% higher expansion revenue and 33% faster deal velocity (SiriusDecisions 2024).</p>
+            </div>
+
+            <!-- Evolution Lens -->
+            <div class="evolution-lens">
+                <h2 class="evolution-title">
+                    <i class="fas fa-sync-alt"></i> Career Path & Strategic Value
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                    <strong>Master these strategic responsibilities, and you'll become the organization's most valuable revenue asset.</strong> Top-performing Strategic AEs progress to Senior Account Executive or Strategic Program Director roles in 12-18 months, with many advancing to Regional Sales Leadership or VP positions within 2-3 years.
+                </p>
+                
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-chess-rook"></i> Your Strategic Value
+                        </h3>
+                        <ul style="color: rgba(255,255,255,0.95); margin-left: 1.25rem;">
+                            <li>Drive 45%+ of total company revenue</li>
+                            <li>Identify 60%+ of expansion revenue through strategic planning</li>
+                            <li>Shape 30%+ of sales strategy through market insights</li>
+                            <li>Develop next-generation revenue leaders through structured mentorship</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-graduation-cap"></i> Career Progression Path
+                        </h3>
+                        <p style="color: rgba(255,255,255,0.95);">
+                            Excel in these strategic responsibilities, and you'll be positioned for rapid advancement to Senior Account Executive or Strategic Program Director within 12-18 months. Top performers who demonstrate market leadership and revenue strategy often progress to Regional Sales Leadership or VP roles within 2-3 years.
+                        </p>
+                        <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <span class="role-badge">Senior Account Executive</span>
+                            <span class="role-badge">Strategic Program Director</span>
+                            <span class="role-badge">Regional Sales Leader</span>
+                            <span class="role-badge">VP of Sales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box" style="text-align: center; margin-top: 2rem;">
+                <h3 style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-landmark"></i> Own the Strategy. Drive Market Leadership.
+                </h3>
+                <p>Your work as a Strategic Account Executive is the foundation of sustainable revenue growth. Your ability to navigate complex deals, drive expansion, and contribute strategic insights creates the competitive advantage that positions your company for market leadership and long-term success.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

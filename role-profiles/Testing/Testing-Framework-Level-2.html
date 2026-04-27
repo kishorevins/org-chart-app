@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Framework | Level 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #047857;
+            --primary-light: #d1fae5;
+            --secondary: #0f172a;
+            --accent: #047857;
+            --success: #065f46;
+            --warning: #c2410c;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #d1fae5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --evolution-bg: linear-gradient(135deg, #065f46, #047857);
+            --level2-bg: linear-gradient(135deg, #0c4a6e, #0369a1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: var(--level2-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #ccfbf1;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-transformation {
+            background: rgba(6, 95, 70, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(6, 95, 70, 0.2);
+        }
+        
+        .tag-impact {
+            background: rgba(194, 65, 12, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(194, 65, 12, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #d1fae5;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #6ee7b7;
+        }
+        
+        .evolution-lens {
+            background: var(--level2-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: #93c5fd;
+        }
+        
+        .impact-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.75rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #34d399;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .level-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .current-level {
+            font-weight: bold;
+            color: white;
+            background: var(--success);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .level-badge {
+            background: #0c4a6e;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Testing Engineer (Level 2) Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">The Quality Specialist: Advancing Testing Excellence Through Critical Analysis and Proactive Quality Assurance</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Quality Assurance & Test Execution</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>The Quality Specialist</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To advance beyond basic test execution by developing critical analysis skills, proactively identifying quality risks, and contributing to quality improvements through independent testing, requirement validation, and foundational automation.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Productivity Killer to Avoid:</strong> <strong>"Testing in isolation"</strong> syndrome. Your value isn't just in finding defects in your assigned tickets but in <strong>connecting testing activities to the bigger quality picture</strong>. Avoid becoming a siloed executor who doesn't see how your work impacts the entire delivery pipeline or business outcomes.
+            </div>
+
+            <!-- Category 1: Critical Analysis & Quality Advocacy -->
+            <h2 class="section-title">
+                <i class="fas fa-search" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Critical Analysis & Quality Advocacy (The Quality Analyst)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To transform from process follower to quality advocate by critically analyzing requirements, identifying gaps, and proactively managing quality risks throughout the development lifecycle.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-project-diagram" style="margin-right: 8px;"></i> Requirement Analysis & Validation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Deep requirement analysis</strong> including acceptance criteria</li>
+                                        <li><strong>Identifying missing, unclear</strong> or inconsistent requirements</li>
+                                        <li><strong>Proactive communication</strong> of requirement gaps</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Identify 90%+ of requirement gaps before development starts</li>
+                                        <li>Reduce requirement-related defects by 40% in assigned areas</li>
+                                        <li>Document requirement clarifications within 24 hours</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Requirement Gap Detection Rate</strong></li>
+                                        <li>✅ <strong>Requirement Clarification Impact</strong></li>
+                                        <li>✅ <strong>Test Basis Completeness Score</strong></li>
+                                        <li>✅ <strong>Requirement Validation Efficiency</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Critical Analysis</span>
+                                        <span class="competency-tag">Requirement Validation</span>
+                                        <span class="competency-tag">Quality Advocacy</span>
+                                        <span class="competency-tag">Business Acumen</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ANALYZE 3+ SCENARIOS PER REQUIREMENT</span></li>
+                                        <li><span class="kpi-badge">DOCUMENT GAP WITH IMPACT ASSESSMENT</span></li>
+                                        <li><span class="kpi-badge sl-badge">RAISE CLARIFICATIONS BEFORE DEV START</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-bullseye" style="margin-right: 8px;"></i> Quality Risk Management
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Proactive identification</strong> of quality risks</li>
+                                        <li><strong>Escalating issues</strong> impacting quality/timelines</li>
+                                        <li><strong>Change impact analysis</strong> for test coverage</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Identify 100% of critical quality risks in assigned areas</li>
+                                        <li>Zero major defects escaping to production in owned areas</li>
+                                        <li>Complete risk assessments within 1 business day of change</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Risk Identification Rate</strong></li>
+                                        <li>✅ <strong>Escalation Timeliness</strong></li>
+                                        <li>✅ <strong>Risk Mitigation Effectiveness</strong></li>
+                                        <li>✅ <strong>Change Impact Coverage</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Risk Assessment</span>
+                                        <span class="competency-tag">Impact Analysis</span>
+                                        <span class="competency-tag">Decision Frameworks</span>
+                                        <span class="competency-tag">Quality Advocacy</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DOCUMENT RISK WITH MITIGATION PLAN</span></li>
+                                        <li><span class="kpi-badge">ESCALATE CRITICAL RISKS IN 2 HOURS</span></li>
+                                        <li><span class="kpi-badge sl-badge">UPDATE TEST COVERAGE MATRIX</span> for changes</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Advanced Execution & Automation -->
+            <h2 class="section-title">
+                <i class="fas fa-flask" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Advanced Execution & Automation (The Quality Engineer)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To deliver comprehensive test coverage through advanced manual techniques, foundational automation, and independent defect analysis that reduces quality risks and accelerates delivery.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-microscope" style="margin-right: 8px;"></i> Advanced Test Execution
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Executing complex manual tests</strong> including edge cases</li>
+                                        <li><strong>Performing integration</strong> and system-level testing</li>
+                                        <li><strong>Validating test data</strong> and environments</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Execute 100% of critical path test scenarios</li>
+                                        <li>Identify 30%+ additional edge cases beyond requirements</li>
+                                        <li>Maintain 95%+ test environment readiness</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Test Coverage Depth</strong></li>
+                                        <li>✅ <strong>Edge Case Identification Rate</strong></li>
+                                        <li>✅ <strong>Environment Readiness</strong></li>
+                                        <li>✅ <strong>Test Data Validation Score</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Exploratory Testing</span>
+                                        <span class="competency-tag">Integration Testing</span>
+                                        <span class="competency-tag">Test Data Management</span>
+                                        <span class="competency-tag">Scenario Analysis</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DESIGN 2+ EDGE CASES PER USER STORY</span></li>
+                                        <li><span class="kpi-badge">VALIDATE ENVIRONMENT BEFORE EXECUTION</span></li>
+                                        <li><span class="kpi-badge sl-badge">DOCUMENT TEST DATA SOURCES</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-robot" style="margin-right: 8px;"></i> Foundational Automation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Developing simple automation scripts</strong> for basic scenarios</li>
+                                        <li><strong>Understanding automation coverage</strong> gaps</li>
+                                        <li><strong>Maintaining traceability</strong> in version control</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Automate 20%+ of repetitive test cases in owned areas</li>
+                                        <li>Zero broken automation scripts due to poor maintenance</li>
+                                        <li>Improve test execution speed by 15% through automation</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Automation Coverage Rate</strong></li>
+                                        <li>✅ <strong>Script Reliability Score</strong></li>
+                                        <li>✅ <strong>Automation ROI</strong></li>
+                                        <li>✅ <strong>Version Control Hygiene</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Automation Fundamentals</span>
+                                        <span class="competency-tag">Script Development</span>
+                                        <span class="competency-tag">Test Framework Basics</span>
+                                        <span class="competency-tag">Technical Analysis</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">AUTOMATE 1 NEW SCENARIO PER SPRINT</span></li>
+                                        <li><span class="kpi-badge">INCLUDE TEST DATA IN SCRIPTS</span></li>
+                                        <li><span class="kpi-badge sl-badge">RUN AUTOMATION DAILY</span> for validation</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Defect Engineering & Collaboration -->
+            <h2 class="section-title">
+                <i class="fas fa-chart-network" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Defect Engineering & Collaboration (The Quality Partner)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To transform defect identification into quality improvement opportunities through root cause analysis, effective collaboration, and knowledge sharing that elevates team quality practices.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-diagnoses" style="margin-right: 8px;"></i> Defect Engineering
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Independent defect identification</strong> and documentation</li>
+                                        <li><strong>Basic debugging</strong> through log analysis</li>
+                                        <li><strong>Root cause analysis</strong> for recurring issues</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>95%+ defect reports accepted without clarification</li>
+                                        <li>Reduce duplicate defects by 25% through analysis</li>
+                                        <li>Identify 30%+ root causes of recurring issues</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Defect Analysis Depth</strong></li>
+                                        <li>✅ <strong>Debugging Effectiveness</strong></li>
+                                        <li>✅ <strong>Root Cause Identification Rate</strong></li>
+                                        <li>✅ <strong>Defect Resolution Impact</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Defect Analysis</span>
+                                        <span class="competency-tag">Log Analysis</span>
+                                        <span class="competency-tag">Root Cause Identification</span>
+                                        <span class="competency-tag">Technical Investigation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">INCLUDE LOG SNIPPETS IN REPORTS</span></li>
+                                        <li><span class="kpi-badge">ANALYZE 3 PREVIOUS DEFECTS</span> before reporting new</li>
+                                        <li><span class="kpi-badge sl-badge">DOCUMENT PATTERN ANALYSIS</span> for repeats</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-users" style="margin-right: 8px;"></i> Quality Collaboration
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Collaborating across teams</strong> for quality coordination</li>
+                                        <li><strong>Applying QA concepts</strong> with guidance</li>
+                                        <li><strong>Improving skills through feedback</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Participate in 100% of quality-focused ceremonies</li>
+                                        <li>Implement 90%+ of feedback from quality reviews</li>
+                                        <li>Reduce quality blockers by 20% through collaboration</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Cross-Functional Engagement</strong></li>
+                                        <li>✅ <strong>Feedback Implementation Rate</strong></li>
+                                        <li>✅ <strong>Quality Blocker Reduction</strong></li>
+                                        <li>✅ <strong>Knowledge Sharing Impact</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Cross-Functional Collaboration</span>
+                                        <span class="competency-tag">Feedback Integration</span>
+                                        <span class="competency-tag">Quality Communication</span>
+                                        <span class="competency-tag">Mentorship Receptiveness</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">PREPARE QUALITY RISK ASSESSMENT</span> for planning</li>
+                                        <li><span class="kpi-badge">REQUEST SPECIFIC FEEDBACK</span> weekly</li>
+                                        <li><span class="kpi-badge sl-badge">SHARE 1 LEARNING PER SPRINT</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="evolution-lens">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Testing Growth - Quality Specialist (Level 2)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>Level 2 represents your transition from executor to analyst:</strong> You're no longer just following test cases but actively shaping quality outcomes through critical analysis, proactive risk identification, and foundational automation. This level is about developing the mindset of a <em>quality partner</em> who sees testing as a value-adding activity throughout the development lifecycle.
+                </p>
+                
+                <div class="level-indicator">
+                    <div class="level-dot"></div>
+                    <div>
+                        <span>LEVEL 1 → </span>
+                        <span class="current-level">LEVEL 2</span> 
+                        <span style="color: rgba(255,255,255,0.8);"> → LEVEL 3 → LEVEL 4</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 50%; background: #38bdf8;"></div>
+                </div>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: Reactive Testing
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Waiting for requirements to be "finalized" before starting test analysis, leading to compressed testing windows and missed defects.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #7dd3fc;"><i class="fas fa-lightbulb"></i> Solution: Shift-Left Analysis Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement the <strong>3-2-1 Rule</strong>: For each requirement, identify 3 test scenarios, 2 edge cases, and 1 business risk <em>before development starts</em>. Document these in the requirement ticket to enable early feedback.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: Automation Misapplication
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Automating the wrong things (unstable UI elements, one-time tests) or treating automation as separate from testing strategy.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #7dd3fc;"><i class="fas fa-lightbulb"></i> Solution: Automation Value Matrix</div>
+                            <p style="color: rgba(255,255,255,0.9);">Before automating, score tests on: <strong>F</strong>requency (how often run), <strong>I</strong>mportance (business impact), <strong>S</strong>tability (UI changes), <strong>T</strong>ime (manual execution time). Only automate tests scoring 3+ on FIST scale.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: Surface-Level Defect Reporting
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Reporting symptoms without analysis, forcing developers to do root cause investigation.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #7dd3fc;"><i class="fas fa-lightbulb"></i> Solution: The DEFECT++ Template</div>
+                            <p style="color: rgba(255,255,255,0.9);">Enhance standard defect reports with: <strong>D</strong>ata (test values used), <strong>E</strong>nvironment variables, <strong>F</strong>ailure pattern analysis, <strong>E</strong>xpected behavior comparison, <strong>C</strong>onfirmed dependencies, <strong>T</strong>roubleshooting steps performed. This reduces developer investigation time by 50%.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-matrix">
+                    <div class="impact-card">
+                        <h4><i class="fas fa-brain"></i> From Tester to Quality Analyst</h4>
+                        <p>At Level 2, you're not just executing tests - you're <strong>translating requirements into quality outcomes</strong>. When you identify requirement gaps early, you prevent costly rework. When you analyze defects for patterns, you transform isolated bug reports into systemic quality improvements. Your critical thinking becomes the team's early warning system.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-chart-line"></i> The Automation Multiplier Effect</h4>
+                        <p>Strategic automation at Level 2 creates exponential value: Automating 20% of high-frequency tests frees 30% of manual effort for exploratory testing. Your foundational scripts become the building blocks for the team's automation framework. You're not just writing code - you're <strong>creating quality leverage</strong> that benefits the entire delivery pipeline.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-project-diagram"></i> The Risk Intelligence Advantage</h4>
+                        <p>Your proactive risk identification creates a "quality buffer" that protects delivery timelines. When you flag integration risks early, you prevent last-minute surprises. Teams with Level 2 testers experience 40% fewer production incidents because quality risks are addressed when they're cheapest to fix - during development.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-hands-helping"></i> The Collaboration Catalyst</h4>
+                        <p>Your requirement analysis bridges the gap between business and technical teams. When you frame quality concerns in business impact terms ("This gap could cause $50K in incorrect billing"), you transform testing from a technical activity to a business enabler. Your insights become the foundation for better decisions across the organization.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-bullseye"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When your requirement analysis prevents defects before they're created.</strong> Your success isn't measured by how many bugs you find, but by how many <em>never existed in the first place</em> because you caught ambiguities early. When developers start seeking your input during design because "the tester will catch gaps we miss."
+                    </p>
+                    
+                    <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 1rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: #93c5fd; margin-bottom: 0.5rem;">
+                            <i class="fas fa-chart-line"></i> Level 2 Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Requirement gap identification reduces defect leakage by 35%+</li>
+                            <li>Automation contributions improve team test execution speed by 15%+</li>
+                            <li>Defect reports include root cause analysis 80%+ of the time</li>
+                            <li>Stakeholders proactively request your quality risk assessment</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks readiness for Level 3 (Senior Testing Engineer)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-badge" style="display: inline-block; margin: 1.5rem 0;">
+                <i class="fas fa-chart-line"></i> Level 2 Progression Path
+            </div>
+            
+            <div class="alert-box" style="border-left-color: #0c4a6e; background: #dbeafe;">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; color: #0c4a6e;">
+                    <i class="fas fa-bullseye"></i> The Level 2 Mindset Shift
+                </h3>
+                <p>Level 2 testers often believe their job is to "test features thoroughly." In reality, your primary value is in <strong>preventing defects through early quality influence</strong> and becoming the team's quality intelligence hub.</p>
+                <p style="margin: 1rem 0; background: #eff6ff; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #3b82f6;">
+                    <strong>How we measure Level 2 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: #0c4a6e;">When requirement gaps you identify prevent 30%+ of potential defects</span>—you've shifted from finding bugs to preventing them</li>
+                        <li><span style="font-weight: bold; color: #0369a1;">When your automation scripts become the team's foundation for CI/CD pipelines</span>—your technical contributions enable faster, safer releases</li>
+                        <li><span style="font-weight: bold; color: #0284c7;">When developers consult you during design because "the tester will spot what we miss"</span>—you've become an indispensable quality partner</li>
+                    </ul>
+                    This shift marks the transition from being a task executor to becoming the team's quality strategist—where your insights shape how work gets done.
+                </p>
+                <p><strong>Remember:</strong> At Level 2, your job isn't to test more features—it's to <strong>make testing unnecessary for preventable defects</strong> through early quality influence and strategic automation.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Level 2 Testers
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: #0c4a6e;">
+                        <div class="killer-title" style="color: #0c4a6e;">
+                            <i class="fas fa-project-diagram"></i> Requirement Analysis Mastery
+                        </div>
+                        <p>Transform ambiguous requirements into testable specifications.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #0c4a6e;"><i class="fas fa-check-circle"></i> Practical Action: The 5-Why Validation</div>
+                            <p>For each requirement, ask "why" five times to uncover business purpose. Example: "Why do we need this field? → To prevent fraud → Why prevent fraud here? → Because this is high-risk transaction point..." This reveals hidden test scenarios.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #0c4a6e;">
+                        <div class="killer-title" style="color: #0c4a6e;">
+                            <i class="fas fa-robot"></i> Strategic Automation
+                        </div>
+                        <p>Focus automation where it delivers maximum business value.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #0c4a6e;"><i class="fas fa-check-circle"></i> Practical Action: The Automation ROI Calculator</div>
+                            <p>Before writing a script, calculate: (Manual test time × Frequency) - (Script dev time + Maintenance). Only automate when ROI > 3. Track this monthly to prove automation's business value.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #0c4a6e;">
+                        <div class="killer-title" style="color: #0c4a6e;">
+                            <i class="fas fa-chart-line"></i> Defect Intelligence
+                        </div>
+                        <p>Transform defect reports into quality improvement opportunities.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #0c4a6e;"><i class="fas fa-check-circle"></i> Practical Action: Defect Pattern Mapping</div>
+                            <p>For every 5 defects, create a pattern map showing: Root cause category (requirements, code, environment), Affected component, Business impact. Share monthly to identify systemic improvements.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(12, 74, 110, 0.05); border-radius: 8px; padding: 1.25rem; border: 1px solid #dbeafe;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0c4a6e; margin-bottom: 0.75rem;">
+                        <i class="fas fa-dna"></i> The Level 2 Excellence Checklist
+                    </h4>
+                    <p>Use this daily to build strategic quality habits:</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.75rem; line-height: 1.7; color: #0f172a;">
+                        <li><strong>Requirement review:</strong> Identify at least 1 gap/risk before development starts</li>
+                        <li><strong>Test design:</strong> Document 2+ edge cases beyond acceptance criteria</li>
+                        <li><strong>Defect reporting:</strong> Include log analysis and potential root cause</li>
+                        <li><strong>Automation focus:</strong> Identify 1 candidate for automation in current work</li>
+                    </ol>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #334155;">
+                        This checklist transforms execution into strategic quality influence - the hallmark of exceptional Level 2 testers.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #dbeafe; border-radius: 8px; padding: 1.25rem; border-left: 4px solid #0c4a6e;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0c4a6e; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lightbulb"></i> Pro Tip: The Quality Advocate Framework
+                    </h4>
+                    <p>When raising quality concerns, always use the <strong>B.I.C.</strong> framework:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <li><strong>B</strong>usiness impact: "This gap could cause $X in revenue loss or Y% customer complaints"</li>
+                        <li><strong>I</strong>mmediate risk: "Without clarification, we risk Z days of rework during testing"</li>
+                        <li><strong>C</strong>oncrete solution: "I recommend we clarify [specific point] by [date] to avoid this"</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This transforms "I found a problem" into "Here's how we protect business value" - making you a valued partner rather than a process police.</p>
+                </div>
+            </div>
+            
+            <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including Shift-Left testing, risk-based testing, and modern test automation approaches.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

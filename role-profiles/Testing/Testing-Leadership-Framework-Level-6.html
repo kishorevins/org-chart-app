@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quality Strategy Framework | Level 6</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7e22ce;
+            --primary-light: #ede9fe;
+            --secondary: #0f172a;
+            --accent: #7e22ce;
+            --success: #8b5cf6;
+            --warning: #c2410c;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ede9fe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --evolution-bg: linear-gradient(135deg, #8b5cf6, #7e22ce);
+            --level6-bg: linear-gradient(135deg, #5b21b6, #7e22ce);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: var(--level6-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #ede9fe;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(126, 34, 206, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(126, 34, 206, 0.2);
+        }
+        
+        .tag-transformation {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .tag-impact {
+            background: rgba(194, 65, 12, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(194, 65, 12, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #ede9fe;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #c084fc;
+        }
+        
+        .evolution-lens {
+            background: var(--level6-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: #c084fc;
+        }
+        
+        .impact-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.75rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #c084fc;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .level-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .current-level {
+            font-weight: bold;
+            color: white;
+            background: var(--success);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .level-badge {
+            background: #7e22ce;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .senior-highlight {
+            background: rgba(126, 34, 206, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .senior-badge {
+            background: #7e22ce;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .leadership-focus {
+            background: rgba(126, 34, 206, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .leadership-badge {
+            background: #7e22ce;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Testing Lead (Level 6) Quality Strategy & Organizational Impact Framework</h1>
+                <div class="subtitle">The Quality Strategist: Architecting Predictable Quality Outcomes Through Systemic Excellence and Organizational Influence</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Quality Strategy & Organizational Impact</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span>Testing Lead (Level 6)</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To <strong>architect predictable quality outcomes</strong> through strategic system design, organizational influence, and leadership development - transforming quality from a phase to a cultural attribute that enables business success. You are the <strong>Quality Strategist</strong> who ensures quality is built into delivery rather than tested in.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Critical Productivity Killer:</strong> <strong>"The Reactive Quality Firefighter"</strong>. At Level 6, your value isn't measured by how many defects you find or how many fires you put out, but by how effectively you <strong>prevent fires from starting</strong>. If you're spending more than 30% of your time on reactive defect management, you're not operating at Level 6. Your role is to <em>design systems</em> that prevent quality issues, not <em>respond to them</em>. The transition from Level 5 to Level 6 requires shifting from "How do we test this feature?" to "How do we build quality into this delivery so testing validates rather than discovers issues?"
+            </div>
+            
+            <div class="senior-highlight">
+                <p><strong>Level 6 represents your transformation from leadership catalyst to quality strategist.</strong> You're no longer just enabling teams to deliver quality - you're <strong>designing the systems and culture</strong> that make quality delivery predictable and scalable across the organization. Your success is measured by <em>organizational outcomes</em> - how consistently the organization delivers high-quality products on time, not just team outcomes.</p>
+            </div>
+
+            <!-- Category 1: Quality Strategy & Vision -->
+            <h2 class="section-title">
+                <i class="fas fa-archway" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Quality Strategy & Vision (The Quality Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To design and implement quality systems that ensure predictable outcomes at scale across projects and organizational boundaries.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-project-diagram" style="margin-right: 8px;"></i> Quality System Design
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design quality systems</strong> that prevent defects</li>
+                                        <li><strong>Architect testing strategy</strong> for complex projects</li>
+                                        <li><strong>Integrate quality practices</strong> across SDLC</li>
+                                        <li><strong>Measure system effectiveness</strong> and optimize</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce production defects by 65% through prevention-focused systems</li>
+                                        <li>Improve testing ROI by 40% through strategic automation investment</li>
+                                        <li>Ensure 100% of projects have quality metrics aligned to business goals</li>
+                                        <li>Reduce late-stage defect discovery by 75% through early quality integration</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Defect Prevention Rate</strong></li>
+                                        <li>✅ <strong>Testing ROI Index</strong></li>
+                                        <li>✅ <strong>Business-Quality Alignment Score</strong></li>
+                                        <li>✅ <strong>Early Quality Integration Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Quality Systems Design</span>
+                                        <span class="competency-tag">Strategic Automation Planning</span>
+                                        <span class="competency-tag">ROI Analysis</span>
+                                        <span class="competency-tag">Process Integration</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DESIGN QUALITY GATES</span> with business impact</li>
+                                        <li><span class="kpi-badge">MEASURE TESTING ROI</span> quarterly</li>
+                                        <li><span class="kpi-badge sl-badge">INTEGRATE QUALITY METRICS</span> in all projects</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Quality Metrics & Measurement
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Define quality metrics</strong> that drive business value</li>
+                                        <li><strong>Establish measurement systems</strong> across delivery lifecycle</li>
+                                        <li><strong>Translate metrics into action</strong> for continuous improvement</li>
+                                        <li><strong>Report quality health</strong> to stakeholders with business context</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve metric-driven decision making by 70% through relevant quality metrics</li>
+                                        <li>Ensure 100% of metrics have clear action triggers and owners</li>
+                                        <li>Reduce quality reporting time by 50% through automated measurement systems</li>
+                                        <li>Improve stakeholder understanding of quality health by 60%+ through contextual reporting</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Metrics Actionability Score</strong></li>
+                                        <li>✅ <strong>Measurement Automation Rate</strong></li>
+                                        <li>✅ <strong>Business Context Alignment</strong></li>
+                                        <li>✅ <strong>Decision Impact Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Metrics Strategy</span>
+                                        <span class="competency-tag">Data Visualization</span>
+                                        <span class="competency-tag">Business Context Translation</span>
+                                        <span class="competency-tag">Continuous Improvement</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DEFINE ACTION TRIGGERS</span> for all metrics</li>
+                                        <li><span class="kpi-badge">AUTOMATE 80%+ METRICS</span> collection</li>
+                                        <li><span class="kpi-badge sl-badge">REPORT WITH BUSINESS CONTEXT</span> monthly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Organizational Influence & Change Management -->
+            <h2 class="section-title">
+                <i class="fas fa-network-wired" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Organizational Influence & Change Management (The Quality Evangelist)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To drive organizational change that embeds quality into delivery practices and creates a culture where quality is everyone's responsibility.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-users" style="margin-right: 8px;"></i> Cross-Functional Quality Integration
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Integrate quality practices</strong> across development lifecycle</li>
+                                        <li><strong>Build quality partnerships</strong> with engineering and product</li>
+                                        <li><strong>Drive adoption of quality practices</strong> beyond QA team</li>
+                                        <li><strong>Measure cross-functional quality impact</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve early defect detection by 60% through cross-functional quality practices</li>
+                                        <li>Reduce handoff delays by 55% through integrated workflows</li>
+                                        <li>Ensure 100% of projects have quality ownership beyond QA team</li>
+                                        <li>Improve developer quality ownership by 75% through partnership programs</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Cross-Functional Quality Adoption</strong></li>
+                                        <li>✅ <strong>Early Defect Detection Rate</strong></li>
+                                        <li>✅ <strong>Quality Partnership Strength</strong></li>
+                                        <li>✅ <strong>Handoff Efficiency Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Organizational Change Management</span>
+                                        <span class="competency-tag">Cross-Functional Collaboration</span>
+                                        <span class="competency-tag">Quality Evangelism</span>
+                                        <span class="competency-tag">Influence Without Authority</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">IMPLEMENT QUALITY PARTNERSHIPS</span> with dev</li>
+                                        <li><span class="kpi-badge">MEASURE HANDOFF IMPACT</span> weekly</li>
+                                        <li><span class="kpi-badge sl-badge">DRIVE 100% PROJECT OWNERSHIP</span> beyond QA</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-bullhorn" style="margin-right: 8px;"></i> Quality Culture Transformation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Shape quality culture</strong> across the organization</li>
+                                        <li><strong>Drive quality mindset shifts</strong> through strategic initiatives</li>
+                                        <li><strong>Measure cultural impact</strong> on delivery outcomes</li>
+                                        <li><strong>Scale quality practices</strong> across teams and projects</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve quality mindset scores by 50% through strategic culture initiatives</li>
+                                        <li>Reduce quality compromises by 65% through cultural transformation</li>
+                                        <li>Ensure 100% of teams have quality champions beyond QA</li>
+                                        <li>Improve cross-team quality consistency by 70% through standardized practices</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Quality Mindset Index</strong></li>
+                                        <li>✅ <strong>Cultural Transformation Impact</strong></li>
+                                        <li>✅ <strong>Quality Champion Network Growth</strong></li>
+                                        <li>✅ <strong>Cross-Team Consistency Score</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Culture Change Leadership</span>
+                                        <span class="competency-tag">Strategic Communication</span>
+                                        <span class="competency-tag">Quality Advocacy</span>
+                                        <span class="competency-tag">Scaling Practices</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">IMPLEMENT QUALITY CHAMPION PROGRAM</span></li>
+                                        <li><span class="kpi-badge">MEASURE CULTURAL IMPACT</span> quarterly</li>
+                                        <li><span class="kpi-badge sl-badge">ACHIEVE 100% TEAM COVERAGE</span> with champions</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Strategic Leadership & Development -->
+            <h2 class="section-title">
+                <i class="fas fa-seedling" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Strategic Leadership & Development (The Leadership Multiplier)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To develop leadership capacity across the organization that creates self-sustaining quality excellence and scalable growth.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-user-tie" style="margin-right: 8px;"></i> Leadership Pipeline Development
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Identify and develop future leaders</strong> across QA teams</li>
+                                        <li><strong>Design leadership development programs</strong> with business impact</li>
+                                        <li><strong>Measure leadership pipeline strength</strong> and readiness</li>
+                                        <li><strong>Ensure leadership continuity</strong> across projects and teams</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce leadership gaps by 70% through strategic development</li>
+                                        <li>Improve leadership readiness scores by 60%+ through targeted development</li>
+                                        <li>Ensure 100% of teams have identified leadership successors</li>
+                                        <li>Accelerate leadership progression by 50% through structured programs</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Leadership Pipeline Strength</strong></li>
+                                        <li>✅ <strong>Readiness Score Improvement</strong></li>
+                                        <li>✅ <strong>Succession Coverage Rate</strong></li>
+                                        <li>✅ <strong>Leadership Progression Velocity</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Leadership Development</span>
+                                        <span class="competency-tag">Talent Identification</span>
+                                        <span class="competency-tag">Succession Planning</span>
+                                        <span class="competency-tag">Leadership Assessment</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">MAP LEADERSHIP PIPELINE</span> quarterly</li>
+                                        <li><span class="kpi-badge">IMPLEMENT 100% SUCCESSION COVERAGE</span></li>
+                                        <li><span class="kpi-badge sl-badge">MEASURE READINESS SCORES</span> monthly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-people-carry" style="margin-right: 8px;"></i> Strategic Resource Planning
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Forecast QA resource needs</strong> based on business strategy</li>
+                                        <li><strong>Optimize resource allocation</strong> across projects</li>
+                                        <li><strong>Develop skill matrices</strong> for strategic planning</li>
+                                        <li><strong>Measure resource impact</strong> on delivery outcomes</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve resource forecasting accuracy by 65% through strategic planning</li>
+                                        <li>Reduce resource conflicts by 70% through proactive planning</li>
+                                        <li>Ensure 100% of projects have skill-appropriate resource allocation</li>
+                                        <li>Improve resource utilization by 50% through strategic optimization</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Forecasting Accuracy Score</strong></li>
+                                        <li>✅ <strong>Resource Conflict Rate</strong></li>
+                                        <li>✅ <strong>Skill-Appropriate Allocation</strong></li>
+                                        <li>✅ <strong>Strategic Resource Utilization</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Workforce Planning</span>
+                                        <span class="competency-tag">Capacity Management</span>
+                                        <span class="competency-tag">Skill Architecture</span>
+                                        <span class="competency-tag">Resource Optimization</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">FORECAST 6-MONTH RESOURCE NEEDS</span></li>
+                                        <li><span class="kpi-badge">MAINTAIN 100% SKILL MATRICES</span></li>
+                                        <li><span class="kpi-badge sl-badge">OPTIMIZE RESOURCE ALLOCATION</span> monthly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="evolution-lens">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Quality Evolution - The Quality Strategist (Level 6)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>Level 6 represents your transformation from leadership catalyst to quality strategist:</strong> You're no longer just enabling teams to deliver quality - you're <em>designing the systems and culture</em> that make quality delivery predictable and scalable across the organization. This level is about developing the mindset of a <em>quality strategist</em> who transforms quality from a phase to a cultural attribute that enables business success.
+                </p>
+                
+                <div class="level-indicator">
+                    <div class="level-dot"></div>
+                    <div>
+                        <span>LEVEL 1 → LEVEL 2 → LEVEL 3 → LEVEL 4 → LEVEL 5 → </span>
+                        <span class="current-level">LEVEL 6</span> 
+                        <span style="color: rgba(255,255,255,0.8);"> → LEVEL 7</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 98%; background: #c084fc;"></div>
+                </div>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: The Reactive Quality Firefighter
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Spending most time putting out quality fires rather than designing systems to prevent them, creating a cycle of reactive work that prevents strategic impact.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e9d5ff;"><i class="fas fa-lightbulb"></i> Solution: The Quality Prevention Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement a <strong>4-Quadrant Quality Strategy</strong>: (1) Prevention Systems (60% focus), (2) Early Detection (25% focus), (3) Containment (10% focus), (4) Reactive Fixes (5% focus). For every quality initiative, document which quadrant it targets and expected impact. Track time allocation weekly to ensure 70%+ is spent on Prevention Systems and Early Detection. Review monthly with leadership to adjust strategy based on business priorities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: Siloed Quality Thinking
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Viewing quality as solely a QA responsibility rather than an organizational attribute, leading to poor adoption and inconsistent outcomes.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e9d5ff;"><i class="fas fa-lightbulb"></i> Solution: The Quality Ownership Matrix</div>
+                            <p style="color: rgba(255,255,255,0.9);">Create a <strong>Cross-Functional Quality Ownership Map</strong> showing: (1) Quality practice (e.g., test automation), (2) Primary owner (e.g., developers), (3) Supporting role (e.g., QA engineers), (4) Success metrics. For each practice, document current ownership gaps and a 90-day plan to close them. Review ownership distribution monthly with cross-functional leads. Track adoption through quality metric improvements in each area.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: Tactical Resource Management
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Managing resources based on immediate project needs rather than strategic capability development, creating skill gaps and reactive hiring.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e9d5ff;"><i class="fas fa-lightbulb"></i> Solution: The Strategic Capability Planner</div>
+                            <p style="color: rgba(255,255,255,0.9);">Develop a <strong>3-Horizon Capability Map</strong>: (1) Current horizon (0-3 months): Maintain existing capabilities, (2) Next horizon (3-6 months): Develop emerging capabilities, (3) Future horizon (6-12 months): Build strategic capabilities. For each horizon, document required skills, current gaps, and development/hiring plans. Review quarterly with leadership to align with business strategy. Track progress through capability adoption metrics and business impact.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-matrix">
+                    <div class="impact-card">
+                        <h4><i class="fas fa-archway"></i> From Quality Catalyst to Quality Strategist</h4>
+                        <p>At Level 6, you're not just enabling teams to deliver quality - you're <strong>designing the systems that make quality delivery predictable and scalable</strong>. When you implement a quality prevention framework that reduces production defects by 65%, you transform quality from a cost center to a business enabler. Your strategic measurement systems turn quality from a vague concept into actionable business insights that drive decision making across the organization.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-network-wired"></i> The Organizational Transformation Advantage</h4>
+                        <p>Your cross-functional quality integration creates organization-wide value: When you improve early defect detection by 60% through integrated workflows, you accelerate time-to-market while improving quality. Your quality culture transformation reduces quality compromises by 65% by making quality everyone's responsibility. You're not just representing QA - you're <strong>redefining how the organization views and delivers quality</strong> through strategic influence and system design.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-seedling"></i> The Leadership Multiplier Effect</h4>
+                        <p>Strategic leadership development at Level 6 creates exponential impact: A robust leadership pipeline reduces leadership gaps by 70% while improving readiness scores by 60%. Your strategic resource planning ensures 100% of projects have skill-appropriate allocation, transforming how the organization manages quality capabilities. You're not just developing individuals - you're <strong>building a self-sustaining leadership ecosystem</strong> that scales quality excellence across the organization.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-chart-line"></i> The Predictable Delivery Engine</h4>
+                        <p>Your quality systems transform organizational outcomes. When you implement measurement systems that improve metric-driven decision making by 70%, you create a data-driven culture. Organizations with Level 6 leaders experience 65% fewer production defects and 55% fewer handoff delays because quality is designed into delivery rather than tested in. Your strategic approach becomes the foundation for business success.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-bullseye"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When quality delivery becomes predictable and scalable across the organization without your direct involvement.</strong> Your success isn't measured by your personal contributions but by how the <em>organization's quality outcomes improve</em> because of your strategic systems and leadership. When cross-functional leaders say, "Quality is built into our delivery because of the systems we've co-created," you've mastered Level 6.
+                    </p>
+                    
+                    <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 1rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: #e9d5ff; margin-bottom: 0.5rem;">
+                            <i class="fas fa-chart-line"></i> Level 6 Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Production defects reduced by 65%+ through prevention systems</li>
+                            <li>Cross-functional quality ownership established across 100% of teams</li>
+                            <li>Leadership pipeline has 100% succession coverage with readiness scores &gt;80%</li>
+                            <li>Resource forecasting accuracy exceeds 85%</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks readiness for Level 7 (QA Manager)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-badge" style="display: inline-block; margin: 1.5rem 0;">
+                <i class="fas fa-chart-line"></i> Level 6 Progression Path
+            </div>
+            
+            <div class="alert-box" style="border-left-color: #7e22ce; background: #f5f3ff;">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; color: #7e22ce;">
+                    <i class="fas fa-bullseye"></i> The Level 6 Mindset Shift
+                </h3>
+                <p>Level 6 leaders often believe their job is to "oversee testing activities and ensure quality standards are followed." In reality, your primary value is in <strong>designing systems that make quality delivery predictable and scalable across the organization</strong>.</p>
+                <p style="margin: 1rem 0; background: #ede9fe; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #a78bfa;">
+                    <strong>How we measure Level 6 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: #7e22ce;">When your quality prevention systems reduce production defects by 65%+</span>—you've shifted from finding defects to preventing them</li>
+                        <li><span style="font-weight: bold; color: #8b5cf6;">When your cross-functional quality ownership reaches 100% of teams</span>—you've made quality everyone's responsibility</li>
+                        <li><span style="font-weight: bold; color: #a78bfa;">When your leadership pipeline has 100% succession coverage</span>—you've built a self-sustaining leadership ecosystem</li>
+                    </ul>
+                    This shift marks the transition from being a leadership catalyst to becoming a quality strategist—where your work transforms how the organization delivers quality.
+                </p>
+                <p><strong>Remember:</strong> At Level 6, your job isn't to be the best tester or even the best team leader—it's to <strong>create systems where quality is built into delivery rather than tested in</strong> through strategic design and organizational influence.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Level 6 Leaders
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: #7e22ce;">
+                        <div class="killer-title" style="color: #7e22ce;">
+                            <i class="fas fa-archway"></i> Quality System Design Excellence
+                        </div>
+                        <p>Create systems that prevent quality issues rather than finding them late.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #7e22ce;"><i class="fas fa-check-circle"></i> Practical Action: The Quality Prevention Canvas</div>
+                            <p>Create a visual canvas for each major project that maps: (1) Potential quality failure points, (2) Prevention mechanisms, (3) Early detection systems, (4) Business impact if prevention fails. Use color coding to show implementation status (red=not implemented, yellow=partially implemented, green=fully implemented). Review this weekly with cross-functional leads to ensure quality is designed in from the start. Track reduction in late-stage defects as your success metric.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #7e22ce;">
+                        <div class="killer-title" style="color: #7e22ce;">
+                            <i class="fas fa-network-wired"></i> Organizational Influence Strategy
+                        </div>
+                        <p>Build cross-functional quality ownership that scales beyond your direct influence.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #7e22ce;"><i class="fas fa-check-circle"></i> Practical Action: The Quality Champion Program</div>
+                            <p>Identify and train 1-2 quality champions in each cross-functional team. Create a structured program with: (1) Champion responsibilities matrix, (2) Monthly training on quality practices, (3) Success metrics aligned to team goals, (4) Recognition system for quality contributions. Document champion impact through metrics like "early defect detection rate by team" and "reduction in handoff issues." Review champion effectiveness quarterly and refine the program based on results.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #7e22ce;">
+                        <div class="killer-title" style="color: #7e22ce;">
+                            <i class="fas fa-seedling"></i> Strategic Leadership Development
+                        </div>
+                        <p>Build a leadership pipeline that ensures continuity and scalability.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #7e22ce;"><i class="fas fa-check-circle"></i> Practical Action: The Leadership Readiness Dashboard</div>
+                            <p>Create a visual dashboard tracking: (1) Potential leaders in pipeline, (2) Current readiness score (1-10), (3) Key development areas, (4) 90-day development plan, (5) Progress against plan. Focus development on strategic leadership competencies that drive business impact. Review this dashboard monthly with your manager to ensure alignment with organizational needs. Track success through metrics like "leadership progression velocity" and "succession coverage rate."</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(126, 34, 206, 0.05); border-radius: 8px; padding: 1.25rem; border: 1px solid #ede9fe;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #7e22ce; margin-bottom: 0.75rem;">
+                        <i class="fas fa-dna"></i> The Level 6 Leadership Checklist
+                    </h4>
+                    <p>Use this weekly to build quality strategist habits:</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.75rem; line-height: 1.7; color: #0f172a;">
+                        <li><strong>Prevention focus:</strong> Identify 1 system improvement that prevents future defects</li>
+                        <li><strong>Cross-functional connection:</strong> Have 1 strategic conversation with non-QA leader about quality</li>
+                        <li><strong>Leadership development:</strong> Review 1 leadership development plan with high-potential talent</li>
+                        <li><strong>Strategic planning:</strong> Review 1 horizon of your capability map for upcoming needs</li>
+                    </ol>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #334155;">
+                        This checklist transforms tactical leadership into strategic quality architecture—the hallmark of exceptional Level 6 leaders.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #f5f3ff; border-radius: 8px; padding: 1.25rem; border-left: 4px solid #7e22ce;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #7e22ce; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lightbulb"></i> Pro Tip: The Quality Strategist Framework
+                    </h4>
+                    <p>When designing quality systems, always use the <strong>S.Y.S.T.E.M.S.</strong> framework:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <li><strong>S</strong>cope first: "What quality outcomes must we achieve for business success?"</li>
+                        <li><strong>Y</strong>ield analysis: "What's the business impact of quality failures in this area?"</li>
+                        <li><strong>S</strong>trategic prevention: "What systems can prevent these failures entirely?"</li>
+                        <li><strong>T</strong>actical detection: "Where do we need early detection if prevention fails?"</li>
+                        <li><strong>E</strong>xecution ownership: "Who owns quality in each phase, and how do we measure them?"</li>
+                        <li><strong>M</strong>etrics that matter: "What measurements drive the right behaviors and decisions?"</li>
+                        <li><strong>S</strong>caling mechanisms: "How does this system scale across teams and projects?"</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This transforms "How do we test this?" into "How do we build quality in so testing validates rather than discovers issues?"—making you a true quality strategist rather than just a testing leader.</p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #ede9fe; border-radius: 8px; padding: 1.25rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #7e22ce; margin-bottom: 0.75rem;">
+                        <i class="fas fa-chart-pie"></i> Current Industry Best Practices (Q2 2024)
+                    </h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #e0e7ff;">
+                            <h5 style="color: #7e22ce; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-archway"></i> Shift-Left 2.0
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Modern quality strategy has evolved beyond basic shift-left to "Quality by Design" (Forrester, 2024). Top organizations now embed quality architects in product teams from inception, reducing late-stage defects by 68% and accelerating time-to-market by 42% through proactive quality integration.</p>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #e0e7ff;">
+                            <h5 style="color: #7e22ce; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-network-wired"></i> Quality Ownership Models
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Google's 2024 study shows organizations with defined cross-functional quality ownership see 57% fewer production incidents. The most effective models distribute ownership across product, engineering, and QA with clear accountability metrics, making quality everyone's responsibility rather than just QA's job.</p>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #e0e7ff;">
+                            <h5 style="color: #7e22ce; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-chart-line"></i> Quality Business Intelligence
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Top QA leaders now implement Quality Business Intelligence (QBI) systems that connect quality metrics to business outcomes. Teams using QBI see 63% better decision making and 49% higher stakeholder trust because they can demonstrate how quality investments drive business value (Gartner, May 2024).</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; background: #f3e8ff; border-radius: 8px; padding: 1rem;">
+                        <p style="font-style: italic; color: #7e22ce; margin: 0;">
+                            <strong>Practical Implementation Tip:</strong> Start with a Quality Ownership Assessment using Google's framework. Score your organization on: 1) Clarity of ownership, 2) Accountability metrics, 3) Cross-functional collaboration, 4) Leadership support, 5) Business impact connection. Target a minimum score of 4 in each dimension within 9 months.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="leadership-focus" style="margin-top: 2rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #7e22ce; margin-bottom: 0.75rem;">
+                        <i class="fas fa-cogs"></i> Level 6 Leadership Transition Guide
+                    </h4>
+                    
+                    <p>Transitioning from Level 5 to Level 6 requires specific mindset shifts. Use this guide to navigate the transition successfully:</p>
+                    
+                    <div style="margin-top: 1rem; background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #e0e7ff;">
+                        <h5 style="color: #7e22ce; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-exchange-alt"></i> From Leadership Catalyst to Quality Strategist
+                        </h5>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                            <div>
+                                <h6 style="color: #9333ea; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-ban"></i> What to Stop
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Managing day-to-day team operations in detail</li>
+                                    <li>Viewing quality as a QA responsibility only</li>
+                                    <li>Reacting to quality issues rather than preventing them</li>
+                                    <li>Measuring success by team output rather than business impact</li>
+                                    <li>Operating within QA silo without cross-functional influence</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h6 style="color: #9333ea; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-arrow-circle-right"></i> What to Start
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Designing systems that prevent quality issues at scale</li>
+                                    <li>Viewing quality as an organizational attribute</li>
+                                    <li>Measuring success by business impact and predictability</li>
+                                    <li>Building cross-functional quality ownership models</li>
+                                    <li>Developing leadership pipelines beyond your direct team</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e0e7ff;">
+                            <h6 style="color: #9333ea; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-rocket"></i> Critical Transition Milestones
+                            </h6>
+                            <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                <li><strong>Month 1-3:</strong> Implement quality prevention framework across 1 major project</li>
+                                <li><strong>Month 4-6:</strong> Establish cross-functional quality ownership in 50% of teams</li>
+                                <li><strong>Month 7-9:</strong> Launch leadership pipeline with 100% succession coverage</li>
+                                <li><strong>Month 10-12:</strong> Achieve 65%+ reduction in production defects through system design</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2.5rem; background: #f0f9ff; border-radius: 12px; padding: 1.5rem; border: 1px solid #bae6fd;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0c4a6e; margin-bottom: 1rem;">
+                        <i class="fas fa-star"></i> Level 6 Strategic Impact Playbook
+                    </h4>
+                    
+                    <p style="margin-bottom: 1rem; color: #0f172a;">Here's how to accelerate your impact as a Level 6 Testing Lead using current industry best practices:</p>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #dbeafe; margin-bottom: 1.25rem;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-bolt"></i> The Quality Value Stream Mapping Technique
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Instead of traditional process mapping, map the <strong>quality value stream</strong> showing where quality is created and destroyed across the delivery lifecycle:</p>
+                        
+                        <div style="background: #eff6ff; border-radius: 6px; padding: 1rem; margin-bottom: 0.75rem;">
+                            <ol style="margin-left: 1.5rem; line-height: 1.7; color: #1e40af;">
+                                <li><strong>Identify quality value points:</strong> Where quality is built in (e.g., requirements refinement, design reviews)</li>
+                                <li><strong>Identify quality destruction points:</strong> Where quality is compromised (e.g., unclear requirements, rushed testing)</li>
+                                <li><strong>Quantify business impact:</strong> Assign monetary value to quality destruction points</li>
+                                <li><strong>Design interventions:</strong> Create systems to eliminate destruction points and amplify value points</li>
+                                <li><strong>Measure ROI:</strong> Track business value created through quality improvements</li>
+                            </ol>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Example: A fintech company used this technique to identify that unclear requirements destroyed $2.3M in quality value annually. They implemented a requirements quality gate that reduced this destruction by 82%, creating $1.9M in annual business value.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #dbeafe; margin-bottom: 1.25rem;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-chart-bar"></i> The Quality Health Dashboard
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Move beyond defect counts to a dashboard that shows quality health through business-aligned metrics:</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 0.75rem;">
+                            <div style="background: #eff6ff; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #1e40af; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-tachometer-alt"></i> Quality Speed
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Time to validate quality at each stage (requirements → design → development → testing)</p>
+                            </div>
+                            
+                            <div style="background: #eff6ff; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #1e40af; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-shield-alt"></i> Quality Coverage
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Business-critical paths covered by automated tests (not just % of code)</p>
+                            </div>
+                            
+                            <div style="background: #eff6ff; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #1e40af; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-dollar-sign"></i> Quality Value
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Business value protected by quality practices (revenue at risk without quality)</p>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Tip: Start with 3 business leaders and identify their top quality concerns. Build your dashboard to address those concerns first, then expand. This creates immediate stakeholder buy-in.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #dbeafe;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-users"></i> The Cross-Functional Quality Circle
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Create a forum for cross-functional quality leadership that drives systemic improvements:</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 0.75rem;">
+                            <div>
+                                <h6 style="color: #1e40af; margin-bottom: 0.5rem;">Structure</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #334155;">
+                                    <li>Monthly meeting with product, engineering, QA leaders</li>
+                                    <li>Rotating facilitation among functions</li>
+                                    <li>Focus on systemic quality issues, not project-specific problems</li>
+                                    <li>Decision-making authority for agreed actions</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 style="color: #1e40af; margin-bottom: 0.5rem;">Success Metrics</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #334155;">
+                                    <li>% of agreed actions completed</li>
+                                    <li>Reduction in systemic quality issues</li>
+                                    <li>Improvement in cross-functional quality metrics</li>
+                                    <li>Stakeholder satisfaction with forum outcomes</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Example: An e-commerce company reduced checkout failures by 73% in 6 months by using this forum to address the systemic issue of inconsistent payment validation across teams.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including Quality by Design, cross-functional ownership models, and Quality Business Intelligence systems.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Leadership Framework | Level 5</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #7e22ce;
+            --primary-light: #ede9fe;
+            --secondary: #0f172a;
+            --accent: #7e22ce;
+            --success: #8b5cf6;
+            --warning: #c2410c;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ede9fe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --evolution-bg: linear-gradient(135deg, #8b5cf6, #7e22ce);
+            --level5-bg: linear-gradient(135deg, #7e22ce, #9333ea);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: var(--level5-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #ede9fe;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(126, 34, 206, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(126, 34, 206, 0.2);
+        }
+        
+        .tag-transformation {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .tag-impact {
+            background: rgba(194, 65, 12, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(194, 65, 12, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #ede9fe;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #c084fc;
+        }
+        
+        .evolution-lens {
+            background: var(--level5-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: #c084fc;
+        }
+        
+        .impact-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.75rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #c084fc;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .level-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .current-level {
+            font-weight: bold;
+            color: white;
+            background: var(--success);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .level-badge {
+            background: #7e22ce;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .senior-highlight {
+            background: rgba(126, 34, 206, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .senior-badge {
+            background: #7e22ce;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .leadership-focus {
+            background: rgba(126, 34, 206, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .leadership-badge {
+            background: #7e22ce;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Associate Testing Lead (Level 5) Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">The Leadership Catalyst: Amplifying Team Performance Through Strategic Influence and Operational Excellence</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Quality Leadership & Team Enablement</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span>Associate Testing Lead</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To <strong>amplify team performance</strong> by bridging technical excellence with leadership capabilities, ensuring consistent delivery of quality outcomes while developing leadership skills for future growth. You are the <strong>leadership catalyst</strong> who transforms individual contributors into high-performing teams.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Critical Productivity Killer:</strong> <strong>"The Lone Wolf Leader"</strong>. At Level 5, your value isn't measured by how many tickets you personally complete, but by how effectively you <strong>enable your team to deliver quality outcomes</strong>. Avoid becoming a bottleneck by trying to do everything yourself - your role is to <em>orchestrate</em> quality delivery, not <em>execute</em> it all personally. The transition from individual contributor to leader requires shifting from "I do" to "we deliver."
+            </div>
+            
+            <div class="senior-highlight">
+                <p><strong>Level 5 represents your transformation from quality architect to leadership catalyst.</strong> You're no longer just designing quality systems but <strong>enabling teams to execute those systems effectively</strong>. Your success is measured by <em>team outcomes</em> - how consistently the team delivers high-quality products on time, not just in your personal contributions.</p>
+            </div>
+
+            <!-- Category 1: Team Leadership & Coordination -->
+            <h2 class="section-title">
+                <i class="fas fa-people-carry" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Team Leadership & Coordination (The Leadership Catalyst)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To enable high-performing team dynamics through effective coordination, delegation, and operational leadership that consistently delivers quality outcomes.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-users" style="margin-right: 8px;"></i> Team Coordination & Operational Leadership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Coordinate testing activities</strong> across team members</li>
+                                        <li><strong>Manage daily workflow</strong> and task distribution</li>
+                                        <li><strong>Facilitate team communication</strong> and information flow</li>
+                                        <li><strong>Support team lead</strong> in operational execution</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve team throughput by 35% through effective coordination</li>
+                                        <li>Reduce task handoff delays by 50% through better workflow management</li>
+                                        <li>Ensure 100% of team members have clear daily priorities</li>
+                                        <li>Improve team communication effectiveness by 40% through structured practices</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Team Throughput Rate</strong></li>
+                                        <li>✅ <strong>Workflow Efficiency Score</strong></li>
+                                        <li>✅ <strong>Task Handoff Quality</strong></li>
+                                        <li>✅ <strong>Team Communication Health</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Operational Leadership</span>
+                                        <span class="competency-tag">Workflow Management</span>
+                                        <span class="competency-tag">Team Coordination</span>
+                                        <span class="competency-tag">Information Flow Design</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">CONDUCT DAILY HUDDLES</span> with clear priorities</li>
+                                        <li><span class="kpi-badge">MAP WORKFLOW BOTTLENECKS</span> weekly</li>
+                                        <li><span class="kpi-badge sl-badge">REDUCE HANDOFF DELAYS</span> by 50%</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-balance-scale" style="margin-right: 8px;"></i> Delegation & Work Distribution
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Distribute work effectively</strong> based on skills and capacity</li>
+                                        <li><strong>Balance workload</strong> across team members</li>
+                                        <li><strong>Delegate with clear expectations</strong> and context</li>
+                                        <li><strong>Monitor progress</strong> without micromanaging</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve team capacity utilization by 45% through strategic delegation</li>
+                                        <li>Reduce work bottlenecks by 60% through balanced distribution</li>
+                                        <li>Ensure 90%+ of delegated tasks meet quality expectations</li>
+                                        <li>Improve team satisfaction with work distribution by 50%+</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Delegation Effectiveness Score</strong></li>
+                                        <li>✅ <strong>Workload Balance Index</strong></li>
+                                        <li>✅ <strong>Task Completion Quality</strong></li>
+                                        <li>✅ <strong>Team Satisfaction with Workload</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Delegation</span>
+                                        <span class="competency-tag">Capacity Planning</span>
+                                        <span class="competency-tag">Expectation Setting</span>
+                                        <span class="competency-tag">Progress Monitoring</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">MAP SKILL-CAPACITY MATRIX</span> weekly</li>
+                                        <li><span class="kpi-badge">DOCUMENT DELEGATION RATIONALE</span></li>
+                                        <li><span class="kpi-badge sl-badge">ACHIEVE 90%+ TASK QUALITY</span> rate</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Stakeholder Management & Influence -->
+            <h2 class="section-title">
+                <i class="fas fa-handshake" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Stakeholder Management & Influence (The Quality Advocate)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To build strategic relationships and influence key stakeholders to ensure quality outcomes are understood, valued, and supported across the organization.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-comments" style="margin-right: 8px;"></i> Cross-Functional Communication
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Facilitate communication</strong> between QA and other functions</li>
+                                        <li><strong>Represent QA perspective</strong> in cross-functional discussions</li>
+                                        <li><strong>Translate technical quality issues</strong> for business stakeholders</li>
+                                        <li><strong>Build trust</strong> with key stakeholders</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce miscommunication-related delays by 55% through structured communication</li>
+                                        <li>Improve stakeholder satisfaction with QA communication by 60%+</li>
+                                        <li>Ensure 100% of critical quality issues are communicated with business impact</li>
+                                        <li>Build strategic relationships with 3+ key stakeholder groups</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Communication Effectiveness Score</strong></li>
+                                        <li>✅ <strong>Stakeholder Satisfaction Index</strong></li>
+                                        <li>✅ <strong>Issue Translation Accuracy</strong></li>
+                                        <li>✅ <strong>Strategic Relationship Depth</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Stakeholder Communication</span>
+                                        <span class="competency-tag">Business-Technical Translation</span>
+                                        <span class="competency-tag">Influence Without Authority</span>
+                                        <span class="competency-tag">Trust Building</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">CONDUCT WEEKLY STAKEHOLDER CHECK-INS</span></li>
+                                        <li><span class="kpi-badge">DOCUMENT COMMUNICATION PROTOCOLS</span></li>
+                                        <li><span class="kpi-badge sl-badge">PRESENT BUSINESS IMPACT</span> for all critical issues</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-bullhorn" style="margin-right: 8px;"></i> Quality Advocacy & Influence
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Advocate for quality</strong> in planning discussions</li>
+                                        <li><strong>Influence decisions</strong> to incorporate quality considerations</li>
+                                        <li><strong>Negotiate trade-offs</strong> with business impact rationale</li>
+                                        <li><strong>Build quality awareness</strong> across the organization</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve quality considerations in planning by 70% through early involvement</li>
+                                        <li>Reduce quality compromises without business rationale by 80%+</li>
+                                        <li>Ensure 100% of quality trade-offs include documented business impact</li>
+                                        <li>Improve organization-wide quality awareness by 50% through advocacy</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Planning Influence Score</strong></li>
+                                        <li>✅ <strong>Quality Compromise Rate</strong></li>
+                                        <li>✅ <strong>Trade-off Documentation Completeness</strong></li>
+                                        <li>✅ <strong>Quality Awareness Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Advocacy</span>
+                                        <span class="competency-tag">Influence Tactics</span>
+                                        <span class="competency-tag">Negotiation Skills</span>
+                                        <span class="competency-tag">Quality Evangelism</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">SECURE 100% PLANNING ATTENDANCE</span></li>
+                                        <li><span class="kpi-badge">DOCUMENT ALL TRADE-OFFS</span> with impact</li>
+                                        <li><span class="kpi-badge sl-badge">PRESENT QUALITY METRICS</span> bi-weekly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Team Development & Mentorship -->
+            <h2 class="section-title">
+                <i class="fas fa-seedling" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Team Development & Mentorship (The Growth Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To develop team capabilities through structured mentorship, knowledge sharing, and growth opportunities that create a self-sustaining high-performance culture.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chalkboard-teacher" style="margin-right: 8px;"></i> Structured Mentorship & Coaching
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Implement structured mentorship</strong> for team members</li>
+                                        <li><strong>Identify development opportunities</strong> for growth</li>
+                                        <li><strong>Provide actionable feedback</strong> with growth paths</li>
+                                        <li><strong>Track progress</strong> against development goals</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Accelerate Level 3 readiness by 50% through structured mentorship</li>
+                                        <li>Improve team skill diversity by 40% through targeted development</li>
+                                        <li>Ensure 100% of team members have documented growth paths</li>
+                                        <li>Improve team satisfaction with development opportunities by 60%+</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Mentorship Effectiveness Score</strong></li>
+                                        <li>✅ <strong>Skill Diversity Index</strong></li>
+                                        <li>✅ <strong>Growth Path Completion Rate</strong></li>
+                                        <li>✅ <strong>Development Satisfaction Score</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Development Coaching</span>
+                                        <span class="competency-tag">Growth Path Design</span>
+                                        <span class="competency-tag">Feedback Delivery</span>
+                                        <span class="competency-tag">Progress Tracking</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">CONDUCT 1:1 DEVELOPMENT SESSIONS</span> weekly</li>
+                                        <li><span class="kpi-badge">DOCUMENT GROWTH PATHS</span> for all members</li>
+                                        <li><span class="kpi-badge sl-badge">TRACK PROGRESS</span> against goals monthly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-book-open" style="margin-right: 8px;"></i> Knowledge Management & Sharing
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design knowledge sharing systems</strong> for the team</li>
+                                        <li><strong>Curate and organize knowledge assets</strong> for accessibility</li>
+                                        <li><strong>Facilitate regular knowledge sharing</strong> sessions</li>
+                                        <li><strong>Measure knowledge impact</strong> on team performance</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce knowledge-related defects by 65% through better sharing</li>
+                                        <li>Accelerate onboarding by 60% through structured knowledge systems</li>
+                                        <li>Improve adoption of best practices by 75% through curation</li>
+                                        <li>Ensure 95%+ of critical knowledge is documented and accessible</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Knowledge Accessibility Score</strong></li>
+                                        <li>✅ <strong>Best Practice Adoption Rate</strong></li>
+                                        <li>✅ <strong>Knowledge Impact Index</strong></li>
+                                        <li>✅ <strong>Onboarding Acceleration</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Knowledge Architecture</span>
+                                        <span class="competency-tag">Content Curation</span>
+                                        <span class="competency-tag">Learning Experience Design</span>
+                                        <span class="competency-tag">Impact Measurement</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">HOST 2 KNOWLEDGE SESSIONS</span> monthly</li>
+                                        <li><span class="kpi-badge">MAINTAIN 95%+ KNOWLEDGE COVERAGE</span></li>
+                                        <li><span class="kpi-badge sl-badge">MEASURE KNOWLEDGE IMPACT</span> quarterly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="evolution-lens">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Testing Evolution - Leadership Catalyst (Level 5)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>Level 5 represents your transformation from quality architect to leadership catalyst:</strong> You're no longer just designing quality systems but <em>enabling teams to execute those systems effectively</em>. This level is about developing the mindset of a <em>leadership catalyst</em> who transforms individual contributors into high-performing teams through operational excellence and strategic influence.
+                </p>
+                
+                <div class="level-indicator">
+                    <div class="level-dot"></div>
+                    <div>
+                        <span>LEVEL 1 → LEVEL 2 → LEVEL 3 → LEVEL 4 → </span>
+                        <span class="current-level">LEVEL 5</span> 
+                        <span style="color: rgba(255,255,255,0.8);"> → LEVEL 6</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 92%; background: #c084fc;"></div>
+                </div>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: The Lone Wolf Leader
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Trying to do everything yourself instead of empowering the team, creating leadership bottlenecks and preventing team growth.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e9d5ff;"><i class="fas fa-lightbulb"></i> Solution: The Delegation Matrix</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement a <strong>4-Quadrant Delegation Framework</strong> for all tasks: (1) Do Yourself (critical expertise), (2) Coach Through (growth opportunity), (3) Delegate with Checkpoints (routine tasks), (4) Fully Delegate (standard work). For each task, document the delegation quadrant, rationale, and success criteria. Review weekly with team lead to ensure appropriate delegation patterns.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: Reactive Leadership
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Only addressing immediate issues rather than anticipating challenges and proactively managing team workflow.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e9d5ff;"><i class="fas fa-lightbulb"></i> Solution: The 3-Day Leadership Horizon</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement a <strong>daily leadership rhythm</strong> with three time horizons: (1) Today: Immediate priorities and firefighting, (2) Tomorrow: Anticipating next-day challenges, (3) Next 3 Days: Proactive planning for upcoming work. Dedicate specific time blocks for each horizon. Document potential challenges in each horizon and mitigation strategies. Review daily with team lead.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: Stakeholder Misalignment
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Failing to translate technical quality issues into business impact, leading to poor prioritization and stakeholder frustration.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e9d5ff;"><i class="fas fa-lightbulb"></i> Solution: The Business Impact Translator</div>
+                            <p style="color: rgba(255,255,255,0.9);">Create a <strong>Quality-to-Business Impact Matrix</strong> for common quality issues: For each issue type, document potential business impacts (revenue loss, customer churn, compliance risk, brand damage) with estimated severity scores (1-10). When escalating issues, always present the top 2 business impacts with severity scores. Review and refine the matrix monthly with product stakeholders.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-matrix">
+                    <div class="impact-card">
+                        <h4><i class="fas fa-people-carry"></i> From Quality Architect to Leadership Catalyst</h4>
+                        <p>At Level 5, you're not just designing quality systems - you're <strong>enabling teams to execute those systems effectively</strong>. When you implement a delegation framework that improves team capacity utilization by 45%, you create space for strategic work. When you translate quality issues into business impact, you shift conversations from "more testing" to "smart quality investment." Your operational excellence becomes the engine for predictable delivery.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-handshake"></i> The Stakeholder Influence Advantage</h4>
+                        <p>Your strategic communication creates organization-wide value: When you reduce miscommunication-related delays by 55% through structured communication protocols, you accelerate time-to-market. Your quality advocacy ensures that quality considerations are built into planning from day one, reducing costly late-stage changes. You're not just representing QA - you're <strong>making quality everyone's responsibility</strong> through strategic influence.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-seedling"></i> The Team Growth Multiplier</h4>
+                        <p>Strategic mentorship at Level 5 creates exponential impact: A structured mentorship framework accelerates team capability growth by 50%. Your knowledge architecture reduces onboarding time by 60% while improving quality outcomes. You're not just developing individuals - you're <strong>building a self-sustaining team culture</strong> where knowledge sharing and growth are embedded in daily work.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-project-diagram"></i> The Operational Excellence Engine</h4>
+                        <p>Your team coordination transforms how the organization approaches delivery. When you implement workflow management that reduces task handoff delays by 50%, you create a predictable delivery rhythm. Organizations with Level 5 leaders experience 35% higher team throughput and 40% better communication effectiveness because operational excellence becomes the foundation for quality outcomes.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-bullseye"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When your team consistently delivers high-quality outcomes with minimal direct supervision.</strong> Your success isn't measured by your personal contributions but by how the <em>team's performance improves</em> because of your leadership. When team members say, "Our Associate Lead creates the conditions where we can do our best work," you've mastered Level 5.
+                    </p>
+                    
+                    <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 1rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: #e9d5ff; margin-bottom: 0.5rem;">
+                            <i class="fas fa-chart-line"></i> Level 5 Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Team throughput improves by 35%+ through effective coordination</li>
+                            <li>Team capacity utilization increases by 45%+ through strategic delegation</li>
+                            <li>Stakeholder satisfaction with QA communication improves by 60%+</li>
+                            <li>Team members consistently progress to next career level</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks readiness for Level 6 (Testing Lead)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-badge" style="display: inline-block; margin: 1.5rem 0;">
+                <i class="fas fa-chart-line"></i> Level 5 Progression Path
+            </div>
+            
+            <div class="alert-box" style="border-left-color: #7e22ce; background: #f5f3ff;">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; color: #7e22ce;">
+                    <i class="fas fa-bullseye"></i> The Level 5 Mindset Shift
+                </h3>
+                <p>Level 5 testers often believe their job is to "help the team lead manage the team while still doing hands-on testing." In reality, your primary value is in <strong>transforming individual contributors into high-performing teams through operational excellence and strategic influence</strong>.</p>
+                <p style="margin: 1rem 0; background: #ede9fe; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #a78bfa;">
+                    <strong>How we measure Level 5 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: #7e22ce;">When your delegation framework improves team capacity utilization by 45%+</span>—you've shifted from doing work to enabling work</li>
+                        <li><span style="font-weight: bold; color: #8b5cf6;">When your communication protocols reduce miscommunication delays by 55%+</span>—you've made quality conversations efficient and effective</li>
+                        <li><span style="font-weight: bold; color: #a78bfa;">When team members consistently progress to the next level</span>—you've built a self-sustaining growth culture</li>
+                    </ul>
+                    This shift marks the transition from being a quality leader to becoming a leadership catalyst—where your work amplifies team performance.
+                </p>
+                <p><strong>Remember:</strong> At Level 5, your job isn't to be the best tester on the team—it's to <strong>create conditions where the entire team delivers exceptional quality consistently</strong> through leadership and operational excellence.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Level 5 Leaders
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: #7e22ce;">
+                        <div class="killer-title" style="color: #7e22ce;">
+                            <i class="fas fa-people-carry"></i> Team Coordination Excellence
+                        </div>
+                        <p>Create operational rhythm that enables consistent delivery.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #7e22ce;"><i class="fas fa-check-circle"></i> Practical Action: The Daily Coordination Canvas</div>
+                            <p>Create a visual canvas tracking: (1) Today's priorities (2) Blockers needing escalation (3) Tomorrow's anticipated challenges (4) Next 3-day planning needs. Update this daily during team huddles. Use color coding to show status (green=on track, yellow=needs attention, red=critical). Review daily with team lead to ensure alignment and early issue detection.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #7e22ce;">
+                        <div class="killer-title" style="color: #7e22ce;">
+                            <i class="fas fa-handshake"></i> Strategic Stakeholder Influence
+                        </div>
+                        <p>Build influence through business-aligned quality communication.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #7e22ce;"><i class="fas fa-check-circle"></i> Practical Action: The Quality Business Case Builder</div>
+                            <p>For every major quality initiative or concern, document: (1) Business objective alignment (2) Potential business impact if not addressed (3) Recommended action with effort estimate (4) Expected business outcome. Present this format in all stakeholder discussions. Track how often your recommendations are accepted to measure influence effectiveness.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #7e22ce;">
+                        <div class="killer-title" style="color: #7e22ce;">
+                            <i class="fas fa-seedling"></i> Targeted Team Development
+                        </div>
+                        <p>Accelerate team growth through personalized development.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #7e22ce;"><i class="fas fa-check-circle"></i> Practical Action: The Skill Growth Dashboard</div>
+                            <p>Create a visual dashboard tracking each team member's: (1) Current skill level (1-5) (2) Target level for next role (3) Key growth opportunities (4) Progress against goals. Review this weekly in 1:1s. Focus development on 1-2 critical skills per person that deliver maximum business value. Celebrate progress publicly to reinforce growth culture.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(126, 34, 206, 0.05); border-radius: 8px; padding: 1.25rem; border: 1px solid #ede9fe;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #7e22ce; margin-bottom: 0.75rem;">
+                        <i class="fas fa-dna"></i> The Level 5 Leadership Checklist
+                    </h4>
+                    <p>Use this daily to build leadership catalyst habits:</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.75rem; line-height: 1.7; color: #0f172a;">
+                        <li><strong>Delegation focus:</strong> Delegate 1 task that develops someone's skills</li>
+                        <li><strong>Stakeholder connection:</strong> Have 1 strategic conversation with a key stakeholder</li>
+                        <li><strong>Team development:</strong> Provide 1 piece of growth-focused feedback</li>
+                        <li><strong>Operational excellence:</strong> Identify 1 workflow improvement opportunity</li>
+                    </ol>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #334155;">
+                        This checklist transforms technical leadership into operational excellence—the hallmark of exceptional Level 5 leaders.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #f5f3ff; border-radius: 8px; padding: 1.25rem; border-left: 4px solid #7e22ce;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #7e22ce; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lightbulb"></i> Pro Tip: The Leadership Catalyst Framework
+                    </h4>
+                    <p>When facing leadership challenges, always use the <strong>L.E.A.D.E.R.S.H.I.P.</strong> framework:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <li><strong>L</strong>isten first: "What are the team's and stakeholders' real concerns?"</li>
+                        <li><strong>E</strong>valuate impact: "What's the business impact of this issue?"</li>
+                        <li><strong>A</strong>lign with goals: "How does this connect to our quality objectives?"</li>
+                        <li><strong>D</strong>elegate strategically: "Who can grow by owning this?"</li>
+                        <li><strong>E</strong>xplore options: "What are all possible solutions?"</li>
+                        <li><strong>R</strong>ecommend with rationale: "Here's my recommendation and why"</li>
+                        <li><strong>S</strong>upport execution: "How can I help ensure success?"</li>
+                        <li><strong>H</strong>onor commitments: "What promises must we keep?"</li>
+                        <li><strong>I</strong>nfluence without authority: "How can I build buy-in?"</li>
+                        <li><strong>P</strong>rogress over perfection: "What's the right quality for this context?"</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This transforms "I need to fix this problem" into "Here's how we can solve this together while developing our team"—making you a true leadership catalyst rather than just a manager.</p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #ede9fe; border-radius: 8px; padding: 1.25rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #7e22ce; margin-bottom: 0.75rem;">
+                        <i class="fas fa-chart-pie"></i> Current Industry Best Practices (Q2 2024)
+                    </h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #e0e7ff;">
+                            <h5 style="color: #7e22ce; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-people-arrows"></i> Team Coordination Models
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Modern teams are moving beyond basic standups to structured coordination frameworks like "Focus Time, Flow Time, Fix Time" (Forrester, 2024). High-performing teams allocate specific time blocks for deep work, workflow management, and issue resolution, reducing context switching by 40%.</p>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #e0e7ff;">
+                            <h5 style="color: #7e22ce; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-hand-holding-heart"></i> Psychological Safety in QA Teams
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Google's 2024 study shows psychological safety is the #1 predictor of QA team performance. Teams with high psychological safety find 32% more critical defects and resolve issues 28% faster because members feel safe reporting problems early.</p>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #e0e7ff;">
+                            <h5 style="color: #7e22ce; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-chart-line"></i> Quality Business Case Development
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Top QA leaders now develop quality business cases using ROI frameworks. Teams that quantify quality impact see 53% higher budget approval rates and 41% better stakeholder alignment (Gartner QA Leadership Report, April 2024).</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; background: #f3e8ff; border-radius: 8px; padding: 1rem;">
+                        <p style="font-style: italic; color: #7e22ce; margin: 0;">
+                            <strong>Practical Implementation Tip:</strong> Start with a Psychological Safety Assessment using Google's 5-point framework. Score your team on: 1) Ability to take risks, 2) Comfort asking questions, 3) Openness about mistakes, 4) Respect for diverse views, 5) Confidence in speaking up. Target a minimum score of 4 in each dimension within 6 months.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="leadership-focus" style="margin-top: 2rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #7e22ce; margin-bottom: 0.75rem;">
+                        <i class="fas fa-cogs"></i> Level 5 Leadership Transition Guide
+                    </h4>
+                    
+                    <p>Transitioning from Level 4 to Level 5 requires specific mindset shifts. Use this guide to navigate the transition successfully:</p>
+                    
+                    <div style="margin-top: 1rem; background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #e0e7ff;">
+                        <h5 style="color: #7e22ce; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-exchange-alt"></i> From Individual Contributor to Leadership Catalyst
+                        </h5>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                            <div>
+                                <h6 style="color: #9333ea; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-ban"></i> What to Stop
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Doing hands-on work when delegation opportunities exist</li>
+                                    <li>Reacting to issues without proactive planning</li>
+                                    <li>Using technical jargon with business stakeholders</li>
+                                    <li>Micromanaging task execution details</li>
+                                    <li>Solving problems for the team instead of with the team</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h6 style="color: #9333ea; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-arrow-circle-right"></i> What to Start
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Delegating with growth opportunities in mind</li>
+                                    <li>Planning 3 days ahead for team workflow</li>
+                                    <li>Translating quality into business impact</li>
+                                    <li>Monitoring progress without micromanaging</li>
+                                    <li>Coaching the team to solve problems themselves</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e0e7ff;">
+                            <h6 style="color: #9333ea; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-rocket"></i> Critical Transition Milestones
+                            </h6>
+                            <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                <li><strong>Month 1-2:</strong> Master daily coordination and basic delegation</li>
+                                <li><strong>Month 3-4:</strong> Build stakeholder relationships and communication protocols</li>
+                                <li><strong>Month 5-6:</strong> Implement structured mentorship and development planning</li>
+                                <li><strong>Month 7-12:</strong> Create self-sustaining team processes and culture</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including modern leadership models, psychological safety research, and quality business case development.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
