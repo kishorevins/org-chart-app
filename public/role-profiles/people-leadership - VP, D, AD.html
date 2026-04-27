@@ -1,0 +1,940 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VP Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f7249;
+            --primary-light: #def7ec;
+            --secondary: #0f172a;
+            --accent: #064e3b;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ecfdf5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.6; color: #1e293b; background-color: #ffffff; padding: 20px; min-width: 1200px; }
+        .container { max-width: none; margin: 0 auto; padding: 0 15px; }
+        header { background: linear-gradient(135deg, var(--primary), #166534); color: white; border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--card-shadow); position: relative; overflow: hidden; }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .subtitle { font-size: 1.25rem; opacity: 0.9; max-width: 900px; }
+        .meta { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .meta-item { background: rgba(255, 255, 255, 0.15); padding: 0.5rem 1rem; border-radius: 50px; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 0.5rem; }
+        .highlight-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 1rem 1.25rem; margin-bottom: 1rem; border-radius: 10px; box-shadow: var(--card-shadow); }
+        .highlight-box-danger { background: #fef2f2; border-left-color: var(--danger); }
+        .section-title { font-size: 1.85rem; margin: 2rem 0 1rem 0; color: var(--secondary); display: flex; align-items: center; gap: 10px; }
+        .subcategory-card { background: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-color); }
+        .subcategory-header { background: var(--primary-light); padding: 1rem 1.25rem; font-size: 1.15rem; font-weight: 700; color: var(--secondary); border-bottom: 1px solid var(--border-color); }
+        .card-body { padding: 1.25rem; }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th, td { border: 1px solid var(--gray-300); padding: 1rem; vertical-align: top; }
+        th { background: var(--table-header); font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.02em; text-align: left; }
+        tbody tr:nth-child(even) { background: var(--alt-row); }
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.45rem; }
+        .key-points { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .competency-tag { background: #ecfeff; color: #155e75; border: 1px solid #a5f3fc; padding: 0.3rem 0.55rem; border-radius: 999px; font-size: 0.86rem; font-weight: 600; }
+        .kpi-badge { display: inline-block; background: #dcfce7; color: #166534; padding: 0.14rem 0.5rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-left: 0.25rem; }
+        .sl-badge { background: #e0f2fe; color: #075985; }
+        footer { margin-top: 2rem; background: linear-gradient(135deg, #0f172a, #1e293b); color: white; border-radius: 12px; padding: 1.75rem 2rem; box-shadow: var(--card-shadow); }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+        .footer-grid h3 { margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .footer-grid ul { padding-left: 1rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+<header>
+    <h1>Role Name : Vice President  - Performance, Accountability & Service Framework</h1>
+    <div class="subtitle">The Business Owner: Defining where the company goes, where it plays, how it grows, and how leadership strength turns strategy into scale.</div>
+    <div class="meta">
+        <div class="meta-item"><i class="fas fa-calendar-alt"></i><span>Current Date: March 24, 2026</span></div>
+        <div class="meta-item"><i class="fas fa-layer-group"></i><span>Business Ownership, P&L & Growth Direction</span></div>
+        <div class="meta-item"><i class="fas fa-compass"></i><span>Organization Point of View</span></div>
+    </div>
+</header>
+<div class="highlight-box"><strong>Overarching Goal:</strong> To shape the future of the company by owning strategic direction, growth choices, investments, leadership quality, and the overall business engine required for scale.</div>
+<div class="highlight-box highlight-box-danger"><strong>Growth Killer to Avoid:</strong> Operating like a senior manager instead of a business owner. This role fails when it gets trapped in daily operations and does not make sharp choices on markets, investments, leadership quality, and growth bets.</div>
+<h2 class="section-title"><i class="fas fa-compass-drafting" style="color: var(--primary);"></i> Category 1: Business Direction & Strategic Choice (The Navigator)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To decide where the organization should focus, what it should stop, and where it should invest for future growth.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-map-location-dot" style="margin-right: 8px;"></i> Market Focus & Growth Direction</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Choosing priority markets, services, customer segments, and growth themes</li><li>Defining what will receive leadership attention and investment</li><li>Stopping distraction and low-value growth paths</li></ul></td>
+                            <td><ul><li>Create a sharp strategic focus</li><li>Concentrate resources on scalable growth areas</li><li>Reduce dilution caused by too many disconnected priorities</li></ul></td>
+                            <td><ul><li>? Revenue Mix vs Strategic Plan</li><li>? New Market Progress</li><li>? Strategic Investment ROI</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Strategic Thinking</span><span class="competency-tag">Market Sensing</span><span class="competency-tag">Trade-off Decisions</span><span class="competency-tag">Capital Allocation</span></div></td>
+                            <td><ul><li>Refresh strategic priorities <span class="kpi-badge">QUARTERLY</span></li><li>Challenge low-fit opportunities early</li><li>State clear “yes / no / not now” calls</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-coins" style="margin-right: 8px;"></i> Investment & Portfolio Decisions</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Where the company places money, leadership time, and capability-building effort</li><li>Balancing short-term profit with long-term bets</li><li>Backing or shutting down initiatives based on evidence</li></ul></td>
+                            <td><ul><li>Fund winners and control waste</li><li>Balance exploration with cash discipline</li><li>Create visible logic behind investment decisions</li></ul></td>
+                            <td><ul><li>? Portfolio ROI</li><li>? Payback Period on Strategic Bets</li><li>? Resource Shift Speed</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Financial Acumen</span><span class="competency-tag">Portfolio Management</span><span class="competency-tag">Decision Quality</span><span class="competency-tag">Scenario Planning</span></div></td>
+                            <td><ul><li>Review top strategic bets <span class="kpi-badge sl-badge">MONTHLY</span></li><li>Kill weak bets decisively</li><li>Tie investments to explicit outcome expectations</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-building" style="color: var(--primary);"></i> Category 2: Company Performance & Scale Readiness (The Business Owner)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To ensure the company grows with financial strength, leadership depth, and scalable operating control.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-chart-pie" style="margin-right: 8px;"></i> P&L Ownership & Growth Quality</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Overall business performance, profitability, and healthy growth</li><li>Revenue quality, gross margin discipline, and scalable economics</li><li>Ensuring growth does not break delivery or culture</li></ul></td>
+                            <td><ul><li>Grow profitably, not just aggressively</li><li>Protect cash discipline and margin quality</li><li>Improve resilience of the business model</li></ul></td>
+                            <td><ul><li>? Revenue Growth</li><li>? Gross Margin</li><li>? EBITDA / Operating Profit</li><li>? Cash Conversion</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">P&L Management</span><span class="competency-tag">Business Model Thinking</span><span class="competency-tag">Financial Review</span><span class="competency-tag">Growth Governance</span></div></td>
+                            <td><ul><li>Review P&L deeply <span class="kpi-badge sl-badge">MONTHLY</span></li><li>Intervene early on margin erosion</li><li>No growth target without capacity logic</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-chess-king" style="margin-right: 8px;"></i> Leadership Strength & Organizational Capability</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Quality of leadership bench below this role</li><li>Succession readiness in critical functions</li><li>Whether the organization can scale without depending on a few individuals</li></ul></td>
+                            <td><ul><li>Build strong leaders, not dependency chains</li><li>Reduce single-point-of-failure risk</li><li>Create a scalable leadership operating model</li></ul></td>
+                            <td><ul><li>? Successor Readiness for Key Roles</li><li>? Leadership Effectiveness</li><li>? Span-of-Control Health</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Leadership Assessment</span><span class="competency-tag">Coaching</span><span class="competency-tag">Org Design</span><span class="competency-tag">Succession Planning</span></div></td>
+                            <td><ul><li>Review key talent bench <span class="kpi-badge">QUARTERLY</span></li><li>Address weak leadership quickly</li><li>Promote based on scale readiness, not only tenure</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-arrow-trend-up" style="color: var(--primary);"></i> Category 3: External Positioning & Enterprise Growth (The Force Multiplier)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To expand the company’s reach, relevance, and long-term enterprise value.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-earth-asia" style="margin-right: 8px;"></i> Expansion & Strategic Partnerships</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Entry into new geographies, strategic partnerships, and enterprise growth channels</li><li>Choosing when to build, buy, partner, or pause</li><li>Ensuring expansion has operational logic behind it</li></ul></td>
+                            <td><ul><li>Enter the right markets with discipline</li><li>Use partnerships to accelerate growth</li><li>Avoid expansion that outruns leadership control</li></ul></td>
+                            <td><ul><li>? New Geography Revenue</li><li>? Partnership-Sourced Pipeline</li><li>? Expansion Payback</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Expansion Strategy</span><span class="competency-tag">Partner Negotiation</span><span class="competency-tag">Risk Assessment</span><span class="competency-tag">Scaling Judgment</span></div></td>
+                            <td><ul><li>Expansion case must include operating plan</li><li>No market entry without owner + target economics</li><li>Review partner contribution quarterly</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-bullhorn" style="margin-right: 8px;"></i> Executive Representation & Alignment</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Clear direction to the leadership team and confidence to the Board / CEO</li><li>Representing the business credibly with major customers, partners, and internal leadership</li><li>Ensuring the organization understands where it is heading</li></ul></td>
+                            <td><ul><li>Create confidence and strategic clarity</li><li>Reduce ambiguity at senior levels</li><li>Strengthen executive decision speed</li></ul></td>
+                            <td><ul><li>? Strategic Clarity Score</li><li>? Board / Executive Alignment</li><li>? Decision Cycle Time</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Executive Communication</span><span class="competency-tag">Narrative Building</span><span class="competency-tag">Decision Framing</span><span class="competency-tag">Influence</span></div></td>
+                            <td><ul><li>Communicate strategic choices clearly</li><li>Do not let the organization guess priorities</li><li>Use data-backed executive reviews</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<footer>
+  <div class="footer-grid">
+    <div><h3><i class="fas fa-bullseye"></i> Success Signal</h3><p>The company knows where it is going, invests with discipline, grows with profit quality, and has a leadership bench that can carry the next phase.</p></div>
+    <div><h3><i class="fas fa-triangle-exclamation"></i> Failure Signal</h3><p>Too many priorities, unclear bets, reactive investment, growth without control, and overdependence on a few strong individuals.</p></div>
+    <div><h3><i class="fas fa-people-group"></i> Main Interfaces</h3><ul><li>CEO / Board</li><li>Directors & Associate Directors</li><li>Heads of Department</li><li>Strategic Customers & Partners</li><li>Finance / HR / Operations Leadership</li></ul></div>
+  </div>
+</footer>
+</div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Director Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f7249;
+            --primary-light: #def7ec;
+            --secondary: #0f172a;
+            --accent: #064e3b;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ecfdf5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.6; color: #1e293b; background-color: #ffffff; padding: 20px; min-width: 1200px; }
+        .container { max-width: none; margin: 0 auto; padding: 0 15px; }
+        header { background: linear-gradient(135deg, var(--primary), #166534); color: white; border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--card-shadow); position: relative; overflow: hidden; }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .subtitle { font-size: 1.25rem; opacity: 0.9; max-width: 900px; }
+        .meta { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .meta-item { background: rgba(255, 255, 255, 0.15); padding: 0.5rem 1rem; border-radius: 50px; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 0.5rem; }
+        .highlight-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 1rem 1.25rem; margin-bottom: 1rem; border-radius: 10px; box-shadow: var(--card-shadow); }
+        .highlight-box-danger { background: #fef2f2; border-left-color: var(--danger); }
+        .section-title { font-size: 1.85rem; margin: 2rem 0 1rem 0; color: var(--secondary); display: flex; align-items: center; gap: 10px; }
+        .subcategory-card { background: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-color); }
+        .subcategory-header { background: var(--primary-light); padding: 1rem 1.25rem; font-size: 1.15rem; font-weight: 700; color: var(--secondary); border-bottom: 1px solid var(--border-color); }
+        .card-body { padding: 1.25rem; }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th, td { border: 1px solid var(--gray-300); padding: 1rem; vertical-align: top; }
+        th { background: var(--table-header); font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.02em; text-align: left; }
+        tbody tr:nth-child(even) { background: var(--alt-row); }
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.45rem; }
+        .key-points { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .competency-tag { background: #ecfeff; color: #155e75; border: 1px solid #a5f3fc; padding: 0.3rem 0.55rem; border-radius: 999px; font-size: 0.86rem; font-weight: 600; }
+        .kpi-badge { display: inline-block; background: #dcfce7; color: #166534; padding: 0.14rem 0.5rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-left: 0.25rem; }
+        .sl-badge { background: #e0f2fe; color: #075985; }
+        footer { margin-top: 2rem; background: linear-gradient(135deg, #0f172a, #1e293b); color: white; border-radius: 12px; padding: 1.75rem 2rem; box-shadow: var(--card-shadow); }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+        .footer-grid h3 { margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .footer-grid ul { padding-left: 1rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+<header>
+    <h1>Role Name :  Director  - Performance, Accountability & Service Framework</h1>
+    <div class="subtitle">The Customer & Outcome Owner: Turning company strategy into retention, expansion, customer value, and revenue outcomes.</div>
+    <div class="meta">
+        <div class="meta-item"><i class="fas fa-calendar-alt"></i><span>Current Date: March 24, 2026</span></div>
+        <div class="meta-item"><i class="fas fa-layer-group"></i><span>Customer Success, Revenue Expansion & Strategic Accounts</span></div>
+        <div class="meta-item"><i class="fas fa-compass"></i><span>Customer Point of View</span></div>
+    </div>
+</header>
+<div class="highlight-box"><strong>Overarching Goal:</strong> To convert organizational strategy into measurable business outcomes by protecting existing customers, growing account value, improving customer trust, and expanding long-term revenue.</div>
+<div class="highlight-box highlight-box-danger"><strong>Growth Killer to Avoid:</strong> Becoming reactive and account-servicing only. This role fails when it protects today’s revenue but does not build tomorrow’s customer expansion, strategic account growth, and durable relationships.</div>
+<h2 class="section-title"><i class="fas fa-handshake-angle" style="color: var(--primary);"></i> Category 1: Customer Value Ownership (The Relationship Builder)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To own the health, depth, and long-term commercial value of customer relationships.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-heart-circle-check" style="margin-right: 8px;"></i> Customer Success & Retention</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Renewal confidence, satisfaction, and trust across managed accounts</li><li>Early intervention in at-risk customers</li><li>Executive visibility into account health and relationship strength</li></ul></td>
+                            <td><ul><li>Protect recurring revenue</li><li>Improve renewal probability and customer confidence</li><li>Reduce avoidable churn and unmanaged dissatisfaction</li></ul></td>
+                            <td><ul><li>? Retention Rate</li><li>? Renewal Rate</li><li>? Customer Health Score</li><li>? Escalation Recovery Success</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Executive Communication</span><span class="competency-tag">Relationship Management</span><span class="competency-tag">Escalation Recovery</span><span class="competency-tag">Commercial Judgment</span></div></td>
+                            <td><ul><li>Review key accounts <span class="kpi-badge sl-badge">MONTHLY</span></li><li>High-risk account recovery plan within <span class="kpi-badge sl-badge">72 HOURS</span></li><li>No silent unhappy customers</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-chart-line" style="margin-right: 8px;"></i> Upsell, Cross-Sell & Account Growth</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Growth of wallet share in strategic accounts</li><li>Identifying adjacent needs, new service fit, and expansion opportunities</li><li>Building multi-threaded relationships beyond one contact</li></ul></td>
+                            <td><ul><li>Increase revenue per account</li><li>Move customers from transactional work to strategic partnership</li><li>Create predictable account growth pipeline</li></ul></td>
+                            <td><ul><li>? Expansion Revenue</li><li>? Account Penetration</li><li>? Multi-Service Adoption</li><li>? Opportunity Conversion Rate</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Account Strategy</span><span class="competency-tag">Consultative Selling</span><span class="competency-tag">Value Discovery</span><span class="competency-tag">Negotiation</span></div></td>
+                            <td><ul><li>Account growth plan for top customers <span class="kpi-badge">QUARTERLY</span></li><li>Bring one new value idea per strategic review</li><li>Track white-space opportunities visibly</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-bullseye" style="color: var(--primary);"></i> Category 2: Business Outcome Translation (The Converter)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To connect leadership strategy with real customer-facing execution and commercial results.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-route" style="margin-right: 8px;"></i> Strategic Account Direction</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Which accounts deserve strategic focus</li><li>Where leadership attention should be invested</li><li>How customer strategy aligns with company growth goals</li></ul></td>
+                            <td><ul><li>Prioritize accounts with the highest strategic value</li><li>Focus teams on accounts that can scale profitably</li><li>Create clear account-based growth plays</li></ul></td>
+                            <td><ul><li>? Strategic Account Growth</li><li>? Leadership Time ROI</li><li>? Account Profitability Trend</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Portfolio Thinking</span><span class="competency-tag">Strategic Prioritization</span><span class="competency-tag">P&L Awareness</span><span class="competency-tag">Executive Influence</span></div></td>
+                            <td><ul><li>Top account plan reviewed <span class="kpi-badge sl-badge">QUARTERLY</span></li><li>Escalate strategic account risk early</li><li>Maintain named sponsor for key relationships</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-money-bill-trend-up" style="margin-right: 8px;"></i> Business Development Through Existing Customers</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Generating credible growth through existing customer trust</li><li>Turning delivery outcomes into case studies, referrals, and expansion conversations</li><li>Bringing market signals back into leadership discussions</li></ul></td>
+                            <td><ul><li>Lower cost of growth by using customer base well</li><li>Improve conversion from trust to new work</li><li>Build stronger referenceability</li></ul></td>
+                            <td><ul><li>? Revenue from Existing Customers</li><li>? Referral Count</li><li>? Proposal Win Rate in Existing Accounts</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Business Development</span><span class="competency-tag">Storytelling</span><span class="competency-tag">Commercial Positioning</span><span class="competency-tag">Market Awareness</span></div></td>
+                            <td><ul><li>Capture value proof after major delivery wins</li><li>Move happy customers toward advocacy intentionally</li><li>Coordinate with sales before major proposals</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-people-roof" style="color: var(--primary);"></i> Category 3: Customer-Oriented Leadership (The Orchestrator)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To align internal teams around customer outcomes without losing execution control or margin discipline.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-users-gear" style="margin-right: 8px;"></i> Internal Alignment for Customer Outcomes</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Ensuring delivery, presales, support, and account teams act in one direction for customer success</li><li>Balancing customer needs with internal capability and profitability</li><li>Escalating when customer asks threaten delivery health or margin</li></ul></td>
+                            <td><ul><li>Deliver consistent customer experience</li><li>Reduce internal fragmentation around accounts</li><li>Protect revenue quality, not just revenue volume</li></ul></td>
+                            <td><ul><li>? Customer Escalation Frequency</li><li>? Margin on Strategic Accounts</li><li>? Cross-Functional Response Quality</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Cross-Functional Leadership</span><span class="competency-tag">Decision Trade-offs</span><span class="competency-tag">Customer Advocacy</span><span class="competency-tag">Business Discipline</span></div></td>
+                            <td><ul><li>No major customer commitment without internal alignment</li><li>Escalate margin-risk commitments early</li><li>Run joint reviews for high-value accounts</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-comments-dollar" style="margin-right: 8px;"></i> Executive Stakeholder Management</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Relationship quality with client decision-makers</li><li>Confidence of CEO / VP in account posture</li><li>Clarity of key messages during sensitive account situations</li></ul></td>
+                            <td><ul><li>Build durable executive trust</li><li>Handle sensitive conversations with confidence</li><li>Keep leadership informed without noise</li></ul></td>
+                            <td><ul><li>? Executive Sponsor Coverage</li><li>? Strategic Meeting Outcomes</li><li>? Escalation Containment Rate</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Executive Presence</span><span class="competency-tag">Negotiation</span><span class="competency-tag">Narrative Control</span><span class="competency-tag">Trust Building</span></div></td>
+                            <td><ul><li>Brief leadership before strategic customer meetings</li><li>No escalation reaches crisis stage without response owner</li><li>Document critical client commitments</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<footer>
+  <div class="footer-grid">
+    <div><h3><i class="fas fa-bullseye"></i> Success Signal</h3><p>Customers stay, grow, and trust the company more deeply. Strategy becomes visible in revenue expansion, better retention, and stronger strategic accounts.</p></div>
+    <div><h3><i class="fas fa-triangle-exclamation"></i> Failure Signal</h3><p>Revenue depends on constant new hunting because existing accounts do not expand, risks are caught late, and customer value is not being converted into durable growth.</p></div>
+    <div><h3><i class="fas fa-people-group"></i> Main Interfaces</h3><ul><li>VP / CEO</li><li>Associate Directors & Delivery Leaders</li><li>Sales / Business Development</li><li>Solution / Presales</li><li>Customer Stakeholders</li></ul></div>
+  </div>
+</footer>
+</div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associate Director Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f7249;
+            --primary-light: #def7ec;
+            --secondary: #0f172a;
+            --accent: #064e3b;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ecfdf5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.6; color: #1e293b; background-color: #ffffff; padding: 20px; min-width: 1200px; }
+        .container { max-width: none; margin: 0 auto; padding: 0 15px; }
+        header { background: linear-gradient(135deg, var(--primary), #166534); color: white; border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--card-shadow); position: relative; overflow: hidden; }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .subtitle { font-size: 1.25rem; opacity: 0.9; max-width: 900px; }
+        .meta { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .meta-item { background: rgba(255, 255, 255, 0.15); padding: 0.5rem 1rem; border-radius: 50px; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 0.5rem; }
+        .highlight-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 1rem 1.25rem; margin-bottom: 1rem; border-radius: 10px; box-shadow: var(--card-shadow); }
+        .highlight-box-danger { background: #fef2f2; border-left-color: var(--danger); }
+        .section-title { font-size: 1.85rem; margin: 2rem 0 1rem 0; color: var(--secondary); display: flex; align-items: center; gap: 10px; }
+        .subcategory-card { background: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-color); }
+        .subcategory-header { background: var(--primary-light); padding: 1rem 1.25rem; font-size: 1.15rem; font-weight: 700; color: var(--secondary); border-bottom: 1px solid var(--border-color); }
+        .card-body { padding: 1.25rem; }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th, td { border: 1px solid var(--gray-300); padding: 1rem; vertical-align: top; }
+        th { background: var(--table-header); font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.02em; text-align: left; }
+        tbody tr:nth-child(even) { background: var(--alt-row); }
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.45rem; }
+        .key-points { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .competency-tag { background: #ecfeff; color: #155e75; border: 1px solid #a5f3fc; padding: 0.3rem 0.55rem; border-radius: 999px; font-size: 0.86rem; font-weight: 600; }
+        .kpi-badge { display: inline-block; background: #dcfce7; color: #166534; padding: 0.14rem 0.5rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-left: 0.25rem; }
+        .sl-badge { background: #e0f2fe; color: #075985; }
+        footer { margin-top: 2rem; background: linear-gradient(135deg, #0f172a, #1e293b); color: white; border-radius: 12px; padding: 1.75rem 2rem; box-shadow: var(--card-shadow); }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+        .footer-grid h3 { margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .footer-grid ul { padding-left: 1rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+<header>
+    <h1>Role Name :  Associate Director  - Performance, Accountability & Service Framework</h1>
+    <div class="subtitle">The Execution Integrator: Owning cross-functional discipline, operating stability, and delivery coordination across departments.</div>
+    <div class="meta">
+        <div class="meta-item"><i class="fas fa-calendar-alt"></i><span>Current Date: March 24, 2026</span></div>
+        <div class="meta-item"><i class="fas fa-layer-group"></i><span>Cross-Functional Execution & Operations</span></div>
+        <div class="meta-item"><i class="fas fa-compass"></i><span>People, Systems & Execution</span></div>
+    </div>
+</header>
+<div class="highlight-box"><strong>Overarching Goal:</strong> To make strategy executable by aligning departments, removing friction, stabilizing delivery, and ensuring that presales, operations, and delivery work as one coordinated system.</div>
+<div class="highlight-box highlight-box-danger"><strong>Growth Killer to Avoid:</strong> Acting as a status collector instead of an execution owner. This role fails when it only chases updates but does not resolve dependencies, enforce discipline, and drive closure.</div>
+<h2 class="section-title"><i class="fas fa-gears" style="color: var(--primary);"></i> Category 1: Execution System Ownership (The Integrator)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To keep the execution engine running smoothly across multiple departments, projects, and priorities.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-sitemap" style="margin-right: 8px;"></i> Cross-Functional Coordination</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Alignment between delivery, presales, QA, engineering, support, and operations</li><li>Early identification of dependency clashes between teams</li><li>Ensuring that cross-team commitments are realistic and followed through</li></ul></td>
+                            <td><ul><li>Zero major project delays caused by unmanaged internal handoff gaps</li><li>Drive weekly cross-functional dependency closure</li><li>Maintain clear owner + due date for every major dependency</li></ul></td>
+                            <td><ul><li>? Dependency Closure Rate</li><li>? Escalations Resolved Within SLA</li><li>? Cross-Team Delay %</li><li>? Action Item Aging</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Execution Governance</span><span class="competency-tag">Stakeholder Management</span><span class="competency-tag">Prioritization</span><span class="competency-tag">Follow-through</span><span class="competency-tag">Conflict Handling</span></div></td>
+                            <td><ul><li>Run weekly execution review <span class="kpi-badge sl-badge">WEEKLY</span></li><li>Escalate unresolved blockers within <span class="kpi-badge sl-badge">24 HOURS</span></li><li>No dependency can remain ownerless after review</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-diagram-project" style="margin-right: 8px;"></i> Operating Rhythm & Discipline</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Execution cadence across departments</li><li>Standard use of trackers, reviews, work logs, and governance routines</li><li>Consistent reporting quality for leadership visibility</li></ul></td>
+                            <td><ul><li>100% core teams follow the same execution rhythm</li><li>No leadership surprises on delivery health</li><li>Improve predictability of commitments month over month</li></ul></td>
+                            <td><ul><li>? Review Cadence Compliance</li><li>? Reporting Completeness</li><li>? On-Time Milestone %</li><li>? Forecast Accuracy</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Operational Discipline</span><span class="competency-tag">Program Management</span><span class="competency-tag">Data Hygiene</span><span class="competency-tag">Meeting Leadership</span></div></td>
+                            <td><ul><li>Publish consolidated execution dashboard <span class="kpi-badge sl-badge">WEEKLY</span></li><li>Close review minutes within <span class="kpi-badge sl-badge">SAME DAY</span></li><li>Flag slippage before customer impact</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-people-arrows" style="color: var(--primary);"></i> Category 2: People & Department Alignment (The Stabilizer)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To ensure teams work together smoothly, understand priorities, and execute without internal friction.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-user-group" style="margin-right: 8px;"></i> Leadership Handshake Across Departments</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Working alignment between Heads of Department and project leaders</li><li>Translation of leadership decisions into team-level action</li><li>Ensuring ownership boundaries are clear and respected</li></ul></td>
+                            <td><ul><li>Eliminate recurring confusion on who owns what</li><li>Create consistent accountability across all active initiatives</li><li>Strengthen manager discipline and execution maturity</li></ul></td>
+                            <td><ul><li>? Ownership Clarity Score</li><li>? Repeat Escalation Frequency</li><li>? Manager Action Closure Rate</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Leadership Alignment</span><span class="competency-tag">Decision Clarification</span><span class="competency-tag">Organizational Awareness</span><span class="competency-tag">Influence Without Authority</span></div></td>
+                            <td><ul><li>Every critical action must have one primary owner</li><li>Resolve role confusion within <span class="kpi-badge">1 REVIEW CYCLE</span></li><li>Use written action logs for leadership commitments</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-traffic-light" style="margin-right: 8px;"></i> Execution Risk Management</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Early surfacing of delivery, resourcing, process, and handoff risks</li><li>Maintaining operational calm during pressure periods</li><li>Coordinating recovery plans when projects drift</li></ul></td>
+                            <td><ul><li>Catch risk before it becomes customer-visible</li><li>Reduce fire-fighting and unplanned escalations</li><li>Keep recovery plans practical and time-bound</li></ul></td>
+                            <td><ul><li>? Risks Raised Early %</li><li>? Recovery Plan Success Rate</li><li>? Red Project Stabilization Time</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Risk Management</span><span class="competency-tag">Structured Problem Solving</span><span class="competency-tag">Decision Support</span><span class="competency-tag">Escalation Management</span></div></td>
+                            <td><ul><li>Raise amber/red project signals <span class="kpi-badge sl-badge">IMMEDIATELY</span></li><li>Recovery plan owner assigned within <span class="kpi-badge sl-badge">24 HOURS</span></li><li>Track risk aging until closure</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-briefcase" style="color: var(--primary);"></i> Category 3: Business Execution Support (The Bridge)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To ensure presales commitments, resource plans, and delivery realities stay aligned.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-file-signature" style="margin-right: 8px;"></i> Presales to Delivery Alignment</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Smooth transition from proposal to project execution</li><li>Validation of commitments on scope, timelines, assumptions, and team readiness</li><li>Ensuring no major blind spot exists between sold solution and delivery reality</li></ul></td>
+                            <td><ul><li>Reduce margin leakage caused by weak handovers</li><li>Avoid commitment mismatch between sales and execution</li><li>Improve project start readiness</li></ul></td>
+                            <td><ul><li>? Handover Readiness Score</li><li>? Scope Leakage %</li><li>? Margin Protection on New Projects</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Commercial Awareness</span><span class="competency-tag">Delivery Planning</span><span class="competency-tag">Scope Review</span><span class="competency-tag">Stakeholder Alignment</span></div></td>
+                            <td><ul><li>Mandatory internal handover before project kickoff</li><li>Challenge risky assumptions <span class="kpi-badge">BEFORE SIGN-OFF</span></li><li>No project starts without owner clarity</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-boxes-stacked" style="margin-right: 8px;"></i> Resource & Capacity Coordination</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Balancing demand and team loading across departments</li><li>Highlighting capacity gaps before delivery impact</li><li>Supporting leadership in prioritization when resources are constrained</li></ul></td>
+                            <td><ul><li>Reduce overloading of critical teams</li><li>Improve utilization quality without breaking teams</li><li>Support leadership with realistic staffing decisions</li></ul></td>
+                            <td><ul><li>? Capacity Risk Alerts Raised</li><li>? Utilization Balance</li><li>? Unplanned Allocation Changes</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Capacity Planning</span><span class="competency-tag">Negotiation</span><span class="competency-tag">Trade-off Management</span><span class="competency-tag">Execution Judgment</span></div></td>
+                            <td><ul><li>Review critical bandwidth risks <span class="kpi-badge sl-badge">WEEKLY</span></li><li>Escalate structural gaps before customer impact</li><li>Document priority trade-offs clearly</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<footer>
+  <div class="footer-grid">
+    <div><h3><i class="fas fa-bullseye"></i> Success Signal</h3><p>Departments do not just coexist — they move in sync. Delivery is predictable, handoffs are clean, and leaders trust the execution system.</p></div>
+    <div><h3><i class="fas fa-triangle-exclamation"></i> Failure Signal</h3><p>Frequent internal friction, repeated follow-ups, unclear ownership, late escalations, and projects drifting because teams are not synchronized.</p></div>
+    <div><h3><i class="fas fa-people-group"></i> Main Interfaces</h3><ul><li>Heads of Department</li><li>Project / Delivery Leaders</li><li>Presales & Solution Teams</li><li>Operations / HR / Finance</li><li>Director / VP leadership</li></ul></div>
+  </div>
+</footer>
+</div>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head of Department Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f7249;
+            --primary-light: #def7ec;
+            --secondary: #0f172a;
+            --accent: #064e3b;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ecfdf5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.6; color: #1e293b; background-color: #ffffff; padding: 20px; min-width: 1200px; }
+        .container { max-width: none; margin: 0 auto; padding: 0 15px; }
+        header { background: linear-gradient(135deg, var(--primary), #166534); color: white; border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--card-shadow); position: relative; overflow: hidden; }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .subtitle { font-size: 1.25rem; opacity: 0.9; max-width: 900px; }
+        .meta { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .meta-item { background: rgba(255, 255, 255, 0.15); padding: 0.5rem 1rem; border-radius: 50px; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 0.5rem; }
+        .highlight-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 1rem 1.25rem; margin-bottom: 1rem; border-radius: 10px; box-shadow: var(--card-shadow); }
+        .highlight-box-danger { background: #fef2f2; border-left-color: var(--danger); }
+        .section-title { font-size: 1.85rem; margin: 2rem 0 1rem 0; color: var(--secondary); display: flex; align-items: center; gap: 10px; }
+        .subcategory-card { background: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-color); }
+        .subcategory-header { background: var(--primary-light); padding: 1rem 1.25rem; font-size: 1.15rem; font-weight: 700; color: var(--secondary); border-bottom: 1px solid var(--border-color); }
+        .card-body { padding: 1.25rem; }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th, td { border: 1px solid var(--gray-300); padding: 1rem; vertical-align: top; }
+        th { background: var(--table-header); font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.02em; text-align: left; }
+        tbody tr:nth-child(even) { background: var(--alt-row); }
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.45rem; }
+        .key-points { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .competency-tag { background: #ecfeff; color: #155e75; border: 1px solid #a5f3fc; padding: 0.3rem 0.55rem; border-radius: 999px; font-size: 0.86rem; font-weight: 600; }
+        .kpi-badge { display: inline-block; background: #dcfce7; color: #166534; padding: 0.14rem 0.5rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-left: 0.25rem; }
+        .sl-badge { background: #e0f2fe; color: #075985; }
+        footer { margin-top: 2rem; background: linear-gradient(135deg, #0f172a, #1e293b); color: white; border-radius: 12px; padding: 1.75rem 2rem; box-shadow: var(--card-shadow); }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+        .footer-grid h3 { margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .footer-grid ul { padding-left: 1rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+<header>
+    <h1>Role Name :  Head of Department  - Performance, Accountability & Service Framework</h1>
+    <div class="subtitle">The Functional Capability Owner: Building strong teams, strong standards, and reliable delivery performance within a department such as QA, Cloud, Development, UI/UX, or Data.</div>
+    <div class="meta">
+        <div class="meta-item"><i class="fas fa-calendar-alt"></i><span>Current Date: March 24, 2026</span></div>
+        <div class="meta-item"><i class="fas fa-layer-group"></i><span>Department Capability, Standards & Team Growth</span></div>
+        <div class="meta-item"><i class="fas fa-compass"></i><span>Functional Leadership</span></div>
+    </div>
+</header>
+<div class="highlight-box"><strong>Overarching Goal:</strong> To build a capable, scalable department that delivers high technical quality, develops people, enforces standards, and reliably supports project success.</div>
+<div class="highlight-box highlight-box-danger"><strong>Growth Killer to Avoid:</strong> Being only a senior specialist or only a people manager. This role fails when it neglects either delivery performance or long-term department capability building.</div>
+<h2 class="section-title"><i class="fas fa-screwdriver-wrench" style="color: var(--primary);"></i> Category 1: Functional Capability Building (The Craft Leader)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To strengthen the department’s technical depth, delivery readiness, and long-term capability.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-award" style="margin-right: 8px;"></i> Standards, Quality & Technical Direction</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Department standards, methods, review discipline, and technical quality expectations</li><li>Decision quality within the department’s domain</li><li>Preventing inconsistent delivery practices across team members</li></ul></td>
+                            <td><ul><li>Maintain consistent technical quality across projects</li><li>Reduce avoidable rework and defects</li><li>Create reusable practices and guardrails</li></ul></td>
+                            <td><ul><li>? Quality Score / Defect Leakage</li><li>? Rework %</li><li>? Review Compliance</li><li>? Standards Adoption</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Functional Expertise</span><span class="competency-tag">Quality Management</span><span class="competency-tag">Decision Making</span><span class="competency-tag">Technical Review</span></div></td>
+                            <td><ul><li>Review standards compliance <span class="kpi-badge">WEEKLY</span></li><li>No critical deliverable leaves without functional review</li><li>Publish reusable best practices</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-user-graduate" style="margin-right: 8px;"></i> Skill Development & Team Growth</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Training, upskilling, mentoring, and capability maturity of the department</li><li>Readiness of team members for future roles</li><li>Addressing capability gaps before they become business constraints</li></ul></td>
+                            <td><ul><li>Grow internal bench strength</li><li>Reduce dependence on few experts</li><li>Create visible development paths</li></ul></td>
+                            <td><ul><li>? Skill Readiness Index</li><li>? Internal Promotion Readiness</li><li>? Training Completion</li><li>? Critical Skill Coverage</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Coaching</span><span class="competency-tag">Capability Building</span><span class="competency-tag">Assessment</span><span class="competency-tag">Career Planning</span></div></td>
+                            <td><ul><li>Review team growth plans <span class="kpi-badge sl-badge">MONTHLY</span></li><li>Identify backup for critical skill areas</li><li>Use stretch work intentionally</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-people-carry-box" style="color: var(--primary);"></i> Category 2: Team Performance & Delivery Reliability (The Resource Owner)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To ensure the department can support delivery commitments with the right people, quality, and responsiveness.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-clipboard-check" style="margin-right: 8px;"></i> Team Performance Management</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Performance discipline, output quality, behavioral standards, and consistency of the department team</li><li>Identifying weak performance and correcting it early</li><li>Balancing support with accountability</li></ul></td>
+                            <td><ul><li>Improve reliability of team output</li><li>Reduce unmanaged underperformance</li><li>Strengthen accountability culture</li></ul></td>
+                            <td><ul><li>? Performance Improvement Closure</li><li>? Delivery Error Rate</li><li>? Attendance / Process Discipline</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">People Management</span><span class="competency-tag">Feedback</span><span class="competency-tag">Performance Correction</span><span class="competency-tag">Expectation Setting</span></div></td>
+                            <td><ul><li>Address performance issues early</li><li>Document expectations clearly</li><li>No chronic underperformance without action plan</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-layer-group" style="margin-right: 8px;"></i> Resource Allocation & Escalation Support</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Matching the right people to the right delivery needs</li><li>Supporting project leaders with staffing and capability decisions</li><li>Handling department-side escalations that affect project outcome</li></ul></td>
+                            <td><ul><li>Improve deployment quality of talent</li><li>Reduce project risk caused by skill mismatch</li><li>Respond quickly to delivery escalations</li></ul></td>
+                            <td><ul><li>? Allocation Fit Quality</li><li>? Staffing Response Time</li><li>? Escalation Resolution Speed</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Resource Planning</span><span class="competency-tag">Prioritization</span><span class="competency-tag">Escalation Handling</span><span class="competency-tag">Business Awareness</span></div></td>
+                            <td><ul><li>Respond to critical staffing request <span class="kpi-badge sl-badge">WITHIN 24 HOURS</span></li><li>Escalation owner must be named immediately</li><li>Balance utilization with team health</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-link" style="color: var(--primary);"></i> Category 3: Department Leadership in the Wider System (The Interface Owner)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To ensure the department works as part of the wider company system, not as an isolated silo.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-arrows-turn-to-dots" style="margin-right: 8px;"></i> Cross-Department Collaboration</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Smooth collaboration with delivery, presales, QA, operations, and leadership</li><li>Clear representation of department realities in planning discussions</li><li>Healthy functional handshake with project leadership</li></ul></td>
+                            <td><ul><li>Reduce silo behavior</li><li>Improve planning realism</li><li>Strengthen cross-functional trust</li></ul></td>
+                            <td><ul><li>? Dependency Satisfaction Score</li><li>? Internal Escalation Frequency</li><li>? Planning Accuracy</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Collaboration</span><span class="competency-tag">Stakeholder Management</span><span class="competency-tag">System Thinking</span><span class="competency-tag">Negotiation</span></div></td>
+                            <td><ul><li>Represent department constraints honestly</li><li>Do not accept invisible overload</li><li>Share capacity and risk transparently</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-scale-balanced" style="margin-right: 8px;"></i> Margin, Timeline & Quality Support</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Ensuring department choices support project success on timeline, quality, and margin</li><li>Preventing avoidable cost overruns through weak technical choices or poor staffing</li><li>Owning department contribution to delivery performance</li></ul></td>
+                            <td><ul><li>Protect project economics</li><li>Improve quality without unnecessary overhead</li><li>Support predictable delivery performance</li></ul></td>
+                            <td><ul><li>? Margin Impact from Department</li><li>? Timeline Slippage from Functional Issues</li><li>? Customer Quality Escalations</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Commercial Awareness</span><span class="competency-tag">Execution Judgment</span><span class="competency-tag">Risk Balancing</span><span class="competency-tag">Operational Ownership</span></div></td>
+                            <td><ul><li>Raise functional delivery risk early</li><li>Do not let quality debt accumulate silently</li><li>Use retrospectives to improve function-wide practices</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<footer>
+  <div class="footer-grid">
+    <div><h3><i class="fas fa-bullseye"></i> Success Signal</h3><p>The department is respected for strong quality, strong people, and dependable support to the business — not just for individual experts.</p></div>
+    <div><h3><i class="fas fa-triangle-exclamation"></i> Failure Signal</h3><p>The department depends on a few heroes, standards vary by person, and project teams suffer from slow staffing, weak quality control, or skill gaps.</p></div>
+    <div><h3><i class="fas fa-people-group"></i> Main Interfaces</h3><ul><li>Associate Director / Director</li><li>Project & Delivery Leaders</li><li>Presales / Solution Teams</li><li>HR / Training / Operations</li><li>Department Team Members</li></ul></div>
+  </div>
+</footer>
+</div>
+</body>
+</html>

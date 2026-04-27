@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Manager Framework | The Revenue Engine Architect</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-light: #dbeafe;
+            --secondary: #0f172a;
+            --accent: #5b21b6;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #e0f2fe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --manager-blue: #0284c7;
+            --manager-blue-light: #cffafe;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #0284c7, #0369a1);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0f9ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .evolution-lens {
+            background: linear-gradient(to right, var(--manager-blue), #0284c7);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .evolution-title {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .transformation {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            color: var(--secondary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .transformation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--manager-blue);
+        }
+        
+        ul {
+            padding-left: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(30, 58, 138, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 58, 138, 0.2);
+        }
+        
+        .tag-culture {
+            background: rgba(91, 33, 182, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(91, 33, 182, 0.2);
+        }
+        
+        .tag-governance {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0284c7;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            border: 1px solid #b2e3f8;
+        }
+        
+        .impact-tag {
+            display: inline-block;
+            background: #f0fdf4;
+            color: #047857;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin: 0.15rem;
+            border: 1px solid #a7f3d0;
+        }
+        
+        .red-flag {
+            background: #fee2e2;
+            border-left: 3px solid var(--danger);
+        }
+        
+        .pro-tip {
+            background: #fff7ed;
+            border-left: 3px solid var(--manager-blue);
+            padding: 0.75rem 1rem;
+            margin: 1.25rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .manager-badge {
+            background: linear-gradient(45deg, #0284c7, #0369a1);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            table {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Sales Manager Framework</h1>
+                <div class="subtitle">The Revenue Engine Architect: Building High-Performance Sales Organizations</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Top 10% Sales Leadership Excellence</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-users"></i>
+                        <span>Team Performance & Process Ownership</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Core Purpose:</strong> To be the <strong>revenue engine architect</strong> who designs, optimizes, and leads high-performing sales teams through exceptional process discipline, data-driven coaching, and cross-functional alignment – transforming sales operations into a predictable revenue engine that consistently exceeds targets while developing sales talent.
+            </div>
+            
+            <!-- Core Purpose Section -->
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="category-title"><i class="fas fa-bullseye"></i> Core Responsibilities</h2>
+                    <div class="category-subtitle">The Revenue Engine Architect in Action (2024)</div>
+                </div>
+                <div class="card-body">
+                    <p style="margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.7;">
+                        As a Sales Manager, you are the <strong>strategic owner of team revenue outcomes</strong>, responsible for designing and optimizing the sales engine that drives predictable revenue – while developing sales talent, ensuring process excellence, and aligning cross-functional resources to maximize team performance.
+                    </p>
+                    
+                    <div class="key-points" style="margin-bottom: 1.5rem;">
+                        <span class="impact-tag">Drive 95%+ team quota attainment</span>
+                        <span class="impact-tag">Maintain 90%+ forecast accuracy</span>
+                        <span class="impact-tag">Reduce sales cycle by 25%+ through process design</span>
+                        <span class="impact-tag">Develop 80%+ of team to exceed individual targets</span>
+                    </div>
+                    
+                    <div class="alert-box">
+                        <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                            <i class="fas fa-exclamation-triangle"></i> Strategic Reality Check
+                        </h3>
+                        <p>You've evolved from individual contributor to <strong>revenue engine architect</strong>. Your role now centers on designing and optimizing the entire sales process, developing talent, and creating the conditions for predictable revenue. Your ability to balance data-driven process design with human-centered coaching directly impacts team performance, revenue predictability, and organizational scalability.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Core Sales Manager Responsibilities -->
+            <h2 class="section-title">
+                <i class="fas fa-tasks" style="margin-right: 10px; color: var(--success);"></i>
+                Core Sales Manager Responsibilities
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Strategic Focus:</strong> Your leadership in process design, talent development, and performance management determines team revenue predictability, scalability, and long-term sales organization health.</p>
+            
+            <!-- Revenue Process Design -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-cogs" style="margin-right: 8px;"></i> Revenue Process Design & Optimization
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">Activity</th>
+                                <th width="300px">Execution Standard</th>
+                                <th width="400px">Key Performance Indicators</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Lead Qualification & Outreach Design</strong></td>
+                                <td>Design data-driven lead qualification framework; optimize outreach sequences; implement feedback loops</td>
+                                <td>35%+ lead-to-opportunity conversion; 25%+ reduction in lead response time; 40%+ sales-accepted lead quality</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Account Growth Framework Design</strong></td>
+                                <td>Develop standardized growth paths; map expansion triggers; create playbook for strategic accounts</td>
+                                <td>30%+ expansion revenue; 85%+ account plan adoption; 25%+ increase in cross-sell velocity</td>
+                            </tr>
+                                <tr>
+                                <td><strong>Onboarding Process Standardization</strong></td>
+                                <td>Create structured onboarding journey; develop role-specific ramp metrics; implement mentorship framework</td>
+                                <td>50%+ faster time-to-productivity; 80%+ 90-day retention; 30%+ improvement in first-quarter performance</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Performance Management -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Performance Management & Coaching
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">Activity</th>
+                                <th width="300px">Execution Standard</th>
+                                <th width="400px">Key Performance Indicators</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Deal Velocity Monitoring</strong></td>
+                                <td>Track stage-specific metrics; identify bottlenecks; implement corrective actions; benchmark against targets</td>
+                                <td>25%+ reduction in sales cycle; 95%+ team quota attainment; 15%+ improvement in win rates</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Discovery Methodology Coaching</strong></td>
+                                <td>Develop standardized discovery framework; conduct role-play sessions; implement call scoring; provide targeted feedback</td>
+                                <td>40%+ improvement in discovery effectiveness; 35%+ increase in qualified opportunities; 30%+ reduction in discovery time</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Team Performance Reviews</strong></td>
+                                <td>Conduct structured weekly 1:1s; align development goals with business outcomes; track progress; provide growth opportunities</td>
+                                <td>85%+ team engagement; 80%+ individual target attainment; 50%+ of team promoted within 18 months</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Cross-Functional Alignment -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-handshake" style="margin-right: 8px;"></i> Cross-Functional Revenue Alignment
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">Activity</th>
+                                <th width="300px">Execution Standard</th>
+                                <th width="400px">Key Performance Indicators</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Marketing-Sales Integration</strong></td>
+                                <td>Lead joint reviews; align KPIs; optimize lead handoff; provide feedback on campaign effectiveness</td>
+                                <td>45%+ marketing-sourced revenue; 30%+ improvement in lead conversion; 90%+ marketing alignment satisfaction</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CRM & Forecast Discipline</strong></td>
+                                <td>Implement data hygiene standards; enforce forecast accuracy protocols; consolidate forecasts; validate assumptions</td>
+                                <td>90%+ forecast accuracy; 95%+ CRM compliance; 30%+ reduction in forecast variance</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Pricing & Deal Governance</strong></td>
+                                <td>Validate pricing consistency; approve strategic deals; implement deal desk framework; monitor margin performance</td>
+                                <td>95%+ pricing compliance; 85%+ margin preservation; 40%+ reduction in approval delays</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Productivity Killers -->
+            <h2 class="section-title">
+                <i class="fas fa-ban" style="margin-right: 10px; color: var(--danger);"></i>
+                Management Productivity Killers & Fixes
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Based on 2024 Sales Leadership Research</strong> – These are proven time-wasters that sabotage team performance.</p>
+            
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="250px">Killer</th>
+                                <th width="250px">Impact</th>
+                                <th width="500px">Management Fix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Reactive Coaching Approach</strong></td>
+                                <td>Sales managers spend 70%+ time putting out fires rather than proactive coaching (Gartner 2024)</td>
+                                <td><strong>→ "Predictive Coaching Framework":</strong><br>- Implement deal health scoring system<br>- Create early warning indicators for at-risk deals<br>- Schedule 80% of coaching time proactively based on data</td>
+                            </tr>
+                            <tr>
+                                <td><strong>CRM as Data Repository vs. Action Engine</strong></td>
+                                <td>Only 35% of sales managers use CRM data for predictive insights rather than historical reporting (Forrester)</td>
+                                <td><strong>→ "CRM Action Dashboard":</strong><br>- Create real-time deal health metrics<br>- Build automated coaching triggers<br>- Implement predictive close probability scoring<br>- Focus CRM on driving specific actions</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Generic Cross-Functional Alignment</strong></td>
+                                <td>Poor sales-marketing alignment causes 45% of lead leakage in mid-market organizations (TSIA)</td>
+                                <td><strong>→ "Revenue Operations Council":</strong><br>- Co-create shared KPIs with marketing<br>- Implement weekly closed-loop feedback<br>- Develop joint lead scoring model<br>- Align on quarterly growth initiatives</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Performance Metrics -->
+            <h2 class="section-title">
+                <i class="fas fa-chart-bar" style="margin-right: 10px; color: var(--warning);"></i>
+                Team Performance Metrics
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Measuring Management Impact:</strong> These KPIs determine your influence on revenue predictability and organizational scalability.</p>
+            
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="300px">KPI</th>
+                                <th width="200px">Target</th>
+                                <th width="500px">How to Achieve</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Team Quota Attainment</strong></td>
+                                <td><span class="kpi-badge">95%+</span></td>
+                                <td>Implement predictive coaching framework; maintain 90%+ forecast accuracy; conduct weekly pipeline reviews; develop targeted skill-building</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Forecast Accuracy</strong></td>
+                                <td><span class="kpi-badge">90%+</span></td>
+                                <td>Enforce CRM discipline; implement deal health scoring; validate assumptions weekly; create early warning system for at-risk deals</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Sales Cycle Reduction</strong></td>
+                                <td><span class="kpi-badge">25%+</span></td>
+                                <td>Map process bottlenecks; implement stage-specific metrics; optimize discovery methodology; standardize solution alignment</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Talent Development Rate</strong></td>
+                                <td><span class="kpi-badge">80%+</span></td>
+                                <td>Create structured development plans; implement role-specific ramp metrics; provide targeted coaching; track progression against milestones</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Management Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-chess-king" style="margin-right: 10px; color: var(--accent);"></i>
+                Management Leadership Amplification
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>How Sales Managers Elevate the Entire Organization</strong> – Move from team manager to revenue architect.</p>
+            
+            <div class="card">
+                <div class="card-body">
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 1.5rem;">
+                        <div class="transformation">
+                            <div class="transformation-header">
+                                <i class="fas fa-brain"></i>
+                                <span>Revenue Operations Command Center</span>
+                            </div>
+                            <p>Create a centralized hub for revenue metrics, process optimization, and cross-functional alignment – transforming data into actionable insights that drive predictable revenue growth</p>
+                            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--gray-300);">
+                                <strong>Impact:</strong> Increases team quota attainment by 35% and reduces sales cycle by 28% through data-driven process optimization
+                            </div>
+                        </div>
+                        
+                        <div class="transformation">
+                            <div class="transformation-header">
+                                <i class="fas fa-rocket"></i>
+                                <span>Talent Acceleration Framework</span>
+                            </div>
+                            <p>Develop structured progression paths for sales roles with defined skill milestones, coaching protocols, and career development frameworks that accelerate performance</p>
+                            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--gray-300);">
+                                <strong>Impact:</strong> Reduces time-to-productivity by 50% and increases promotion readiness by 65% through systematic talent development
+                            </div>
+                        </div>
+                        
+                        <div class="transformation">
+                            <div class="transformation-header">
+                                <i class="fas fa-user-graduate"></i>
+                                <span>Revenue Process Playbook</span>
+                            </div>
+                            <p>Document and socialize winning approaches across the revenue process – from lead qualification to deal closure – creating institutional knowledge that scales with the organization</p>
+                            <div style="margin-top: 0.75rem; padding-top: 0.75rem; border-top: 1px dashed var(--gray-300);">
+                                <strong>Impact:</strong> Increases process consistency by 75% and reduces ramp time for new hires by 40% through standardized best practices
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Critical Don'ts -->
+            <div class="red-flag" style="padding: 1.5rem; border-radius: 0 8px 8px 0; margin: 2rem 0;">
+                <h2 style="display: flex; align-items: center; gap: 10px; color: var(--danger); margin-bottom: 1rem;">
+                    <i class="fas fa-times-circle"></i> Critical "Don'ts" for Revenue Engine Architects
+                </h2>
+                <ul style="padding-left: 2rem;">
+                    <li style="margin-bottom: 0.75rem;"><strong>🚫 Never</strong> treat all reps the same without personalized development paths<br><em>(Wastes potential of high performers and fails to address specific skill gaps)</em></li>
+                    <li style="margin-bottom: 0.75rem;"><strong>🚫 Never</strong> prioritize activity metrics over outcome metrics<br><em>(Creates busy work without revenue impact and misaligns team priorities)</em></li>
+                    <li><strong>🚫 Never</strong> allow CRM to become a compliance exercise rather than a performance tool<br><em>(Results in inaccurate data, poor forecasting, and missed coaching opportunities)</em></li>
+                </ul>
+            </div>
+
+            <!-- Pro Tip Section -->
+            <div class="pro-tip">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.75rem;">
+                    <i class="fas fa-lightbulb"></i> Management Pro Tip for 2024
+                </h3>
+                <p>Implement a <strong>"Deal Health Scorecard"</strong> – real-time assessment of deals based on 5 critical dimensions: strategic alignment, competitive positioning, stakeholder engagement, solution fit, and commercial viability. Top-performing Sales Managers using this approach see 42% higher forecast accuracy and 31% faster deal velocity (Gartner 2024).</p>
+            </div>
+
+            <!-- Evolution Lens -->
+            <div class="evolution-lens">
+                <h2 class="evolution-title">
+                    <i class="fas fa-sync-alt"></i> Career Path & Organizational Impact
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">
+                    <strong>Master these management responsibilities, and you'll become the organization's most strategic revenue architect.</strong> Top-performing Sales Managers progress to Director of Sales or VP of Revenue Operations roles in 12-18 months, with many advancing to VP or C-suite positions within 2-3 years.
+                </p>
+                
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-chess-rook"></i> Your Organizational Impact
+                        </h3>
+                        <ul style="color: rgba(255,255,255,0.95); margin-left: 1.25rem;">
+                            <li>Drive 75%+ of predictable revenue through process excellence</li>
+                            <li>Reduce sales cycle by 25-35% through data-driven optimization</li>
+                            <li>Develop 80%+ of sales talent through structured coaching</li>
+                            <li>Improve forecast accuracy by 30-40% through disciplined processes</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-graduation-cap"></i> Career Progression Path
+                        </h3>
+                        <p style="color: rgba(255,255,255,0.95);">
+                            Excel in these management responsibilities, and you'll be positioned for rapid advancement to Director of Sales or VP of Revenue Operations within 12-18 months. Top performers who demonstrate revenue process mastery and talent development excellence often progress to VP of Sales or Chief Revenue Officer roles within 2-3 years.
+                        </p>
+                        <div style="margin-top: 1rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                            <span class="role-badge">Director of Sales</span>
+                            <span class="role-badge">VP of Revenue Operations</span>
+                            <span class="role-badge">VP of Sales</span>
+                            <span class="role-badge">Chief Revenue Officer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box" style="text-align: center; margin-top: 2rem;">
+                <h3 style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-landmark"></i> Architect Process. Develop Talent. Drive Predictability.
+                </h3>
+                <p>Your work as a Sales Manager is the foundation of revenue predictability and organizational scalability. Your ability to balance data-driven process design with human-centered coaching creates the conditions for consistent revenue performance and sustainable growth that positions your company for market leadership.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+.role-profile-page {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  position: relative;
+}
+
+.role-profile-back {
+  position: absolute;
+  top: 12px;
+  left: 16px;
+  z-index: 10;
+  background: #1a3461;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transition: background 0.15s;
+}
+
+.role-profile-back:hover {
+  background: #2563a8;
+}
+
+.role-profile-iframe {
+  flex: 1;
+  width: 100%;
+  border: none;
+  display: block;
+  min-height: 0;
+  height: 0;  /* flex:1 overrides — forces proper flex sizing */
+}
+
+.role-profile-missing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 16px;
+  color: #475569;
+  font-size: 16px;
+}
+
+.role-profile-missing button {
+  background: #1a3461;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 14px;
+  cursor: pointer;
+}

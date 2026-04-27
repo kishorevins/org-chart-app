@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Manaager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-light: #bfdbfe;
+            --secondary: #0f172a;
+            --accent: #8b5cf6;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #dbeafe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #0ea5e9);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0f9ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .evolution-lens {
+            background: linear-gradient(to right, var(--accent), #7c3aed);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .evolution-title {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .transformation {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            color: var(--secondary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .transformation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        ul {
+            padding-left: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Role Name : Project Manaager - Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">Conductor of the Orchestra: Creating Harmony Between Expectations and Execution</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-music"></i>
+                        <span>Customer Delight & Team Development</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-conductor"></i>
+                        <span>The Conductor</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To be the <strong>conductor of the orchestra</strong>, transforming flawless operational execution into stakeholder delight and team growth. You are accountable for the <strong>human system</strong>—aligning customer needs, team capability, and business outcomes to create predictable, high-quality, and growing delivery.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Growth Killer to Avoid:</strong> Shying away from difficult conversations—whether with underperforming team members or unhappy clients—as this erodes trust and prevents necessary growth and change.
+            </div>
+
+            <!-- Category 1: Customer & Stakeholder Orchestration (The Trust Architect) -->
+            <h2 class="section-title">
+                <i class="fas fa-hands-helping" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Customer & Stakeholder Orchestration (The Trust Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the customer relationship, manage expectations proactively, and build trust that transforms delivery from a transactional service into a strategic partnership. You are accountable for the <strong>client's perception of value</strong> and the health of the commercial relationship.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-comments" style="margin-right: 8px;"></i> Stakeholder Communication & Expectation Management
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><strong>Directly communicate with customers and manage expectations</strong></li>
+                                        <li><strong>Collect periodic customer feedback for project improvements</strong></li>
+                                        <li><strong>Conduct monthly review meetings with stakeholders</strong></li>
+                                        <li><strong>Deliver monthly and quarterly project updates to LOB Heads and VPs</strong></li>
+                                        <li><strong>Provide visibility into upcoming pipeline work</strong></li>
+                                        <li><strong>Communicate anticipated resource changes</strong></li>
+                                        <li><strong>Remove members left from WhatsApp, Teams and other groups. Ensure client communication is transferred properly</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve <span class="kpi-badge">=90% Customer Satisfaction (CSAT) Score</span></li>
+                                        <li>Ensure <span class="kpi-badge">=85% stakeholder attendance/engagement</span> in monthly reviews</li>
+                                        <li>Limit <span class="kpi-badge">=2 escalations per quarter</span> requiring L3/executive intervention</li>
+                                        <li>Deliver <span class="kpi-badge">=3 value-add initiatives communicated proactively per year</span></li>
+                                        <li>Maintain <span class="kpi-badge">=95% on-time delivery of executive reports</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>CSAT Score</strong> (Quarterly Survey)</li>
+                                        <li><strong>Stakeholder Meeting Engagement Rate</strong></li>
+                                        <li><strong>Escalation Frequency & Severity</strong> (Tracked in CRM)</li>
+                                        <li><strong>Value-Add Initiative Log</strong> (Documented benefits delivered)</li>
+                                        <li><strong>Report Submission Timeliness</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Executive Communication</span>
+                                        <span class="competency-tag">Expectation Management</span>
+                                        <span class="competency-tag">Commercial Awareness</span>
+                                        <span class="competency-tag">Conflict Resolution</span>
+                                        <span class="competency-tag">Proactive Thinking</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">Monthly Business Review (MBR) decks</span> are sent 24 hours prior to the meeting</li>
+                                        <li><span class="kpi-badge sl-badge">Any resource change impacting client delivery is communicated with a mitigation plan at least 2 weeks in advance</span></li>
+                                        <li><span class="kpi-badge sl-badge">A formal feedback loop</span> (survey or structured meeting) is conducted at least quarterly per major client</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-exclamation-circle" style="margin-right: 8px;"></i> Crisis Management & Value Delivery
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><strong>Handle critical project situations and drive resolution</strong></li>
+                                        <li><strong>Deliver additional value and communicate benefits proactively</strong></li>
+                                        <li><strong>Support escalation discussions or delivery clarifications</strong></li>
+                                        <li><strong>Participate in complex negotiation calls when delivery risks arise</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">Resolve 100% of critical situations</span> with a documented root-cause analysis and preventive action plan</li>
+                                        <li>Achieve <span class="kpi-badge">=90% positive feedback on crisis handling</span> from involved stakeholders</li>
+                                        <li><span class="kpi-badge">Identify and communicate =1 potential upsell/cross-sell opportunity</span> per quarter per key account</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>Critical Incident Resolution Time & Outcome</strong></li>
+                                        <li><strong>Stakeholder Feedback on Crisis Management</strong> (Post-incident survey)</li>
+                                        <li><strong>Pipeline Contribution</strong> (# of identified opportunities passed to Sales/Account Management)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Problem-Solving Under Pressure</span>
+                                        <span class="competency-tag">Negotiation</span>
+                                        <span class="competency-tag">Value Proposition Development</span>
+                                        <span class="competency-tag">Analytical Thinking</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">A formal "Post-Mortem" or "Lesson Learned" document</span> is created for any Severity 1/P1 incident within 1 week of resolution</li>
+                                        <li><span class="kpi-badge sl-badge">Value delivery is quantified</span> (time saved, cost reduced, revenue enabled) and included in MBRs</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Team Leadership & Talent Development (The People Catalyst) -->
+            <h2 class="section-title">
+                <i class="fas fa-users" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Team Leadership & Talent Development (The People Catalyst)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the health, growth, and high performance of the delivery team. You are accountable for creating an environment where <strong>individuals thrive, skills grow, and the team reliably exceeds expectations</strong>. You shift from managing tasks to cultivating capability.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Team Enablement & Performance Governance
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><strong>Develop junior team members while managing delivery</strong></li>
+                                        <li><strong>Enable team members by removing roadblocks</strong></li>
+                                        <li><strong>Mentor team members on technical and soft skills</strong></li>
+                                        <li><strong>Monitor and govern team performance</strong></li>
+                                        <li><strong>Address and resolve team conflicts constructively</strong></li>
+                                        <li><strong>Monitor workload to prevent burnout</strong></li>
+                                        <li><strong>Ensure an even distribution of workload across team members to maintain productivity</strong></li>
+                                        <li><strong>Monitor task progress and reassign resources where necessary to meet deadlines</strong></li>
+                                        <li><strong>Encourage celebrating wins and acknowledge contributions</strong></li>
+                                        <li><strong>Manage REO (Reflect, Connect, Reorient) sessions with direct reports</strong> as part of the Immediate Reporting Person (IRP) responsibility</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Maintain <span class="kpi-badge">=95% team retention rate</span></li>
+                                        <li>Achieve <span class="kpi-badge">=80% of team members reporting high growth and job satisfaction</span> in surveys</li>
+                                        <li>Keep <span class="kpi-badge">average team workload =40 hours/week</span> (monitored via time logs)</li>
+                                        <li>Facilitate <span class="kpi-badge">=4 team development activities per quarter</span> (workshops, knowledge shares)</li>
+                                        <li>Have <span class="kpi-badge">=1 team conflict requiring formal HR mediation per year</span></li>
+                                        <li>Ensure <span class="kpi-badge">=4 REO sessions per direct report per quarter</span> with documented outcomes</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>Voluntary Attrition Rate</strong></li>
+                                        <li><strong>Team Growth & Satisfaction Index</strong> (Internal survey)</li>
+                                        <li><strong>Average Weekly Hours per Team Member</strong> (with variance analysis)</li>
+                                        <li><strong>Development Activity Count</strong></li>
+                                        <li><strong>Conflict Resolution Log</strong> (informal vs. formal)</li>
+                                        <li><strong>REO Session Completion Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Coaching & Mentoring</span>
+                                        <span class="competency-tag">Emotional Intelligence (EQ)</span>
+                                        <span class="competency-tag">Delegation</span>
+                                        <span class="competency-tag">Performance Management</span>
+                                        <span class="competency-tag">Motivational Leadership</span>
+                                        <span class="competency-tag">Structured Feedback Delivery</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">Weekly 1:1s are non-negotiable</span> for all direct reports, focused on growth, not just status</li>
+                                        <li><span class="kpi-badge sl-badge">A "Team Health Dashboard"</span> (mood, workload, blockers) is reviewed in weekly team leads meeting</li>
+                                        <li><span class="kpi-badge sl-badge">Recognition is public, specific, and timely</span> (within 1 week of achievement)</li>
+                                        <li><span class="kpi-badge sl-badge">REO sessions must include Reflect (active listening), Connect (meaningful conversation), and Reorient (constructive feedback)</span></li>
+                                        <li><strong>REO output templates</strong> are standardized and used consistently across all direct reports</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-balance-scale" style="margin-right: 8px;"></i> Capacity & Strategic Resource Management
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><strong>Maintain visibility of team capacity and ensure efficient utilization of available talent</strong></li>
+                                        <li><strong>Provide resource availability updates</strong></li>
+                                        <li><strong>Prepare delivery model</strong></li>
+                                        <li><strong>Integrate insights from REO sessions into capacity planning</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve <span class="kpi-badge">team utilization rate between 85-95%</span> (productive billable/non-billable work)</li>
+                                        <li>Maintain a <span class="kpi-badge">forward-looking capacity forecast for the next 2 quarters with =90% accuracy</span></li>
+                                        <li>Ensure <span class="kpi-badge">critical skill gaps are identified and addressed at least 1 quarter before they impact delivery</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>Team Utilization Rate</strong></li>
+                                        <li><strong>Capacity Forecast Accuracy</strong> (Planned vs. Actual FTE needs)</li>
+                                        <li><strong>Critical Skill Gap Closure Time</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Capacity Planning</span>
+                                        <span class="competency-tag">Strategic Thinking</span>
+                                        <span class="competency-tag">Talent Assessment</span>
+                                        <span class="competency-tag">Negotiation (for internal resources)</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">A rolling resource plan</span> is updated bi-weekly and shared with L3 leadership</li>
+                                        <li><span class="kpi-badge sl-badge">A "Delivery Model" document</span> (team structure, roles, communication plan) exists for each account and is reviewed annually</li>
+                                        <li>REO input is considered in <span class="kpi-badge sl-badge">resource allocation decisions</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Business & Financial Stewardship (The Commercial Guardian) -->
+            <h2 class="section-title">
+                <i class="fas fa-chart-bar" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Business & Financial Stewardship (The Commercial Guardian)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the financial integrity and commercial hygiene of the projects under your purview. You are accountable for ensuring <strong>delivery translates into accurate revenue recognition, healthy margins, and data that feeds business decisions</strong>. You connect team effort to company P&L.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-file-invoice-dollar" style="margin-right: 8px;"></i> Financial Operations & Invoicing
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><strong>Submit monthly financial projections for department</strong></li>
+                                        <li><strong>Tag invoices with customer name and project reference</strong></li>
+                                        <li><strong>Coordinate with finance team for timely invoicing</strong></li>
+                                        <li><strong>Update invoice details weekly for all customers they handle in CRM</strong></li>
+                                        <li><strong>Submit monthly projection amount with closure updates until invoice is raised</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve <span class="kpi-badge">100% on-time submission of accurate financial projections</span></li>
+                                        <li>Maintain <span class="kpi-badge">=99% accuracy in invoice tagging</span> (customer, project, PO)</li>
+                                        <li>Ensure <span class="kpi-badge">100% of invoices are coordinated and submitted to finance by the monthly deadline</span></li>
+                                        <li>Keep <span class="kpi-badge">CRM invoice data =98% accurate and up-to-date</span></li>
+                                        <li><span class="kpi-badge">Close monthly financials with =1 day delay</span> from period end</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>Financial Forecast Timeliness & Accuracy</strong> (Variance to actuals)</li>
+                                        <li><strong>Invoice Error Rate</strong> (% requiring rework)</li>
+                                        <li><strong>Invoice Submission Compliance</strong></li>
+                                        <li><strong>CRM Data Hygiene Score</strong> (Audit)</li>
+                                        <li><strong>Month-End Close Delay</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Financial Acumen</span>
+                                        <span class="competency-tag">Data Management</span>
+                                        <span class="competency-tag">Process Rigor</span>
+                                        <span class="competency-tag">Attention to Detail</span>
+                                        <span class="competency-tag">Collaboration with Finance</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">The 3rd working day of the month is the absolute deadline</span> for finalizing and submitting previous month's projections/invoice data</li>
+                                        <li><span class="kpi-badge sl-badge">CRM is updated every Friday EOD</span> without exception</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-fire" style="margin-right: 8px;"></i> Process Innovation & Compliance
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><strong>Manage change requests with Business Analyst</strong></li>
+                                        <li><strong>Ensure internal processes and policies are followed</strong></li>
+                                        <li><strong>Engage in FastForward and Kill the Process initiatives</strong></li>
+                                        <li><strong>Identify opportunities to simplify and enhance processes</strong></li>
+                                        <li><strong>Maintain systems requirement list for ongoing projects</strong></li>
+                                        <li><strong>Leverage REO session insights for process improvements</strong> at both project and department levels</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">Implement =2 documented process improvements per quarter</span></li>
+                                        <li>Maintain <span class="kpi-badge">=5% change request volume</span> (as % of total story points) indicating good upfront scoping</li>
+                                        <li>Achieve <span class="kpi-badge">=95% compliance</span> on internal policy audits</li>
+                                        <li><span class="kpi-badge">Contribute to =4 FastForward/Kill the Process initiatives per year</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>Process Improvement Implementation Count</strong></li>
+                                        <li><strong>Change Request Volume & Impact</strong></li>
+                                        <li><strong>Internal Audit Score</strong></li>
+                                        <li><strong>Improvement Initiative Contribution</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Process Design</span>
+                                        <span class="competency-tag">Change Management</span>
+                                        <span class="competency-tag">Analytical Thinking</span>
+                                        <span class="competency-tag">Persuasion</span>
+                                        <span class="competency-tag">Feedback Integration</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">A "Lessons Learned" log from change requests</span> feeds into the quarterly REO sessions led by L1s</li>
+                                        <li><span class="kpi-badge sl-badge">Proposed process changes must include a pilot plan and success metrics</span> before wider rollout</li>
+                                        <li><span class="kpi-badge sl-badge">REO findings are validated</span> and incorporated into process improvement planning</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="evolution-lens">
+                <h2 class="evolution-title">
+                    <i class="fas fa-sync-alt"></i> Evolution Lens (The Conductor)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7;">
+                    <strong>The Project Manaager framework is about mastering influence and systems thinking. You are the translator between the operational engine and the strategic business.</strong>
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Task Manager" to "Team Architect"</span>
+                        </div>
+                        <p>You evolve from overseeing tasks to designing the team system—its roles, growth paths, workload balance, and culture—that sustainably produces results.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Reporter" to "Storyteller & Negotiator"</span>
+                        </div>
+                        <p>You shift from sending status updates to crafting narratives that manage stakeholder perceptions, justify investments, and negotiate through delivery risks and scope changes.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Process Follower" to "Process Innovator"</span>
+                        </div>
+                        <p>You move from enforcing existing processes to critically evaluating and redesigning them for greater efficiency, quality, and team satisfaction.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Cost Center Manager" to "Commercial Steward"</span>
+                        </div>
+                        <p>Your perspective expands from managing project budgets to understanding how your delivery impacts the broader P&L, client lifetime value, and invoice-to-cash cycles.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-star"></i> Your Success Is Measured By...
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        Relationship metrics (CSAT, escalations), people metrics (retention, satisfaction, growth), and commercial metrics (forecast accuracy, invoicing hygiene, process improvement). You build the trust that allows the business to grow.
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Performance Insight
+                </h3>
+                <p>Project Delivery Managers must dedicate <strong>at least 60% of their time</strong> to strategic activities (relationship building, talent development, process innovation). Anything less indicates disproportionate focus on operational details rather than higher-value leadership responsibilities.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

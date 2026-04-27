@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { ROLE_FILE_MAP } from '../data/roleFileMap'
 import './OrgChart.css'
 
 // ─── Types ──────────────────────────────────────────────────────────────────
@@ -152,15 +154,17 @@ const rgt = (el: HTMLElement, ox: number) => el.getBoundingClientRect().right  -
 
 // ─── Component ───────────────────────────────────────────────────────────────
 export default function OrgChart() {
+  const navigate = useNavigate()
   const containerRef = useRef<HTMLDivElement | null>(null)
   const cardRefs     = useRef<Record<string, HTMLDivElement | null>>({})
   const svgRef       = useRef<SVGSVGElement | null>(null)
   const [paths, setPaths] = useState<{ d: string; key: string; cross: boolean; noArrow?: boolean }[]>([])
   const [tip,   setTip]   = useState<{ roleId: string; left: number; caretOffset: number; y: number; above: boolean } | null>(null)
+  const [comingSoon, setComingSoon] = useState<{ roleId: string } | null>(null)
 
-  // Close tooltip on click outside or scroll
+  // Close tooltip and coming-soon popup on click outside or scroll
   useEffect(() => {
-    const close = () => setTip(null)
+    const close = () => { setTip(null); setComingSoon(null) }
     document.addEventListener('click', close)
     window.addEventListener('scroll', close, true)   // capture phase catches all scroll containers
     window.addEventListener('touchmove', close, { passive: true })
@@ -190,6 +194,11 @@ export default function OrgChart() {
       y: above ? rect.top - 10 : rect.bottom + 10,
       above,
     })
+  }
+
+  // Show "coming soon" modal popup (for roles without a profile page)
+  const showComingSoon = (_el: HTMLElement, roleId: string) => {
+    setComingSoon({ roleId })
   }
 
   useEffect(() => {
@@ -470,7 +479,14 @@ export default function OrgChart() {
                         onMouseLeave={() => setTip(null)}
                         onClick={e => {
                           e.stopPropagation()
-                          tip?.roleId === role.id ? setTip(null) : showTip(e.currentTarget, role.id)
+                          const fileUrl = ROLE_FILE_MAP[role.id]
+                          if (fileUrl) {
+                            navigate('/role/' + role.id)
+                          } else {
+                            comingSoon?.roleId === role.id
+                              ? setComingSoon(null)
+                              : showComingSoon(e.currentTarget, role.id)
+                          }
                         }}
                       >
                         {role.title}
@@ -494,6 +510,30 @@ export default function OrgChart() {
           <strong className="org-tip-title">{ROLE_MAP[tip.roleId]?.title}</strong>
           <p className="org-tip-desc">{ROLE_MAP[tip.roleId]?.desc}</p>
           <span className="org-tip-caret" style={{ left: tip.caretOffset }} />
+        </div>
+      )}
+
+      {/* Coming-soon modal — shown when no profile page exists yet */}
+      {comingSoon && (
+        <div
+          className="org-coming-soon-overlay"
+          onClick={() => setComingSoon(null)}
+        >
+          <div
+            className="org-coming-soon-popup"
+            role="dialog"
+            aria-modal="true"
+            onClick={e => e.stopPropagation()}
+          >
+            <div className="org-coming-soon-header">
+              <p className="org-coming-soon-title">{ROLE_MAP[comingSoon.roleId]?.title}</p>
+              <button className="org-coming-soon-close" onClick={() => setComingSoon(null)} aria-label="Close">×</button>
+            </div>
+            <div className="org-coming-soon-body">
+              <div className="org-coming-soon-icon">🕐</div>
+              <p className="org-coming-soon-msg">Responsibility will be updated soon.</p>
+            </div>
+          </div>
         </div>
       )}
     </main>

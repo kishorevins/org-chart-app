@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Framework | Level 4</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0c4a6e;
+            --primary-light: #dbeafe;
+            --secondary: #0f172a;
+            --accent: #0c4a6e;
+            --success: #0284c7;
+            --warning: #c2410c;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #dbeafe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --evolution-bg: linear-gradient(135deg, #0284c7, #0c4a6e);
+            --level4-bg: linear-gradient(135deg, #0c4a6e, #0369a1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: var(--level4-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #dbeafe;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(12, 74, 110, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(12, 74, 110, 0.2);
+        }
+        
+        .tag-transformation {
+            background: rgba(2, 132, 199, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(2, 132, 199, 0.2);
+        }
+        
+        .tag-impact {
+            background: rgba(194, 65, 12, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(194, 65, 12, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #dbeafe;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #93c5fd;
+        }
+        
+        .evolution-lens {
+            background: var(--level4-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: #93c5fd;
+        }
+        
+        .impact-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.75rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #34d399;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .level-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .current-level {
+            font-weight: bold;
+            color: white;
+            background: var(--success);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .level-badge {
+            background: #0c4a6e;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .senior-highlight {
+            background: rgba(12, 74, 110, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .senior-badge {
+            background: #0c4a6e;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Senior Testing Engineer (Level 4) Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">The Quality Architect: Designing Systems Where Quality is Inevitable, Not Exceptional</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Quality Architecture & Engineering Leadership</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span>Senior Testing Engineer Level 2</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To architect and govern quality systems that ensure <strong>predictable delivery of high-quality products</strong> through strategic leadership, quality engineering excellence, and cross-functional influence. You are the <strong>quality architect</strong> who designs systems where quality is built-in, not tested-in.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Critical Productivity Killer:</strong> <strong>"The Perfectionist Paradox"</strong>. At Level 4, your value isn't measured by how many defects you find or how perfect your test cases are, but by how effectively you <strong>balance quality with delivery velocity</strong>. Avoid becoming a bottleneck by demanding perfection at the expense of timely delivery - your role is to determine the <em>right</em> quality for the business context, not the <em>maximum possible</em> quality.
+            </div>
+            
+            <div class="senior-highlight">
+                <p><strong>Level 4 represents your transformation from quality strategist to quality architect.</strong> You're no longer just improving quality processes but <strong>designing the quality operating system</strong> for your team or program. Your success is measured by <em>predictable delivery outcomes</em> - how consistently the team delivers high-quality products on time, not just in your individual contributions.</p>
+            </div>
+
+            <!-- Category 1: Quality Governance & Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-crown" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Quality Governance & Leadership (The Quality Guardian)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To establish and maintain quality standards, governance, and decision frameworks that ensure consistent delivery of business value through quality outcomes.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-gavel" style="margin-right: 8px;"></i> Quality Standards & Governance
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Define quality standards</strong> and acceptance criteria</li>
+                                        <li><strong>Establish quality gates</strong> with clear criteria</li>
+                                        <li><strong>Review and approve</strong> quality deliverables</li>
+                                        <li><strong>Make go/no-go decisions</strong> for releases</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Define 3-5 measurable quality standards adopted across the program</li>
+                                        <li>Establish quality gates that reduce production incidents by 40%+</li>
+                                        <li>Ensure 100% of quality deliverables meet established standards</li>
+                                        <li>Improve release confidence to 95%+ through clear decision criteria</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Standard Adoption Rate</strong></li>
+                                        <li>✅ <strong>Gate Effectiveness Score</strong></li>
+                                        <li>✅ <strong>Decision Confidence Index</strong></li>
+                                        <li>✅ <strong>Release Quality Stability</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Quality Governance</span>
+                                        <span class="competency-tag">Risk-Based Decision Making</span>
+                                        <span class="competency-tag">Quality Policy Design</span>
+                                        <span class="competency-tag">Stakeholder Alignment</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DOCUMENT 3+ QUALITY STANDARDS</span> with metrics</li>
+                                        <li><span class="kpi-badge">IMPLEMENT QUALITY GATES</span> with clear criteria</li>
+                                        <li><span class="kpi-badge sl-badge">MAINTAIN 95%+ DECISION CONFIDENCE</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-users" style="margin-right: 8px;"></i> Cross-Functional Quality Leadership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Drive quality culture</strong> across teams</li>
+                                        <li><strong>Align quality practices</strong> with business objectives</li>
+                                        <li><strong>Facilitate quality discussions</strong> with stakeholders</li>
+                                        <li><strong>Resolve cross-team quality conflicts</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve cross-team quality alignment by 50% through shared frameworks</li>
+                                        <li>Reduce quality-related delays in handoffs by 60%+ across teams</li>
+                                        <li>Establish quality as a shared responsibility across all functions</li>
+                                        <li>Increase business stakeholder confidence in quality by 45%+</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Cross-Functional Quality Alignment</strong></li>
+                                        <li>✅ <strong>Quality Culture Index</strong></li>
+                                        <li>✅ <strong>Stakeholder Confidence Score</strong></li>
+                                        <li>✅ <strong>Conflict Resolution Effectiveness</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Influence Without Authority</span>
+                                        <span class="competency-tag">Strategic Communication</span>
+                                        <span class="competency-tag">Change Leadership</span>
+                                        <span class="competency-tag">Business Acumen</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">CONDUCT 1 QUALITY ALIGNMENT SESSION</span> per quarter</li>
+                                        <li><span class="kpi-badge">DOCUMENT SHARED QUALITY FRAMEWORK</span></li>
+                                        <li><span class="kpi-badge sl-badge">RESOLVE 100% OF CRITICAL CONFLICTS</span> in 48h</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Quality Engineering Architecture -->
+            <h2 class="section-title">
+                <i class="fas fa-project-diagram" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Quality Engineering Architecture (The Test Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To design and govern strategic quality engineering solutions that maximize business value, minimize quality risks, and optimize the testing ecosystem for efficiency and reliability at scale.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-diagram-project" style="margin-right: 8px;"></i> Strategic Quality Engineering Design
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design quality engineering strategy</strong> aligned with business goals</li>
+                                        <li><strong>Architect test frameworks</strong> for scalability and maintainability</li>
+                                        <li><strong>Optimize quality investments</strong> based on business value</li>
+                                        <li><strong>Govern quality engineering practices</strong> across the program</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve quality engineering ROI by 70% through strategic focus</li>
+                                        <li>Reduce framework maintenance effort by 50% through better design</li>
+                                        <li>Ensure 90%+ of quality investments deliver measurable business value</li>
+                                        <li>Enable consistent quality practices across 3+ teams or projects</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Quality Engineering Maturity</strong></li>
+                                        <li>✅ <strong>Architecture Scalability Score</strong></li>
+                                        <li>✅ <strong>Business Value Alignment</strong></li>
+                                        <li>✅ <strong>Cross-Team Adoption Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Quality Architecture</span>
+                                        <span class="competency-tag">Strategic Planning</span>
+                                        <span class="competency-tag">ROI Analysis</span>
+                                        <span class="competency-tag">Technology Assessment</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">MAP QUALITY STRATEGY TO BUSINESS GOALS</span></li>
+                                        <li><span class="kpi-badge">CONDUCT FRAMEWORK AUDIT</span> quarterly</li>
+                                        <li><span class="kpi-badge sl-badge">DOCUMENT STRATEGY</span> with business cases</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-brain" style="margin-right: 8px;"></i> Advanced Quality Intelligence
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design predictive quality models</strong> using data analytics</li>
+                                        <li><strong>Develop quality forecasting capabilities</strong></li>
+                                        <li><strong>Implement AI/ML for quality optimization</strong></li>
+                                        <li><strong>Drive data-driven quality decisions</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve defect prediction accuracy to 85%+ through analytics</li>
+                                        <li>Reduce critical production incidents by 50% through forecasting</li>
+                                        <li>Automate 70%+ of routine quality analysis through AI/ML</li>
+                                        <li>Ensure 100% of major quality decisions are data-driven</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Predictive Accuracy Rate</strong></li>
+                                        <li>✅ <strong>Forecasting Impact Score</strong></li>
+                                        <li>✅ <strong>AI/ML Adoption Maturity</strong></li>
+                                        <li>✅ <strong>Data-Driven Decision Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Predictive Analytics</span>
+                                        <span class="competency-tag">AI/ML for QA</span>
+                                        <span class="competency-tag">Data Science</span>
+                                        <span class="competency-tag">Quality Forecasting</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">IMPLEMENT 1 PREDICTIVE MODEL</span> per quarter</li>
+                                        <li><span class="kpi-badge">ACHIEVE 80%+ PREDICTION ACCURACY</span></li>
+                                        <li><span class="kpi-badge sl-badge">PRESENT FORECASTING INSIGHTS</span> weekly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Quality Capability Development -->
+            <h2 class="section-title">
+                <i class="fas fa-graduation-cap" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Quality Capability Development (The Quality Mentor)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To build and sustain quality engineering capabilities across the organization through mentoring, knowledge sharing, and strategic capability development.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-user-graduate" style="margin-right: 8px;"></i> Strategic Mentoring & Coaching
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Develop mentoring framework</strong> for quality engineers</li>
+                                        <li><strong>Guide career growth</strong> of junior and mid-level testers</li>
+                                        <li><strong>Build quality communities</strong> of practice</li>
+                                        <li><strong>Transfer institutional knowledge</strong> strategically</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Accelerate Level 3 readiness by 40% through structured mentoring</li>
+                                        <li>Improve team quality capability maturity by 3 levels in 18 months</li>
+                                        <li>Reduce knowledge silos by 75% through strategic knowledge sharing</li>
+                                        <li>Enable 80%+ of team members to grow into next career level</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Mentoring Effectiveness Score</strong></li>
+                                        <li>✅ <strong>Capability Growth Rate</strong></li>
+                                        <li>✅ <strong>Knowledge Retention Index</strong></li>
+                                        <li>✅ <strong>Career Progression Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Mentoring</span>
+                                        <span class="competency-tag">Capability Assessment</span>
+                                        <span class="competency-tag">Knowledge Management</span>
+                                        <span class="competency-tag">Career Coaching</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">CONDUCT 1 MENTORING SESSION</span> per week</li>
+                                        <li><span class="kpi-badge">DEVELOP GROWTH PLAN</span> for each mentee</li>
+                                        <li><span class="kpi-badge sl-badge">HOST 1 COMMUNITY MEETING</span> monthly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-book" style="margin-right: 8px;"></i> Quality Knowledge Engineering
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design knowledge architecture</strong> for quality domain</li>
+                                        <li><strong>Implement knowledge sharing systems</strong></li>
+                                        <li><strong>Curate quality engineering best practices</strong></li>
+                                        <li><strong>Measure knowledge impact</strong> on quality outcomes</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce knowledge-related defects by 60% through better sharing</li>
+                                        <li>Accelerate onboarding by 50% through structured knowledge systems</li>
+                                        <li>Improve adoption of best practices by 75% through curation</li>
+                                        <li>Ensure 90%+ of quality knowledge is discoverable and actionable</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Knowledge Accessibility Score</strong></li>
+                                        <li>✅ <strong>Best Practice Adoption Rate</strong></li>
+                                        <li>✅ <strong>Knowledge Impact Index</strong></li>
+                                        <li>✅ <strong>Onboarding Acceleration</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Knowledge Architecture</span>
+                                        <span class="competency-tag">Content Curation</span>
+                                        <span class="competency-tag">Learning Experience Design</span>
+                                        <span class="competency-tag">Impact Measurement</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">MAP KNOWLEDGE GAPS</span> quarterly</li>
+                                        <li><span class="kpi-badge">IMPLEMENT KNOWLEDGE SYSTEM</span> with metrics</li>
+                                        <li><span class="kpi-badge sl-badge">MEASURE KNOWLEDGE IMPACT</span> monthly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="evolution-lens">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Testing Evolution - Quality Architect (Level 4)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>Level 4 represents your transformation from quality strategist to quality architect:</strong> You're no longer just influencing quality practices but <em>designing the quality operating system</em> that ensures predictable delivery of business value. This level is about developing the mindset of a <em>quality guardian</em> who creates systems where quality is inevitable rather than exceptional.
+                </p>
+                
+                <div class="level-indicator">
+                    <div class="level-dot"></div>
+                    <div>
+                        <span>LEVEL 1 → LEVEL 2 → LEVEL 3 → </span>
+                        <span class="current-level">LEVEL 4</span> 
+                        <span style="color: rgba(255,255,255,0.8);"> → LEVEL 5</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 85%; background: #38bdf8;"></div>
+                </div>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: The Perfectionist Paradox
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Demanding maximum possible quality at all costs, creating bottlenecks and delaying delivery without proportional business value.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #7dd3fc;"><i class="fas fa-lightbulb"></i> Solution: The Quality Value Matrix</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement a <strong>Quality Value Score</strong> for quality activities: (Business Impact × Risk Probability) ÷ (Effort × Delay Impact). Only require "perfect" quality when score > 8/10. For scores 5-7, implement "good enough" quality with monitoring. For scores < 5, accept controlled risk. Document this framework and review with stakeholders quarterly.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: Strategic Myopia
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Focusing only on immediate project quality while neglecting cross-project patterns and long-term capability development.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #7dd3fc;"><i class="fas fa-lightbulb"></i> Solution: Quality Pattern Observatory</div>
+                            <p style="color: rgba(255,255,255,0.9);">Create a <strong>Quality Pattern Database</strong> tracking recurring issues, solutions, and business impacts across 3+ projects. Analyze quarterly to identify systemic patterns and develop strategic countermeasures. Measure impact through reduced recurrence of pattern-based issues (target: 60% reduction year-over-year).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: Capability Fragmentation
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Allowing inconsistent quality practices to develop across teams, creating knowledge silos and quality gaps at integration points.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #7dd3fc;"><i class="fas fa-lightbulb"></i> Solution: Quality Capability Canvas</div>
+                            <p style="color: rgba(255,255,255,0.9);">Map quality capabilities across all teams using a <strong>3x3 Capability Matrix</strong> (people/process/technology x current/future/gap). Identify critical capability gaps at integration points. Develop a 12-month roadmap to close these gaps through targeted mentoring, tooling, and process standardization. Review progress monthly with engineering leadership.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-matrix">
+                    <div class="impact-card">
+                        <h4><i class="fas fa-shield-alt"></i> From Quality Guardian to Quality Architect</h4>
+                        <p>At Level 4, you're not just protecting quality - you're <strong>designing systems where quality is built-in</strong>. When you establish quality gates with clear business-aligned criteria, you prevent late-stage delivery crises. When you design a quality capability roadmap, you create sustainable quality excellence across the organization. Your architectural thinking becomes the foundation for predictable business outcomes.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-project-diagram"></i> The Quality Operating System</h4>
+                        <p>Your quality architecture creates organization-wide value: A well-designed quality framework enables consistent delivery across 5+ teams. Your predictive quality models reduce production incidents by 50% through early intervention. You're not just improving testing - you're <strong>engineering quality into the delivery DNA</strong> of the organization.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-user-graduate"></i> The Capability Multiplier Effect</h4>
+                        <p>Strategic mentoring at Level 4 creates exponential impact: A structured mentoring framework accelerates team capability growth by 40%. Your knowledge architecture reduces onboarding time by 50% while improving quality outcomes. You're not just developing individuals - you're <strong>building a self-sustaining quality ecosystem</strong> that delivers consistent results.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-brain"></i> The Intelligence Advantage</h4>
+                        <p>Your advanced quality intelligence transforms how the organization approaches quality. When you implement predictive models that identify 85% of critical defects before production, you shift from reactive firefighting to proactive prevention. Organizations with Level 4 quality architects experience 50% fewer production incidents and 30% faster time-to-market because quality decisions are data-driven and forward-looking.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-bullseye"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When your quality operating system becomes the organization's competitive advantage.</strong> Your success isn't measured by your personal contributions but by how the <em>entire organization's quality outcomes improve</em> because of your architectural leadership. When business leaders say, "Our quality architecture is why we can deliver innovation faster than competitors with fewer quality issues."
+                    </p>
+                    
+                    <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 1rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: #93c5fd; margin-bottom: 0.5rem;">
+                            <i class="fas fa-chart-line"></i> Level 4 Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Quality architecture reduces production incidents by 50%+ across the organization</li>
+                            <li>Capability development accelerates team maturity by 40%+</li>
+                            <li>Predictive quality models achieve 85%+ accuracy</li>
+                            <li>Business leaders consistently credit quality architecture for delivery success</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks readiness for Level 5 (Principal Testing Engineer)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-badge" style="display: inline-block; margin: 1.5rem 0;">
+                <i class="fas fa-chart-line"></i> Level 4 Progression Path
+            </div>
+            
+            <div class="alert-box" style="border-left-color: #0c4a6e; background: #e0f2fe;">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; color: #0c4a6e;">
+                    <i class="fas fa-bullseye"></i> The Level 4 Mindset Shift
+                </h3>
+                <p>Level 4 testers often believe their job is to "ensure quality standards are followed and mentor juniors." In reality, your primary value is in <strong>designing and governing the quality operating system that ensures predictable business outcomes</strong> and building organization-wide quality capability.</p>
+                <p style="margin: 1rem 0; background: #dbf4ff; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #0ea5e9;">
+                    <strong>How we measure Level 4 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: #0c4a6e;">When your quality architecture reduces production incidents by 50%+ across the organization</span>—you've shifted from protecting quality to engineering it into the delivery process</li>
+                        <li><span style="font-weight: bold; color: #0d698b;">When your capability development creates a self-sustaining quality ecosystem</span>—your mentoring and knowledge systems ensure quality excellence continues without your direct involvement</li>
+                        <li><span style="font-weight: bold; color: #0ea5e9;">When business leaders credit your quality architecture for competitive advantage</span>—you've become the strategic partner who enables business success through quality</li>
+                    </ul>
+                    This shift marks the transition from being a quality leader to becoming the organization's quality architect—where your work shapes how quality is delivered at scale.
+                </p>
+                <p><strong>Remember:</strong> At Level 4, your job isn't to ensure quality on one project—it's to <strong>design systems that make quality inevitable across the organization</strong> through architectural leadership and strategic influence.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Level 4 Testers
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: #0c4a6e;">
+                        <div class="killer-title" style="color: #0c4a6e;">
+                            <i class="fas fa-gavel"></i> Quality Governance Framework
+                        </div>
+                        <p>Establish quality standards that balance rigor with delivery velocity.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #0c4a6e;"><i class="fas fa-check-circle"></i> Practical Action: The Quality Value Canvas</div>
+                            <p>Create a visual canvas mapping quality activities to business value, risk, and effort. For each major quality activity, document: business impact if skipped, probability of issues, effort required, and velocity impact. Use this to negotiate appropriate quality rigor with stakeholders and establish clear go/no-go criteria based on business context.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #0c4a6e;">
+                        <div class="killer-title" style="color: #0c4a6e;">
+                            <i class="fas fa-diagram-project"></i> Quality Architecture Design
+                        </div>
+                        <p>Design quality engineering solutions that deliver maximum business value.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #0c4a6e;"><i class="fas fa-check-circle"></i> Practical Action: The Quality Architecture Scorecard</div>
+                            <p>Develop a scoring system for quality engineering investments: Business Value (0-10), Technical Debt Impact (0-10), Implementation Effort (0-10), and Strategic Alignment (0-10). Calculate ROI Score = (Business Value + Strategic Alignment) - (Technical Debt Impact + Implementation Effort). Only pursue initiatives with ROI Score > 10. Review quarterly with leadership.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #0c4a6e;">
+                        <div class="killer-title" style="color: #0c4a6e;">
+                            <i class="fas fa-user-graduate"></i> Strategic Mentoring Framework
+                        </div>
+                        <p>Build quality capability across the organization through structured development.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #0c4a6e;"><i class="fas fa-check-circle"></i> Practical Action: The Capability Growth Matrix</div>
+                            <p>Create a 3x3 matrix for each team member: Current Capability Level (1-5), Target Level for Next Role (1-5), and Growth Path (concrete actions). Review quarterly with each person, tracking progress against specific, measurable milestones. Document success patterns to refine your mentoring approach over time.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(12, 74, 110, 0.05); border-radius: 8px; padding: 1.25rem; border: 1px solid #dbeafe;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0c4a6e; margin-bottom: 0.75rem;">
+                        <i class="fas fa-dna"></i> The Level 4 Excellence Checklist
+                    </h4>
+                    <p>Use this weekly to build architectural quality leadership habits:</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.75rem; line-height: 1.7; color: #0f172a;">
+                        <li><strong>Architectural thinking:</strong> Identify 1 systemic quality pattern across multiple projects</li>
+                        <li><strong>Governance focus:</strong> Document 1 quality standard with business rationale</li>
+                        <li><strong>Capability building:</strong> Create 1 reusable asset for organizational knowledge</li>
+                        <li><strong>Strategic influence:</strong> Align quality approach with 1 business objective</li>
+                    </ol>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #334155;">
+                        This checklist transforms tactical quality leadership into architectural quality excellence—the hallmark of exceptional Level 4 testers.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #e0f2fe; border-radius: 8px; padding: 1.25rem; border-left: 4px solid #0c4a6e;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0c4a6e; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lightbulb"></i> Pro Tip: The Quality Architecture Canvas
+                    </h4>
+                    <p>When designing quality systems, always use the <strong>A.R.C.H.I.T.E.C.T.</strong> framework:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <li><strong>A</strong>lignment: "How does this align with business objectives and strategy?"</li>
+                        <li><strong>R</strong>igor: "What level of quality rigor is appropriate for this business context?"</li>
+                        <li><strong>C</strong>apability: "What capabilities are needed to sustain this approach?"</li>
+                        <li><strong>H</strong>olistic view: "How does this integrate with other quality systems?"</li>
+                        <li><strong>I</strong>mpact: "What measurable business impact will this deliver?"</li>
+                        <li><strong>T</strong>echnology: "What technology enables this most effectively?"</li>
+                        <li><strong>E</strong>volution: "How will this evolve as business needs change?"</li>
+                        <li><strong>C</strong>ost: "What is the total cost of ownership and ROI?"</li>
+                        <li><strong>T</strong>imeframe: "What is the implementation timeline and critical path?"</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This transforms "We should do more testing" into "Here's the optimal quality architecture for our business context"—making you a strategic business partner rather than a quality function leader.</p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #dbeafe; border-radius: 8px; padding: 1.25rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0c4a6e; margin-bottom: 0.75rem;">
+                        <i class="fas fa-chart-pie"></i> Current Industry Best Practices (Q2 2024)
+                    </h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #bfdbfe;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-brain"></i> AI-Powered Quality Intelligence
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Using AI for predictive defect analysis, test optimization, and quality forecasting. Leading organizations report 45% fewer production defects and 30% faster release cycles through AI-driven quality decisions (Gartner, April 2024).</p>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #bfdbfe;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-shield-alt"></i> Quality as a Competitive Advantage
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Top-performing organizations now position quality architecture as a business differentiator. 68% of high-growth companies have dedicated quality architects influencing product strategy (Forrester State of QA Report, Q1 2024).</p>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #bfdbfe;">
+                            <h5 style="color: #0c4a6e; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-project-diagram"></i> Quality Engineering Maturity Models
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Moving beyond basic test maturity to comprehensive quality engineering models that assess business alignment, predictive capabilities, and architectural excellence (IEEE Quality Engineering Standards, 2024 update).</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; background: #eff6ff; border-radius: 8px; padding: 1rem;">
+                        <p style="font-style: italic; color: #1e40af; margin: 0;">
+                            <strong>Practical Implementation Tip:</strong> Start with a Quality Architecture Assessment using the IEEE 2024 model. Score your organization on 5 dimensions: Business Alignment (0-5), Predictive Capability (0-5), Technical Excellence (0-5), Organizational Integration (0-5), and Continuous Evolution (0-5). Target a minimum score of 4 in each dimension within 12 months.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including Quality Engineering principles, Value Stream Management, and modern test automation approaches.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Framework | Level 3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0c4a6e;
+            --primary-light: #dbeafe;
+            --secondary: #0f172a;
+            --accent: #0c4a6e;
+            --success: #0284c7;
+            --warning: #c2410c;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #dbeafe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --evolution-bg: linear-gradient(135deg, #0284c7, #0c4a6e);
+            --level3-bg: linear-gradient(135deg, #1e3a8a, #1d4ed8);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: var(--level3-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #dbeafe;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(12, 74, 110, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(12, 74, 110, 0.2);
+        }
+        
+        .tag-transformation {
+            background: rgba(2, 132, 199, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(2, 132, 199, 0.2);
+        }
+        
+        .tag-impact {
+            background: rgba(194, 65, 12, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(194, 65, 12, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #dbeafe;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #93c5fd;
+        }
+        
+        .evolution-lens {
+            background: var(--level3-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: #93c5fd;
+        }
+        
+        .impact-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.75rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #34d399;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .level-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .current-level {
+            font-weight: bold;
+            color: white;
+            background: var(--success);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .level-badge {
+            background: #1e3a8a;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .senior-highlight {
+            background: rgba(30, 58, 138, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .senior-badge {
+            background: #1e3a8a;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Senior Testing Engineer (Level 3) Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">The Quality Strategist: Shaping Quality Outcomes Through Systemic Thinking and Technical Leadership</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Quality Strategy & Test Engineering</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span>Senior Testing Engineer Level 1</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To evolve from quality analyst to <strong>quality strategist</strong> by driving systemic quality improvements, implementing strategic test automation, and serving as the team's quality intelligence hub through domain expertise and technical leadership.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Critical Productivity Killer:</strong> <strong>"The Lone Quality Hero" syndrome</strong>. At Level 3, your value isn't measured by how many tests you personally execute or defects you find, but by how effectively you <strong>embed quality into the team's workflow</strong>. Avoid becoming a bottleneck by doing everything yourself instead of enabling others through process improvements and knowledge sharing.
+            </div>
+            
+            <div class="senior-highlight">
+                <p><strong>Level 3 represents your transition from individual contributor to quality influencer.</strong> You're no longer just improving your own work but shaping how the entire team approaches quality. Your success is measured by <em>systemic improvements</em> - how your insights and contributions reduce quality risks across the delivery pipeline, not just in your assigned tickets.</p>
+            </div>
+
+            <!-- Category 1: Quality Strategy & Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-chess-queen" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Quality Strategy & Leadership (The Quality Strategist)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To proactively shape quality outcomes by identifying systemic risks, influencing development practices, and establishing quality metrics that drive business value.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-project-diagram" style="margin-right: 8px;"></i> Strategic Requirement Analysis
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Proactively identify gaps</strong> across requirements</li>
+                                        <li><strong>Assess quality risks</strong> at project level</li>
+                                        <li><strong>Guide junior testers</strong> in requirement analysis</li>
+                                        <li><strong>Define quality acceptance criteria</strong> for stories</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Identify 80%+ of systemic requirement gaps before development</li>
+                                        <li>Reduce requirement-related defects by 50% across the project</li>
+                                        <li>Enable junior testers to identify 70%+ of requirement gaps</li>
+                                        <li>Document quality criteria for 100% of complex features</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Strategic Gap Detection Rate</strong></li>
+                                        <li>✅ <strong>Cross-Feature Risk Coverage</strong></li>
+                                        <li>✅ <strong>Quality Criteria Adoption Rate</strong></li>
+                                        <li>✅ <strong>Requirement Maturity Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Analysis</span>
+                                        <span class="competency-tag">Quality Metrics</span>
+                                        <span class="competency-tag">Influence Without Authority</span>
+                                        <span class="competency-tag">Business Value Mapping</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">MAP 3+ BUSINESS IMPACTS PER RISK</span></li>
+                                        <li><span class="kpi-badge">CREATE QUALITY CHECKLIST</span> for new features</li>
+                                        <li><span class="kpi-badge sl-badge">CONDUCT 1 REQUIREMENT WORKSHOP</span> per sprint</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Quality Intelligence & Metrics
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Define quality metrics</strong> that drive decisions</li>
+                                        <li><strong>Identify quality trends</strong> across releases</li>
+                                        <li><strong>Correlate quality data</strong> with business outcomes</li>
+                                        <li><strong>Present insights</strong> to stakeholders</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Establish 3+ actionable quality metrics adopted by the team</li>
+                                        <li>Identify 2+ quality improvement opportunities per release</li>
+                                        <li>Reduce production incidents by 30% through data-driven actions</li>
+                                        <li>Improve quality decision speed by 40% through better metrics</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Metrics Actionability Score</strong></li>
+                                        <li>✅ <strong>Trend Prediction Accuracy</strong></li>
+                                        <li>✅ <strong>Insight Adoption Rate</strong></li>
+                                        <li>✅ <strong>Quality-Business Correlation</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Data Analysis</span>
+                                        <span class="competency-tag">Business Intelligence</span>
+                                        <span class="competency-tag">Visualization</span>
+                                        <span class="competency-tag">Strategic Communication</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">TIE METRICS TO BUSINESS OUTCOMES</span></li>
+                                        <li><span class="kpi-badge">UPDATE DASHBOARD</span> after each release</li>
+                                        <li><span class="kpi-badge sl-badge">PROVIDE 1 IMPROVEMENT ACTION</span> per metric</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Advanced Test Engineering -->
+            <h2 class="section-title">
+                <i class="fas fa-microchip" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Advanced Test Engineering (The Test Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To design and implement strategic test automation solutions that provide maximum business value while optimizing the testing ecosystem for efficiency and reliability.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-robot" style="margin-right: 8px;"></i> Strategic Test Automation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design automation strategy</strong> for maximum ROI</li>
+                                        <li><strong>Develop maintainable frameworks</strong> and patterns</li>
+                                        <li><strong>Optimize test coverage</strong> based on business risk</li>
+                                        <li><strong>Integrate automation</strong> into CI/CD pipelines</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve automation ROI by 50% through strategic focus</li>
+                                        <li>Reduce flaky tests to less than 5% of total automation</li>
+                                        <li>Enable 80%+ of the team to contribute to automation</li>
+                                        <li>Decrease feedback cycle time by 60% through pipeline integration</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Automation Strategic Alignment</strong></li>
+                                        <li>✅ <strong>Framework Maintainability Score</strong></li>
+                                        <li>✅ <strong>Automation Adoption Rate</strong></li>
+                                        <li>✅ <strong>CI/CD Integration Maturity</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Test Architecture</span>
+                                        <span class="competency-tag">CI/CD Integration</span>
+                                        <span class="competency-tag">Framework Design</span>
+                                        <span class="competency-tag">ROI Analysis</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">APPLY RISK-BASED AUTOMATION</span> model</li>
+                                        <li><span class="kpi-badge">MAINTAIN 95%+ SCRIPT STABILITY</span></li>
+                                        <li><span class="kpi-badge sl-badge">DOCUMENT PATTERN LIBRARY</span> for team</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-database" style="margin-right: 8px;"></i> Test Environment & Data Engineering
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design test data strategies</strong> for complex scenarios</li>
+                                        <li><strong>Optimize test environments</strong> for efficiency</li>
+                                        <li><strong>Implement self-service capabilities</strong> for testers</li>
+                                        <li><strong>Manage test data lifecycle</strong> and compliance</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce test environment setup time by 70%</li>
+                                        <li>Enable 90%+ of test scenarios with on-demand data</li>
+                                        <li>Eliminate environment-related blockers from testing</li>
+                                        <li>Ensure 100% compliance with data privacy regulations</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Environment Availability Rate</strong></li>
+                                        <li>✅ <strong>Data Readiness Score</strong></li>
+                                        <li>✅ <strong>Self-Service Adoption Rate</strong></li>
+                                        <li>✅ <strong>Compliance Adherence</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Test Data Management</span>
+                                        <span class="competency-tag">Environment Strategy</span>
+                                        <span class="competency-tag">Data Compliance</span>
+                                        <span class="competency-tag">Infrastructure as Code</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">IMPLEMENT TEST DATA GENERATION</span> framework</li>
+                                        <li><span class="kpi-badge">MAINTAIN ENVIRONMENT</span> health dashboard</li>
+                                        <li><span class="kpi-badge sl-badge">ENABLE SELF-SERVICE</span> for 80% of needs</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Quality System Optimization -->
+            <h2 class="section-title">
+                <i class="fas fa-cogs" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Quality System Optimization (The Process Engineer)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To identify and implement systemic improvements that enhance the team's quality practices, streamline testing processes, and accelerate delivery without compromising quality.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-sync-alt" style="margin-right: 8px;"></i> Process Improvement & Optimization
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Identify process bottlenecks</strong> in quality workflow</li>
+                                        <li><strong>Design and implement improvements</strong> to testing processes</li>
+                                        <li><strong>Measure impact</strong> of process changes</li>
+                                        <li><strong>Standardize best practices</strong> across the team</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce testing cycle time by 35% through process improvements</li>
+                                        <li>Implement 2+ high-impact process improvements per quarter</li>
+                                        <li>Standardize 80%+ of testing activities with documented patterns</li>
+                                        <li>Improve team velocity by 20% through quality process optimization</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Process Improvement ROI</strong></li>
+                                        <li>✅ <strong>Bottleneck Elimination Rate</strong></li>
+                                        <li>✅ <strong>Best Practice Adoption</strong></li>
+                                        <li>✅ <strong>Quality Process Maturity</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Process Engineering</span>
+                                        <span class="competency-tag">Continuous Improvement</span>
+                                        <span class="competency-tag">Metrics-Driven Decision Making</span>
+                                        <span class="competency-tag">Change Management</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">MEASURE PROCESS TIME</span> before changes</li>
+                                        <li><span class="kpi-badge">VALIDATE IMPROVEMENT</span> with data</li>
+                                        <li><span class="kpi-badge sl-badge">DOCUMENT IMPROVEMENT</span> for team knowledge</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-globe-asia" style="margin-right: 8px;"></i> Domain-Driven Quality Engineering
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Develop deep domain knowledge</strong> rapidly</li>
+                                        <li><strong>Apply domain expertise</strong> to quality practices</li>
+                                        <li><strong>Identify domain-specific risks</strong> and scenarios</li>
+                                        <li><strong>Bridge domain knowledge gaps</strong> across the team</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce domain-related defects by 45% through targeted testing</li>
+                                        <li>Enable the team to achieve 80%+ domain competency in 2 sprints</li>
+                                        <li>Identify 95%+ of critical domain-specific edge cases</li>
+                                        <li>Improve business stakeholder confidence in quality by 40%</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Domain Knowledge Acquisition Speed</strong></li>
+                                        <li>✅ <strong>Domain Risk Coverage</strong></li>
+                                        <li>✅ <strong>Business Value Alignment</strong></li>
+                                        <li>✅ <strong>Domain Knowledge Transfer</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Domain Analysis</span>
+                                        <span class="competency-tag">Business Process Mapping</span>
+                                        <span class="competency-tag">Knowledge Management</span>
+                                        <span class="competency-tag">Stakeholder Communication</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">CREATE DOMAIN MAPPING</span> within 3 days</li>
+                                        <li><span class="kpi-badge">DEVELOP DOMAIN TEST PATTERNS</span></li>
+                                        <li><span class="kpi-badge sl-badge">CONDUCT DOMAIN WORKSHOP</span> for team</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="evolution-lens">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Testing Evolution - Quality Strategist (Level 3)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>Level 3 represents your transformation from quality analyst to quality strategist:</strong> You're no longer just improving your own work but <em>shaping how the entire team approaches quality</em>. This level is about developing the mindset of a <em>quality architect</em> who designs systems that make quality inevitable rather than exceptional.
+                </p>
+                
+                <div class="level-indicator">
+                    <div class="level-dot"></div>
+                    <div>
+                        <span>LEVEL 1 → LEVEL 2 → </span>
+                        <span class="current-level">LEVEL 3</span> 
+                        <span style="color: rgba(255,255,255,0.8);"> → LEVEL 4 → LEVEL 5</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 70%; background: #38bdf8;"></div>
+                </div>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: Tactical Automation Trap
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Spending time automating low-value tests while critical quality gaps remain unaddressed due to lack of strategic focus.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #7dd3fc;"><i class="fas fa-lightbulb"></i> Solution: The Automation Value Matrix</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement a <strong>Quality Impact Score</strong> for automation candidates: (Business Criticality × Defect Probability × Test Frequency) ÷ (Automation Effort + Maintenance Cost). Only automate tests scoring 7+ on a 10-point scale. Review monthly with the team to ensure alignment with business priorities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: Reactive Quality Management
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Treating quality as something to be "tested in" rather than "designed in," leading to late-stage defect discovery and rework.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #7dd3fc;"><i class="fas fa-lightbulb"></i> Solution: Quality Gates Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Define <strong>3-5 quality gates</strong> throughout the development lifecycle (e.g., requirement sign-off, design review, code commit). At each gate, establish mandatory quality checks with clear pass/fail criteria. Document these in the team's workflow and track gate failure rates to identify systemic quality issues.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: Siloed Quality Intelligence
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Holding quality insights in isolation rather than making them actionable for the entire team, reducing their impact.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #7dd3fc;"><i class="fas fa-lightbulb"></i> Solution: Quality Radar Dashboard</div>
+                            <p style="color: rgba(255,255,255,0.9);">Create a visual <strong>Quality Radar</strong> showing 6-8 key quality dimensions (e.g., requirements clarity, test coverage, defect leakage). Rate each dimension weekly on a 1-5 scale with evidence. Share this in team meetings with specific improvement actions. This transforms abstract quality concerns into concrete, team-owned improvement opportunities.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-matrix">
+                    <div class="impact-card">
+                        <h4><i class="fas fa-brain"></i> From Quality Analyst to Quality Strategist</h4>
+                        <p>At Level 3, you're not just finding defects - you're <strong>designing systems that prevent them</strong>. When you implement a quality gate that catches requirement gaps early, you prevent dozens of defects downstream. When you create a domain test pattern library, you multiply the team's testing effectiveness. Your strategic thinking becomes the foundation for predictable delivery.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-chart-line"></i> The Automation Multiplier Effect</h4>
+                        <p>Strategic automation at Level 3 creates exponential value: A well-designed framework enables the entire team to contribute to automation, creating a 5x return on investment. Your test data strategy eliminates environment blockers, accelerating testing cycles by 70%. You're not just writing scripts - you're <strong>architecting quality velocity</strong>.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-project-diagram"></i> The Domain Intelligence Advantage</h4>
+                        <p>Your rapid domain mastery transforms how the team approaches quality. When you map business processes to test scenarios, you identify critical risks developers miss. Teams with Level 3 testers experience 45% fewer production defects in complex domains because quality is aligned with business value from the start.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-hands-helping"></i> The Process Catalyst</h4>
+                        <p>Your process improvements create systemic quality gains: A streamlined test environment strategy eliminates 20+ hours of wasted effort per sprint. Your quality metrics help the team make data-driven decisions that accelerate delivery while improving quality. You're not just participating in the process - you're <strong>reengineering it for quality at speed</strong>.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-bullseye"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When your quality framework becomes the team's quality operating system.</strong> Your success isn't measured by your personal output but by how the <em>entire team's quality practices improve</em> because of your strategic contributions. When stakeholders ask for your quality assessment before making business decisions because "the quality strategist has the complete picture."
+                    </p>
+                    
+                    <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 1rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: #93c5fd; margin-bottom: 0.5rem;">
+                            <i class="fas fa-chart-line"></i> Level 3 Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Quality framework reduces defect leakage by 45%+ across the project</li>
+                            <li>Automation strategy improves team test execution speed by 60%+</li>
+                            <li>Process improvements reduce testing cycle time by 35%+</li>
+                            <li>Stakeholders consistently request your quality assessment for decisions</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks readiness for Level 4 (Senior Testing Engineer Level 2)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-badge" style="display: inline-block; margin: 1.5rem 0;">
+                <i class="fas fa-chart-line"></i> Level 3 Progression Path
+            </div>
+            
+            <div class="alert-box" style="border-left-color: #1e3a8a; background: #e0f2fe;">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; color: #1e3a8a;">
+                    <i class="fas fa-bullseye"></i> The Level 3 Mindset Shift
+                </h3>
+                <p>Level 3 testers often believe their job is to "test features thoroughly and guide juniors." In reality, your primary value is in <strong>designing quality systems that make testing efficient and effective for the entire team</strong> and becoming the team's quality intelligence hub.</p>
+                <p style="margin: 1rem 0; background: #dbf4ff; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #0ea5e9;">
+                    <strong>How we measure Level 3 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: #1e3a8a;">When your quality framework reduces defect leakage by 45%+ across the project</span>—you've shifted from finding bugs to preventing systemic quality issues</li>
+                        <li><span style="font-weight: bold; color: #1d4ed8;">When your automation strategy becomes the team's quality accelerator</span>—your technical leadership enables faster, safer releases for everyone</li>
+                        <li><span style="font-weight: bold; color: #3b82f6;">When stakeholders seek your quality assessment before making business decisions</span>—you've become the trusted quality advisor the business relies on</li>
+                    </ul>
+                    This shift marks the transition from being a skilled individual contributor to becoming the team's quality architect—where your work shapes how quality is delivered.
+                </p>
+                <p><strong>Remember:</strong> At Level 3, your job isn't to test more features—it's to <strong>design systems that make quality inevitable</strong> through strategic influence and technical leadership.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Level 3 Testers
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: #1e3a8a;">
+                        <div class="killer-title" style="color: #1e3a8a;">
+                            <i class="fas fa-project-diagram"></i> Strategic Requirement Analysis
+                        </div>
+                        <p>Transform requirements into quality outcomes through systemic analysis.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #1e3a8a;"><i class="fas fa-check-circle"></i> Practical Action: The Quality Impact Map</div>
+                            <p>Create a visual map linking requirements to: business value, quality risks, test coverage, and potential failure points. For each requirement, identify how its failure would impact business outcomes. Share this with the team during planning to align testing efforts with business priorities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #1e3a8a;">
+                        <div class="killer-title" style="color: #1e3a8a;">
+                            <i class="fas fa-robot"></i> Strategic Automation Framework
+                        </div>
+                        <p>Design automation that delivers maximum business value with minimum maintenance.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #1e3a8a;"><i class="fas fa-check-circle"></i> Practical Action: The Automation Health Dashboard</div>
+                            <p>Track and display 5 key metrics: script stability, maintenance effort, business coverage, ROI, and team adoption. Set thresholds for each (e.g., stability > 95%). Use this dashboard to guide automation decisions and demonstrate business value to stakeholders.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #1e3a8a;">
+                        <div class="killer-title" style="color: #1e3a8a;">
+                            <i class="fas fa-chart-line"></i> Quality Process Optimization
+                        </div>
+                        <p>Identify and eliminate systemic quality bottlenecks.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #1e3a8a;"><i class="fas fa-check-circle"></i> Practical Action: Value Stream Mapping for Quality</div>
+                            <p>Map the entire quality workflow from requirement to production, measuring time spent at each stage. Identify the top 3 bottlenecks causing delays. Implement targeted improvements for these bottlenecks and track the impact on overall cycle time.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(30, 58, 138, 0.05); border-radius: 8px; padding: 1.25rem; border: 1px solid #dbeafe;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e3a8a; margin-bottom: 0.75rem;">
+                        <i class="fas fa-dna"></i> The Level 3 Excellence Checklist
+                    </h4>
+                    <p>Use this weekly to build strategic quality habits:</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.75rem; line-height: 1.7; color: #0f172a;">
+                        <li><strong>Strategic analysis:</strong> Identify 1 systemic quality risk across the project</li>
+                        <li><strong>Process improvement:</strong> Document 1 bottleneck and propose a solution</li>
+                        <li><strong>Knowledge sharing:</strong> Create 1 reusable asset for the team (pattern, template, tool)</li>
+                        <li><strong>Metric focus:</strong> Track and analyze 1 quality metric for trends</li>
+                    </ol>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #334155;">
+                        This checklist transforms tactical execution into strategic quality leadership—the hallmark of exceptional Level 3 testers.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #e0f2fe; border-radius: 8px; padding: 1.25rem; border-left: 4px solid #1e3a8a;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e3a8a; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lightbulb"></i> Pro Tip: The Quality Value Framework
+                    </h4>
+                    <p>When proposing quality improvements, always use the <strong>V.A.L.U.E.</strong> framework:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <li><strong>V</strong>elocity impact: "This will reduce testing cycle time by X days"</li>
+                        <li><strong>A</strong>utomation potential: "This can be automated with Y effort for Z ROI"</li>
+                        <li><strong>L</strong>evel of risk: "Without this, we risk $A in revenue or B% customer impact"</li>
+                        <li><strong>U</strong>sability for team: "This will be adopted by C% of the team within D weeks"</li>
+                        <li><strong>E</strong>ase of implementation: "This can be delivered in E days with F resources"</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This transforms "I think we should do this" into "Here's how this delivers measurable business value"—making you a strategic partner rather than a tactical contributor.</p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #dbeafe; border-radius: 8px; padding: 1.25rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e3a8a; margin-bottom: 0.75rem;">
+                        <i class="fas fa-chart-pie"></i> Current Industry Best Practices (Q2 2024)
+                    </h4>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; margin-top: 1rem;">
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #bfdbfe;">
+                            <h5 style="color: #1e3a8a; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-bolt"></i> Shift-Shift-Left Testing
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Beyond traditional shift-left, engage with product teams during <em>opportunity identification</em> phase (not just requirements). Documented to reduce requirement defects by 60% in 2024 Gartner studies.</p>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #bfdbfe;">
+                            <h5 style="color: #1e3a8a; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-robot"></i> AI-Assisted Test Design
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Using AI tools like Testim, Applitools, and Mabl for test case generation and optimization. Teams report 35% faster test design with 25% improved coverage (Forrester Q1 2024).</p>
+                        </div>
+                        
+                        <div style="background: white; border-radius: 8px; padding: 1rem; border: 1px solid #bfdbfe;">
+                            <h5 style="color: #1e3a8a; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-chart-line"></i> Quality Engineering Metrics
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Moving beyond defect counts to value-driven metrics: Requirements stability index, Quality debt ratio, and Release confidence score (State of QA Report 2024).</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; background: #eff6ff; border-radius: 8px; padding: 1rem;">
+                        <p style="font-style: italic; color: #1e40af; margin: 0;">
+                            <strong>Practical Implementation Tip:</strong> Start small with one emerging practice per quarter. For Q3 2024, consider implementing a Requirements Stability Index: (Number of requirement changes after sprint planning ÷ Total requirements) × 100. Target < 15% for healthy projects.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including Quality Engineering principles, Value Stream Management, and modern test automation approaches.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+</html>

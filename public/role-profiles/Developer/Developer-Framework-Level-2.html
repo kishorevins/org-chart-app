@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Framework | Level 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f7249;
+            --primary-light: #def7ec;
+            --secondary: #0f172a;
+            --accent: #064e3b;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ecfdf5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #166534);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0fff4;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-period {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .tag-quality {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-efficiency {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #def7ec;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Developer (Level 2) Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">The Independent Owner: Transitioning from Task Executor to Feature Responsible</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-code-branch"></i>
+                        <span>Feature Development & Quality Control</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-sharp fa-user-tie"></i>
+                        <span>The Doer with Ownership</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To evolve from task executor to feature owner and independent problem-solver, while enhancing collaboration skills and deepening technical expertise.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Growth Killer to Avoid:</strong> Seeing individual tasks only at face value. Your success now comes from <strong>understanding how pieces connect</strong> - how your tasks interact with others' work and business impact. Avoid "task farming" (doing what's assigned without understanding context).
+            </div>
+
+            <!-- Category 1: Feature Development & Quality Assurance -->
+            <h2 class="section-title">
+                <i class="fas fa-sitemap" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Feature Development & Quality Assurance (The Architect-in-Training)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To independently deliver reliable, well-tested features that meet specifications and integrate smoothly with existing systems.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-project-diagram" style="margin-right: 8px;"></i> Feature Development
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>functional completeness and architectural fit</strong> of new features created</li>
+                                        <li>The <strong>code quality, scalability, and maintainability</strong> of delivered solutions</li>
+                                        <li><strong>Adherence to specification</strong> while flagging ambiguities</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Deliver 95% of features meeting requirements without major rework</li>
+                                        <li>Maintain or improve system test coverage and performance</li>
+                                        <li>Suggest ≥1 architectural or usability improvement per feature</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Feature Acceptance Rate</strong> (% accepted without changes)</li>
+                                        <li>✅ <strong>Code Coverage</strong> for new features</li>
+                                        <li>✅ <strong>Performance Impact</strong> (metrics change)</li>
+                                        <li>✅ <strong>Rework Rate</strong> due to misinterpretation</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Full-Stack Development</span>
+                                        <span class="competency-tag">Architectural Understanding</span>
+                                        <span class="competency-tag">Requirement Analysis</span>
+                                        <span class="competency-tag">API Design</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Confirm specs <span class="kpi-badge">WITH STAKEHOLDERS BEFORE</span> implementation</li>
+                                        <li>Self-review & basic smoke testing <span class="kpi-badge">BEFORE</span> feature complete</li>
+                                        <li>Update integration doc <span class="kpi-badge sl-badge">ALONGSIDE</span> feature delivery</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-check-square" style="margin-right: 8px;"></i> Testing & Validation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>comprehensiveness and effectiveness</strong> of unit and integration tests</li>
+                                        <li>The <strong>quality and execution</strong> of developed test plans</li>
+                                        <li>The <strong>stability</strong> of code in integrated environments</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve ≥85% unit test coverage for new code/modules</li>
+                                        <li>Ensure 100% of test plans executed and signed off pre-deployment</li>
+                                        <li>Reduce post-deployment bugs from features by 20% QoQ</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Test Coverage Metrics</strong></li>
+                                        <li>✅ <strong>Defect Escape Rate</strong> (post-deployment bugs)</li>
+                                        <li>✅ <strong>Test Plan Completion %</strong></li>
+                                        <li>✅ <strong>Integration Test Pass Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Test-Driven Development</span>
+                                        <span class="competency-tag">Automated Testing</span>
+                                        <span class="competency-tag">CI/CD Integration</span>
+                                        <span class="competency-tag">Debugging</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Write tests <span class="kpi-badge">CONCURRENTLY OR BEFORE</span> feature implementation</li>
+                                        <li>Execute full test plan <span class="kpi-badge">BEFORE</span> requesting QA review</li>
+                                        <li>Run integration tests locally <span class="kpi-badge sl-badge">BEFORE</span> pushing to shared branches</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Operational Excellence & Collaboration -->
+            <h2 class="section-title">
+                <i class="fas fa-gear" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Operational Excellence & Collaboration (The Integration Master)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To ensure smooth deployments, effective cross-team coordination, and proactive issue management.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-cloud-upload" style="margin-right: 8px;"></i> Deployment & Coordination
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>successful and stable deployment</strong> of features/bug fixes</li>
+                                        <li><strong>Effective coordination</strong> with other teams during integration</li>
+                                        <li><strong>Flexibility and collaboration</strong> during cross-team work</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve 100% of deployments without rollbacks due to changes</li>
+                                        <li>Ensure zero integration blockers from miscommunication</li>
+                                        <li>Receive positive feedback from ≥2 other teams</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Deployment Success Rate</strong></li>
+                                        <li>✅ <strong>Integration Blocker Count</strong></li>
+                                        <li>✅ <strong>Cross-Team Feedback Score</strong></li>
+                                        <li>✅ <strong>Resource Sharing Efficiency</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">CI/CD Pipeline Knowledge</span>
+                                        <span class="competency-tag">Interpersonal Skills</span>
+                                        <span class="competency-tag">Conflict Resolution</span>
+                                        <span class="competency-tag">Adaptability</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Verify integration points <span class="kpi-badge sl-badge">24H BEFORE</span> deployment</li>
+                                        <li>Participate in sync meetings <span class="kpi-badge sl-badge">PREPARED</span> with updates/questions</li>
+                                        <li>Be available for urgent consultations <span class="kpi-badge sl-badge">WITHIN 2 HOURS</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-exclamation-circle" style="margin-right: 8px;"></i> Issue Management & Escalation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Prompt identification and escalation</strong> of production issues</li>
+                                        <li>The <strong>cleanliness and organization</strong> of Vinshub/Asana boards</li>
+                                        <li>The <strong>completeness and clarity</strong> of task details</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Escalate critical issues <span class="kpi-badge sl-badge">WITHIN 30 MINUTES</span> of identification</li>
+                                        <li>Maintain 100% of tasks with full, clear details</li>
+                                        <li>Keep project boards organized (zero stale tasks)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Issue Escalation Time</strong></li>
+                                        <li>✅ <strong>Task Detail Completeness Score</strong></li>
+                                        <li>✅ <strong>Board Hygiene Metrics</strong></li>
+                                        <li>✅ <strong>Production Issue Resolution Time</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Production Monitoring</span>
+                                        <span class="competency-tag">Risk Assessment</span>
+                                        <span class="competency-tag">Clear Documentation</span>
+                                        <span class="competency-tag">Tool Mastery</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Check monitoring alerts <span class="kpi-badge sl-badge">DAILY (MORNING)</span></li>
+                                        <li>Update task status <span class="kpi-badge sl-badge">IN REAL-TIME</span> (no batch updates)</li>
+                                        <li>Escalate <span class="kpi-badge sl-badge">IMMEDIATELY</span> using defined channels</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Professional Growth & Technical Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-chart-line" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Professional Growth & Technical Leadership (The Emerging Expert)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To transition toward technical leadership by deepening expertise and demonstrating ownership beyond individual tasks.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-bug" style="margin-right: 8px;"></i> Independent Problem-Solving
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>autonomous resolution</strong> of bugs without senior intervention</li>
+                                        <li>The <strong>root cause analysis and permanent fixes</strong> for recurring issues</li>
+                                        <li><strong>Knowledge sharing</strong> of solutions with the team</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Resolve 90% of bugs without escalation</li>
+                                        <li>Implement permanent fixes for ≥80% of recurring issues</li>
+                                        <li>Document/share at least one complex solution monthly</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Bug Resolution Independence Rate</strong></li>
+                                        <li>✅ <strong>Recurring Issue Reduction</strong></li>
+                                        <li>✅ <strong>Solution Documentation Quality</strong></li>
+                                        <li>✅ <strong>MTTR for assigned bugs</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Advanced Debugging</span>
+                                        <span class="competency-tag">Root Cause Analysis</span>
+                                        <span class="competency-tag">Systems Thinking</span>
+                                        <span class="competency-tag">Mentoring Basics</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Research <span class="kpi-badge sl-badge">UP TO 2 HOURS</span> before escalating bug</li>
+                                        <li>Document root cause & fix <span class="kpi-badge">AFTER RESOLUTION</span></li>
+                                        <li>Propose process improvement quarterly based on bug patterns</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-person-chalkboard" style="margin-right: 8px;"></i> Growth & Expertise Development
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Active progress</strong> on defined growth plan</li>
+                                        <li><strong>Continuous deepening</strong> of expertise in relevant technologies</li>
+                                        <li><strong>Application of new knowledge</strong> to improve quality/efficiency</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Complete 100% of quarterly growth milestones</li>
+                                        <li>Master one new technology component every 6 months</li>
+                                        <li>Implement at least one improvement quarterly</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Growth Plan Milestone Completion %</strong></li>
+                                        <li>✅ <strong>Skill Assessment Scores</strong></li>
+                                        <li>✅ <strong>Improvements Implemented</strong></li>
+                                        <li>✅ <strong>Knowledge Sharing Sessions conducted</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Self-Directed Learning</span>
+                                        <span class="competency-tag">Technology Evaluation</span>
+                                        <span class="competency-tag">Proof-of-Concept Development</span>
+                                        <span class="competency-tag">Presentation Skills</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Dedicate <span class="kpi-badge sl-badge">≥4 HOURS WEEKLY</span> to skill development</li>
+                                        <li>Share learnings in <span class="kpi-badge sl-badge">BI-WEEKLY HUDDLES or BLOGS</span></li>
+                                        <li>Update growth plan <span class="kpi-badge sl-badge">MONTHLY</span> with progress</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="evolution-lens" style="background: linear-gradient(to right, var(--accent), #064e3b); color: white; border-radius: 12px; padding: 2rem; margin: 2.5rem 0;">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Developer Growth - Independent Ownership (Level 2)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>The Level 2 Developer framework shifts from task completion to feature ownership:</strong>
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-thumbs-up" style="color: #6ee7b7;"></i> From Task Consumer to Feature Owner
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            You've transitioned from <em>"What tasks do I have?"</em> to <em>"How does my work connect to business outcomes?"</em> <strong>The boundary of your responsibility now extends to everything required for your feature to succeed</strong>.
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-shield" style="color: #93c5fd;"></i> From Writing to Defending Your Code
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            Unit tests aren't a formality - they're your first defense against integration failures later. You trust your own tests to verify your work before handing off. <strong>High-quality tests = reduced rework</strong>.
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-lightbulb" style="color: #fcd34d;"></i> From Rookie to Resource
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            While you still need guidance, you contribute expertise in specific areas. You fix recurring bugs with permanent solutions, not band-aids. <strong>Knowledge sharing becomes part of your regular work rhythm</strong>.
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-check-circle"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>Consistency is king.</strong> At Level 2, it's no longer about having one stellar week; it's about reliable, predictable quality. When team members start saying "Let's ask [Your Name] about this subsystem," you've succeeded. Your regular contributions to stability, reliability, and quality make the entire team more effective - a true force multiplier.
+                    </p>
+                    
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem; margin-top: 1.25rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: white; margin-bottom: 0.75rem;">
+                            <i class="fas fa-bullseye"></i> Development Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>You can be assigned a feature without the Tech Lead mapping out the implementation details</li>
+                            <li>You actively participate in design discussions with suggestion for improvements</li>
+                            <li>Team members come to you for knowledge in your domain areas</li>
+                            <li>You regularly identify and fix recurring pain points with permanent solutions</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Reaching these consistently marks successful transition to Level 3
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-bullseye"></i> The Level 2 Mindset Shift
+                </h3>
+                <p>Level 2 developers often confuse <strong>feature completion</strong> with <strong>feature success</strong>. In reality, success is measured by reliability, stability, and adoption in production.</p>
+                <p style="margin: 1rem 0; background: #fffbf0; padding: 0.75rem; border-radius: 6px; border-left: 3px solid var(--warning);">
+                    <strong>How we measure Level 2 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: var(--success);">When features deploy without rollbacks</span> and stay stable in production</li>
+                        <li><span style="font-weight: bold; color: var(--primary);">When other teams proactively request your collaboration</span> due to reliability</li>
+                        <li><span style="font-weight: bold; color: var(--warning);">When team knowledge grows incrementally</span> due to your documentation and sharing</li>
+                    </ul>
+                    This mindset shift moves you from being a "feature implementer" to a "product builder."
+                </p>
+                <p><strong>Remember:</strong> <strong>One production-stable feature</strong> is worth more than <strong>ten features that require constant patching</strong>.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

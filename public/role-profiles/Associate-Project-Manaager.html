@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associate Project Manager Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #dbeafe;
+            --secondary: #0f172a;
+            --accent: #0ea5e9;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #e0f2fe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #1d4ed8);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0f9ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .evolution-lens {
+            background: linear-gradient(to right, var(--accent), #7c3aed);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .evolution-title {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .transformation {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            color: var(--secondary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .transformation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        ul {
+            padding-left: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Role Name : Associate Project Manaager - Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">Unshakable Foundation of Project Delivery: Reliability Through Precision Execution</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Operational Excellence & Process Adherence</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>The Unshakable Foundation</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To be the <strong>unshakable foundation</strong> for project delivery by owning flawless day-to-day execution, obsessive tracking, and relentless process adherence. You are accountable for ensuring nothing slips through the cracks—data is accurate, tasks are moving, and operational hygiene is impeccable.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Growth Killer to Avoid:</strong> Completing tasks without understanding the "why" behind processes. This prevent you from seeing the bigger picture and transitioning to Project Manaager responsibilities.
+            </div>
+
+            <!-- Category 1: Operational Execution & Task Management (The Engine) -->
+            <h2 class="section-title">
+                <i class="fas fa-fan" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Operational Execution & Task Management (The Engine)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the precise, on-time, and high-quality execution of all project tasks, ensuring the project plan is translated into daily reality. You are accountable for the <strong>machine</strong> of project delivery—keeping it running, oiled, and on track.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-tasks" style="margin-right: 8px;"></i> Project Task Execution & Coordination
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAs / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><strong>Execute project tasks in alignment with the defined project plan</strong></li>
+                                        <li><strong>Coordinate with solution architect for architecture plan validation</strong></li>
+                                        <li><strong>Assess feasibility and conduct impact analysis with technical leadership</strong></li>
+                                        <li><strong>Create sprint plans with clear deadlines and deliverables</strong></li>
+                                        <li><strong>Allocate appropriate resources to support sprint plans</strong></li>
+                                        <li><strong>Monitor delivery milestones and take corrective actions</strong></li>
+                                        <li><strong>Handle high-priority (P1) critical incidents promptly</strong></li>
+                                        <li><strong>Ensure final delivery confirmed by QC team</strong></li>
+                                        <li><strong>Prepare effort estimates, resource plans, and timelines</strong></li>
+                                        <li><strong>Estimate hours with Delivery plan</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve <span class="kpi-badge">=95% sprint completion rate</span> against planned deliverables</li>
+                                        <li>Maintain <span class="kpi-badge">=2% timeline deviation</span> from original estimates</li>
+                                        <li>Ensure <span class="kpi-badge">100% of P1 incidents are resolved within the 4-hour SLA</span></li>
+                                        <li>Secure <span class="kpi-badge">=98% delivery acceptance rate</span> by the QC team on first submission</li>
+                                        <li>Proactively identify and resolve <span class="kpi-badge">=90% of potential blockers</span> before they cause delays</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>Sprint Burndown/Completion Rate</strong> (Jira/ADO)</li>
+                                        <li><strong>Schedule Variance</strong> (Planned vs. Actual)</li>
+                                        <li><strong>P1 Resolution Time</strong> (Avg. time to resolve)</li>
+                                        <li><strong>QC First-Pass Yield</strong> (% accepted without rework)</li>
+                                        <li><strong>Blocker Identification Rate</strong> (# identified proactively vs. reactively)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Task Management</span>
+                                        <span class="competency-tag">Agile/Scrum Fundamentals</span>
+                                        <span class="competency-tag">Jira/ADO Administration</span>
+                                        <span class="competency-tag">Basic Technical Comprehension</span>
+                                        <span class="competency-tag">Proactive Communication</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>Daily stand-up reports</strong> must be submitted by 10 AM with clear status, blockers, and next steps</li>
+                                        <li><span class="kpi-badge sl-badge">Sprint plans are locked and communicated</span> 2 days before sprint start</li>
+                                        <li><span class="kpi-badge sl-badge">All P1 incidents trigger an immediate notification chain</span> (Slack/Teams + Email) to tech lead and manager</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Data Integrity & Process Compliance (The Single Source of Truth) -->
+            <h2 class="section-title">
+                <i class="fas fa-database" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Data Integrity & Process Compliance (The Single Source of Truth)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the absolute accuracy and timeliness of all project data and documentation. You are accountable for the <strong>reliability of the information</strong> that management uses to make decisions. Inaccurate data here causes organizational blindness.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-clock" style="margin-right: 8px;"></i> Effort Logging & Financial Hygiene
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><strong>Log all efforts accurately for tracking and billing</strong></li>
+                                        <li><strong>Focus on reducing unconfirmed hours</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Maintain <span class="kpi-badge">=95% accuracy in effort logging</span> (logged hours vs. verifiable work)</li>
+                                        <li>Reduce <span class="kpi-badge">unconfirmed hours to =5% of total monthly logged hours</span></li>
+                                        <li>Achieve <span class="kpi-badge">100% on-time submission</span> of weekly timesheets (every Friday EOD)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>Effort Logging Accuracy</strong> (Audit score)</li>
+                                        <li><strong>% Unconfirmed Hours</strong> (Weekly/Monthly)</li>
+                                        <li><strong>Timesheet Submission Compliance</strong> (% on time)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Attention to Detail</span>
+                                        <span class="competency-tag">Time Management</span>
+                                        <span class="competency-tag">Understanding of Billable vs. Non-billable</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">Daily time entry is mandatory</span>—no "catch-up" at week's end</li>
+                                        <li><span class="kpi-badge sl-badge">Any unconfirmed hours >48 hours old must be escalated</span> to the resource and their manager</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-file-alt" style="margin-right: 8px;"></i> Documentation & Reporting Rigor
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><strong>Document Change Requirement Details (CRD) and share with BA</strong></li>
+                                        <li><strong>Maintain up-to-date project report documentation</strong></li>
+                                        <li><strong>Conduct REO (Reflect, Connect, Reorient) sessions with direct reports</strong> to foster continuous improvement through structured dialogue where <em>Reflect</em>=listening, <em>Connect</em>=meaningful conversation, and <em>Reorient</em>=providing constructive feedback</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Ensure <span class="kpi-badge">100% of CRDs are documented and shared with BA within 24 hours</span> of identification</li>
+                                        <li>Achieve <span class="kpi-badge">100% completion of required weekly/monthly project reports</span> by deadline</li>
+                                        <li>Conduct <span class="kpi-badge">=4 REO sessions per quarter</span> with direct reports with documented outcomes and action items</li>
+                                        <li>Pass <span class="kpi-badge">=95% of process compliance audits</span> (internal or external)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>CRD Documentation Rate</strong> (% documented on time)</li>
+                                        <li><strong>Report Submission Timeliness</strong> (On-time %)</li>
+                                        <li><strong>REO Sessions Conducted</strong> (# per quarter)</li>
+                                        <li><strong>Audit Compliance Score</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Technical Writing</span>
+                                        <span class="competency-tag">Process Adherence</span>
+                                        <span class="competency-tag">Meeting Facilitation</span>
+                                        <span class="competency-tag">Meticulous Organization</span>
+                                        <span class="competency-tag">Feedback Delivery</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">Project documentation repository</span> (Confluence/SharePoint) must be updated by EOD every Friday</li>
+                                        <li><span class="kpi-badge sl-badge">REO session minutes and action plans</span> must be published within 24 hours of the meeting</li>
+                                        <li><strong>All levels are expected to conduct REO sessions</strong> with their direct reports as part of the Immediate Reporting Person (IRP) responsibility</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Resource & System Stewardship (The Orchestrator) -->
+            <h2 class="section-title">
+                <i class="fas fa-sync" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Resource & System Stewardship (The Orchestrator)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the real-time, accurate visibility into resource allocation and operational health. You are accountable for keeping the <strong>human and system "dashboard"</strong> current, so capacity planning and management decisions are based on reality, not guesswork.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-project-diagram" style="margin-right: 8px;"></i> Operational System Maintenance
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><strong>Maintain and update Workforce Compass</strong></li>
+                                        <li><strong>Update weekly resource allocation documents</strong></li>
+                                        <li><strong>Track weekly department performance against targets</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve <span class="kpi-badge">=95% adherence to Workforce Compass updates</span> (completeness and timeliness)</li>
+                                        <li>Ensure <span class="kpi-badge">weekly resource docs are 100% accurate and published every Monday 9 AM</span></li>
+                                        <li>Provide <span class="kpi-badge">weekly performance tracking that is accurate within a ±2% variance</span> of actuals</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>Compass Update Score</strong> (Completeness + Timeliness)</li>
+                                        <li><strong>Resource Doc Accuracy</strong> (Audit)</li>
+                                        <li><strong>Performance Tracking Variance</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Data Entry Proficiency</span>
+                                        <span class="competency-tag">Spreadsheet Management (Excel/Sheets)</span>
+                                        <span class="competency-tag">Basic Analytics</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">Workforce Compass is the source of truth</span>—all resource discussions start here</li>
+                                        <li><span class="kpi-badge sl-badge">Resource allocation changes must be reflected in the system within 4 business hours</span> of notification</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-rocket" style="margin-right: 8px;"></i> Process Adherence & Continuous Improvement
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li><em>Implied by framework & metrics – Ensuring execution follows defined processes</em></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Identify and suggest <span class="kpi-badge">=1 process improvement per quarter</span> based on execution pain points</li>
+                                        <li>Achieve <span class="kpi-badge">=1 process deviation per internal audit cycle</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><strong>Improvement Suggestions Submitted</strong> (# per quarter)</li>
+                                        <li><strong>Process Deviation Count</strong> (Audit finding)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Critical Thinking</span>
+                                        <span class="competency-tag">Problem Identification</span>
+                                        <span class="competency-tag">Willingness to Learn Standard Operating Procedures (SOPs)</span>
+                                        <span class="competency-tag">Feedback Integration</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">Deviations from the standard process require pre-approval</span> from the Project Delivery Manager (L2)</li>
+                                        <li>Integrate insights from <span class="kpi-badge sl-badge">REO sessions</span> into improvement planning</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="evolution-lens">
+                <h2 class="evolution-title">
+                    <i class="fas fa-sync-alt"></i> Evolution Lens (The Foundation Builder)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7;">
+                    <strong>Associate Project Manaager framework is about mastering the fundamentals with robotic precision. You are the cornerstone of reliability.</strong>
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Task Doer" to "Process Champion"</span>
+                        </div>
+                        <p>You don't just complete tasks; you become the enforcer and improver of the process that ensures tasks are always completed correctly and on time.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Data Recorder" to "Information Custodian"</span>
+                        </div>
+                        <p>You evolve from filling in timesheets to owning the integrity of all project data, understanding that this data drives billing, forecasting, and strategic decisions.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Follower of Plans" to "Guardian of the Plan"</span>
+                        </div>
+                        <p>You shift from executing a plan created by others to actively monitoring its health, identifying risks to its success, and initiating corrective actions.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Individual Contributor" to "Orchestration Hub"</span>
+                        </div>
+                        <p>Your role becomes the central point of coordination between the architect, the team, and the QC team, ensuring handoffs are seamless and nothing is lost in translation.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-star"></i> Your Success Is Measured By...
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        Operational metrics (sprint completion, timeline adherence), data hygiene (effort logging accuracy, unconfirmed hours), and process compliance (report timeliness, audit scores). You build the trust that allows L2s and L3s to focus on strategy.
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Performance Insight
+                </h3>
+                <p>Project Execution Leads must dedicate <strong>at least 80% of their time</strong> to execution tracking, data hygiene, and process adherence. Anything less indicates quality compromises that eventually erode stakeholder trust and the organization's ability to deliver reliably.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

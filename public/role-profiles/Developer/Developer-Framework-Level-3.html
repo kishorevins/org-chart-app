@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Framework | Level 3</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f7249;
+            --primary-light: #def7ec;
+            --secondary: #0f172a;
+            --accent: #064e3b;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ecfdf5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #166534);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0fff4;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-period {
+            background: rgba(139, 92, 246, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+        
+        .tag-quality {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-efficiency {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #def7ec;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Developer (Level 3) Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">The Domain Specialist: Owning Technical Success Across the Feature Life Cycle</div>
+                <div class="meta">
+                    <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-layer-group"></i>
+                        <span>System Ownership & Technical Leadership</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-sharp fa-sitemap"></i>
+                        <span>The System Steward</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To evolve into a reliable feature lead and technical anchor—responsible for the stability, quality, and strategic delivery of significant features or modules, while guiding less experienced team members.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Growth Killer to Avoid:</strong> Overestimating your autonomy. Your success comes from <strong>thoughtful escalation</strong>, not solo heroics. Avoid "I'll fix it myself" syndrome that creates knowledge silos and delays.
+            </div>
+
+            <!-- Category 1: Technical Delivery & Project Control -->
+            <h2 class="section-title">
+                <i class="fas fa-project-diagram" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Technical Delivery & Project Control (The Planner)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To take ownership of the end-to-end delivery of complex features or components—from requirement analysis to deployment—with a focus on predictability, impact awareness, and operational stability.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-magnifying-glass-chart" style="margin-right: 8px;"></i> Requirement Scoping & Planning
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Clarity and completeness</strong> of requirements gathered from Tech Lead</li>
+                                        <li>The <strong>thoroughness and accuracy</strong> of impact analysis before any change</li>
+                                        <li>The <strong>realism and communication</strong> of ETAs—and adherence to them</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Reduce requirement-related rework by resolving ambiguity <span class="kpi-badge">BEFORE DEVELOPMENT STARTS</span></li>
+                                        <li>Identify 100% of high-impact dependencies or risks during analysis</li>
+                                        <li>Deliver ≥90% of tasks within stated ETAs</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Requirement Rework Rate</strong></li>
+                                        <li>✅ <strong>Impact Miss Rate</strong> (issues found post-analysis)</li>
+                                        <li>✅ <strong>On-Time Delivery %</strong></li>
+                                        <li>✅ <strong>ETA Deviation</strong> (average variance)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Requirements Elicitation</span>
+                                        <span class="competency-tag">Systems Analysis</span>
+                                        <span class="competency-tag">Risk Assessment</span>
+                                        <span class="competency-tag">Estimation Techniques</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Document requirements and confirm understanding <span class="kpi-badge sl-badge">IN WRITING WITH TECH LEAD</span></li>
+                                        <li>Share impact analysis summary <span class="kpi-badge sl-badge">BEFORE IMPLEMENTATION</span></li>
+                                        <li>Provide ETA at kickoff and <span class="kpi-badge sl-badge">RE-FORECAST IMMEDIATELY</span> for scope changes</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-bolt" style="margin-right: 8px;"></i> Code Quality & System Stability
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>performance and efficiency</strong> of written code</li>
+                                        <li>Ensuring <strong>backward compatibility</strong> of all changes</li>
+                                        <li>The <strong>design consistency</strong> of peer code</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Ensure code meets or exceeds performance benchmarks</li>
+                                        <li>Achieve zero incidents from breaking changes to APIs/interfaces</li>
+                                        <li>Catch ≥80% of design misalignments during peer reviews</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Performance Benchmark Pass Rate</strong></li>
+                                        <li>✅ <strong>Breaking Change Incidents</strong></li>
+                                        <li>✅ <strong>Review Effectiveness</strong> (% of major issues caught)</li>
+                                        <li>✅ <strong>Code Review Turnaround Time</strong> (<24 hours)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Performance Profiling</span>
+                                        <span class="competency-tag">API Design</span>
+                                        <span class="competency-tag">Refactoring</span>
+                                        <span class="competency-tag">Constructive Feedback</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Run performance tests <span class="kpi-badge sl-badge">FOR CRITICAL PATH CHANGES</span></li>
+                                        <li>Add backward compatibility tests <span class="kpi-badge sl-badge">FOR PUBLIC INTERFACE CHANGES</span></li>
+                                        <li>Review <span class="kpi-badge sl-badge">≥2 PEER PRs/ WEEK</span> focusing on architecture</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Operational Ownership & Escalation -->
+            <h2 class="section-title">
+                <i class="fas fa-cogs" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Operational Ownership & Escalation (The Stabilizer)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To act as a frontline defender of production stability—capable of independently diagnosing, fixing, and deploying hotfixes for live issues, while maintaining strict communication discipline.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-bug-slash" style="margin-right: 8px;"></i> Production Support & Troubleshooting
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>swift diagnosis and resolution</strong> of production issues</li>
+                                        <li>The <strong>stability and safety</strong> of deployments (with approval)</li>
+                                        <li><strong>Immediate escalation</strong> of delays or blockers threatening timelines</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Resolve ≥80% of assigned P1/P2 production issues within SLA</li>
+                                        <li>Achieve 100% of deployments without rollback</li>
+                                        <li>Escalate delays <span class="kpi-badge">THE SAME DAY</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>MTTR for production issues</strong></li>
+                                        <li>✅ <strong>Deployment Success Rate</strong></li>
+                                        <li>✅ <strong>Escalation Latency</strong> (time to notification)</li>
+                                        <li>✅ <strong>Post-Incident Action Items</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Production Debugging</span>
+                                        <span class="competency-tag">Log Analysis</span>
+                                        <span class="competency-tag">Incident Response</span>
+                                        <span class="competency-tag">Blameless Post-Mortems</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Be on-call <span class="kpi-badge sl-badge">PER TEAM ROTATION</span></li>
+                                        <li>Follow deployment checklist and get approval <span class="kpi-badge sl-badge">BEFORE RELEASE</span></li>
+                                        <li>Communicate timeline risks <span class="kpi-badge sl-badge">IMMEDIATELY TO TECH LEAD AND PM</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Cross-Role Baseline Execution
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Consistently meeting all expectations</strong> of Level 1 and Level 2 roles</li>
+                                        <li>Serving as a <strong>model of process adherence</strong> for junior developers</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Maintain or improve all L1/L2 KPIs while handling L3 responsibilities</li>
+                                        <li>Receive positive peer feedback on reliability and mentorship</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Composite Score</strong> of L1/L2 KPIs</li>
+                                        <li>✅ <strong>360-Degree Feedback Score</strong></li>
+                                        <li>✅ <strong>Mentorship Impact</strong> (junior dev task success rate)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Mastery of Foundational Skills</span>
+                                        <span class="competency-tag">Role Modeling</span>
+                                        <span class="competency-tag">Process Discipline</span>
+                                        <span class="competency-tag">Time Management</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Use Vinshub/Asana meticulously—<span class="kpi-badge">SET THE STANDARD</span> for team</li>
+                                        <li><span class="kpi-badge">PROACTIVELY ASSIST</span> Level 1/2 devs when blocked</li>
+                                        <li>Uphold all previously agreed SLAs <span class="kpi-badge sl-badge">WITHOUT REMINDER</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Technical Leadership & Mentorship -->
+            <h2 class="section-title">
+                <i class="fas fa-users" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Technical Leadership & Mentorship (The Guide)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To begin shaping the team's technical direction through design feedback, knowledge sharing, and by embodying engineering best practices.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-diagram-project" style="margin-right: 8px;"></i> Design Stewardship & Peer Review
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>The <strong>architectural soundness</strong> of codebase via reviews</li>
+                                        <li><strong>Knowledge transfer</strong> on system design and patterns</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Ensure all reviewed code aligns with design principles and standards</li>
+                                        <li>Reduce performance-related bugs in modules frequently reviewed</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Design Defects Caught in Review</strong></li>
+                                        <li>✅ <strong>Performance Bug Reduction</strong></li>
+                                        <li>✅ <strong>Architecture Consistency Score</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Software Architecture</span>
+                                        <span class="competency-tag">Design Principles</span>
+                                        <span class="competency-tag">Code Smell Detection</span>
+                                        <span class="competency-tag">Persuasive Communication</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Review <span class="kpi-badge">FOCUS ON "WHY"</span> (ask design rationale questions)</li>
+                                        <li>Share <span class="kpi-badge sl-badge">ONE ARCHITECTURAL INSIGHT/WEEK</span> in team channels</li>
+                                        <li>Flag design deviations <span class="kpi-badge sl-badge">EARLY</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-pie" style="margin-right: 8px;"></i> Process Advocacy & Continuous Improvement
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Identifying and advocating</strong> for process improvements</li>
+                                        <li><strong>Documenting and automating</strong> repetitive troubleshooting</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Propose at least one adopted process improvement per quarter</li>
+                                        <li>Reduce MTTR through documented/automated solutions</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Process Improvements Proposed & Adopted</strong></li>
+                                        <li>✅ <strong>MTTR Reduction</strong> for documented issues</li>
+                                        <li>✅ <strong>Automation Scripts/Tools Contributed</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Process Optimization</span>
+                                        <span class="competency-tag">Technical Writing</span>
+                                        <span class="competency-tag">Automation Scripting</span>
+                                        <span class="competency-tag">Diplomacy</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DOCUMENT EVERY RESOLVED PRODUCTION ISSUE</span> in runbook/wiki</li>
+                                        <li>Automate one manual step <span class="kpi-badge sl-badge">PER QUARTER</span></li>
+                                        <li>Speak up in retros <span class="kpi-badge sl-badge">WITH DATA</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="evolution-lens" style="background: linear-gradient(to right, var(--accent), #064e3b); color: white; border-radius: 12px; padding: 2rem; margin: 2.5rem 0;">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Developer Growth - System Ownership (Level 3)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>The Level 3 Developer framework moves responsibility from feature implementation to system stewardship:</strong>
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-thumbs-up" style="color: #6ee7b7;"></i> From Estimation to Outcome Ownership
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            You've evolved from <em>"I'll try to complete this task by Thursday"</em> to <em>"I contract with the team that this will be delivered by Thursday, with this scope, and I'll immediately escalate if at risk"</em>. <strong>The boundary of your responsibility now includes</strong> everyone affected by delays or quality issues.
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-shield" style="color: #93c5fd;"></i> From Coding to Code Defense
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            You don't just write code; you ensure it can stand scrutiny in production. Your reviews protect not just functionality but design integrity. <strong>You've become the first line of defense against tech debt</strong> through thorough reviews and thoughtful design input.
+                        </p>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; border-left: 3px solid white;">
+                        <h4 style="margin-bottom: 0.5rem; display: flex; align-items: center; gap: 8px;">
+                            <i class="fas fa-lightbulb" style="color: #fcd34d;"></i> From Individual Contributor to Team Multiplier
+                        </h4>
+                        <p style="color: rgba(255,255,255,0.85);">
+                            Your value isn't measured by lines coded but by improved team velocity through knowledge sharing, documentation, and identifying process pain points. <strong>Your observations about systematic issues are taken seriously</strong> because they're backed by data.
+                        </p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-check-circle"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When others spontaneously rely on your judgment.</strong> When your recommendations on design, performance, or process are sought without prompting. This is the hallmark of Level 3 maturity—your expertise has become trusted bedrock that others build upon.
+                    </p>
+                    
+                    <div style="background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem; margin-top: 1.25rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: white; margin-bottom: 0.75rem;">
+                            <i class="fas fa-bullseye"></i> Development Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>You're regularly consulted for your architectural insights</li>
+                            <li>Team lead delegates sign-off authority for your domain areas</li>
+                            <li>You identify and solve recurring production/classification issues</li>
+                            <li>Your design suggestions are consistently incorporated in planning</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Reaching these consistently marks successful transition to Level 4
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-bullseye"></i> The Level 3 Mindset Shift
+                </h3>
+                <p>Level 3 developers often believe their value is technical brilliance alone. In reality, your value is in being a <strong>reliable steward of systems</strong> whose work teammates trust without second-guessing.</p>
+                <p style="margin: 1rem 0; background: #fffbf0; padding: 0.75rem; border-radius: 6px; border-left: 3px solid var(--warning);">
+                    <strong>How we measure Level 3 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: var(--success);">When you're the first person called for production issues</span> in your domain—not because you caused them, but because you're the expert</li>
+                        <li><span style="font-weight: bold; color: var(--primary);">When your code reviews consistently uncover architectural issues</span> others miss</li>
+                        <li><span style="font-weight: bold; color: var(--warning);">When junior developers instinctively seek your input</span> before escalating to leads</li>
+                    </ul>
+                    This shift marks the transition from being a junior specialist to a true senior asset—someone peers lean on for stability.
+                </p>
+                <p><strong>Remember:</strong> At Level 3, your job isn't to do everything yourself—it's to <strong>enable the team to operate at a higher level</strong> through your expertise and reliability.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
