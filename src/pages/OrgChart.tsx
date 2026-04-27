@@ -158,11 +158,17 @@ export default function OrgChart() {
   const [paths, setPaths] = useState<{ d: string; key: string; cross: boolean; noArrow?: boolean }[]>([])
   const [tip,   setTip]   = useState<{ roleId: string; left: number; caretOffset: number; y: number; above: boolean } | null>(null)
 
-  // Close tooltip when clicking anywhere outside a card
+  // Close tooltip on click outside or scroll
   useEffect(() => {
     const close = () => setTip(null)
     document.addEventListener('click', close)
-    return () => document.removeEventListener('click', close)
+    window.addEventListener('scroll', close, true)   // capture phase catches all scroll containers
+    window.addEventListener('touchmove', close, { passive: true })
+    return () => {
+      document.removeEventListener('click', close)
+      window.removeEventListener('scroll', close, true)
+      window.removeEventListener('touchmove', close)
+    }
   }, [])
 
   // Show tooltip anchored to card element (position:fixed so it escapes overflow containers)

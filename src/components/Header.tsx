@@ -1,5 +1,5 @@
 // import { NavLink } from 'react-router-dom'
-import logoSrc from '../assets/Logo.png'
+import logoSrc from '../assets/logo(2).png'
 import './Header.css'
 
 export default function Header() {
@@ -9,8 +9,8 @@ export default function Header() {
         <a href="/org-chart-app/" className="site-logo" aria-label="Vinsinfo Home">
           <img src={logoSrc} alt="Vinsinfo" className="site-logo-img" />
         </a>
-        <nav className="site-nav">
-          {/* <NavLink
+        {/* <nav className="site-nav">
+          <NavLink
             to="/"
             end
             className={({ isActive }) => 'site-nav-link' + (isActive ? ' active' : '')}
@@ -34,8 +34,8 @@ export default function Header() {
             className={({ isActive }) => 'site-nav-link' + (isActive ? ' active' : '')}
           >
             Roadmap View
-          </NavLink> */}
-        </nav>
+          </NavLink>
+        </nav> */}
       </div>
     </header>
   )
