@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom'
+// import { NavLink } from 'react-router-dom'
 import logoSrc from '../assets/Logo.png'
 import './Header.css'
 
@@ -10,7 +10,7 @@ export default function Header() {
           <img src={logoSrc} alt="Vinsinfo" className="site-logo-img" />
         </a>
         <nav className="site-nav">
-          <NavLink
+          {/* <NavLink
             to="/"
             end
             className={({ isActive }) => 'site-nav-link' + (isActive ? ' active' : '')}
@@ -34,7 +34,7 @@ export default function Header() {
             className={({ isActive }) => 'site-nav-link' + (isActive ? ' active' : '')}
           >
             Roadmap View
-          </NavLink>
+          </NavLink> */}
         </nav>
       </div>
     </header>

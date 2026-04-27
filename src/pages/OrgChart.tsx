@@ -47,7 +47,7 @@ const ROLES: Role[] = [
   { id: 'stl',  title: 'Senior Technical Lead',             desc: 'Drives engineering standards, architecture decisions, technical roadmap, mentoring leads, and improves engineering productivity across multiple teams.', level: 7,  track: 1, color: 'green',  connectsTo: [ 'apm1'] },
   // not updated desc for asa1, asa2, sa1, sa2, rd
   { id: 'asa1', title: 'Associate Solution Architect L1',   desc: 'Designs scalable solution blueprints and collaborates with clients and teams on technical feasibility and integration approaches.', level: 8,  track: 1, color: 'purple', connectsTo: ['asa2'] },
-  { id: 'asa2', title: 'Associate Solution Architect L2',   desc: 'Architects complex multi-service solutions, evaluates emerging technologies, and defines integration and data-flow patterns.', level: 9,  track: 1, color: 'white',  connectsTo: ['sa1']  },
+  { id: 'asa2', title: 'Associate Solution Architect L2',   desc: 'Architects complex multi-service solutions, evaluates emerging technologies, and defines integration and data-flow patterns.', level: 9,  track: 1, color: 'purple',  connectsTo: ['sa1']  },
   { id: 'sa1',  title: 'Solution Architect L1',             desc: 'Senior architect accountable for enterprise-grade solution design, non-functional requirements, and technical governance across engagements.', level: 10, track: 1, color: 'purple', connectsTo: ['sa2']  },
   { id: 'sa2',  title: 'Solution Architect L2',             desc: 'Principal solution architect setting cross-org architecture standards; mentors fellow architects and drives the long-term technical vision.', level: 11, track: 1, color: 'purple', connectsTo: ['hpd', 'rd'] },
   { id: 'rd',   title: 'R&D',                               desc: 'Leads research and innovation by exploring emerging technologies and proposing next-generation solutions that shape the organization\'s future direction.', level: 15, track: 1, color: 'yellow' },
@@ -55,7 +55,7 @@ const ROLES: Role[] = [
   // ── Project Management ───────────────────────────────────────────────
   // not updated desc for apm1, apm2, pm1, pm2
   { id: 'apm1', title: 'Associate Project Manager L1',      desc: 'Assists in project planning, tracks deliverables, and coordinates cross-functional communications to support on-time delivery.', level: 8,  track: 2, color: 'purple', connectsTo: ['apm2'] },
-  { id: 'apm2', title: 'Associate Project Manager L2',      desc: 'Manages small-to-mid size projects end-to-end with growing accountability for scope, timeline, and budget control.', level: 9,  track: 2, color: 'white',  connectsTo: ['pm1']  },
+  { id: 'apm2', title: 'Associate Project Manager L2',      desc: 'Manages small-to-mid size projects end-to-end with growing accountability for scope, timeline, and budget control.', level: 9,  track: 2, color: 'purple',  connectsTo: ['pm1']  },
   { id: 'pm1',  title: 'Project Manager L1',                desc: 'Independently manages full project delivery, owns stakeholder communication, and develops proactive risk mitigation plans.', level: 10, track: 2, color: 'purple', connectsTo: ['pm2']  },
   { id: 'pm2',  title: 'Project Manager L2',                desc: 'Leads complex multi-team projects; mentors junior project managers and champions continuous process improvements.', level: 11, track: 2, color: 'purple', connectsTo: ['hpd']  },
   
@@ -88,8 +88,8 @@ const ROLES: Role[] = [
   // ── Partnership & BD ─────────────────────────────────────────────────
   // not updated desc for pman, sam, spm and hbd
   { id: 'pman', title: 'Partnership Manager',               desc: 'Manages strategic alliances and partner relationships; onboards new partners and drives co-sell revenue generation activities.',                                                               level: 8,  track: 5, color: 'purple', connectsTo: ['sam']  },
-  { id: 'sam',  title: 'Senior Alliance Manager',           desc: 'Owns a portfolio of key alliances, negotiates partnership agreements, and aligns partner go-to-market strategies with company goals.',                                                     level: 9,  track: 5, color: 'white',  connectsTo: ['spm']  },
-  { id: 'spm',  title: 'Strategy Partnership Manager',      desc: 'Defines long-term partnership strategy, identifies new alliance opportunities, and drives market expansion through strategic partnerships.',                                              level: 10, track: 5, color: 'white',  connectsTo: ['hbd']  },
+  { id: 'sam',  title: 'Senior Alliance Manager',           desc: 'Owns a portfolio of key alliances, negotiates partnership agreements, and aligns partner go-to-market strategies with company goals.',                                                     level: 9,  track: 5, color: 'purple',  connectsTo: ['spm']  },
+  { id: 'spm',  title: 'Strategy Partnership Manager',      desc: 'Defines long-term partnership strategy, identifies new alliance opportunities, and drives market expansion through strategic partnerships.',                                              level: 10, track: 5, color: 'purple',  connectsTo: ['hbd']  },
   { id: 'hbd',  title: 'Head — BD',                         desc: 'Leads the business development function; accountable for pipeline growth, partnership outcomes, and revenue contribution targets.',                                                    level: 11, track: 5, color: 'blue',   connectsTo: ['ad']   },
 
   // ── Sales ────────────────────────────────────────────────────────────
@@ -139,8 +139,8 @@ Object.values(crossIncoming).forEach(arr => arr.sort((a, b) => ROLE_MAP[a].track
 // ─── Merge-entry targets ──────────────────────────────────────────────────────
 // All connections into these cards converge to a single trunk junction point,
 // then ONE shared arrow drops into the card — clean "fan-in" look.
-const MERGE_TARGETS = new Set<string>([])
-const TRUNK_LEN = 20   // px: height of the shared trunk above the card
+const MERGE_TARGETS = new Set<string>(['apm1', 'ad'])
+const TRUNK_LEN = 10   // px: must fit in the ~12px inter-row gap (6px top + 6px bottom padding)
 
 // ─── DOM measurement helpers ─────────────────────────────────────────────────
 const cx  = (el: HTMLElement, ox: number) => el.getBoundingClientRect().left + el.getBoundingClientRect().width  / 2 - ox
@@ -268,13 +268,28 @@ export default function OrgChart() {
 
               if (toRole.level === role.level + 1 || isMerge) {
                 // ── Adjacent row OR merge-target feeder: right-angle elbow ───
-                // For adjacent rows: horizontal run at midY (safe, no cards between).
-                // For merge feeders spanning multiple rows: horizontal run at busY
-                // (just below source row) to avoid crossing intermediate cards.
                 const isAdjacent = toRole.level === role.level + 1
-                const horizY = isAdjacent
-                  ? (sy + ty) / 2          // midpoint — fine when only 1 row apart
-                  : sy + 8                  // just below source card bottom
+                // For merge feeders: if a card sits in the target track between
+                // source and target (e.g. hpd between hbd→ad), the final vertical
+                // descent would cross it. Route the horizontal bus BELOW that blocker
+                // so the entire path stays clear of intermediate cards.
+                let horizY: number
+                if (isAdjacent) {
+                  horizY = (sy + ty) / 2   // midpoint — safe when only 1 row apart
+                } else {
+                  const mergeBlockers = ROLES.filter(r =>
+                    r.track === toRole.track &&
+                    r.level > role.level &&
+                    r.level < toRole.level
+                  )
+                  const lowestMB = mergeBlockers.length > 0
+                    ? mergeBlockers.reduce((a, b) => a.level > b.level ? a : b)
+                    : null
+                  const lowestMBEl = lowestMB ? cardRefs.current[lowestMB.id] : null
+                  horizY = lowestMBEl
+                    ? bot(lowestMBEl, cr.top) + 4   // just below the blocker card
+                    : sy + 8                          // no blocker — just below source
+                }
                 const R = 5
                 d = [
                   `M ${sx} ${sy}`,
