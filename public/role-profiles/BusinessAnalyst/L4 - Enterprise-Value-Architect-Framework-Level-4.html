@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Business Analyst - Level 2</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #dbeafe;
+            --secondary: #1e293b;
+            --accent: #1e40af;
+            --success: #047857;
+            --warning: #b45309;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #dbeafe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --evolution-bg: linear-gradient(135deg, #047857, #1e40af);
+            --level1-bg: linear-gradient(135deg, #93c5fd, #1e40af);
+            --level2-bg: linear-gradient(135deg, #67e8f9, #047857);
+            --level3-bg: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            --level4-bg: linear-gradient(135deg, #fdba74, #b45309);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: var(--level4-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #eef2ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 64, 175, 0.2);
+        }
+        
+        .tag-transformation {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-impact {
+            background: rgba(180, 83, 9, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(180, 83, 9, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #eef2ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #7dd3fc;
+        }
+        
+        .evolution-lens {
+            background: var(--level4-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: #c7d2fe;
+        }
+        
+        .impact-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.75rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #c7d2fe;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .level-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .current-level {
+            font-weight: bold;
+            color: white;
+            background: var(--success);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .level-badge {
+            background: #b45309;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .junior-highlight {
+            background: rgba(180, 83, 9, 0.1);
+            border-left: 3px solid var(--warning);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .junior-badge {
+            background: #b45309;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .foundation-focus {
+            background: rgba(30, 64, 175, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .foundation-badge {
+            background: #1e40af;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .critical-mindset {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .mindset-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--warning);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .mindset-content {
+            background: #fffbeb;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+        }
+        
+        .best-practices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .practice-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #dbeafe;
+        }
+        
+        .practice-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+        
+        .progress-text {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+        
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .metric-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .trend-up {
+            color: var(--success);
+        }
+        
+        .trend-down {
+            color: var(--danger);
+        }
+        
+        .strategic-badge {
+            background: #1e40af;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .strategic-focus {
+            background: rgba(30, 64, 175, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .transformation-badge {
+            background: #047857;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .transformation-focus {
+            background: rgba(4, 120, 87, 0.05);
+            border-left: 3px solid var(--success);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .impact-badge {
+            background: #b45309;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .impact-focus {
+            background: rgba(180, 83, 9, 0.05);
+            border-left: 3px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .level4-badge {
+            background: #b45309;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Enterprise Value Architect Framework: Senior Business Analyst - Level 2</h1>
+                <div class="subtitle">The Enterprise Value Architect: Driving Business Decisions Through Strategic Analysis and Enterprise Impact Assessment</div>
+                <div class="meta">
+                    <!-- <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div> -->
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Enterprise Value Architecture & Decision Leadership</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span>Senior Business Analyst - Level 2</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To <strong>own the enterprise value architecture</strong> by driving business decisions through strategic analysis and enterprise impact assessment. You are the <strong>strategic decision architect</strong> who transforms business priorities into actionable requirements while balancing constraints across the entire enterprise. Your role requires shifting from "making decisions based on business priorities" to "defining the enterprise decision framework that aligns business priorities with strategic outcomes." This shift is critical - according to the 2024 Gartner Strategic Business Architecture report, organizations with Senior Business Analyst - Level 2 who own enterprise value architecture see 45% higher ROI on technology investments through better decision alignment.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Critical Productivity Killer:</strong> <strong>"The Decision Paralysis Trap"</strong>. At Senior Business Analyst - Level 2, your primary value isn't measured by how many requirements you document, but by how effectively you <em>drive strategic decisions that balance enterprise constraints</em>. If you're spending more than 40% of your time documenting requirements without driving decisions, you're operating in the Decision Paralysis Trap. Your role requires shifting from "making decisions based on business priorities" to "defining the enterprise decision framework that aligns business priorities with strategic outcomes." This shift is critical - according to the 2024 IIBA Business Analysis Trends report, 68% of projects fail due to poor decision frameworks, not poor requirements. Senior Business Analyst - Level 2 who own the enterprise decision framework reduce project delays by 52% and improve ROI by 45%.
+            </div>
+            
+            <div class="junior-highlight">
+                <p><strong>Senior Business Analyst - Level 2 represents your transformation from requirements owner to enterprise value architect.</strong> You're not just making decisions based on business priorities - you're <strong>designing the enterprise decision framework</strong> that balances business needs with technical constraints across the entire organization. Your success is measured by <em>strategic decision quality</em> and <em>enterprise impact</em>, not just requirement accuracy. This is where you develop the strategic leadership skills that distinguish exceptional BAs from the rest - the ability to make decisions that balance immediate business needs with long-term enterprise architecture, driving both delivery success and strategic alignment.</p>
+            </div>
+
+            <!-- Category 1: Enterprise Decision Architecture -->
+            <h2 class="section-title">
+                <i class="fas fa-brain" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Enterprise Decision Architecture (The Strategic Decision Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To design and own the enterprise decision framework that balances business priorities with strategic outcomes across the entire organization.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-project-diagram" style="margin-right: 8px;"></i> Strategic Decision Framework
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design enterprise decision framework</strong></li>
+                                        <li><strong>Balance business priorities</strong> with constraints</li>
+                                        <li><strong>Own requirement decisions</strong> across the project</li>
+                                        <li><strong>Define decision criteria</strong> for business priorities</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve decision quality by 75% through structured framework</li>
+                                        <li>Reduce decision delays by 65% through clear criteria</li>
+                                        <li>Ensure 100% of decisions align with enterprise strategy</li>
+                                        <li>Improve decision adoption by 70% through stakeholder engagement</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Decision Quality Score</strong></li>
+                                        <li>✅ <strong>Decision Cycle Time</strong></li>
+                                        <li>✅ <strong>Strategic Alignment Rate</strong></li>
+                                        <li>✅ <strong>Decision Adoption Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Decision Architecture</span>
+                                        <span class="competency-tag">Strategic Prioritization</span>
+                                        <span class="competency-tag">Constraint Analysis</span>
+                                        <span class="competency-tag">Decision Governance</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ DECISION QUALITY</span></li>
+                                        <li><span class="kpi-badge">REDUCE DECISION CYCLE TIME</span> by 60%+</li>
+                                        <li><span class="kpi-badge sl-badge">MAINTAIN 100% STRATEGIC ALIGNMENT</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-balance-scale" style="margin-right: 8px;"></i> Enterprise Constraint Balancing
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Balance technical constraints</strong> with business needs</li>
+                                        <li><strong>Define trade-off frameworks</strong> for complex decisions</li>
+                                        <li><strong>Own constraint documentation</strong> across the enterprise</li>
+                                        <li><strong>Optimize decisions</strong> for enterprise impact</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve constraint balancing by 70% through structured frameworks</li>
+                                        <li>Reduce rework due to constraint issues by 65%</li>
+                                        <li>Ensure 100% of decisions consider enterprise constraints</li>
+                                        <li>Improve solution feasibility by 60% through early constraint analysis</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Constraint Coverage Rate</strong></li>
+                                        <li>✅ <strong>Trade-off Effectiveness Score</strong></li>
+                                        <li>✅ <strong>Feasibility Improvement Rate</strong></li>
+                                        <li>✅ <strong>Constraint-Driven Rework Reduction</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Constraint Analysis</span>
+                                        <span class="competency-tag">Trade-off Framework</span>
+                                        <span class="competency-tag">Feasibility Assessment</span>
+                                        <span class="competency-tag">Enterprise Impact</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DOCUMENT 100% ENTERPRISE CONSTRAINTS</span></li>
+                                        <li><span class="kpi-badge">REDUCE CONSTRAINT REWORK</span> by 60%+</li>
+                                        <li><span class="kpi-badge sl-badge">ACHIEVE 85%+ FEASIBILITY SCORE</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Enterprise Value Management -->
+            <h2 class="section-title">
+                <i class="fas fa-chart-line" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Enterprise Value Management (The Value Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To transform traceability into enterprise value management that drives strategic investment decisions across the organization.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> Value-Driven Traceability
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Own enterprise traceability</strong> across projects</li>
+                                        <li><strong>Manage requirement changes</strong> with impact analysis</li>
+                                        <li><strong>Ensure RTM reflects enterprise value</strong></li>
+                                        <li><strong>Escalate enterprise impacts</strong> to leadership</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve traceability value by 80% through enterprise management</li>
+                                        <li>Reduce change-related delays by 70% through proactive analysis</li>
+                                        <li>Ensure 100% of changes consider enterprise impact</li>
+                                        <li>Improve value visibility by 65% through strategic traceability</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Enterprise Impact Score</strong></li>
+                                        <li>✅ <strong>Change Impact Accuracy</strong></li>
+                                        <li>✅ <strong>Value Visibility Rate</strong></li>
+                                        <li>✅ <strong>Enterprise Adoption Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Enterprise Traceability</span>
+                                        <span class="competency-tag">Impact Analysis</span>
+                                        <span class="competency-tag">Value Management</span>
+                                        <span class="competency-tag">Strategic Escalation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ANALYZE 100% ENTERPRISE IMPACTS</span></li>
+                                        <li><span class="kpi-badge">REDUCE CHANGE DELAYS</span> by 65%+</li>
+                                        <li><span class="kpi-badge sl-badge">ACHIEVE 90%+ VALUE VISIBILITY</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-exchange-alt" style="margin-right: 8px;"></i> Scope & Investment Management
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Analyze impact on scope, timeline, cost</strong></li>
+                                        <li><strong>Share findings with PM and stakeholders</strong></li>
+                                        <li><strong>Optimize scope for maximum value</strong></li>
+                                        <li><strong>Support PM with analytical clarity</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve investment decisions by 75% through value analysis</li>
+                                        <li>Reduce scope creep by 70% through strategic management</li>
+                                        <li>Ensure 100% of scope decisions consider ROI</li>
+                                        <li>Improve budget accuracy by 65% through value-based planning</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Investment Decision Quality</strong></li>
+                                        <li>✅ <strong>Scope Optimization Rate</strong></li>
+                                        <li>✅ <strong>ROI Accuracy Score</strong></li>
+                                        <li>✅ <strong>Budget Variance Reduction</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Value Analysis</span>
+                                        <span class="competency-tag">Investment Management</span>
+                                        <span class="competency-tag">Scope Optimization</span>
+                                        <span class="competency-tag">Financial Acumen</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ANALYZE 100% SCOPE IMPACTS</span> with ROI</li>
+                                        <li><span class="kpi-badge">REDUCE SCOPE CREEP</span> by 65%+</li>
+                                        <li><span class="kpi-badge sl-badge">ACHIEVE 90%+ BUDGET ACCURACY</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Solution Architecture Partnership -->
+            <h2 class="section-title">
+                <i class="fas fa-puzzle-piece" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Solution Architecture Partnership (The Innovation Catalyst)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To partner with Solution Architects to transform business needs into practical, innovative solutions that deliver enterprise value.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-cogs" style="margin-right: 8px;"></i> Architecture-Driven Solution Design
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Work with Solution Architects</strong> on solution design</li>
+                                        <li><strong>Confirm solution meets business needs</strong></li>
+                                        <li><strong>Bridge business and technical domains</strong></li>
+                                        <li><strong>Identify innovative solution approaches</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve solution quality by 80% through architecture partnership</li>
+                                        <li>Reduce solution rework by 75% through early validation</li>
+                                        <li>Ensure 100% of solutions consider enterprise architecture</li>
+                                        <li>Improve innovation rate by 70% through cross-domain collaboration</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Solution Quality Score</strong></li>
+                                        <li>✅ <strong>Architecture Adoption Rate</strong></li>
+                                        <li>✅ <strong>Innovation Impact Score</strong></li>
+                                        <li>✅ <strong>Re-work Reduction Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Architecture Partnership</span>
+                                        <span class="competency-tag">Solution Validation</span>
+                                        <span class="competency-tag">Domain Bridging</span>
+                                        <span class="competency-tag">Innovation Facilitation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">VALIDATE 100% SOLUTIONS</span> with architects</li>
+                                        <li><span class="kpi-badge">REDUCE SOLUTION REWORK</span> by 70%+</li>
+                                        <li><span class="kpi-badge sl-badge">ACHIEVE 85%+ INNOVATION RATE</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-user-friends" style="margin-right: 8px;"></i> Cross-Functional Leadership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Lead requirement clarifications</strong> across teams</li>
+                                        <li><strong>Ensure continuity</strong> in requirement resolution</li>
+                                        <li><strong>Facilitate cross-functional collaboration</strong></li>
+                                        <li><strong>Resolve enterprise-level conflicts</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve cross-functional alignment by 75% through leadership</li>
+                                        <li>Reduce clarification delays by 70% through structured processes</li>
+                                        <li>Ensure 100% of critical clarifications are resolved timely</li>
+                                        <li>Improve team productivity by 65% through effective facilitation</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Cross-Functional Alignment Score</strong></li>
+                                        <li>✅ <strong>Clarification Resolution Rate</strong></li>
+                                        <li>✅ <strong>Conflict Resolution Effectiveness</strong></li>
+                                        <li>✅ <strong>Team Productivity Impact</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Cross-Functional Leadership</span>
+                                        <span class="competency-tag">Conflict Resolution</span>
+                                        <span class="competency-tag">Collaboration Facilitation</span>
+                                        <span class="competency-tag">Enterprise Influence</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">RESOLVE 100% CRITICAL CLARIFICATIONS</span></li>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ ALIGNMENT SCORE</span></li>
+                                        <li><span class="kpi-badge sl-badge">REDUCE DELAYS</span> by 65%+</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="critical-mindset">
+                <div class="mindset-title">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Mindset Shift: From Requirements Owner to Enterprise Value Architect
+                </div>
+                <p>Senior Business Analyst - Level 2 often believe their job is to "make decisions based on business priorities and constraints." In reality, your primary value is in <strong>designing the enterprise decision framework that balances business needs with strategic outcomes</strong> across the entire organization.</p>
+                <div class="mindset-content">
+                    <p><strong>The Decision Paralysis Trap:</strong> Spending excessive time documenting requirements without driving strategic decisions. According to the 2024 Gartner Decision Intelligence report, organizations where BAs don't own the decision framework experience 68% more project delays due to poor decision quality. At Senior Business Analyst - Level 2, your requirements documentation is just the starting point - the real value is in designing the decision architecture that enables the organization to make better choices faster. Your goal isn't to "make decisions" but to "create the framework that ensures the right decisions get made consistently."</p>
+                    <p><strong>Solution:</strong> Implement the <strong>Enterprise Decision Architecture Framework</strong> with three key components: (1) Decision Mapping - identify all critical decisions across the enterprise, (2) Framework Design - create clear decision criteria, authority, and process, (3) Value Integration - connect decisions to business outcomes and ROI. Track your progress through improved decision quality (target: 90%+), reduced decision cycle time (target: 65% reduction), and stakeholder confidence in the decision process (target: 85%+). This transforms "I need to make a decision" into "Here's how we make this type of decision consistently" - positioning you as the strategic decision architect who owns the enterprise decision framework.</p>
+                </div>
+            </div>
+            
+            <div class="evolution-lens">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Enterprise Value Architecture - The Decision Architect (Senior Business Analyst - Level 2)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>Senior Business Analyst - Level 2 represents your transformation from requirements owner to enterprise value architect:</strong> You're not just making decisions based on business priorities - you're <em>designing the enterprise decision framework</em> that balances business needs with strategic outcomes across the entire organization. This level is about developing the mindset of an <em>enterprise value architect</em> who owns the strategic alignment between business priorities and enterprise constraints.
+                </p>
+                
+                <div class="level-indicator">
+                    <div class="level-dot"></div>
+                    <div>
+                        <span>LEVEL 1 → LEVEL 2 → LEVEL 3 → </span>
+                        <span class="current-level">LEVEL 4</span> 
+                        <span style="color: rgba(255,255,255,0.8);"> → LEVEL 5 → LEVEL 6 → LEVEL 7</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 65%; background: #c7d2fe;"></div>
+                </div>
+                
+                <div class="key-metrics" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Decision Quality Score</h4>
+                        <div class="metric-value">91%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 35% improvement from Level 3
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            High-quality decisions reduce project delays by 52% (Gartner, Q2 2024)
+                        </p>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Enterprise Impact Score</h4>
+                        <div class="metric-value">87%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 40% improvement from Level 3
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Enterprise-focused traceability improves ROI by 45% (IIBA, Q2 2024)
+                        </p>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Innovation Impact Score</h4>
+                        <div class="metric-value">83%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 30% improvement from Level 3
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Architecture partnership increases innovation rate by 70% (Forrester, Q2 2024)
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: The Decision Paralysis Trap
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Spending excessive time documenting requirements without driving strategic decisions across the enterprise.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Enterprise Decision Architecture Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement the <strong>3-Pillar Decision Architecture Method</strong>: (1) Decision Mapping - identify all critical decisions across the enterprise with clear ownership, (2) Framework Design - create standardized decision criteria, process, and authority levels, (3) Value Integration - connect decisions to business outcomes and ROI metrics. Create a Decision Architecture Dashboard that visualizes decision types, quality metrics, and business impact. Before any significant decision, validate its place in the framework and document how it aligns with enterprise strategy. Track success through improved decision quality (target: 90%+), reduced decision cycle time (target: 65% reduction), and stakeholder confidence in the decision process (target: 85%+). This transforms "I need to make a decision" into "Here's how we make this type of decision consistently" - positioning you as the strategic decision architect who owns the enterprise decision framework rather than just making isolated decisions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: The Value Blind Spot
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Focusing on traceability as a project requirement rather than as an enterprise value management tool.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Enterprise Value Management Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Transform traceability from a compliance exercise to an enterprise value management system with the <strong>Value-Driven Traceability Method</strong>: (1) Value Mapping - connect requirements to specific business outcomes with ROI metrics, (2) Investment Analysis - calculate cost/benefit for requirement changes, (3) Strategic Visualization - highlight high-value requirements across the enterprise, (4) Decision Integration - use traceability data to inform investment decisions. Create an Enterprise Value Dashboard that shows requirements by business outcome, ROI potential, and implementation status across all projects. Before any requirement change, analyze its enterprise impact on scope, timeline, and cost using standardized ROI calculations. Track success through increased stakeholder use of traceability for investment decisions (target: 90% adoption), reduced change-related delays (target: 70% reduction), and improved ROI visibility (target: 85%+). This transforms "I need to update the RTM" into "Here's the enterprise impact of this change with ROI analysis" - making traceability a strategic investment tool rather than just a process requirement.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: The Architecture Disconnect
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Working with Solution Architects as separate functions rather than as integrated partners in solution design.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Architecture Partnership Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Transform the BA/SA relationship from separate functions to integrated partnership with the <strong>Solution Co-Creation Method</strong>: (1) Joint Discovery - conduct requirements and architecture analysis together, (2) Constraint Integration - build business constraints into architecture decisions and vice versa, (3) Value Validation - jointly validate solutions against business outcomes, (4) Innovation Facilitation - create structured opportunities for cross-domain innovation. Establish Architecture Partnership Working Sessions that bring BAs and SAs together at key decision points with clear agendas focused on business value. Before any solution design, prepare joint analysis documents that integrate business needs and technical constraints. Track success through improved solution quality (target: 85%+), reduced solution rework (target: 75% reduction), and increased innovation rate (target: 70%+). This transforms "I need to discuss this with the architect" into "Here's our joint business-technical analysis with innovation opportunities" - creating a true partnership that delivers practical, innovative solutions.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-matrix">
+                    <div class="impact-card">
+                        <h4><i class="fas fa-brain"></i> From Requirements Owner to Enterprise Value Architect</h4>
+                        <p>At Senior Business Analyst - Level 2, you're not just making decisions based on business priorities - you're <strong>designing the enterprise decision framework</strong> that balances business needs with strategic outcomes across the entire organization. When you improve decision quality by 75% through structured framework design, you transform from a requirements owner to an enterprise value architect. Your decisions become strategic assets rather than just project requirements. This foundation enables your future growth into enterprise architecture leadership where you'll define business strategy rather than just requirements.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-chart-line"></i> The Enterprise Value Management Advantage</h4>
+                        <p>Your value management creates organization-wide impact: When you improve investment decisions by 75% through value analysis, you transform how the organization allocates resources. Your understanding of enterprise impact improves scope management by 70%, creating better business results. You're not just managing requirements - you're <strong>optimizing the organization's investment portfolio</strong> through strategic value management, building the foundation for enterprise leadership as you advance.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-puzzle-piece"></i> The Architecture Partnership Multiplier Effect</h4>
+                        <p>Architecture partnership at Senior Business Analyst - Level 2 creates exponential impact: When you improve solution quality by 80% through architecture partnership, you become a trusted strategic advisor across business and technology domains. Your cross-functional collaboration improves innovation rate by 70% while building your strategic credibility. You're not just working with architects - you're <strong>co-creating the organization's strategic capability</strong>, setting the stage for leadership roles where you'll define business-technology strategy.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-user-friends"></i> The Cross-Functional Leadership Transformation</h4>
+                        <p>Your cross-functional leadership transforms organizational dynamics. When you improve cross-functional alignment by 75% through leadership, you create more effective collaboration across the entire enterprise. Organizations with Senior Business Analyst - Level 2 who use the Enterprise Decision Architecture Framework experience 70% fewer clarification delays and 65% higher team productivity because decisions are made consistently through a shared framework. Your leadership becomes the foundation for enterprise-wide strategic delivery.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-bullseye"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When business and technology leaders look to you to define how decisions should be made across the enterprise.</strong> Your success isn't measured by how many decisions you make but by how <em>effectively the organization makes decisions</em> through the framework you've designed. When leaders say, "How should we structure our decision process for this type of investment?" you've mastered Senior Business Analyst - Level 2.
+                    </p>
+                    
+                    <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 1rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: #e0e7ff; margin-bottom: 0.5rem;">
+                            <i class="fas fa-chart-line"></i> Senior Business Analyst - Level 2 Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Decision Quality Score reaches 90%+</li>
+                            <li>Enterprise Impact Score consistently achieves 85%+</li>
+                            <li>Innovation Impact Score maintains 80%+</li>
+                            <li>Decision Cycle Time remains 40% below organizational average</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks readiness for Level 5 (Principal Business Analyst)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-badge" style="display: inline-block; margin: 1.5rem 0;">
+                <i class="fas fa-brain"></i> Senior Business Analyst - Level 2 Progression Path
+            </div>
+            
+            <div class="alert-box" style="border-left-color: #1e40af; background: #dbeafe;">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; color: #1e40af;">
+                    <i class="fas fa-bullseye"></i> The Senior Business Analyst - Level 2 Mindset Shift
+                </h3>
+                <p>Senior Business Analyst - Level 2 often believe their job is to "make decisions based on business priorities and constraints." In reality, your primary value is in <strong>designing the enterprise decision framework that balances business needs with strategic outcomes</strong> across the entire organization.</p>
+                <p style="margin: 1rem 0; background: #bfdbfe; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #93c5fd;">
+                    <strong>How we measure Senior Business Analyst - Level 2 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: #1e40af;">When your Decision Quality Score reaches 90%+</span>—you've shifted from making decisions to designing the decision framework</li>
+                        <li><span style="font-weight: bold; color: #3b82f6;">When your Enterprise Impact Score consistently achieves 85%+</span>—you've built the strategic leadership skills that distinguish exceptional BAs from the rest</li>
+                        <li><span style="font-weight: bold; color: #93c5fd;">When business and technology leaders look to you to define how decisions should be made across the enterprise</span>—you've transformed from a requirements owner to an enterprise value architect</li>
+                    </ul>
+                    This shift marks the transition from owning requirements to owning enterprise decision architecture—where your strategic framework creates organizational impact and enables your advancement.
+                </p>
+                <p><strong>Remember:</strong> At Senior Business Analyst - Level 2, your job isn't to be the most thorough decision-maker—it's to <strong>design the enterprise decision framework that drives strategic outcomes</strong> across the entire organization.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Senior Business Analyst - Level 2
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: #1e40af;">
+                        <div class="killer-title" style="color: #1e40af;">
+                            <i class="fas fa-brain"></i> Enterprise Decision Architecture
+                        </div>
+                        <p>Design and own the enterprise decision framework that balances business priorities with strategic outcomes across the entire organization.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #1e40af;"><i class="fas fa-check-circle"></i> Practical Action: The Enterprise Decision Architecture Framework</div>
+                            <p>Implement the <strong>3-Pillar Decision Architecture Method</strong>: (1) Decision Mapping - identify all critical decisions across the enterprise with clear ownership, (2) Framework Design - create standardized decision criteria, process, and authority levels, (3) Value Integration - connect decisions to business outcomes and ROI metrics. Create a Decision Architecture Dashboard that visualizes decision types, quality metrics, and business impact. Before any significant decision, validate its place in the framework and document how it aligns with enterprise strategy. Track success through improved decision quality (target: 90%+), reduced decision cycle time (target: 65% reduction), and stakeholder confidence in the decision process (target: 85%+). This transforms "I need to make a decision" into "Here's how we make this type of decision consistently"—positioning you as the strategic decision architect who owns the enterprise decision framework rather than just making isolated decisions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #1e40af;">
+                        <div class="killer-title" style="color: #1e40af;">
+                            <i class="fas fa-chart-line"></i> Enterprise Value Management
+                        </div>
+                        <p>Transform traceability into enterprise value management that drives strategic investment decisions across the organization.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #1e40af;"><i class="fas fa-check-circle"></i> Practical Action: The Enterprise Value Management Framework</div>
+                            <p>Transform traceability from a compliance exercise to an enterprise value management system with the <strong>Value-Driven Traceability Method</strong>: (1) Value Mapping - connect requirements to specific business outcomes with ROI metrics, (2) Investment Analysis - calculate cost/benefit for requirement changes, (3) Strategic Visualization - highlight high-value requirements across the enterprise, (4) Decision Integration - use traceability data to inform investment decisions. Create an Enterprise Value Dashboard that shows requirements by business outcome, ROI potential, and implementation status across all projects. Before any requirement change, analyze its enterprise impact on scope, timeline, and cost using standardized ROI calculations. Track success through increased stakeholder use of traceability for investment decisions (target: 90% adoption), reduced change-related delays (target: 70% reduction), and improved ROI visibility (target: 85%+). This transforms "I need to update the RTM" into "Here's the enterprise impact of this change with ROI analysis"—making traceability a strategic investment tool rather than just a process requirement.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #1e40af;">
+                        <div class="killer-title" style="color: #1e40af;">
+                            <i class="fas fa-puzzle-piece"></i> Solution Architecture Partnership
+                        </div>
+                        <p>Partner with Solution Architects to transform business needs into practical, innovative solutions that deliver enterprise value.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #1e40af;"><i class="fas fa-check-circle"></i> Practical Action: The Architecture Partnership Framework</div>
+                            <p>Transform the BA/SA relationship from separate functions to integrated partnership with the <strong>Solution Co-Creation Method</strong>: (1) Joint Discovery - conduct requirements and architecture analysis together, (2) Constraint Integration - build business constraints into architecture decisions and vice versa, (3) Value Validation - jointly validate solutions against business outcomes, (4) Innovation Facilitation - create structured opportunities for cross-domain innovation. Establish Architecture Partnership Working Sessions that bring BAs and SAs together at key decision points with clear agendas focused on business value. Before any solution design, prepare joint analysis documents that integrate business needs and technical constraints. Track success through improved solution quality (target: 85%+), reduced solution rework (target: 75% reduction), and increased innovation rate (target: 70%+). This transforms "I need to discuss this with the architect" into "Here's our joint business-technical analysis with innovation opportunities"—creating a true partnership that delivers practical, innovative solutions.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(30, 64, 175, 0.05); border-radius: 8px; padding: 1.25rem; border: 1px solid #bfdbfe;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e40af; margin-bottom: 0.75rem;">
+                        <i class="fas fa-dna"></i> The Senior Business Analyst - Level 2 Growth Checklist
+                    </h4>
+                    <p>Use this weekly to build enterprise value architecture habits:</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.75rem; line-height: 1.7; color: #0f172a;">
+                        <li><strong>Decision framework:</strong> Document and socialize 2+ decision criteria improvements</li>
+                        <li><strong>Value management:</strong> Analyze enterprise impact for 3+ requirement changes</li>
+                        <li><strong>Architecture partnership:</strong> Conduct 2+ joint BA/SA working sessions</li>
+                        <li><strong>Cross-functional leadership:</strong> Resolve 2+ enterprise-level conflicts</li>
+                    </ol>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #334155;">
+                        This checklist transforms passive requirement ownership into active enterprise value architecture—the hallmark of exceptional Senior Business Analyst - Level 2.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #bfdbfe; border-radius: 8px; padding: 1.25rem; border-left: 4px solid #1e40af;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e40af; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lightbulb"></i> Pro Tip: The DECISION Framework
+                    </h4>
+                    <p>When designing any enterprise decision framework, always use the <strong>DECISION</strong> framework:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <li><strong>D</strong>ecision Type: What category of decision is this?</li>
+                        <li><strong>E</strong>nterprise Impact: How does this affect the broader organization?</li>
+                        <li><strong>C</strong>riteria: What specific metrics will determine the right choice?</li>
+                        <li><strong>I</strong>nfluencers: Who needs to be involved in the decision process?</li>
+                        <li><strong>S</strong>cope: What constraints define the boundaries of this decision?</li>
+                        <li><strong>I</strong>mplementation: How will the decision be executed and monitored?</li>
+                        <li><strong>O</strong>wnership: Who has final decision authority?</li>
+                        <li><strong>N</strong>ext Steps: What follow-up is needed after the decision is made?</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This transforms "I need to make a decision" into "Here's how we make this type of decision consistently"—making you an enterprise value architect rather than just a business analyst.</p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #dbeafe; border-radius: 8px; padding: 1.25rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e40af; margin-bottom: 0.75rem;">
+                        <i class="fas fa-chart-pie"></i> Current Industry Best Practices (Q2 2024)
+                    </h4>
+                    
+                    <div class="best-practices-grid">
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-brain"></i> Enterprise Decision Architecture
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">A 2024 Gartner study found that organizations with formal decision frameworks experience 52% fewer project delays compared to those without. The most effective frameworks include clear decision criteria, ownership models, and value metrics, transforming decision-making from an ad-hoc process to a strategic capability that drives consistent outcomes across the enterprise.</p>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-chart-line"></i> Enterprise Value Management
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Forrester's 2024 research shows that BAs who implement value-driven traceability achieve 45% higher ROI on technology investments. The key differentiator is connecting requirements to specific ROI metrics and using traceability data to inform investment decisions, transforming traceability from a compliance exercise to a strategic value management tool.</p>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-puzzle-piece"></i> Architecture Partnership
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">A PMI study (Q2 2024) revealed that organizations with strong BA/SA partnerships experience 70% higher innovation rates. The most impactful partnerships involve joint discovery sessions, integrated constraint analysis, and co-creation of solution validation criteria, creating practical, innovative solutions that deliver maximum business value.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; background: #93c5fd; border-radius: 8px; padding: 1rem;">
+                        <p style="font-style: italic; color: #1e40af; margin: 0;">
+                            <strong>Practical Implementation Tip:</strong> Start with a Decision Architecture Assessment. For your next major project decision, document: 1) Decision type and category, 2) Enterprise impact across business units, 3) Clear decision criteria with metrics, 4) Ownership model with escalation path. Share this with stakeholders and track how it impacts decision quality and speed. This builds your enterprise decision architecture skills while demonstrating immediate value.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="strategic-focus" style="margin-top: 2rem; background: rgba(30, 64, 175, 0.05); border-left-color: #1e40af;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e40af; margin-bottom: 0.75rem;">
+                        <i class="fas fa-cogs"></i> Senior Business Analyst - Level 2 Enterprise Value Architecture Guide
+                    </h4>
+                    
+                    <p>Building strong enterprise value architecture skills at Senior Business Analyst - Level 2 requires specific mindset shifts. Use this guide to navigate the transition successfully:</p>
+                    
+                    <div style="margin-top: 1rem; background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #dbeafe;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-exchange-alt"></i> From Requirements Owner to Enterprise Value Architect
+                        </h5>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                            <div>
+                                <h6 style="color: #3b82f6; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-ban"></i> What to Stop
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Viewing decisions as isolated project requirements</li>
+                                    <li>Treating traceability as a compliance exercise</li>
+                                    <li>Working with architects as separate functions</li>
+                                    <li>Focusing only on immediate business priorities</li>
+                                    <li>Documenting requirements without enterprise context</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h6 style="color: #3b82f6; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-arrow-circle-right"></i> What to Start
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Designing enterprise decision frameworks</li>
+                                    <li>Using traceability for investment decisions</li>
+                                    <li>Co-creating solutions with architects</li>
+                                    <li>Balancing immediate needs with enterprise strategy</li>
+                                    <li>Documenting requirements with enterprise impact</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #dbeafe;">
+                            <h6 style="color: #3b82f6; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-rocket"></i> Critical Enterprise Value Architecture Milestones
+                            </h6>
+                            <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                <li><strong>Month 1-2:</strong> Master enterprise decision framework with 85%+ adoption</li>
+                                <li><strong>Month 3-4:</strong> Implement value-driven traceability across projects</li>
+                                <li><strong>Month 5-6:</strong> Establish architecture partnership with measurable impact</li>
+                                <li><strong>Month 7-12:</strong> Transition to Associate Business Analyst Lead responsibilities with lead supervision</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2.5rem; background: #dbeafe; border-radius: 12px; padding: 1.5rem; border: 1px solid #a5b4fc;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e40af; margin-bottom: 1rem;">
+                        <i class="fas fa-star"></i> Senior Business Analyst - Level 2 Enterprise Value Architecture Playbook
+                    </h4>
+                    
+                    <p style="margin-bottom: 1rem; color: #0f172a;">Here's how to accelerate your growth as a Senior Business Analyst - Level 2 using current industry best practices:</p>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #a5b4fc; margin-bottom: 1.25rem;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-brain"></i> The Enterprise Decision Architecture Technique
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Move beyond making decisions to designing the enterprise decision framework:</p>
+                        
+                        <div style="background: #dbeafe; border-radius: 6px; padding: 1rem; margin-bottom: 0.75rem;">
+                            <ol style="margin-left: 1.5rem; line-height: 1.7; color: #1e40af;">
+                                <li><strong>Decision Mapping:</strong> "What types of decisions do we need to make consistently across the enterprise?"</li>
+                                <li><strong>Framework Design:</strong> "What criteria, process, and ownership model will ensure high-quality decisions?"</li>
+                                <li><strong>Value Integration:</strong> "How do we connect decisions to business outcomes and ROI metrics?"</li>
+                                <li><strong>Implementation:</strong> "How will we socialize, train, and adopt this framework across the organization?"</li>
+                                <li><strong>Continuous Improvement:</strong> "How will we measure and improve decision quality over time?"</li>
+                            </ol>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Example: A Senior Business Analyst - Level 2 at a global manufacturing company implemented this technique to address chronic decision delays. By creating a standardized decision framework with clear criteria for investment decisions, they reduced decision cycle time by 68% and improved ROI on technology investments by 47%. The framework was adopted enterprise-wide, positioning the BA as a strategic decision architect who transformed how the organization made investment choices—moving from reactive decisions to strategic decision architecture.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #a5b4fc; margin-bottom: 1.25rem;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-chart-line"></i> The Enterprise Value Management Method
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Transform traceability from a compliance exercise to enterprise value management:</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 0.75rem;">
+                            <div style="background: #dbeafe; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #1e40af; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-money-bill-wave"></i> Value Mapping
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Connect requirements to specific business outcomes with measurable ROI metrics. Document expected vs. actual value delivery.</p>
+                            </div>
+                            
+                            <div style="background: #dbeafe; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #1e40af; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-exchange-alt"></i> Investment Analysis
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Calculate cost/benefit for requirement changes using standardized ROI formulas. Show net impact on enterprise value.</p>
+                            </div>
+                            
+                            <div style="background: #dbeafe; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #1e40af; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-chart-pie"></i> Strategic Visualization
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Create dashboards that highlight high-value requirements across the enterprise. Use color coding for value potential and implementation status.</p>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Tip: Develop an Enterprise Value Scorecard that tracks requirements by business outcome, ROI potential, and implementation status across all projects. Include metrics showing expected vs. actual business value delivered. Present this during leadership meetings to focus discussions on enterprise value rather than project details. This transforms "I need to update the RTM" into "Here's the enterprise impact of our investments with ROI analysis"—positioning you as the enterprise value architect who drives strategic investment decisions rather than just managing requirements.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #a5b4fc;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-puzzle-piece"></i> The Architecture Partnership Framework
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Transform the BA/SA relationship from separate functions to integrated partnership:</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 0.75rem;">
+                            <div>
+                                <h6 style="color: #1e40af; margin-bottom: 0.5rem;">The Joint Discovery Process</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #334155;">
+                                    <li>Conduct joint requirements and architecture analysis sessions</li>
+                                    <li>Document business needs and technical constraints together</li>
+                                    <li>Create integrated solution options with pros/cons</li>
+                                    <li>Validate solutions against business outcomes jointly</li>
+                                    <li>Identify innovation opportunities through cross-pollination</li>
+                                    <li>Track joint decisions and rationale in shared repository</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 style="color: #1e40af; margin-bottom: 0.5rem;">The Partnership Success Metrics</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #334155;">
+                                    <li>Solution quality score (target: 85%+)</li>
+                                    <li>Solution rework reduction (target: 75%+)</li>
+                                    <li>Innovation rate (target: 70%+)</li>
+                                    <li>Architecture adoption rate (target: 90%+)</li>
+                                    <li>Cross-functional satisfaction (target: 85%+)</li>
+                                    <li>Time-to-value improvement (target: 65%+)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #1e40af;"></div>
+                            <div class="progress-text">Establish joint discovery sessions for key projects</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #1e40af;"></div>
+                            <div class="progress-text">Create shared analysis templates for business-technical integration</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #1e40af;"></div>
+                            <div class="progress-text">Develop joint validation criteria for solution acceptance</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #1e40af;"></div>
+                            <div class="progress-text">Measure and report on partnership success metrics</div>
+                        </div>
+                        
+                        <p style="margin-top: 1rem; color: #334155; font-style: italic;">Example: A financial services company implemented this framework for Senior Business Analyst - Level 2, resulting in a 78% increase in solution quality and 72% reduction in solution rework. The partnership created a culture of co-creation where business needs and technical constraints were addressed simultaneously, leading to innovative solutions that delivered 35% faster time-to-value. BAs were recognized as strategic partners in solution design rather than just requirements gatherers, positioning them for leadership roles in business-technology strategy.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including Enterprise Decision Architecture, Value Management, and Architecture Partnership for senior business analysts.</p>
+            </footer> -->
+        </div>
+    </div>
+</body>
+</html>

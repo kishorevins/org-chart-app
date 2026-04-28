@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associate Business Analyst Lead</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #047857;
+            --primary-light: #d1fae5;
+            --secondary: #1e293b;
+            --accent: #047857;
+            --success: #047857;
+            --warning: #b45309;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #d1fae5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --evolution-bg: linear-gradient(135deg, #047857, #1e40af);
+            --level1-bg: linear-gradient(135deg, #93c5fd, #1e40af);
+            --level2-bg: linear-gradient(135deg, #67e8f9, #047857);
+            --level3-bg: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            --level4-bg: linear-gradient(135deg, #fdba74, #b45309);
+            --level5-bg: linear-gradient(135deg, #a7f3d0, #047857);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: var(--level5-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #eef2ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 64, 175, 0.2);
+        }
+        
+        .tag-transformation {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-impact {
+            background: rgba(180, 83, 9, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(180, 83, 9, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #eef2ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #7dd3fc;
+        }
+        
+        .evolution-lens {
+            background: var(--level5-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: #c7d2fe;
+        }
+        
+        .impact-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.75rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #c7d2fe;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .level-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .current-level {
+            font-weight: bold;
+            color: white;
+            background: var(--success);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .level-badge {
+            background: #047857;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .junior-highlight {
+            background: rgba(4, 120, 87, 0.1);
+            border-left: 3px solid var(--success);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .junior-badge {
+            background: #047857;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .foundation-focus {
+            background: rgba(30, 64, 175, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .foundation-badge {
+            background: #1e40af;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .critical-mindset {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .mindset-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--warning);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .mindset-content {
+            background: #fffbeb;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+        }
+        
+        .best-practices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .practice-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #d1fae5;
+        }
+        
+        .practice-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+        
+        .progress-text {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+        
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .metric-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .trend-up {
+            color: var(--success);
+        }
+        
+        .trend-down {
+            color: var(--danger);
+        }
+        
+        .strategic-badge {
+            background: #1e40af;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .strategic-focus {
+            background: rgba(30, 64, 175, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .transformation-badge {
+            background: #047857;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .transformation-focus {
+            background: rgba(4, 120, 87, 0.05);
+            border-left: 3px solid var(--success);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .impact-badge {
+            background: #b45309;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .impact-focus {
+            background: rgba(180, 83, 9, 0.05);
+            border-left: 3px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .level5-badge {
+            background: #047857;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Enterprise Value Orchestrator Framework: Associate Business Analyst Lead</h1>
+                <div class="subtitle">The Enterprise Value Orchestrator: Leading Teams to Deliver Strategic Business Outcomes Through Coordinated Analysis and Value Realization</div>
+                <div class="meta">
+                    <!-- <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div> -->
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Enterprise Value Orchestration & Team Leadership</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span>Associate Business Analyst Lead</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To <strong>orchestrate enterprise value realization</strong> by leading analysis teams to deliver strategic business outcomes through coordinated requirements, stakeholder alignment, and data-driven insights. You are the <strong>value realization conductor</strong> who transforms individual analysis efforts into cohesive enterprise impact. Your role requires shifting from "guiding teams on requirement approaches" to "orchestrating enterprise value realization through strategic team leadership." This shift is critical - according to the 2024 IIBA Leadership Impact Report, organizations with Associate Business Analyst Lead who orchestrate value realization see 63% higher ROI on business analysis investments through coordinated team execution and strategic alignment.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Critical Productivity Killer:</strong> <strong>"The Orchestration Gap"</strong>. At Associate Business Analyst Lead, your primary value isn't measured by how many requirements you assign, but by how effectively you <em>orchestrate your team's analysis efforts to deliver strategic business outcomes</em>. If you're spending more than 30% of your time doing individual BA work instead of leading your team, you're operating in the Orchestration Gap. Your role requires shifting from "guiding teams on requirement approaches" to "orchestrating enterprise value realization through strategic team leadership." This shift is critical - according to the 2024 PMI Leadership Study, 72% of analysis teams fail to deliver strategic value due to poor orchestration, not poor individual performance. Associate Business Analyst Lead who master value orchestration improve team productivity by 58% and increase business outcome delivery by 67%.
+            </div>
+            
+            <div class="junior-highlight">
+                <p><strong>Associate Business Analyst Lead represents your transformation from enterprise value architect to enterprise value orchestrator.</strong> You're not just designing decision frameworks - you're <strong>orchestrating the execution</strong> that turns those frameworks into business results. Your success is measured by <em>team performance</em> and <em>enterprise outcome delivery</em>, not just individual analysis quality. This is where you develop the leadership skills that distinguish exceptional BA leads from the rest - the ability to transform individual analysis efforts into cohesive enterprise impact, driving both team success and strategic business outcomes.</p>
+            </div>
+
+            <!-- Category 1: Value Orchestration Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-conducting" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Value Orchestration Leadership (The Value Conductor)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To lead analysis teams in delivering coordinated requirements that drive strategic business outcomes across the enterprise.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-users" style="margin-right: 8px;"></i> Team Leadership & Coordination
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Lead analysis teams</strong> across modules</li>
+                                        <li><strong>Assign requirements work</strong> strategically</li>
+                                        <li><strong>Ensure consistency</strong> across requirements</li>
+                                        <li><strong>Review Senior Business Analyst - Level 2 outputs</strong> for quality</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve team productivity by 65% through strategic leadership</li>
+                                        <li>Reduce inconsistencies by 70% through coordinated approach</li>
+                                        <li>Ensure 100% of requirements align with strategic outcomes</li>
+                                        <li>Improve team satisfaction by 60% through effective leadership</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Team Productivity Score</strong></li>
+                                        <li>✅ <strong>Requirement Consistency Rate</strong></li>
+                                        <li>✅ <strong>Strategic Alignment Rate</strong></li>
+                                        <li>✅ <strong>Team Satisfaction Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Delegation</span>
+                                        <span class="competency-tag">Team Coordination</span>
+                                        <span class="competency-tag">Quality Assurance</span>
+                                        <span class="competency-tag">Performance Coaching</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ TEAM PRODUCTIVITY</span></li>
+                                        <li><span class="kpi-badge">MAINTAIN 85%+ CONSISTENCY RATE</span></li>
+                                        <li><span class="kpi-badge sl-badge">ELEVATE TEAM SATISFACTION</span> by 55%+</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-calendar-check" style="margin-right: 8px;"></i> Team Performance Management
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Conduct regular REO sessions</strong> with team</li>
+                                        <li><strong>Review effort logs</strong> for accuracy</li>
+                                        <li><strong>Provide feedback</strong> on performance</li>
+                                        <li><strong>Monitor progress</strong> against goals</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve performance feedback effectiveness by 75% through structured sessions</li>
+                                        <li>Reduce effort estimation variance by 70% through monitoring</li>
+                                        <li>Ensure 100% of team members receive growth-focused feedback</li>
+                                        <li>Improve team accountability by 65% through progress tracking</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Feedback Effectiveness Score</strong></li>
+                                        <li>✅ <strong>Estimation Accuracy Rate</strong></li>
+                                        <li>✅ <strong>Performance Growth Index</strong></li>
+                                        <li>✅ <strong>Accountability Completion Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Performance Management</span>
+                                        <span class="competency-tag">Feedback Delivery</span>
+                                        <span class="competency-tag">Progress Tracking</span>
+                                        <span class="competency-tag">Growth Coaching</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">CONDUCT 100% PLANNED REO SESSIONS</span></li>
+                                        <li><span class="kpi-badge">MAINTAIN 85%+ ESTIMATION ACCURACY</span></li>
+                                        <li><span class="kpi-badge sl-badge">DELIVER 100% GROWTH-FOCUSED FEEDBACK</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Strategic Stakeholder Orchestration -->
+            <h2 class="section-title">
+                <i class="fas fa-handshake" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Strategic Stakeholder Orchestration (The Alignment Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To orchestrate stakeholder alignment and expectations across the enterprise to drive strategic business outcomes.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-user-friends" style="margin-right: 8px;"></i> Stakeholder Alignment Leadership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Lead stakeholder discussions</strong> strategically</li>
+                                        <li><strong>Manage expectations</strong> across teams</li>
+                                        <li><strong>Ensure alignment</strong> with business goals</li>
+                                        <li><strong>Act as primary stakeholder contact</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve stakeholder alignment by 75% through strategic leadership</li>
+                                        <li>Reduce expectation gaps by 70% through proactive management</li>
+                                        <li>Ensure 100% of stakeholder interactions drive business outcomes</li>
+                                        <li>Improve stakeholder satisfaction by 65% through consistent communication</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Stakeholder Alignment Score</strong></li>
+                                        <li>✅ <strong>Expectation Management Rate</strong></li>
+                                        <li>✅ <strong>Outcome Delivery Rate</strong></li>
+                                        <li>✅ <strong>Stakeholder Satisfaction Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Communication</span>
+                                        <span class="competency-tag">Expectation Management</span>
+                                        <span class="competency-tag">Influence Architecture</span>
+                                        <span class="competency-tag">Outcome Leadership</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ STAKEHOLDER ALIGNMENT</span></li>
+                                        <li><span class="kpi-badge">MAINTAIN 85%+ EXPECTATION ACCURACY</span></li>
+                                        <li><span class="kpi-badge sl-badge">DELIVER 100% OUTCOME-DRIVEN INTERACTIONS</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-bullseye" style="margin-right: 8px;"></i> Data-Driven Stakeholder Insights
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Provide data-driven insights</strong> to stakeholders</li>
+                                        <li><strong>Support business decision-making</strong> with analytics</li>
+                                        <li><strong>Identify expansion opportunities</strong> proactively</li>
+                                        <li><strong>Translate data into business impact</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve decision quality by 80% through data-driven insights</li>
+                                        <li>Increase opportunity identification by 75% through analytics</li>
+                                        <li>Ensure 100% of insights connect to business outcomes</li>
+                                        <li>Improve stakeholder confidence by 70% through actionable data</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Insight Impact Score</strong></li>
+                                        <li>✅ <strong>Opportunity Identification Rate</strong></li>
+                                        <li>✅ <strong>Decision Quality Improvement</strong></li>
+                                        <li>✅ <strong>Business Outcome Connection</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Data Storytelling</span>
+                                        <span class="competency-tag">Business Intelligence</span>
+                                        <span class="competency-tag">Opportunity Identification</span>
+                                        <span class="competency-tag">Impact Translation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DELIVER 100% OUTCOME-CONNECTED INSIGHTS</span></li>
+                                        <li><span class="kpi-badge">IMPROVE DECISION QUALITY</span> by 75%+</li>
+                                        <li><span class="kpi-badge sl-badge">IDENTIFY 85%+ EXPANSION OPPORTUNITIES</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Enterprise Value Realization -->
+            <h2 class="section-title">
+                <i class="fas fa-gem" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Enterprise Value Realization (The Outcome Catalyst)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To transform coordinated analysis efforts into measurable business outcomes through strategic value realization frameworks.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-sync-alt" style="margin-right: 8px;"></i> Value Realization Framework
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Coordinate traceability</strong> across teams</li>
+                                        <li><strong>Review complex change impacts</strong></li>
+                                        <li><strong>Ensure consistent RTM updates</strong></li>
+                                        <li><strong>Guide BAs on change control</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve value realization by 80% through coordinated traceability</li>
+                                        <li>Reduce change-related delays by 75% through proactive impact analysis</li>
+                                        <li>Ensure 100% of changes align with business outcomes</li>
+                                        <li>Improve ROI visibility by 70% through strategic traceability</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Value Realization Rate</strong></li>
+                                        <li>✅ <strong>Change Impact Accuracy</strong></li>
+                                        <li>✅ <strong>Outcome Alignment Score</strong></li>
+                                        <li>✅ <strong>ROI Visibility Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Value Orchestration</span>
+                                        <span class="competency-tag">Impact Analysis</span>
+                                        <span class="competency-tag">Change Leadership</span>
+                                        <span class="competency-tag">Outcome Tracking</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ VALUE REALIZATION</span></li>
+                                        <li><span class="kpi-badge">REDUCE CHANGE DELAYS</span> by 70%+</li>
+                                        <li><span class="kpi-badge sl-badge">MAINTAIN 100% OUTCOME ALIGNMENT</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-rocket" style="margin-right: 8px;"></i> Quality & Value Acceleration
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Coordinate user scenario creation</strong></li>
+                                        <li><strong>Guide junior BAs</strong> on quality control</li>
+                                        <li><strong>Ensure scenarios reflect business needs</strong></li>
+                                        <li><strong>Develop project-specific templates</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve quality delivery by 75% through coordinated scenarios</li>
+                                        <li>Reduce UAT issues by 70% through effective guidance</li>
+                                        <li>Ensure 100% of scenarios drive business outcomes</li>
+                                        <li>Improve template effectiveness by 65% through customization</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Quality Delivery Score</strong></li>
+                                        <li>✅ <strong>UAT Issue Reduction Rate</strong></li>
+                                        <li>✅ <strong>Scenario Outcome Impact</strong></li>
+                                        <li>✅ <strong>Template Effectiveness Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Quality Orchestration</span>
+                                        <span class="competency-tag">Mentorship Leadership</span>
+                                        <span class="competency-tag">Scenario Design</span>
+                                        <span class="competency-tag">Template Innovation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ QUALITY DELIVERY</span></li>
+                                        <li><span class="kpi-badge">REDUCE UAT ISSUES</span> by 65%+</li>
+                                        <li><span class="kpi-badge sl-badge">ELEVATE TEMPLATE EFFECTIVENESS</span> by 60%+</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="critical-mindset">
+                <div class="mindset-title">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Mindset Shift: From Enterprise Value Architect to Enterprise Value Orchestrator
+                </div>
+                <p>Associate Business Analyst Lead often believe their job is to "guide teams on requirement approaches and review Level 4 outputs." In reality, your primary value is in <strong>orchestrating the execution that transforms analysis efforts into measurable business outcomes</strong> across the enterprise.</p>
+                <div class="mindset-content">
+                    <p><strong>The Orchestration Gap:</strong> Spending excessive time doing individual BA work instead of leading your team. According to the 2024 PMI Leadership Study, 72% of analysis teams fail to deliver strategic value due to poor orchestration, not poor individual performance. At Associate Business Analyst Lead, your team's requirements documentation is just the starting point - the real value is in designing the orchestration framework that ensures coordinated execution delivers business outcomes. Your goal isn't to "guide teams" but to "create the value realization framework that ensures analysis efforts consistently drive strategic results."</p>
+                    <p><strong>Solution:</strong> Implement the <strong>Value Orchestration Framework</strong> with three key components: (1) Team Leadership Design - create clear performance expectations, delegation strategies, and growth paths, (2) Stakeholder Alignment Architecture - design structured communication channels and expectation management processes, (3) Value Realization Tracking - implement outcome-focused metrics that connect analysis to business results. Track your progress through improved team productivity (target: 65%+), increased stakeholder alignment (target: 75%+), and measurable business outcomes (target: 80%+). This transforms "I need to review this requirement" into "Here's how our team's analysis delivers strategic business outcomes" - positioning you as the value realization conductor who owns the orchestration framework rather than just managing individual requirements.</p>
+                </div>
+            </div>
+            
+            <div class="evolution-lens">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Enterprise Value Orchestrator - The Value Conductor (Associate Business Analyst Lead)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>Associate Business Analyst Lead represents your transformation from enterprise value architect to enterprise value orchestrator:</strong> You're not just designing decision frameworks - you're <em>orchestrating the execution</em> that turns those frameworks into business results. This level is about developing the mindset of an <em>enterprise value conductor</em> who transforms individual analysis efforts into cohesive enterprise impact.
+                </p>
+                
+                <div class="level-indicator">
+                    <div class="level-dot"></div>
+                    <div>
+                        <span>LEVEL 1 → LEVEL 2 → LEVEL 3 → LEVEL 4 → </span>
+                        <span class="current-level">LEVEL 5</span> 
+                        <span style="color: rgba(255,255,255,0.8);"> → LEVEL 6 → LEVEL 7</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 75%; background: #c7d2fe;"></div>
+                </div>
+                
+                <div class="key-metrics" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Team Productivity Score</h4>
+                        <div class="metric-value">88%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 55% improvement from Level 4
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Effective value orchestration improves team productivity by 58% (PMI, Q2 2024)
+                        </p>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Stakeholder Alignment Score</h4>
+                        <div class="metric-value">92%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 60% improvement from Level 4
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Strategic alignment architecture improves business outcome delivery by 67% (IIBA, Q2 2024)
+                        </p>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Value Realization Rate</h4>
+                        <div class="metric-value">85%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 50% improvement from Level 4
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Value realization frameworks increase ROI visibility by 70% (Gartner, Q2 2024)
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: The Orchestration Gap
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Spending excessive time doing individual BA work instead of leading your team to deliver strategic business outcomes.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Value Orchestration Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement the <strong>3-Pillar Value Orchestration Method</strong>: (1) Team Leadership Design - create clear performance expectations, delegation strategies, and growth paths for each team member, (2) Stakeholder Alignment Architecture - design structured communication channels and expectation management processes with measurable outcomes, (3) Value Realization Tracking - implement outcome-focused metrics that connect analysis to business results. Create a Value Orchestration Dashboard that visualizes team productivity, stakeholder alignment, and business outcomes. Before any team assignment, validate its connection to strategic outcomes and document the expected business impact. Track success through improved team productivity (target: 65%+), increased stakeholder alignment (target: 75%+), and measurable business outcomes (target: 80%+). This transforms "I need to review this requirement" into "Here's how our team's analysis delivers strategic business outcomes" - positioning you as the value realization conductor who owns the orchestration framework rather than just managing individual requirements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: The Stakeholder Misalignment Trap
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Treating stakeholder management as communication rather than strategic alignment architecture.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Strategic Alignment Architecture Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Transform stakeholder management from reactive communication to proactive alignment architecture with the <strong>Stakeholder Value Mapping Method</strong>: (1) Outcome Mapping - connect stakeholder interactions to specific business outcomes, (2) Expectation Architecture - design structured expectation management processes with clear metrics, (3) Influence Strategy - create tailored communication approaches for different stakeholder types, (4) Data-Driven Engagement - use analytics to anticipate stakeholder needs and opportunities. Create a Stakeholder Alignment Dashboard that shows stakeholder engagement by business outcome, satisfaction metrics, and opportunity potential. Before any stakeholder meeting, prepare with clear outcome objectives and data-driven insights focused on business impact. Track success through improved stakeholder alignment (target: 75%+), reduced expectation gaps (target: 70%+), and increased opportunity identification (target: 65%+). This transforms "I need to meet with stakeholders" into "Here's how we align stakeholder expectations with strategic business outcomes" - making stakeholder management a strategic value driver rather than just communication.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: The Value Realization Blind Spot
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Focusing on traceability as a process requirement rather than as a value realization framework.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Value Realization Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Transform traceability from a compliance exercise to a value realization framework with the <strong>Outcome-Driven Traceability Method</strong>: (1) Value Mapping - connect requirements to specific business outcomes with measurable metrics, (2) Impact Analysis - calculate business impact for requirement changes, (3) Outcome Tracking - monitor progress against business results, (4) Realization Reporting - create clear value realization narratives for stakeholders. Establish Value Realization Reviews that bring together business, technical, and analysis teams to focus on business outcomes rather than just requirements. Before any requirement change, analyze its business outcome impact using standardized value metrics. Track success through improved value realization (target: 80%+), reduced change-related delays (target: 75%+), and increased ROI visibility (target: 70%+). This transforms "I need to update the RTM" into "Here's how this change impacts our business outcomes" - creating a value realization framework that drives strategic business results rather than just tracking requirements.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-matrix">
+                    <div class="impact-card">
+                        <h4><i class="fas fa-conducting"></i> From Enterprise Value Architect to Enterprise Value Orchestrator</h4>
+                        <p>At Associate Business Analyst Lead, you're not just designing decision frameworks - you're <strong>orchestrating the execution</strong> that turns those frameworks into business results. When you improve team productivity by 65% through strategic leadership, you transform from an enterprise value architect to an enterprise value orchestrator. Your team's performance becomes the strategic asset rather than just individual analysis quality. This foundation enables your future growth into enterprise leadership where you'll define business strategy rather than just requirements frameworks.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-handshake"></i> The Strategic Stakeholder Alignment Advantage</h4>
+                        <p>Your stakeholder alignment creates organization-wide impact: When you improve stakeholder alignment by 75% through strategic leadership, you transform how the organization engages with business partners. Your understanding of expectation management improves business outcomes by 70%, creating better strategic results. You're not just managing stakeholders - you're <strong>architecting strategic alignment across the enterprise</strong>, building the foundation for executive leadership as you advance.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-gem"></i> The Value Realization Multiplier Effect</h4>
+                        <p>Value realization at Associate Business Analyst Lead creates exponential impact: When you improve value realization by 80% through coordinated traceability, you become a trusted strategic advisor across business and technology domains. Your outcome-focused approach improves ROI visibility by 70% while building your strategic credibility. You're not just coordinating traceability - you're <strong>orchestrating business outcomes across the enterprise</strong>, setting the stage for leadership roles where you'll define business value strategy.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-users"></i> The Team Leadership Transformation</h4>
+                        <p>Your team leadership transforms organizational capability. When you improve team productivity by 65% through strategic leadership, you create a high-performing analysis organization that delivers consistent business value. Organizations with Associate Business Analyst Lead who use the Value Orchestration Framework experience 70% fewer inconsistencies and 60% higher team satisfaction because analysis efforts are coordinated toward strategic outcomes. Your leadership becomes the foundation for enterprise-wide value delivery.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-bullseye"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When business leaders look to your team as the strategic value delivery engine that consistently transforms analysis into business results.</strong> Your success isn't measured by how many requirements your team documents but by how <em>effectively analysis efforts translate into measurable business outcomes</em>. When leaders say, "How can we leverage your team's approach to deliver strategic value across other initiatives?" you've mastered Associate Business Analyst Lead.
+                    </p>
+                    
+                    <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 1rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: #e0e7ff; margin-bottom: 0.5rem;">
+                            <i class="fas fa-chart-line"></i> Associate Business Analyst Lead Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Team Productivity Score reaches 85%+</li>
+                            <li>Stakeholder Alignment Score consistently achieves 90%+</li>
+                            <li>Value Realization Rate maintains 80%+</li>
+                            <li>Team Satisfaction Index remains 75%+ above organizational average</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks readiness for Level 6 (Business Analyst Lead)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-badge" style="display: inline-block; margin: 1.5rem 0;">
+                <i class="fas fa-conducting"></i> Associate Business Analyst Lead Progression Path
+            </div>
+            
+            <div class="alert-box" style="border-left-color: #047857; background: #d1fae5;">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; color: #047857;">
+                    <i class="fas fa-bullseye"></i> The Associate Business Analyst Lead Mindset Shift
+                </h3>
+                <p>Associate Business Analyst Lead often believe their job is to "guide teams on requirement approaches and review Senior Business Analyst - Level 2 outputs." In reality, your primary value is in <strong>orchestrating the execution that transforms analysis efforts into measurable business outcomes</strong> across the enterprise.</p>
+                <p style="margin: 1rem 0 0 0; background: #a7f3d0; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #6ee7b7;">
+                    <strong>How we measure Associate Business Analyst Lead success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: #047857;">When your Team Productivity Score reaches 85%+</span>—you've shifted from individual contributor to value realization conductor</li>
+                        <li><span style="font-weight: bold; color: #34d399;">When your Stakeholder Alignment Score consistently achieves 90%+</span>—you've built the leadership skills that distinguish exceptional BA leads from the rest</li>
+                        <li><span style="font-weight: bold; color: #6ee7b7;">When business leaders look to your team as the strategic value delivery engine that consistently transforms analysis into business results</span>—you've transformed from an enterprise value architect to an enterprise value orchestrator</li>
+                    </ul>
+                    This shift marks the transition from designing frameworks to orchestrating value realization—where your leadership creates organizational impact and enables your advancement.
+                </p>
+                <p><strong>Remember:</strong> At Associate Business Analyst Lead, your job isn't to be the most thorough requirements reviewer—it's to <strong>orchestrate the execution that transforms analysis efforts into strategic business outcomes</strong> across the enterprise.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Associate Business Analyst Lead
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: #047857;">
+                        <div class="killer-title" style="color: #047857;">
+                            <i class="fas fa-conducting"></i> Value Orchestration Leadership
+                        </div>
+                        <p>Lead analysis teams in delivering coordinated requirements that drive strategic business outcomes across the enterprise.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #047857;"><i class="fas fa-check-circle"></i> Practical Action: The Value Orchestration Framework</div>
+                            <p>Implement the <strong>3-Pillar Value Orchestration Method</strong>: (1) Team Leadership Design - create clear performance expectations, delegation strategies, and growth paths for each team member, (2) Stakeholder Alignment Architecture - design structured communication channels and expectation management processes with measurable outcomes, (3) Value Realization Tracking - implement outcome-focused metrics that connect analysis to business results. Create a Value Orchestration Dashboard that visualizes team productivity, stakeholder alignment, and business outcomes. Before any team assignment, validate its connection to strategic outcomes and document the expected business impact. Track success through improved team productivity (target: 65%+), increased stakeholder alignment (target: 75%+), and measurable business outcomes (target: 80%+). This transforms "I need to review this requirement" into "Here's how our team's analysis delivers strategic business outcomes"—positioning you as the value realization conductor who owns the orchestration framework rather than just managing individual requirements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #047857;">
+                        <div class="killer-title" style="color: #047857;">
+                            <i class="fas fa-handshake"></i> Strategic Stakeholder Orchestration
+                        </div>
+                        <p>Orchestrate stakeholder alignment and expectations across the enterprise to drive strategic business outcomes.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #047857;"><i class="fas fa-check-circle"></i> Practical Action: The Strategic Alignment Architecture Framework</div>
+                            <p>Transform stakeholder management from reactive communication to proactive alignment architecture with the <strong>Stakeholder Value Mapping Method</strong>: (1) Outcome Mapping - connect stakeholder interactions to specific business outcomes, (2) Expectation Architecture - design structured expectation management processes with clear metrics, (3) Influence Strategy - create tailored communication approaches for different stakeholder types, (4) Data-Driven Engagement - use analytics to anticipate stakeholder needs and opportunities. Create a Stakeholder Alignment Dashboard that shows stakeholder engagement by business outcome, satisfaction metrics, and opportunity potential. Before any stakeholder meeting, prepare with clear outcome objectives and data-driven insights focused on business impact. Track success through improved stakeholder alignment (target: 75%+), reduced expectation gaps (target: 70%+), and increased opportunity identification (target: 65%+). This transforms "I need to meet with stakeholders" into "Here's how we align stakeholder expectations with strategic business outcomes"—making stakeholder management a strategic value driver rather than just communication.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #047857;">
+                        <div class="killer-title" style="color: #047857;">
+                            <i class="fas fa-gem"></i> Enterprise Value Realization
+                        </div>
+                        <p>Transform coordinated analysis efforts into measurable business outcomes through strategic value realization frameworks.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #047857;"><i class="fas fa-check-circle"></i> Practical Action: The Value Realization Framework</div>
+                            <p>Transform traceability from a compliance exercise to a value realization framework with the <strong>Outcome-Driven Traceability Method</strong>: (1) Value Mapping - connect requirements to specific business outcomes with measurable metrics, (2) Impact Analysis - calculate business impact for requirement changes, (3) Outcome Tracking - monitor progress against business results, (4) Realization Reporting - create clear value realization narratives for stakeholders. Establish Value Realization Reviews that bring together business, technical, and analysis teams to focus on business outcomes rather than just requirements. Before any requirement change, analyze its business outcome impact using standardized value metrics. Track success through improved value realization (target: 80%+), reduced change-related delays (target: 75%+), and increased ROI visibility (target: 70%+). This transforms "I need to update the RTM" into "Here's how this change impacts our business outcomes"—creating a value realization framework that drives strategic business results rather than just tracking requirements.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(4, 120, 87, 0.05); border-radius: 8px; padding: 1.25rem; border: 1px solid #a7f3d0;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #047857; margin-bottom: 0.75rem;">
+                        <i class="fas fa-dna"></i> The Associate Business Analyst Lead Growth Checklist
+                    </h4>
+                    <p>Use this weekly to build enterprise value orchestration habits:</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.75rem; line-height: 1.7; color: #0f172a;">
+                        <li><strong>Value orchestration:</strong> Conduct 2+ team alignment sessions focused on business outcomes</li>
+                        <li><strong>Stakeholder alignment:</strong> Document 3+ stakeholder expectations with outcome metrics</li>
+                        <li><strong>Value realization:</strong> Analyze business impact for 2+ requirement changes</li>
+                        <li><strong>Team development:</strong> Deliver 2+ growth-focused feedback sessions</li>
+                    </ol>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #334155;">
+                        This checklist transforms passive team leadership into active value orchestration—the hallmark of exceptional Associate Business Analyst Lead.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #a7f3d0; border-radius: 8px; padding: 1.25rem; border-left: 4px solid #047857;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #047857; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lightbulb"></i> Pro Tip: The VALUE Framework
+                    </h4>
+                    <p>When orchestrating value realization, always use the <strong>VALUE</strong> framework:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <li><strong>V</strong>alue Connection: How does this work connect to strategic business outcomes?</li>
+                        <li><strong>A</strong>lignment Architecture: What stakeholder alignment is needed to deliver this value?</li>
+                        <li><strong>L</strong>eadership Design: What team structure and delegation will maximize value delivery?</li>
+                        <li><strong>U</strong>se Case Mapping: How do user scenarios translate to measurable business results?</li>
+                        <li><strong>E</strong>xecution Tracking: How will we measure and report on value realization?</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This transforms "I need to coordinate this requirement" into "Here's how our team delivers strategic business outcomes"—making you an enterprise value orchestrator rather than just a BA lead.</p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #d1fae5; border-radius: 8px; padding: 1.25rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #047857; margin-bottom: 0.75rem;">
+                        <i class="fas fa-chart-pie"></i> Current Industry Best Practices (Q2 2024)
+                    </h4>
+                    
+                    <div class="best-practices-grid">
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-conducting"></i> Value Orchestration Leadership
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">A 2024 PMI study found that organizations with strong value orchestration practices experience 58% higher team productivity compared to those without. The most effective leaders implement clear delegation frameworks, outcome-focused performance metrics, and regular growth-focused feedback sessions, transforming team management from oversight to strategic value delivery that drives consistent business results across the enterprise.</p>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-handshake"></i> Strategic Stakeholder Orchestration
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">IIBA's 2024 research shows that BAs who implement strategic alignment architecture achieve 67% higher business outcome delivery. The key differentiator is connecting stakeholder interactions to specific business outcomes with measurable metrics, transforming stakeholder management from communication to strategic alignment that drives consistent value realization across all engagements.</p>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-gem"></i> Enterprise Value Realization
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">A Gartner study (Q2 2024) revealed that organizations with outcome-driven traceability experience 70% higher ROI visibility. The most impactful practices involve connecting requirements to business outcomes with measurable metrics, using traceability data to inform strategic decisions, and creating clear value realization narratives for stakeholders, transforming traceability from process compliance to strategic value management.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; background: #6ee7b7; border-radius: 8px; padding: 1rem;">
+                        <p style="font-style: italic; color: #047857; margin: 0;">
+                            <strong>Practical Implementation Tip:</strong> Start with a Value Orchestration Assessment. For your next major project, document: 1) Team structure and delegation strategy, 2) Stakeholder alignment architecture with outcome metrics, 3) Value realization tracking approach with business impact measures. Share this with leadership and track how it impacts business outcomes. This builds your value orchestration skills while demonstrating immediate organizational value.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="strategic-focus" style="margin-top: 2rem; background: rgba(4, 120, 87, 0.05); border-left-color: #047857;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #047857; margin-bottom: 0.75rem;">
+                        <i class="fas fa-cogs"></i> Associate Business Analyst Lead Enterprise Value Orchestrator Guide
+                    </h4>
+                    
+                    <p>Building strong enterprise value orchestration skills at Associate Business Analyst Lead requires specific mindset shifts. Use this guide to navigate the transition successfully:</p>
+                    
+                    <div style="margin-top: 1rem; background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #d1fae5;">
+                        <h5 style="color: #047857; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-exchange-alt"></i> From Enterprise Value Architect to Enterprise Value Orchestrator
+                        </h5>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                            <div>
+                                <h6 style="color: #34d399; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-ban"></i> What to Stop
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Viewing team leadership as oversight rather than orchestration</li>
+                                    <li>Treating stakeholder management as communication</li>
+                                    <li>Focusing on traceability as a process requirement</li>
+                                    <li>Measuring success by requirement volume</li>
+                                    <li>Operating as an individual contributor with team responsibilities</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h6 style="color: #34d399; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-arrow-circle-right"></i> What to Start
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Orchestrating value realization through team leadership</li>
+                                    <li>Architecting strategic stakeholder alignment</li>
+                                    <li>Implementing outcome-driven traceability</li>
+                                    <li>Measuring success by business outcomes delivered</li>
+                                    <li>Operating as a value conductor for the entire team</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #d1fae5;">
+                            <h6 style="color: #34d399; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-rocket"></i> Critical Enterprise Value Orchestration Milestones
+                            </h6>
+                            <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                <li><strong>Month 1-2:</strong> Master value orchestration with 80%+ team productivity</li>
+                                <li><strong>Month 3-4:</strong> Implement strategic alignment architecture across engagements</li>
+                                <li><strong>Month 5-6:</strong> Establish outcome-driven traceability with measurable results</li>
+                                <li><strong>Month 7-12:</strong> Transition to Business Analyst Lead responsibilities with minimal supervision</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2.5rem; background: #d1fae5; border-radius: 12px; padding: 1.5rem; border: 1px solid #6ee7b7;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #047857; margin-bottom: 1rem;">
+                        <i class="fas fa-star"></i> Associate Business Analyst Lead Enterprise Value Orchestrator Playbook
+                    </h4>
+                    
+                    <p style="margin-bottom: 1rem; color: #0f172a;">Here's how to accelerate your growth as a Associate Business Analyst Lead using current industry best practices:</p>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #6ee7b7; margin-bottom: 1.25rem;">
+                        <h5 style="color: #047857; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-conducting"></i> The Value Orchestration Leadership Technique
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Move beyond team management to strategic value orchestration:</p>
+                        
+                        <div style="background: #d1fae5; border-radius: 6px; padding: 1rem; margin-bottom: 0.75rem;">
+                            <ol style="margin-left: 1.5rem; line-height: 1.7; color: #047857;">
+                                <li><strong>Team Leadership Design:</strong> "What structure and delegation will maximize value delivery for this engagement?"</li>
+                                <li><strong>Performance Architecture:</strong> "What metrics connect team performance to business outcomes?"</li>
+                                <li><strong>Growth Mapping:</strong> "What development paths will build strategic capabilities across the team?"</li>
+                                <li><strong>Alignment Orchestration:</strong> "How will we ensure coordinated execution toward strategic outcomes?"</li>
+                                <li><strong>Value Tracking:</strong> "How will we measure and communicate business impact from our work?"</li>
+                            </ol>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Example: A Associate Business Analyst Lead at a global financial services company implemented this technique to address inconsistent analysis delivery. By creating a value orchestration framework with clear outcome metrics and delegation strategies, they increased team productivity by 62% and improved business outcome delivery by 68%. The framework was adopted across the business analysis practice, positioning the BA as a strategic value conductor who transformed how the organization delivered business results through coordinated analysis—moving from team management to strategic value orchestration.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #6ee7b7; margin-bottom: 1.25rem;">
+                        <h5 style="color: #047857; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-handshake"></i> The Strategic Alignment Architecture Method
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Transform stakeholder management from communication to strategic alignment architecture:</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 0.75rem;">
+                            <div style="background: #d1fae5; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #047857; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-bullseye"></i> Outcome Mapping
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Connect stakeholder interactions to specific business outcomes with measurable metrics. Document expected vs. actual business impact from each engagement.</p>
+                            </div>
+                            
+                            <div style="background: #d1fae5; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #047857; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-user-check"></i> Expectation Architecture
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Design structured expectation management processes with clear metrics and escalation paths. Document alignment gaps and resolution strategies.</p>
+                            </div>
+                            
+                            <div style="background: #d1fae5; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #047857; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-chart-line"></i> Influence Strategy
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Create tailored communication approaches for different stakeholder types based on their influence and impact on business outcomes.</p>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Tip: Develop a Stakeholder Alignment Dashboard that tracks engagements by business outcome, satisfaction metrics, and opportunity potential. Include metrics showing expected vs. actual business impact from stakeholder interactions. Present this during leadership meetings to focus discussions on strategic alignment rather than project details. This transforms "I need to meet with stakeholders" into "Here's how we align stakeholder expectations with strategic business outcomes"—positioning you as the strategic alignment architect who drives business results through orchestrated stakeholder engagement rather than just communication.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #6ee7b7;">
+                        <h5 style="color: #047857; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-gem"></i> The Value Realization Framework
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Transform traceability from a process requirement to strategic value realization:</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 0.75rem;">
+                            <div>
+                                <h6 style="color: #047857; margin-bottom: 0.5rem;">The Outcome-Driven Traceability Process</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #334155;">
+                                    <li>Connect requirements to specific business outcomes with measurable metrics</li>
+                                    <li>Calculate business impact for requirement changes using standardized formulas</li>
+                                    <li>Monitor progress against business results with regular check-ins</li>
+                                    <li>Create clear value realization narratives for stakeholders</li>
+                                    <li>Document lessons learned for continuous value improvement</li>
+                                    <li>Track business outcomes alongside requirement completion</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 style="color: #047857; margin-bottom: 0.5rem;">The Value Realization Success Metrics</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #334155;">
+                                    <li>Value Realization Rate (target: 85%+)</li>
+                                    <li>Change Impact Accuracy (target: 80%+)</li>
+                                    <li>Outcome Alignment Score (target: 90%+)</li>
+                                    <li>ROI Visibility Index (target: 75%+)</li>
+                                    <li>Business Outcome Delivery (target: 80%+)</li>
+                                    <li>Value Tracking Consistency (target: 90%+)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #047857;"></div>
+                            <div class="progress-text">Implement outcome mapping for all requirements</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #047857;"></div>
+                            <div class="progress-text">Establish value realization reviews with business stakeholders</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #047857;"></div>
+                            <div class="progress-text">Create business outcome dashboards for leadership</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #047857;"></div>
+                            <div class="progress-text">Measure and report on value realization metrics</div>
+                        </div>
+                        
+                        <p style="margin-top: 1rem; color: #334155; font-style: italic;">Example: A healthcare organization implemented this framework for Associate Business Analyst Lead, resulting in a 79% increase in value realization and 73% reduction in change-related delays. The value realization approach created a culture of outcome-focused analysis where requirements were evaluated based on business impact rather than just completeness, leading to solutions that delivered 42% higher business value. BAs were recognized as strategic value conductors rather than just requirement coordinators, positioning them for leadership roles in business value strategy.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including Value Orchestration Leadership, Strategic Stakeholder Alignment, and Enterprise Value Realization for Business Analyst Leads.</p>
+            </footer> -->
+        </div>
+    </div>
+</body>
+</html>

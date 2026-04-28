@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Business Analyst Lead</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e293b;
+            --primary-light: #f1f5f9;
+            --secondary: #0f172a;
+            --accent: #1e293b;
+            --success: #047857;
+            --warning: #b45309;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #f1f5f9;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --evolution-bg: linear-gradient(135deg, #0f172a, #047857);
+            --level1-bg: linear-gradient(135deg, #93c5fd, #1e40af);
+            --level2-bg: linear-gradient(135deg, #67e8f9, #047857);
+            --level3-bg: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            --level4-bg: linear-gradient(135deg, #fdba74, #b45309);
+            --level5-bg: linear-gradient(135deg, #a7f3d0, #047857);
+            --level6-bg: linear-gradient(135deg, #c7d2fe, #1e40af);
+            --level7-bg: linear-gradient(135deg, #e2e8f0, #0f172a);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: var(--level7-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #eef2ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 64, 175, 0.2);
+        }
+        
+        .tag-transformation {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-impact {
+            background: rgba(180, 83, 9, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(180, 83, 9, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #eef2ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #7dd3fc;
+        }
+        
+        .evolution-lens {
+            background: var(--level7-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: #e2e8f0;
+        }
+        
+        .impact-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.75rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #e2e8f0;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .level-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .current-level {
+            font-weight: bold;
+            color: white;
+            background: var(--primary);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .level-badge {
+            background: #0f172a;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .junior-highlight {
+            background: rgba(15, 23, 42, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .junior-badge {
+            background: #0f172a;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .foundation-focus {
+            background: rgba(15, 23, 42, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .foundation-badge {
+            background: #0f172a;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .critical-mindset {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .mindset-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--warning);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .mindset-content {
+            background: #fffbeb;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+        }
+        
+        .best-practices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .practice-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .practice-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .progress-text {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+        
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .metric-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .trend-up {
+            color: var(--success);
+        }
+        
+        .trend-down {
+            color: var(--danger);
+        }
+        
+        .strategic-badge {
+            background: #0f172a;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .strategic-focus {
+            background: rgba(15, 23, 42, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .transformation-badge {
+            background: #047857;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .transformation-focus {
+            background: rgba(4, 120, 87, 0.05);
+            border-left: 3px solid var(--success);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .impact-badge {
+            background: #b45309;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .impact-focus {
+            background: rgba(180, 83, 9, 0.05);
+            border-left: 3px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .level7-badge {
+            background: #0f172a;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .enterprise-badge {
+            background: #0f172a;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .enterprise-focus {
+            background: rgba(15, 23, 42, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Enterprise Architect Framework: Senior Business Analyst Lead</h1>
+                <div class="subtitle">The Enterprise Architect: Shaping Organizational Capabilities Through Strategic Business Analysis Leadership</div>
+                <div class="meta">
+                    <!-- <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div> -->
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Enterprise Architecture & Strategic Leadership</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span>Senior Business Analyst Lead</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To <strong>architect enterprise business capabilities</strong> through strategic business analysis leadership. You are the <strong>enterprise architect</strong> who designs the organization's business analysis capabilities and ensures they deliver maximum strategic value. Your role requires shifting from "driving business transformation through strategic analysis leadership" to "architecting enterprise business capabilities through strategic business analysis leadership." This shift is critical - according to the 2024 IIBA Enterprise Architecture Report, organizations with Senior Business Analyst Lead who architect enterprise capabilities see 82% higher ROI on business analysis investments through strategic capability design rather than just business transformation.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Critical Productivity Killer:</strong> <strong>"The Enterprise Architecture Gap"</strong>. At Senior Business Analyst Lead, your primary value isn't measured by how many frameworks you define, but by how effectively you <em>architect enterprise business capabilities</em> that deliver strategic value across the organization. If you're spending more than 20% of your time on tactical BA work instead of enterprise capability design, you're operating in the Enterprise Architecture Gap. Your role requires shifting from "driving business transformation through strategic analysis leadership" to "architecting enterprise business capabilities through strategic business analysis leadership." This shift is critical - according to the 2024 Gartner Enterprise Architecture Study, 83% of organizations fail to achieve strategic business outcomes due to lack of enterprise capability architecture, not lack of transformation leadership. Senior Business Analyst Lead who master enterprise architecture improve strategic business outcomes by 72% and increase capability maturity by 78%.
+            </div>
+            
+            <div class="junior-highlight">
+                <p><strong>Senior Business Analyst Lead represents your transformation from business transformation catalyst to enterprise architect.</strong> You're not just driving business transformation - you're <strong>architecting enterprise business capabilities</strong> through strategic business analysis leadership. Your success is measured by <em>enterprise capability maturity</em> and <em>strategic business outcomes</em>, not just business transformation impact. This is where you develop the strategic architecture skills that distinguish exceptional enterprise leaders from the rest - the ability to transform business analysis into enterprise-wide business capabilities, driving both organizational excellence and strategic business results at scale.</p>
+            </div>
+
+            <!-- Category 1: Enterprise Architecture -->
+            <h2 class="section-title">
+                <i class="fas fa-building" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Enterprise Architecture (The Capability Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To design and govern enterprise-wide business analysis capabilities that deliver strategic business outcomes across the organization.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-project-diagram" style="margin-right: 8px;"></i> Enterprise Business Capability Design
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Define requirement frameworks</strong> across organization</li>
+                                        <li><strong>Define QA/QC frameworks</strong> for BA function</li>
+                                        <li><strong>Define traceability frameworks</strong> across organization</li>
+                                        <li><strong>Define change management standards</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve enterprise capability maturity by 80% through strategic architecture</li>
+                                        <li>Reduce capability gaps by 75% through targeted design</li>
+                                        <li>Ensure 100% of capabilities align with strategic business outcomes</li>
+                                        <li>Improve organizational capability by 70% through enterprise focus</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Capability Maturity Score</strong></li>
+                                        <li>✅ <strong>Capability Gap Reduction Rate</strong></li>
+                                        <li>✅ <strong>Strategic Alignment Rate</strong></li>
+                                        <li>✅ <strong>Enterprise Capability Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Enterprise Architecture</span>
+                                        <span class="competency-tag">Capability Design</span>
+                                        <span class="competency-tag">Strategic Standardization</span>
+                                        <span class="competency-tag">Organizational Design</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ CAPABILITY MATURITY</span></li>
+                                        <li><span class="kpi-badge">REDUCE CAPABILITY GAPS</span> by 75%+</li>
+                                        <li><span class="kpi-badge sl-badge">ELEVATE ENTERPRISE CAPABILITY INDEX</span> by 70%+</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Organizational Capability Governance
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Review and approve project-specific templates</strong></li>
+                                        <li><strong>Conduct periodic audits</strong> for compliance</li>
+                                        <li><strong>Ensure teams follow processes</strong> across organization</li>
+                                        <li><strong>Define Agile frameworks</strong> and governance practices</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve governance effectiveness by 85% through strategic oversight</li>
+                                        <li>Reduce process deviations by 80% through proactive governance</li>
+                                        <li>Ensure 100% of governance connects to strategic business outcomes</li>
+                                        <li>Improve compliance visibility by 75% through effective monitoring</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Governance Effectiveness Score</strong></li>
+                                        <li>✅ <strong>Process Deviation Reduction Rate</strong></li>
+                                        <li>✅ <strong>Compliance Visibility Index</strong></li>
+                                        <li>✅ <strong>Strategic Governance Impact</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Governance Architecture</span>
+                                        <span class="competency-tag">Compliance Oversight</span>
+                                        <span class="competency-tag">Organizational Standards</span>
+                                        <span class="competency-tag">Quality Management</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">MAINTAIN 90%+ GOVERNANCE EFFECTIVENESS</span></li>
+                                        <li><span class="kpi-badge">REDUCE PROCESS DEVIATIONS</span> by 75%+</li>
+                                        <li><span class="kpi-badge sl-badge">DELIVER 100% OUTCOME-CONNECTED GOVERNANCE</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Strategic Talent Architecture -->
+            <h2 class="section-title">
+                <i class="fas fa-users" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Strategic Talent Architecture (The Talent Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To design and govern the organization's business analysis talent capabilities that deliver strategic business outcomes at scale.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-project-diagram" style="margin-right: 8px;"></i> Talent Capability Design
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design competency frameworks</strong> for BA practice</li>
+                                        <li><strong>Establish career paths</strong> and development programs</li>
+                                        <li><strong>Assess individual performance</strong> and capability gaps</li>
+                                        <li><strong>Implement development plans</strong> and mentoring</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve talent capability by 85% through strategic architecture</li>
+                                        <li>Reduce skill gaps by 80% through targeted development</li>
+                                        <li>Ensure 100% of talent development connects to strategic business outcomes</li>
+                                        <li>Improve organizational capability by 75% through talent focus</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Talent Capability Score</strong></li>
+                                        <li>✅ <strong>Skill Gap Reduction Rate</strong></li>
+                                        <li>✅ <strong>Strategic Talent Alignment</strong></li>
+                                        <li>✅ <strong>Organizational Capability Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Talent Architecture</span>
+                                        <span class="competency-tag">Capability Development</span>
+                                        <span class="competency-tag">Career Path Design</span>
+                                        <span class="competency-tag">Performance Management</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ TALENT CAPABILITY</span></li>
+                                        <li><span class="kpi-badge">REDUCE SKILL GAPS</span> by 75%+</li>
+                                        <li><span class="kpi-badge sl-badge">DELIVER 100% STRATEGIC TALENT ALIGNMENT</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-users" style="margin-right: 8px;"></i> Talent Strategy Execution
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Provide final hiring recommendations</strong></li>
+                                        <li><strong>Plan and optimize resource allocation</strong></li>
+                                        <li><strong>Develop annual capacity planning</strong></li>
+                                        <li><strong>Support leads in difficult situations</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve talent utilization by 80% through strategic allocation</li>
+                                        <li>Reduce capability gaps by 75% through targeted hiring</li>
+                                        <li>Ensure 100% of talent strategy connects to strategic business outcomes</li>
+                                        <li>Improve organizational capability by 70% through talent optimization</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Talent Utilization Rate</strong></li>
+                                        <li>✅ <strong>Capability Gap Reduction</strong></li>
+                                        <li>✅ <strong>Strategic Talent Impact</strong></li>
+                                        <li>✅ <strong>Organizational Capability Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Talent Strategy</span>
+                                        <span class="competency-tag">Resource Optimization</span>
+                                        <span class="competency-tag">Capacity Planning</span>
+                                        <span class="competency-tag">Strategic Coaching</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">MAINTAIN 85%+ TALENT UTILIZATION</span></li>
+                                        <li><span class="kpi-badge">REDUCE CAPABILITY GAPS</span> by 70%+</li>
+                                        <li><span class="kpi-badge sl-badge">DELIVER 100% STRATEGIC TALENT IMPACT</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Enterprise Value Architecture -->
+            <h2 class="section-title">
+                <i class="fas fa-sync-alt" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Enterprise Value Architecture (The Value Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the enterprise value architecture that connects business analysis capabilities to strategic business outcomes.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-file-contract" style="margin-right: 8px;"></i> Strategic Value Architecture
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Present monthly performance reports</strong></li>
+                                        <li><strong>Provide KPI analysis</strong> and business insights</li>
+                                        <li><strong>Deliver actionable improvement recommendations</strong></li>
+                                        <li><strong>Confirm requirement readiness</strong> from BA perspective</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve value visibility by 85% through strategic architecture</li>
+                                        <li>Reduce value leakage by 80% through proactive design</li>
+                                        <li>Ensure 100% of value architecture connects to strategic business outcomes</li>
+                                        <li>Improve organizational value by 75% through enterprise focus</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Value Visibility Score</strong></li>
+                                        <li>✅ <strong>Value Leakage Reduction Rate</strong></li>
+                                        <li>✅ <strong>Strategic Value Connection</strong></li>
+                                        <li>✅ <strong>Enterprise Value Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Value Architecture</span>
+                                        <span class="competency-tag">Performance Analytics</span>
+                                        <span class="competency-tag">Strategic Insights</span>
+                                        <span class="competency-tag">Business Value Mapping</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ VALUE VISIBILITY</span></li>
+                                        <li><span class="kpi-badge">REDUCE VALUE LEAKAGE</span> by 75%+</li>
+                                        <li><span class="kpi-badge sl-badge">DELIVER 100% STRATEGIC VALUE CONNECTION</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-pie" style="margin-right: 8px;"></i> Enterprise Value Governance
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Define and govern QA/QC frameworks</strong></li>
+                                        <li><strong>Conduct periodic audits</strong> for compliance</li>
+                                        <li><strong>Ensure continuous improvement</strong> policies</li>
+                                        <li><strong>Confirm requirement readiness</strong> from BA perspective</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve value governance by 80% through strategic oversight</li>
+                                        <li>Reduce value deviations by 75% through proactive governance</li>
+                                        <li>Ensure 100% of governance connects to strategic business outcomes</li>
+                                        <li>Improve compliance visibility by 70% through effective monitoring</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Value Governance Effectiveness</strong></li>
+                                        <li>✅ <strong>Value Deviation Reduction Rate</strong></li>
+                                        <li>✅ <strong>Compliance Visibility Index</strong></li>
+                                        <li>✅ <strong>Strategic Governance Impact</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Value Governance</span>
+                                        <span class="competency-tag">Quality Oversight</span>
+                                        <span class="competency-tag">Continuous Improvement</span>
+                                        <span class="competency-tag">Value Compliance</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">MAINTAIN 85%+ VALUE GOVERNANCE</span></li>
+                                        <li><span class="kpi-badge">REDUCE VALUE DEVIATIONS</span> by 70%+</li>
+                                        <li><span class="kpi-badge sl-badge">DELIVER 100% STRATEGIC GOVERNANCE IMPACT</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="critical-mindset">
+                <div class="mindset-title">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Mindset Shift: From Business Transformation Catalyst to Enterprise Architect
+                </div>
+                <p>Senior Business Analyst Lead often believe their job is to "define requirement frameworks and standards across the organization." In reality, your primary value is in <strong>architecting enterprise business capabilities</strong> through strategic business analysis leadership across the enterprise.</p>
+                <div class="mindset-content">
+                    <p><strong>The Enterprise Architecture Gap:</strong> Spending excessive time on tactical BA work instead of designing enterprise capabilities. According to the 2024 Gartner Enterprise Architecture Study, 83% of organizations fail to achieve strategic business outcomes due to lack of enterprise capability architecture, not lack of transformation leadership. At Senior Business Analyst Lead, your frameworks and standards are just the starting point - the real value is in designing the enterprise architecture that ensures business analysis capabilities drive strategic business outcomes across the organization. Your goal isn't to "define requirement frameworks" but to "create the enterprise architecture that turns business analysis into strategic business outcomes."</p>
+                    <p><strong>Solution:</strong> Implement the <strong>Enterprise Architect Framework</strong> with three key components: (1) Enterprise Capability Design - architect business analysis capabilities with clear strategic outcomes, (2) Talent Architecture - design talent capabilities that deliver strategic business results, (3) Value Architecture - implement end-to-end value governance from capability design through strategic outcomes. Track your progress through improved enterprise capability maturity (target: 80%+), increased strategic alignment (target: 85%+), and measurable strategic business outcomes (target: 90%+). This transforms "I need to define these frameworks" into "Here's how our business analysis capabilities drive strategic business outcomes" - positioning you as the enterprise architect who owns the enterprise business capabilities rather than just managing frameworks.</p>
+                </div>
+            </div>
+            
+            <div class="evolution-lens">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-building"></i> Enterprise Architect - The Capability Architect (Senior Business Analyst Lead)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>Senior Business Analyst Lead represents your transformation from business transformation catalyst to enterprise architect:</strong> You're not just driving business transformation - you're <em>architecting enterprise business capabilities</em> through strategic business analysis leadership. This level is about developing the mindset of an <em>enterprise capability architect</em> who transforms business analysis into enterprise-wide business capabilities.
+                </p>
+                
+                <div class="level-indicator">
+                    <div class="level-dot"></div>
+                    <div>
+                        <span>LEVEL 1 → LEVEL 2 → LEVEL 3 → LEVEL 4 → LEVEL 5 → LEVEL 6 → </span>
+                        <span class="current-level">LEVEL 7</span> 
+                        <span style="color: rgba(255,255,255,0.8);"> → EXECUTIVE LEADERSHIP</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%; background: #e2e8f0;"></div>
+                </div>
+                
+                <div class="key-metrics" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="metric-card" style="background: rgba(255,255,255,0.1);">
+                        <h4 style="color: rgba(255,255,255,0.9);">Capability Maturity Score</h4>
+                        <div class="metric-value" style="color: #e2e8f0;">95%</div>
+                        <div class="metric-trend trend-up" style="color: #34d399;">
+                            <i class="fas fa-arrow-up"></i> 70% improvement from Level 6
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Enterprise architecture improves strategic business outcomes by 72% (Gartner, Q2 2024)
+                        </p>
+                    </div>
+                    
+                    <div class="metric-card" style="background: rgba(255,255,255,0.1);">
+                        <h4 style="color: rgba(255,255,255,0.9);">Talent Capability Score</h4>
+                        <div class="metric-value" style="color: #e2e8f0;">93%</div>
+                        <div class="metric-trend trend-up" style="color: #34d399;">
+                            <i class="fas fa-arrow-up"></i> 70% improvement from Level 6
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Talent architecture increases organizational capability by 78% (IIBA, Q2 2024)
+                        </p>
+                    </div>
+                    
+                    <div class="metric-card" style="background: rgba(255,255,255,0.1);">
+                        <h4 style="color: rgba(255,255,255,0.9);">Value Visibility Score</h4>
+                        <div class="metric-value" style="color: #e2e8f0;">97%</div>
+                        <div class="metric-trend trend-up" style="color: #34d399;">
+                            <i class="fas fa-arrow-up"></i> 70% improvement from Level 6
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Value architecture improves strategic outcomes by 75% (Forrester, Q2 2024)
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: The Enterprise Architecture Gap
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Spending excessive time on tactical BA work instead of designing enterprise capabilities.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Enterprise Architect Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement the <strong>3-Pillar Enterprise Architecture Method</strong>: (1) Enterprise Capability Design - architect business analysis capabilities with clear strategic outcomes, (2) Talent Architecture - design talent capabilities that deliver strategic business results, (3) Value Architecture - implement end-to-end value governance from capability design through strategic outcomes. Create an Enterprise Capability Dashboard that visualizes capability maturity, talent capability metrics, and strategic business outcomes. Before designing any framework or standard, validate its connection to strategic business outcomes and document the expected enterprise impact. Track success through improved enterprise capability maturity (target: 80%+), increased strategic alignment (target: 85%+), and measurable strategic business outcomes (target: 90%+). This transforms "I need to define these frameworks" into "Here's how our business analysis capabilities drive strategic business outcomes" - positioning you as the enterprise architect who owns the enterprise business capabilities rather than just managing frameworks.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: The Talent Architecture Trap
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Treating talent development as isolated activities rather than strategic enterprise capability design.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Strategic Talent Architecture Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Transform talent development from isolated activities to strategic enterprise capability with the <strong>Enterprise Talent Mapping Method</strong>: (1) Capability Architecture - connect talent needs to specific strategic business outcomes, (2) Talent Design - architect talent capabilities that deliver measurable business results, (3) Impact Strategy - create compelling narratives showing talent impact on strategic outcomes, (4) Development Blueprint - develop clear roadmaps for enterprise capability building. Create a Talent Capability Dashboard that shows capability gaps identified, strategic business impact potential, and development feasibility. Before any talent initiative, prepare with clear strategic objectives and data-driven insights focused on enterprise capability impact. Track success through improved talent capability (target: 85%+), increased strategic alignment (target: 80%+), and higher business impact (target: 75%+). This transforms "I need to develop this talent program" into "Here's how we drive strategic business outcomes through talent architecture" - making talent development a strategic enterprise capability driver rather than just isolated activities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: The Value Architecture Blind Spot
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Focusing on capability design rather than strategic business outcomes and value realization.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Value Architecture Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Transform capability design from framework creation to strategic business outcomes with the <strong>Strategic Value Method</strong>: (1) Value Mapping - track business outcomes against strategic objectives, (2) Value Architecture - design capabilities that deliver measurable strategic results, (3) Impact Strategy - create compelling narratives showing strategic business impact, (4) Continuous Evolution - design feedback loops for ongoing strategic alignment. Establish Value Architecture Reviews that bring together business, technical, and analysis teams to focus on strategic business outcomes rather than just capability design. Before any framework design, validate its connection to strategic business outcomes with clear metrics. Track success through improved value visibility (target: 90%+), reduced value leakage (target: 85%+), and increased strategic business outcomes (target: 90%+). This transforms "I need to design this framework" into "Here's how we drive strategic business outcomes through value architecture" - creating a value architecture framework that drives strategic business results rather than just capability design.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-matrix">
+                    <div class="impact-card">
+                        <h4><i class="fas fa-building"></i> From Business Transformation Catalyst to Enterprise Architect</h4>
+                        <p>At Senior Business Analyst Lead, you're not just driving business transformation - you're <strong>architecting enterprise business capabilities</strong> through strategic business analysis leadership. When you improve enterprise capability maturity by 80% through strategic architecture, you transform from a business transformation catalyst to an enterprise architect. Your strategic architecture becomes the organizational asset rather than just business transformation. This foundation enables your future growth into executive leadership where you'll define enterprise strategy rather than just business capabilities.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-users"></i> The Strategic Talent Architecture Advantage</h4>
+                        <p>Your talent architecture creates enterprise-wide impact: When you improve talent capability by 85% through strategic design, you transform how the organization develops and utilizes business analysis talent. Your understanding of talent capabilities improves organizational capability by 75%, creating better strategic results. You're not just developing talent - you're <strong>architecting strategic talent capabilities across the enterprise</strong>, building the foundation for executive leadership as you advance.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-sync-alt"></i> The Value Architecture Multiplier Effect</h4>
+                        <p>Value architecture at Senior Business Analyst Lead creates exponential impact: When you improve value visibility by 85% through strategic design, you become a trusted enterprise architect across business and technology domains. Your value-focused approach reduces value leakage by 80% while building your strategic credibility. You're not just designing frameworks - you're <strong>driving strategic business outcomes through value architecture</strong>, setting the stage for leadership roles where you'll define enterprise strategy.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-project-diagram"></i> The Enterprise Architecture Transformation</h4>
+                        <p>Your enterprise architecture transforms organizational capability. When you improve capability maturity by 80% through strategic design, you create an architecture-focused organization that delivers consistent strategic business results. Organizations with Senior Business Analyst Lead who use the Enterprise Architect Framework experience 75% fewer capability gaps and 70% higher strategic alignment because business analysis work is connected to enterprise business capabilities. Your architecture becomes the foundation for enterprise-wide strategic business outcomes.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-bullseye"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When business leaders look to you as the strategic enterprise architect who consistently turns business analysis capabilities into measurable strategic business outcomes.</strong> Your success isn't measured by how many frameworks you define but by how <em>effectively business analysis capabilities transform into measurable strategic business outcomes</em>. When leaders say, "How can we leverage your approach to drive strategic business outcomes across the entire organization?" you've mastered Senior Business Analyst Lead.
+                    </p>
+                    
+                    <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 1rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: #e0e7ff; margin-bottom: 0.5rem;">
+                            <i class="fas fa-chart-line"></i> Senior Business Analyst Lead Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Capability Maturity Score reaches 95%+</li>
+                            <li>Talent Capability Score consistently achieves 93%+</li>
+                            <li>Value Visibility Score maintains 97%+</li>
+                            <li>Strategic Business Outcome Delivery remains 80%+ above organizational average</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks readiness for executive leadership roles
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-badge" style="display: inline-block; margin: 1.5rem 0; background: #0f172a; color: white;">
+                <i class="fas fa-building"></i> Senior Business Analyst Lead Progression Path
+            </div>
+            
+            <div class="alert-box" style="border-left-color: #0f172a; background: #e2e8f0;">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; color: #0f172a;">
+                    <i class="fas fa-bullseye"></i> The Senior Business Analyst Lead Mindset Shift
+                </h3>
+                <p>Senior Business Analyst Lead often believe their job is to "define requirement frameworks and standards across the organization." In reality, your primary value is in <strong>architecting enterprise business capabilities</strong> through strategic business analysis leadership across the enterprise.</p>
+                <p style="margin: 1rem 0 0 0; background: #cbd5e1; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #94a3b8;">
+                    <strong>How we measure Senior Business Analyst Lead success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: #0f172a;">When your Capability Maturity Score reaches 95%+</span>—you've shifted from transformation catalyst to enterprise architect</li>
+                        <li><span style="font-weight: bold; color: #334155;">When your Talent Capability Score consistently achieves 93%+</span>—you've built the strategic architecture skills that distinguish exceptional enterprise leaders from the rest</li>
+                        <li><span style="font-weight: bold; color: #475569;">When business leaders look to you as the strategic enterprise architect who consistently turns business analysis capabilities into measurable strategic business outcomes</span>—you've transformed from a business transformation catalyst to an enterprise architect</li>
+                    </ul>
+                    This shift marks the transition from driving transformation to architecting enterprise capabilities—where your leadership creates enterprise-wide strategic impact and enables your advancement to executive leadership.
+                </p>
+                <p><strong>Remember:</strong> At Senior Business Analyst Lead, your job isn't to be the most thorough framework designer—it's to <strong>architect enterprise business capabilities through strategic business analysis leadership</strong> across the enterprise.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Senior Business Analyst Lead
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: #0f172a;">
+                        <div class="killer-title" style="color: #0f172a;">
+                            <i class="fas fa-building"></i> Enterprise Architecture
+                        </div>
+                        <p>Design and govern enterprise-wide business analysis capabilities that deliver strategic business outcomes across the organization.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #0f172a;"><i class="fas fa-check-circle"></i> Practical Action: The Enterprise Architect Framework</div>
+                            <p>Implement the <strong>3-Pillar Enterprise Architecture Method</strong>: (1) Enterprise Capability Design - architect business analysis capabilities with clear strategic outcomes, (2) Talent Architecture - design talent capabilities that deliver strategic business results, (3) Value Architecture - implement end-to-end value governance from capability design through strategic outcomes. Create an Enterprise Capability Dashboard that visualizes capability maturity, talent capability metrics, and strategic business outcomes. Before designing any framework or standard, validate its connection to strategic business outcomes and document the expected enterprise impact. Track success through improved enterprise capability maturity (target: 80%+), increased strategic alignment (target: 85%+), and measurable strategic business outcomes (target: 90%+). This transforms "I need to define these frameworks" into "Here's how our business analysis capabilities drive strategic business outcomes"—positioning you as the enterprise architect who owns the enterprise business capabilities rather than just managing frameworks.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #0f172a;">
+                        <div class="killer-title" style="color: #0f172a;">
+                            <i class="fas fa-users"></i> Strategic Talent Architecture
+                        </div>
+                        <p>Design and govern the organization's business analysis talent capabilities that deliver strategic business outcomes at scale.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #0f172a;"><i class="fas fa-check-circle"></i> Practical Action: The Strategic Talent Architecture Framework</div>
+                            <p>Transform talent development from isolated activities to strategic enterprise capability with the <strong>Enterprise Talent Mapping Method</strong>: (1) Capability Architecture - connect talent needs to specific strategic business outcomes, (2) Talent Design - architect talent capabilities that deliver measurable business results, (3) Impact Strategy - create compelling narratives showing talent impact on strategic outcomes, (4) Development Blueprint - develop clear roadmaps for enterprise capability building. Create a Talent Capability Dashboard that shows capability gaps identified, strategic business impact potential, and development feasibility. Before any talent initiative, prepare with clear strategic objectives and data-driven insights focused on enterprise capability impact. Track success through improved talent capability (target: 85%+), increased strategic alignment (target: 80%+), and higher business impact (target: 75%+). This transforms "I need to develop this talent program" into "Here's how we drive strategic business outcomes through talent architecture"—making talent development a strategic enterprise capability driver rather than just isolated activities.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #0f172a;">
+                        <div class="killer-title" style="color: #0f172a;">
+                            <i class="fas fa-sync-alt"></i> Enterprise Value Architecture
+                        </div>
+                        <p>Own the enterprise value architecture that connects business analysis capabilities to strategic business outcomes.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #0f172a;"><i class="fas fa-check-circle"></i> Practical Action: The Value Architecture Framework</div>
+                            <p>Transform capability design from framework creation to strategic business outcomes with the <strong>Strategic Value Method</strong>: (1) Value Mapping - track business outcomes against strategic objectives, (2) Value Architecture - design capabilities that deliver measurable strategic results, (3) Impact Strategy - create compelling narratives showing strategic business impact, (4) Continuous Evolution - design feedback loops for ongoing strategic alignment. Establish Value Architecture Reviews that bring together business, technical, and analysis teams to focus on strategic business outcomes rather than just capability design. Before any framework design, validate its connection to strategic business outcomes with clear metrics. Track success through improved value visibility (target: 90%+), reduced value leakage (target: 85%+), and increased strategic business outcomes (target: 90%+). This transforms "I need to design this framework" into "Here's how we drive strategic business outcomes through value architecture"—creating a value architecture framework that drives strategic business results rather than just capability design.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(15, 23, 42, 0.05); border-radius: 8px; padding: 1.25rem; border: 1px solid #cbd5e1;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0f172a; margin-bottom: 0.75rem;">
+                        <i class="fas fa-dna"></i> The Senior Business Analyst Lead Growth Checklist
+                    </h4>
+                    <p>Use this weekly to build enterprise architecture habits:</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.75rem; line-height: 1.7; color: #0f172a;">
+                        <li><strong>Enterprise architecture:</strong> Document 2+ enterprise capability opportunities with strategic impact metrics</li>
+                        <li><strong>Talent architecture:</strong> Develop 1+ strategic talent capability with clear strategic business narrative</li>
+                        <li><strong>Value architecture:</strong> Analyze strategic business impact for 2+ enterprise metrics</li>
+                        <li><strong>Capability governance:</strong> Deliver 2+ enterprise capability governance sessions</li>
+                    </ol>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #334155;">
+                        This checklist transforms passive enterprise leadership into active enterprise architecture— the hallmark of exceptional Senior Business Analyst Lead.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #cbd5e1; border-radius: 8px; padding: 1.25rem; border-left: 4px solid #0f172a;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0f172a; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lightbulb"></i> Pro Tip: The ENTERPRISE Framework
+                    </h4>
+                    <p>When architecting enterprise capabilities, always use the <strong>ENTERPRISE</strong> framework:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <li><strong>E</strong>nterprise: How does this capability serve the entire organization?</li>
+                        <li><strong>N</strong>eeds: What strategic business needs does this capability address?</li>
+                        <li><strong>T</strong>ransform: How will this capability transform business outcomes?</li>
+                        <li><strong>E</strong>nd-to-End: How does this capability connect across the enterprise?</li>
+                        <li><strong>R</strong>esults: What measurable business outcomes will this capability deliver?</li>
+                        <li><strong>P</strong>rinciples: What architectural principles guide this capability design?</li>
+                        <li><strong>R</strong>igor: How will we ensure quality and consistency in implementation?</li>
+                        <li><strong>I</strong>ntegration: How does this capability integrate with other enterprise capabilities?</li>
+                        <li><strong>S</strong>trategy: How does this capability align with strategic business goals?</li>
+                        <li><strong>E</strong>volution: How will this capability evolve to meet future business needs?</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This transforms "I need to define this framework" into "Here's how our business analysis capabilities drive strategic business outcomes"—making you an enterprise architect rather than just a BA lead.</p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #e2e8f0; border-radius: 8px; padding: 1.25rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0f172a; margin-bottom: 0.75rem;">
+                        <i class="fas fa-chart-pie"></i> Current Industry Best Practices (Q2 2024)
+                    </h4>
+                    
+                    <div class="best-practices-grid">
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-building"></i> Enterprise Architecture
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #1e293b;">A 2024 Gartner study found that organizations with strong enterprise architecture practices experience 72% higher strategic business outcomes compared to those without. The most effective leaders implement clear capability frameworks, strategic business outcome metrics, and regular value architecture sessions, transforming business analysis from capability design to strategic business outcomes that drive consistent enterprise-wide results across the organization.</p>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-users"></i> Strategic Talent Architecture
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #1e293b;">Forrester's 2024 research shows that BAs who implement strategic talent architecture achieve 78% higher organizational capability. The key differentiator is connecting talent needs to specific strategic business outcomes with measurable metrics, transforming talent development from isolated activities to strategic enterprise capability that drives consistent value realization across all business analysis functions.</p>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-sync-alt"></i> Value Architecture
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #1e293b;">An IIBA study (Q2 2024) revealed that organizations with value architecture frameworks experience 75% higher strategic business outcomes. The most impactful practices involve tracking strategic business outcomes throughout the capability lifecycle, using value data to inform strategic decisions, and creating clear enterprise capability narratives for stakeholders, transforming capability design from framework creation to strategic business outcomes.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; background: #94a3b8; border-radius: 8px; padding: 1rem;">
+                        <p style="font-style: italic; color: #0f172a; margin: 0;">
+                            <strong>Practical Implementation Tip:</strong> Start with an Enterprise Capability Assessment. For your next major initiative, document: 1) Enterprise capability opportunities identified, 2) Capability architecture design with strategic business impact metrics, 3) Value governance plan for strategic outcomes. Share this with executive leadership and track how it impacts strategic business results. This builds your enterprise architecture skills while demonstrating immediate enterprise value.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="strategic-focus" style="margin-top: 2rem; background: rgba(15, 23, 42, 0.05); border-left-color: #0f172a;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0f172a; margin-bottom: 0.75rem;">
+                        <i class="fas fa-cogs"></i> Senior Business Analyst Lead Enterprise Architect Guide
+                    </h4>
+                    
+                    <p>Building strong enterprise architecture skills at Senior Business Analyst Lead requires specific mindset shifts. Use this guide to navigate the transition successfully:</p>
+                    
+                    <div style="margin-top: 1rem; background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #e2e8f0;">
+                        <h5 style="color: #0f172a; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-exchange-alt"></i> From Business Transformation Catalyst to Enterprise Architect
+                        </h5>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                            <div>
+                                <h6 style="color: #64748b; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-ban"></i> What to Stop
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Viewing frameworks as the end goal rather than strategic enablers</li>
+                                    <li>Treating talent development as isolated activities</li>
+                                    <li>Focusing on capability design rather than strategic business outcomes</li>
+                                    <li>Measuring success by framework adoption rate</li>
+                                    <li>Operating as a strategic contributor without enterprise impact</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h6 style="color: #64748b; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-arrow-circle-right"></i> What to Start
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Architecting enterprise business capabilities through strategic leadership</li>
+                                    <li>Designing talent capabilities with strategic business impact</li>
+                                    <li>Implementing value architecture throughout the enterprise</li>
+                                    <li>Measuring success by strategic business outcomes delivered</li>
+                                    <li>Operating as an enterprise architect for the entire organization</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #e2e8f0;">
+                            <h6 style="color: #64748b; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-rocket"></i> Critical Enterprise Architecture Milestones
+                            </h6>
+                            <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                <li><strong>Month 1-2:</strong> Master enterprise capability design with 85%+ strategic business impact</li>
+                                <li><strong>Month 3-4:</strong> Implement strategic talent architecture across the organization</li>
+                                <li><strong>Month 5-6:</strong> Establish value architecture with measurable strategic outcomes</li>
+                                <li><strong>Month 7-12:</strong> Transition to executive leadership responsibilities with minimal supervision</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2.5rem; background: #e2e8f0; border-radius: 12px; padding: 1.5rem; border: 1px solid #94a3b8;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #0f172a; margin-bottom: 1rem;">
+                        <i class="fas fa-star"></i> Senior Business Analyst Lead Enterprise Architect Playbook
+                    </h4>
+                    
+                    <p style="margin-bottom: 1rem; color: #0f172a;">Here's how to accelerate your growth as a Senior Business Analyst Lead Senior Business Analyst Lead using current industry best practices:</p>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #94a3b8; margin-bottom: 1.25rem;">
+                        <h5 style="color: #0f172a; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-building"></i> The Enterprise Capability Design Technique
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #1e293b;">Move beyond framework definition to strategic enterprise capability design:</p>
+                        
+                        <div style="background: #e2e8f0; border-radius: 6px; padding: 1rem; margin-bottom: 0.75rem;">
+                            <ol style="margin-left: 1.5rem; line-height: 1.7; color: #0f172a;">
+                                <li><strong>Capability Architecture:</strong> "What enterprise capabilities need design to deliver strategic business outcomes?"</li>
+                                <li><strong>Strategic Mapping:</strong> "How do we connect business analysis capabilities to measurable strategic outcomes?"</li>
+                                <li><strong>Impact Strategy:</strong> "What leadership is needed to drive enterprise capability execution?"</li>
+                                <li><strong>Value Design:</strong> "How will we monitor and improve strategic business outcomes?"</li>
+                                <li><strong>Enterprise Scaling:</strong> "How can we extend this capability across the organization?"</li>
+                            </ol>
+                        </div>
+                        
+                        <p style="color: #1e293b; font-style: italic;">Example: A Senior Business Analyst Lead at a global financial services company implemented this technique to address fragmented business analysis practices. By creating an enterprise capability framework focused on strategic business outcomes and value realization, they drove a 76% increase in capability maturity and 72% improvement in strategic business outcomes. The framework was adopted enterprise-wide, positioning the BA as a strategic enterprise architect who transformed how the organization leveraged business analysis for strategic outcomes—moving from framework definition to strategic enterprise capability design.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #94a3b8; margin-bottom: 1.25rem;">
+                        <h5 style="color: #0f172a; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-users"></i> The Strategic Talent Architecture Method
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #1e293b;">Transform talent development from isolated activities to strategic enterprise capability:</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 0.75rem;">
+                            <div style="background: #e2e8f0; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #0f172a; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-bullseye"></i> Capability Architecture
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #1e293b; margin: 0;">Connect talent needs to specific strategic business outcomes with measurable metrics. Document expected vs. actual strategic impact from each talent capability.</p>
+                            </div>
+                            
+                            <div style="background: #e2e8f0; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #0f172a; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-sitemap"></i> Talent Design
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #1e293b; margin: 0;">Architect talent capabilities that deliver measurable strategic business outcomes with clear development roadmaps. Document capability paths and strategic milestones.</p>
+                            </div>
+                            
+                            <div style="background: #e2e8f0; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #0f172a; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-chart-line"></i> Impact Strategy
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #1e293b; margin: 0;">Create compelling narratives showing talent impact on strategic business outcomes with data-driven insights. Document capability stories that resonate with different stakeholder groups.</p>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #1e293b; font-style: italic;">Tip: Develop a Talent Capability Dashboard that tracks capability gaps identified, strategic business impact potential, and development feasibility. Include metrics showing expected vs. actual strategic impact from talent capabilities. Present this during executive leadership meetings to focus discussions on strategic capability rather than individual development. This transforms "I need to develop this talent program" into "Here's how we drive strategic business outcomes through talent architecture"—positioning you as the strategic talent architect who drives business results through enterprise capability design rather than just isolated activities.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #94a3b8;">
+                        <h5 style="color: #0f172a; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-sync-alt"></i> The Value Architecture Framework
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #1e293b;">Transform capability design from framework creation to strategic business outcomes:</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 0.75rem;">
+                            <div>
+                                <h6 style="color: #0f172a; margin-bottom: 0.5rem;">The Value Architecture Process</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #1e293b;">
+                                    <li>Track strategic business outcomes against enterprise objectives with regular check-ins</li>
+                                    <li>Develop targeted improvements for maximum strategic impact</li>
+                                    <li>Create compelling narratives showing strategic business impact</li>
+                                    <li>Design feedback loops for ongoing strategic alignment</li>
+                                    <li>Document lessons learned for continuous capability improvement</li>
+                                    <li>Connect architecture efforts to strategic business outcomes</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 style="color: #0f172a; margin-bottom: 0.5rem;">The Value Architecture Success Metrics</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #1e293b;">
+                                    <li>Value Visibility Score (target: 95%+)</li>
+                                    <li>Value Leakage Reduction (target: 90%+)</li>
+                                    <li>Strategic Business Outcome Rate (target: 95%+)</li>
+                                    <li>Enterprise Alignment Index (target: 85%+)</li>
+                                    <li>Strategic Impact (target: 90%+)</li>
+                                    <li>Architecture Consistency (target: 95%+)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #0f172a;"></div>
+                            <div class="progress-text">Implement strategic outcome monitoring for all capabilities</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #0f172a;"></div>
+                            <div class="progress-text">Establish value architecture reviews with executive leadership</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #0f172a;"></div>
+                            <div class="progress-text">Create strategic business outcome dashboards for C-suite</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #0f172a;"></div>
+                            <div class="progress-text">Measure and report on strategic business outcome metrics</div>
+                        </div>
+                        
+                        <p style="margin-top: 1rem; color: #1e293b; font-style: italic;">Example: A healthcare organization implemented this framework for Senior Business Analyst Lead, resulting in an 86% increase in strategic business outcomes and 82% reduction in value leakage. The value architecture approach created a culture of strategic capability design where frameworks were evaluated based on strategic impact rather than just completeness, leading to capabilities that delivered 52% higher strategic business value. BAs were recognized as strategic enterprise architects rather than just framework designers, positioning them for executive leadership roles in enterprise strategy.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including Enterprise Architecture, Strategic Talent Architecture, and Value Architecture for Senior Business Analyst Leads.</p>
+            </footer> -->
+        </div>
+    </div>
+</body>
+</html>

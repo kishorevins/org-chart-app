@@ -13,15 +13,15 @@ export const ROLE_FILE_MAP: Record<string, string> = {
   // pse3: will be updated in future
 
   // ── Technical Leadership ────────────────────────────────────────────
-  // atl:  will be updated in future
-  // tl:   will be updated in future
-  // stl:  will be updated in future
+  atl:  `${BASE}/role-profiles/Technical%20Lead%20-%20ATL%20,%20TL%20,%20STL.html`,
+  tl:   `${BASE}/role-profiles/Technical%20Lead%20-%20ATL%20,%20TL%20,%20STL.html`,
+  stl:  `${BASE}/role-profiles/Technical%20Lead%20-%20ATL%20,%20TL%20,%20STL.html`,
 
   // ── Solution Architecture ───────────────────────────────────────────
-  // asa1: will be updated in future
-  // asa2: will be updated in future
-  // sa1:  will be updated in future
-  // sa2:  will be updated in future
+  asa1: `${BASE}/role-profiles/solution-architect.html`,
+  asa2: `${BASE}/role-profiles/solution-architect.html`,
+  sa1:  `${BASE}/role-profiles/solution-architect.html`,
+  sa2:  `${BASE}/role-profiles/solution-architect.html`,
 
   // ── Quality Assurance ───────────────────────────────────────────────
   ate:  `${BASE}/role-profiles/Testing/Testing-Framework-Level-1.html`,
@@ -33,20 +33,20 @@ export const ROLE_FILE_MAP: Record<string, string> = {
   sql:  `${BASE}/role-profiles/Testing/Testing-Leadership-Framework-Level-7.html`,
 
   // ── Business Analysis ───────────────────────────────────────────────
-  // aba:  will be updated in future
-  // ba:   will be updated in future
-  // sba1: will be updated in future
-  // sba2: will be updated in future
-  // abal: will be updated in future
-  // bal:  will be updated in future
-  // sbal: will be updated in future
+  aba:  `${BASE}/role-profiles/BusinessAnalyst/L1%20-%20Foundation-Builder-Framework-Level-1.html`,
+  ba:   `${BASE}/role-profiles/BusinessAnalyst/L2%20-%20Value-Stream-Navigator-Framework-Level-2.html`,
+  sba1: `${BASE}/role-profiles/BusinessAnalyst/L3%20-%20Strategic-Architect-Framework-Level-3.html`,
+  sba2: `${BASE}/role-profiles/BusinessAnalyst/L4%20-%20Enterprise-Value-Architect-Framework-Level-4.html`,
+  abal: `${BASE}/role-profiles/BusinessAnalyst/L5%20-%20Enterprise-Value-Orchestrator-Framework-Level-5.html`,
+  bal:  `${BASE}/role-profiles/BusinessAnalyst/L6%20-%20Transformation-Catalyst-Framework-Level-6.html`,
+  sbal: `${BASE}/role-profiles/BusinessAnalyst/L7%20-%20Enterprise-Architect-Framework-Level-7.html`,
 
   // ── Project / Delivery Management ──────────────────────────────────
-  // apm1: will be updated in future
-  // apm2: will be updated in future
-  // pm1:  will be updated in future
-  // pm2:  will be updated in future
-  // hpd:  will be updated in future
+  apm1: `${BASE}/role-profiles/project-management%20-%20APM%20,%20PM%20,%20Head%20-%20PD.html`,
+  apm2: `${BASE}/role-profiles/project-management%20-%20APM%20,%20PM%20,%20Head%20-%20PD.html`,
+  pm1:  `${BASE}/role-profiles/project-management%20-%20APM%20,%20PM%20,%20Head%20-%20PD.html`,
+  pm2:  `${BASE}/role-profiles/project-management%20-%20APM%20,%20PM%20,%20Head%20-%20PD.html`,
+  hpd:  `${BASE}/role-profiles/Head-Projects-Delivery.html`,
 
   // ── Partnerships / Business Development ────────────────────────────
   pman: `${BASE}/role-profiles/Sales/Partnership%20-%20L1%20-%20Partnership-Manager-Framework-The-Ecosystem-Architect.html`,
@@ -68,10 +68,11 @@ export const ROLE_FILE_MAP: Record<string, string> = {
   hm:   `${BASE}/role-profiles/Marketing/Head-of-Marketing-Framework-The-Revenue-Visionary.html`,
 
   // ── Executive Leadership ────────────────────────────────────────────
-  // ad:  will be updated in future
-  // dir: will be updated in future
-  // vp:  will be updated in future
-  // rd:  will be updated in future
+  ad:   `${BASE}/role-profiles/people-leadership%20-%20VP,%20D,%20AD.html`,
+  dir:  `${BASE}/role-profiles/people-leadership%20-%20VP,%20D,%20AD.html`,
+  vp:   `${BASE}/role-profiles/people-leadership%20-%20VP,%20D,%20AD.html`,
+  // rd: will be updated in future
 
 }
+
 

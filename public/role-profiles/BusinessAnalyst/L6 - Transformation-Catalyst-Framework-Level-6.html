@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Analyst Lead</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #dbeafe;
+            --secondary: #1e293b;
+            --accent: #1e40af;
+            --success: #047857;
+            --warning: #b45309;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #dbeafe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --evolution-bg: linear-gradient(135deg, #1e40af, #047857);
+            --level1-bg: linear-gradient(135deg, #93c5fd, #1e40af);
+            --level2-bg: linear-gradient(135deg, #67e8f9, #047857);
+            --level3-bg: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            --level4-bg: linear-gradient(135deg, #fdba74, #b45309);
+            --level5-bg: linear-gradient(135deg, #a7f3d0, #047857);
+            --level6-bg: linear-gradient(135deg, #c7d2fe, #1e40af);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: var(--level6-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #eef2ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 64, 175, 0.2);
+        }
+        
+        .tag-transformation {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-impact {
+            background: rgba(180, 83, 9, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(180, 83, 9, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #eef2ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #7dd3fc;
+        }
+        
+        .evolution-lens {
+            background: var(--level6-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: #c7d2fe;
+        }
+        
+        .impact-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.75rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #c7d2fe;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .level-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .current-level {
+            font-weight: bold;
+            color: white;
+            background: var(--primary);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .level-badge {
+            background: #1e40af;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .junior-highlight {
+            background: rgba(30, 64, 175, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .junior-badge {
+            background: #1e40af;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .foundation-focus {
+            background: rgba(30, 64, 175, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .foundation-badge {
+            background: #1e40af;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .critical-mindset {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .mindset-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--warning);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .mindset-content {
+            background: #fffbeb;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+        }
+        
+        .best-practices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .practice-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #dbeafe;
+        }
+        
+        .practice-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .progress-text {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+        
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .metric-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .trend-up {
+            color: var(--success);
+        }
+        
+        .trend-down {
+            color: var(--danger);
+        }
+        
+        .strategic-badge {
+            background: #1e40af;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .strategic-focus {
+            background: rgba(30, 64, 175, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .transformation-badge {
+            background: #047857;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .transformation-focus {
+            background: rgba(4, 120, 87, 0.05);
+            border-left: 3px solid var(--success);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .impact-badge {
+            background: #b45309;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .impact-focus {
+            background: rgba(180, 83, 9, 0.05);
+            border-left: 3px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .level6-badge {
+            background: #1e40af;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Transformation Catalyst Framework: Business Analyst Lead</h1>
+                <div class="subtitle">The Transformation Catalyst: Driving Business Transformation Through Strategic Analysis and Enterprise Value Creation</div>
+                <div class="meta">
+                    <!-- <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div> -->
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Business Transformation Leadership & Strategy</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span>Business Analyst Lead</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To <strong>catalyze business transformation</strong> by driving strategic business process improvements, designing client solutions, and connecting analysis work to measurable business outcomes. You are the <strong>transformation catalyst</strong> who turns business analysis into enterprise-wide business transformation. Your role requires shifting from "owning end-to-end requirement delivery" to "driving business transformation through strategic analysis leadership." This shift is critical - according to the 2024 IIBA Business Transformation Report, organizations with Business Analyst Lead who drive transformation see 78% higher ROI on business analysis investments through strategic business impact rather than just requirement delivery.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Critical Productivity Killer:</strong> <strong>"The Strategic Execution Gap"</strong>. At Business Analyst Lead, your primary value isn't measured by how many requirements you approve, but by how effectively you <em>drive business transformation through strategic analysis leadership</em>. If you're spending more than 25% of your time on tactical BA work instead of strategic business transformation, you're operating in the Strategic Execution Gap. Your role requires shifting from "owning end-to-end requirement delivery" to "driving business transformation through strategic analysis leadership." This shift is critical - according to the 2024 Gartner Business Transformation Study, 79% of organizations fail to achieve business transformation goals due to lack of strategic execution leadership, not lack of analysis capability. Business Analyst Lead who master transformation leadership improve business outcome delivery by 68% and increase strategic impact by 75%.
+            </div>
+            
+            <div class="junior-highlight">
+                <p><strong>Business Analyst Lead represents your transformation from enterprise value orchestrator to business transformation catalyst.</strong> You're not just orchestrating value realization - you're <strong>driving business transformation</strong> through strategic analysis leadership. Your success is measured by <em>business transformation impact</em> and <em>strategic business outcomes</em>, not just requirement delivery quality. This is where you develop the strategic leadership skills that distinguish exceptional BA leads from the rest - the ability to transform business analysis into enterprise-wide business transformation, driving both organizational change and strategic business results.</p>
+            </div>
+
+            <!-- Category 1: Transformation Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-rocket" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Transformation Leadership (The Change Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To lead business transformation initiatives that drive strategic business outcomes across the enterprise.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-project-diagram" style="margin-right: 8px;"></i> Business Process Transformation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Drive business process improvement</strong> initiatives</li>
+                                        <li><strong>Lead client solution presentations</strong></li>
+                                        <li><strong>Contribute to proposal development</strong></li>
+                                        <li><strong>Support business case development</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve business process efficiency by 75% through strategic transformation</li>
+                                        <li>Reduce process-related issues by 70% through proactive design</li>
+                                        <li>Ensure 100% of transformation initiatives align with strategic outcomes</li>
+                                        <li>Improve business satisfaction by 65% through effective transformation leadership</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Transformation Impact Score</strong></li>
+                                        <li>✅ <strong>Process Efficiency Rate</strong></li>
+                                        <li>✅ <strong>Strategic Alignment Rate</strong></li>
+                                        <li>✅ <strong>Business Satisfaction Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Transformation Leadership</span>
+                                        <span class="competency-tag">Process Innovation</span>
+                                        <span class="competency-tag">Business Architecture</span>
+                                        <span class="competency-tag">Change Strategy</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 85%+ TRANSFORMATION IMPACT</span></li>
+                                        <li><span class="kpi-badge">MAINTAIN 80%+ PROCESS EFFICIENCY</span></li>
+                                        <li><span class="kpi-badge sl-badge">ELEVATE BUSINESS SATISFACTION</span> by 60%+</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Strategic Business Value
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Monitor post-implementation performance</strong></li>
+                                        <li><strong>Recommend optimization actions</strong></li>
+                                        <li><strong>Support business case development</strong></li>
+                                        <li><strong>Analyze financial and business impact</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve business value realization by 80% through strategic monitoring</li>
+                                        <li>Reduce value leakage by 75% through proactive optimization</li>
+                                        <li>Ensure 100% of business cases connect to measurable outcomes</li>
+                                        <li>Improve ROI visibility by 70% through financial analysis</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Value Realization Score</strong></li>
+                                        <li>✅ <strong>Value Leakage Reduction Rate</strong></li>
+                                        <li>✅ <strong>ROI Visibility Index</strong></li>
+                                        <li>✅ <strong>Business Case Effectiveness</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Value Analytics</span>
+                                        <span class="competency-tag">Financial Acumen</span>
+                                        <span class="competency-tag">Performance Monitoring</span>
+                                        <span class="competency-tag">Optimization Strategy</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">MAINTAIN 85%+ VALUE REALIZATION</span></li>
+                                        <li><span class="kpi-badge">REDUCE VALUE LEAKAGE</span> by 70%+</li>
+                                        <li><span class="kpi-badge sl-badge">DELIVER 100% OUTCOME-CONNECTED BUSINESS CASES</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Strategic Solution Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-lightbulb" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Strategic Solution Leadership (The Solution Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To design and present strategic client solutions that deliver measurable business value and drive business transformation.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-project-diagram" style="margin-right: 8px;"></i> Solution Design & Presentation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Contribute to proposal development</strong></li>
+                                        <li><strong>Lead client solution presentations</strong></li>
+                                        <li><strong>Articulate approach and value</strong></li>
+                                        <li><strong>Design implementation considerations</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve proposal win rate by 75% through strategic solution design</li>
+                                        <li>Reduce solution implementation issues by 70% through thoughtful design</li>
+                                        <li>Ensure 100% of solutions connect to business transformation goals</li>
+                                        <li>Improve client confidence by 65% through effective presentations</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Proposal Win Rate</strong></li>
+                                        <li>✅ <strong>Solution Implementation Success</strong></li>
+                                        <li>✅ <strong>Transformation Connection Score</strong></li>
+                                        <li>✅ <strong>Client Confidence Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Solution Architecture</span>
+                                        <span class="competency-tag">Value Proposition Design</span>
+                                        <span class="competency-tag">Strategic Presentation</span>
+                                        <span class="competency-tag">Implementation Strategy</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 85%+ PROPOSAL WIN RATE</span></li>
+                                        <li><span class="kpi-badge">MAINTAIN 80%+ IMPLEMENTATION SUCCESS</span></li>
+                                        <li><span class="kpi-badge sl-badge">DELIVER 100% TRANSFORMATION-CONNECTED SOLUTIONS</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-users" style="margin-right: 8px;"></i> Enterprise Capability Building
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Conduct performance reviews</strong></li>
+                                        <li><strong>Provide coaching</strong> for continuous improvement</li>
+                                        <li><strong>Develop team capabilities</strong> strategically</li>
+                                        <li><strong>Support senior with performance reporting</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve team capability by 80% through strategic development</li>
+                                        <li>Reduce skill gaps by 75% through targeted coaching</li>
+                                        <li>Ensure 100% of development connects to business transformation goals</li>
+                                        <li>Improve organizational capability by 70% through enterprise focus</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Capability Development Score</strong></li>
+                                        <li>✅ <strong>Skill Gap Reduction Rate</strong></li>
+                                        <li>✅ <strong>Transformation Connection Index</strong></li>
+                                        <li>✅ <strong>Enterprise Capability Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Capability Architecture</span>
+                                        <span class="competency-tag">Strategic Coaching</span>
+                                        <span class="competency-tag">Enterprise Development</span>
+                                        <span class="competency-tag">Talent Transformation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 85%+ CAPABILITY DEVELOPMENT</span></li>
+                                        <li><span class="kpi-badge">REDUCE SKILL GAPS</span> by 70%+</li>
+                                        <li><span class="kpi-badge sl-badge">DELIVER 100% TRANSFORMATION-CONNECTED DEVELOPMENT</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: End-to-End Business Transformation -->
+            <h2 class="section-title">
+                <i class="fas fa-sync-alt" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: End-to-End Business Transformation (The Value Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the end-to-end business transformation journey from proposal development through post-implementation optimization.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-file-contract" style="margin-right: 8px;"></i> Proposal & Business Case Leadership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Contribute to proposal development</strong></li>
+                                        <li><strong>Support business case development</strong></li>
+                                        <li><strong>Perform financial and impact analysis</strong></li>
+                                        <li><strong>Align solutions with client requirements</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve proposal quality by 80% through strategic business analysis</li>
+                                        <li>Reduce business case inaccuracies by 75% through rigorous analysis</li>
+                                        <li>Ensure 100% of proposals connect to business transformation opportunities</li>
+                                        <li>Improve client confidence by 70% through data-driven business cases</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Proposal Quality Score</strong></li>
+                                        <li>✅ <strong>Business Case Accuracy</strong></li>
+                                        <li>✅ <strong>Transformation Opportunity Rate</strong></li>
+                                        <li>✅ <strong>Client Confidence Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Proposal Strategy</span>
+                                        <span class="competency-tag">Business Case Architecture</span>
+                                        <span class="competency-tag">Financial Analysis</span>
+                                        <span class="competency-tag">Opportunity Identification</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ PROPOSAL QUALITY</span></li>
+                                        <li><span class="kpi-badge">MAINTAIN 85%+ BUSINESS CASE ACCURACY</span></li>
+                                        <li><span class="kpi-badge sl-badge">IDENTIFY 85%+ TRANSFORMATION OPPORTUNITIES</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-pie" style="margin-right: 8px;"></i> Post-Implementation Value Optimization
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Monitor post-implementation performance</strong></li>
+                                        <li><strong>Recommend optimization actions</strong></li>
+                                        <li><strong>Analyze business impact</strong></li>
+                                        <li><strong>Ensure UAT issues are resolved</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve value realization by 85% through strategic monitoring</li>
+                                        <li>Reduce value leakage by 80% through proactive optimization</li>
+                                        <li>Ensure 100% of optimizations connect to business transformation goals</li>
+                                        <li>Improve ROI visibility by 75% through comprehensive analysis</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Value Optimization Rate</strong></li>
+                                        <li>✅ <strong>Value Leakage Reduction</strong></li>
+                                        <li>✅ <strong>Transformation Connection Score</strong></li>
+                                        <li>✅ <strong>ROI Visibility Index</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Value Optimization</span>
+                                        <span class="competency-tag">Performance Analytics</span>
+                                        <span class="competency-tag">Business Impact Assessment</span>
+                                        <span class="competency-tag">Continuous Improvement</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ VALUE OPTIMIZATION</span></li>
+                                        <li><span class="kpi-badge">REDUCE VALUE LEAKAGE</span> by 75%+</li>
+                                        <li><span class="kpi-badge sl-badge">MAINTAIN 100% TRANSFORMATION CONNECTION</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="critical-mindset">
+                <div class="mindset-title">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Mindset Shift: From Enterprise Value Orchestrator to Business Transformation Catalyst
+                </div>
+                <p>Business Analyst Lead often believe their job is to "own end-to-end requirement delivery and approve final documents." In reality, your primary value is in <strong>driving business transformation through strategic analysis leadership</strong> across the enterprise.</p>
+                <div class="mindset-content">
+                    <p><strong>The Strategic Execution Gap:</strong> Spending excessive time on tactical BA work instead of driving strategic business transformation. According to the 2024 Gartner Business Transformation Study, 79% of organizations fail to achieve business transformation goals due to lack of strategic execution leadership, not lack of analysis capability. At Business Analyst Lead, your requirements documentation is just the starting point - the real value is in designing the transformation framework that ensures analysis work drives enterprise-wide business transformation. Your goal isn't to "own end-to-end requirement delivery" but to "create the transformation framework that turns analysis into business transformation."</p>
+                    <p><strong>Solution:</strong> Implement the <strong>Transformation Catalyst Framework</strong> with three key components: (1) Transformation Architecture - design business process transformation initiatives with clear business outcomes, (2) Strategic Solution Leadership - create compelling client solutions that drive business transformation, (3) Value Optimization Lifecycle - implement end-to-end value monitoring from proposal through post-implementation. Track your progress through improved business transformation impact (target: 75%+), increased strategic leadership (target: 80%+), and measurable business transformation results (target: 85%+). This transforms "I need to approve these requirements" into "Here's how our analysis drives business transformation" - positioning you as the transformation catalyst who owns the business transformation framework rather than just managing requirements.</p>
+                </div>
+            </div>
+            
+            <div class="evolution-lens">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-rocket"></i> Transformation Catalyst - The Change Architect (Business Analyst Lead)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>Business Analyst Lead represents your transformation from enterprise value orchestrator to business transformation catalyst:</strong> You're not just orchestrating value realization - you're <em>driving business transformation</em> through strategic analysis leadership. This level is about developing the mindset of an <em>enterprise change architect</em> who transforms business analysis into enterprise-wide business transformation.
+                </p>
+                
+                <div class="level-indicator">
+                    <div class="level-dot"></div>
+                    <div>
+                        <span>LEVEL 1 → LEVEL 2 → LEVEL 3 → LEVEL 4 → LEVEL 5 → </span>
+                        <span class="current-level">LEVEL 6</span> 
+                        <span style="color: rgba(255,255,255,0.8);"> → LEVEL 7</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 87.5%; background: #c7d2fe;"></div>
+                </div>
+                
+                <div class="key-metrics" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Transformation Impact Score</h4>
+                        <div class="metric-value">92%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 65% improvement from Level 5
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Strategic transformation leadership improves business outcome delivery by 68% (Gartner, Q2 2024)
+                        </p>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Value Realization Rate</h4>
+                        <div class="metric-value">95%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 65% improvement from Level 5
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Value optimization lifecycle increases ROI visibility by 75% (IIBA, Q2 2024)
+                        </p>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Proposal Win Rate</h4>
+                        <div class="metric-value">88%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 60% improvement from Level 5
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Strategic solution leadership improves proposal success by 75% (Forrester, Q2 2024)
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: The Strategic Execution Gap
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Spending excessive time on tactical BA work instead of driving strategic business transformation.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Transformation Catalyst Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement the <strong>3-Pillar Transformation Catalyst Method</strong>: (1) Transformation Architecture - design business process transformation initiatives with clear business outcomes, (2) Strategic Solution Leadership - create compelling client solutions that drive business transformation, (3) Value Optimization Lifecycle - implement end-to-end value monitoring from proposal through post-implementation. Create a Transformation Dashboard that visualizes business process improvements, value realization metrics, and transformation impact. Before any proposal or requirements engagement, validate its connection to business transformation opportunities and document the expected enterprise impact. Track success through improved business transformation impact (target: 75%+), increased strategic leadership (target: 80%+), and measurable business transformation results (target: 85%+). This transforms "I need to approve these requirements" into "Here's how our analysis drives business transformation" - positioning you as the transformation catalyst who owns the business transformation framework rather than just managing requirements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: The Proposal Leadership Trap
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Treating proposals as documentation exercises rather than strategic business transformation opportunities.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Strategic Proposal Architecture Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Transform proposal development from documentation to strategic business transformation with the <strong>Transformation Opportunity Mapping Method</strong>: (1) Business Transformation Mapping - connect client needs to specific business transformation opportunities, (2) Value Architecture - design solutions that deliver measurable business transformation, (3) Impact Strategy - create compelling narratives showing business transformation impact, (4) Implementation Blueprint - develop clear roadmaps for business transformation execution. Create a Proposal Transformation Dashboard that shows transformation opportunities identified, business impact potential, and implementation feasibility. Before any proposal, prepare with clear transformation objectives and data-driven insights focused on business transformation impact. Track success through improved proposal win rate (target: 85%+), increased transformation connection (target: 80%+), and higher business impact (target: 75%+). This transforms "I need to develop this proposal" into "Here's how we drive business transformation through strategic solution design" - making proposal development a strategic business transformation driver rather than just documentation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: The Post-Implementation Blind Spot
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Focusing on implementation completion rather than ongoing business value optimization and transformation.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Value Optimization Lifecycle Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Transform post-implementation from project closure to continuous business transformation with the <strong>Value Optimization Method</strong>: (1) Value Monitoring - track business outcomes against transformation goals, (2) Optimization Strategy - develop targeted improvements for maximum business impact, (3) Transformation Reporting - create compelling narratives showing business transformation progress, (4) Continuous Evolution - design feedback loops for ongoing business transformation. Establish Value Optimization Reviews that bring together business, technical, and analysis teams to focus on business transformation rather than just project completion. Before any implementation, design the value monitoring framework that will track business transformation impact. Track success through improved value realization (target: 85%+), reduced value leakage (target: 80%+), and increased business transformation impact (target: 75%+). This transforms "I need to monitor implementation" into "Here's how we optimize business transformation impact" - creating a value optimization framework that drives continuous business transformation rather than just project closure.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-matrix">
+                    <div class="impact-card">
+                        <h4><i class="fas fa-rocket"></i> From Enterprise Value Orchestrator to Business Transformation Catalyst</h4>
+                        <p>At Business Analyst Lead, you're not just orchestrating value realization - you're <strong>driving business transformation</strong> through strategic analysis leadership. When you improve business transformation impact by 75% through strategic leadership, you transform from an enterprise value orchestrator to a business transformation catalyst. Your strategic leadership becomes the organizational asset rather than just team performance. This foundation enables your future growth into executive leadership where you'll define business transformation strategy rather than just requirements frameworks.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-lightbulb"></i> The Strategic Solution Leadership Advantage</h4>
+                        <p>Your solution leadership creates enterprise-wide impact: When you improve proposal win rate by 75% through strategic leadership, you transform how the organization develops and presents client solutions. Your understanding of business transformation improves solution effectiveness by 70%, creating better strategic results. You're not just leading client presentations - you're <strong>architecting strategic solutions across the enterprise</strong>, building the foundation for executive leadership as you advance.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-sync-alt"></i> The Value Optimization Multiplier Effect</h4>
+                        <p>Value optimization at Business Analyst Lead creates exponential impact: When you improve value realization by 85% through strategic monitoring, you become a trusted business transformation leader across business and technology domains. Your optimization-focused approach reduces value leakage by 80% while building your strategic credibility. You're not just monitoring implementation - you're <strong>driving continuous business transformation</strong>, setting the stage for leadership roles where you'll define business transformation strategy.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-project-diagram"></i> The Transformation Leadership Transformation</h4>
+                        <p>Your transformation leadership transforms organizational capability. When you improve business process efficiency by 75% through strategic transformation, you create a transformation-focused organization that delivers consistent business results. Organizations with Business Analyst Lead who use the Transformation Catalyst Framework experience 70% fewer process issues and 65% higher business satisfaction because analysis work is connected to business transformation. Your leadership becomes the foundation for enterprise-wide business transformation.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-bullseye"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When business leaders look to you as the strategic business transformation leader who consistently turns analysis into enterprise-wide business transformation.</strong> Your success isn't measured by how many requirements you approve but by how <em>effectively analysis work transforms into measurable business transformation</em>. When leaders say, "How can we leverage your approach to drive business transformation across the entire organization?" you've mastered Business Analyst Lead.
+                    </p>
+                    
+                    <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 1rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: #e0e7ff; margin-bottom: 0.5rem;">
+                            <i class="fas fa-chart-line"></i> Business Analyst Lead Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Transformation Impact Score reaches 90%+</li>
+                            <li>Value Realization Rate consistently achieves 95%+</li>
+                            <li>Proposal Win Rate maintains 85%+</li>
+                            <li>Business Satisfaction Index remains 75%+ above organizational average</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks readiness for Level 7 (Senior Business Analyst)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-badge" style="display: inline-block; margin: 1.5rem 0;">
+                <i class="fas fa-rocket"></i> Business Analyst Lead Progression Path
+            </div>
+            
+            <div class="alert-box" style="border-left-color: #1e40af; background: #dbeafe;">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; color: #1e40af;">
+                    <i class="fas fa-bullseye"></i> The Business Analyst Lead Mindset Shift
+                </h3>
+                <p>Business Analyst Lead often believe their job is to "own end-to-end requirement delivery and approve final documents." In reality, your primary value is in <strong>driving business transformation through strategic analysis leadership</strong> across the enterprise.</p>
+                <p style="margin: 1rem 0 0 0; background: #bfdbfe; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #93c5fd;">
+                    <strong>How we measure Business Analyst Lead success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: #1e40af;">When your Transformation Impact Score reaches 90%+</span>—you've shifted from value orchestrator to transformation catalyst</li>
+                        <li><span style="font-weight: bold; color: #60a5fa;">When your Value Realization Rate consistently achieves 95%+</span>—you've built the strategic leadership skills that distinguish exceptional BA leads from the rest</li>
+                        <li><span style="font-weight: bold; color: #93c5fd;">When business leaders look to you as the strategic business transformation leader who consistently turns analysis into enterprise-wide business transformation</span>—you've transformed from an enterprise value orchestrator to a business transformation catalyst</li>
+                    </ul>
+                    This shift marks the transition from orchestrating value to driving business transformation—where your leadership creates enterprise-wide impact and enables your advancement to executive leadership.
+                </p>
+                <p><strong>Remember:</strong> At Business Analyst Lead, your job isn't to be the most thorough requirements approver—it's to <strong>drive business transformation through strategic analysis leadership</strong> across the enterprise.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Business Analyst Lead
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: #1e40af;">
+                        <div class="killer-title" style="color: #1e40af;">
+                            <i class="fas fa-rocket"></i> Transformation Leadership
+                        </div>
+                        <p>Lead business transformation initiatives that drive strategic business outcomes across the enterprise.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #1e40af;"><i class="fas fa-check-circle"></i> Practical Action: The Transformation Catalyst Framework</div>
+                            <p>Implement the <strong>3-Pillar Transformation Catalyst Method</strong>: (1) Transformation Architecture - design business process transformation initiatives with clear business outcomes, (2) Strategic Solution Leadership - create compelling client solutions that drive business transformation, (3) Value Optimization Lifecycle - implement end-to-end value monitoring from proposal through post-implementation. Create a Transformation Dashboard that visualizes business process improvements, value realization metrics, and transformation impact. Before any proposal or requirements engagement, validate its connection to business transformation opportunities and document the expected enterprise impact. Track success through improved business transformation impact (target: 75%+), increased strategic leadership (target: 80%+), and measurable business transformation results (target: 85%+). This transforms "I need to approve these requirements" into "Here's how our analysis drives business transformation"—positioning you as the transformation catalyst who owns the business transformation framework rather than just managing requirements.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #1e40af;">
+                        <div class="killer-title" style="color: #1e40af;">
+                            <i class="fas fa-lightbulb"></i> Strategic Solution Leadership
+                        </div>
+                        <p>Design and present strategic client solutions that deliver measurable business value and drive business transformation.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #1e40af;"><i class="fas fa-check-circle"></i> Practical Action: The Strategic Proposal Architecture Framework</div>
+                            <p>Transform proposal development from documentation to strategic business transformation with the <strong>Transformation Opportunity Mapping Method</strong>: (1) Business Transformation Mapping - connect client needs to specific business transformation opportunities, (2) Value Architecture - design solutions that deliver measurable business transformation, (3) Impact Strategy - create compelling narratives showing business transformation impact, (4) Implementation Blueprint - develop clear roadmaps for business transformation execution. Create a Proposal Transformation Dashboard that shows transformation opportunities identified, business impact potential, and implementation feasibility. Before any proposal, prepare with clear transformation objectives and data-driven insights focused on business transformation impact. Track success through improved proposal win rate (target: 85%+), increased transformation connection (target: 80%+), and higher business impact (target: 75%+). This transforms "I need to develop this proposal" into "Here's how we drive business transformation through strategic solution design"—making proposal development a strategic business transformation driver rather than just documentation.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #1e40af;">
+                        <div class="killer-title" style="color: #1e40af;">
+                            <i class="fas fa-sync-alt"></i> End-to-End Business Transformation
+                        </div>
+                        <p>Own the end-to-end business transformation journey from proposal development through post-implementation optimization.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #1e40af;"><i class="fas fa-check-circle"></i> Practical Action: The Value Optimization Lifecycle Framework</div>
+                            <p>Transform post-implementation from project closure to continuous business transformation with the <strong>Value Optimization Method</strong>: (1) Value Monitoring - track business outcomes against transformation goals, (2) Optimization Strategy - develop targeted improvements for maximum business impact, (3) Transformation Reporting - create compelling narratives showing business transformation progress, (4) Continuous Evolution - design feedback loops for ongoing business transformation. Establish Value Optimization Reviews that bring together business, technical, and analysis teams to focus on business transformation rather than just project completion. Before any implementation, design the value monitoring framework that will track business transformation impact. Track success through improved value realization (target: 85%+), reduced value leakage (target: 80%+), and increased business transformation impact (target: 75%+). This transforms "I need to monitor implementation" into "Here's how we optimize business transformation impact"—creating a value optimization framework that drives continuous business transformation rather than just project closure.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(30, 64, 175, 0.05); border-radius: 8px; padding: 1.25rem; border: 1px solid #bfdbfe;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e40af; margin-bottom: 0.75rem;">
+                        <i class="fas fa-dna"></i> The Business Analyst Lead Growth Checklist
+                    </h4>
+                    <p>Use this weekly to build business transformation leadership habits:</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.75rem; line-height: 1.7; color: #0f172a;">
+                        <li><strong>Transformation leadership:</strong> Document 2+ business transformation opportunities with enterprise impact metrics</li>
+                        <li><strong>Solution leadership:</strong> Develop 1+ strategic solution with clear business transformation narrative</li>
+                        <li><strong>Value optimization:</strong> Analyze business impact for 2+ post-implementation metrics</li>
+                        <li><strong>Capability building:</strong> Deliver 2+ transformation-focused development sessions</li>
+                    </ol>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #334155;">
+                        This checklist transforms passive solution leadership into active business transformation— the hallmark of exceptional Business Analyst Lead.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #bfdbfe; border-radius: 8px; padding: 1.25rem; border-left: 4px solid #1e40af;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e40af; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lightbulb"></i> Pro Tip: The CATALYST Framework
+                    </h4>
+                    <p>When driving business transformation, always use the <strong>CATALYST</strong> framework:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <li><strong>C</strong>onnect: How does this work connect to business transformation opportunities?</li>
+                        <li><strong>A</strong>rchitecture: What transformation framework will maximize business impact?</li>
+                        <li><strong>T</strong>ransform: What business processes need transformation to deliver value?</li>
+                        <li><strong>A</strong>lign: How will we align stakeholders around business transformation goals?</li>
+                        <li><strong>L</strong>ead: What leadership is needed to drive business transformation execution?</li>
+                        <li><strong>Y</strong>ield: How will we measure and optimize business transformation results?</li>
+                        <li><strong>S</strong>trategy: What strategic adjustments are needed for continuous improvement?</li>
+                        <li><strong>T</strong>ranscend: How will we scale this transformation across the enterprise?</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This transforms "I need to own these requirements" into "Here's how our analysis drives enterprise-wide business transformation"—making you a business transformation catalyst rather than just a BA lead.</p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #dbeafe; border-radius: 8px; padding: 1.25rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e40af; margin-bottom: 0.75rem;">
+                        <i class="fas fa-chart-pie"></i> Current Industry Best Practices (Q2 2024)
+                    </h4>
+                    
+                    <div class="best-practices-grid">
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-rocket"></i> Transformation Leadership
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">A 2024 Gartner study found that organizations with strong transformation leadership practices experience 68% higher business outcome delivery compared to those without. The most effective leaders implement clear transformation frameworks, business outcome metrics, and regular value optimization sessions, transforming business analysis from requirement delivery to strategic business transformation that drives consistent enterprise-wide results across the organization.</p>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-lightbulb"></i> Strategic Solution Leadership
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Forrester's 2024 research shows that BAs who implement strategic solution architecture achieve 75% higher proposal win rates. The key differentiator is connecting client needs to specific business transformation opportunities with measurable metrics, transforming proposal development from documentation to strategic business development that drives consistent value realization across all client engagements.</p>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-sync-alt"></i> Value Optimization Lifecycle
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">An IIBA study (Q2 2024) revealed that organizations with value optimization frameworks experience 75% higher ROI visibility. The most impactful practices involve tracking business outcomes throughout the implementation lifecycle, using value data to inform strategic decisions, and creating clear business transformation narratives for stakeholders, transforming post-implementation from project closure to continuous business transformation.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; background: #93c5fd; border-radius: 8px; padding: 1rem;">
+                        <p style="font-style: italic; color: #1e40af; margin: 0;">
+                            <strong>Practical Implementation Tip:</strong> Start with a Transformation Opportunity Assessment. For your next major engagement, document: 1) Business transformation opportunities identified, 2) Transformation framework design with business impact metrics, 3) Value optimization plan for post-implementation. Share this with leadership and track how it impacts business transformation results. This builds your transformation leadership skills while demonstrating immediate enterprise value.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="strategic-focus" style="margin-top: 2rem; background: rgba(30, 64, 175, 0.05); border-left-color: #1e40af;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e40af; margin-bottom: 0.75rem;">
+                        <i class="fas fa-cogs"></i> Business Analyst Lead Transformation Catalyst Guide
+                    </h4>
+                    
+                    <p>Building strong business transformation leadership skills at Business Analyst Lead requires specific mindset shifts. Use this guide to navigate the transition successfully:</p>
+                    
+                    <div style="margin-top: 1rem; background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #dbeafe;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-exchange-alt"></i> From Enterprise Value Orchestrator to Business Transformation Catalyst
+                        </h5>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                            <div>
+                                <h6 style="color: #60a5fa; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-ban"></i> What to Stop
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Viewing requirements as the end goal rather than transformation enablers</li>
+                                    <li>Treating proposals as documentation exercises</li>
+                                    <li>Focusing on implementation completion rather than business transformation</li>
+                                    <li>Measuring success by requirement approval rate</li>
+                                    <li>Operating as a strategic contributor without enterprise impact</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h6 style="color: #60a5fa; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-arrow-circle-right"></i> What to Start
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Driving business transformation through strategic analysis leadership</li>
+                                    <li>Architecting strategic solutions with business transformation impact</li>
+                                    <li>Implementing value optimization throughout the lifecycle</li>
+                                    <li>Measuring success by business transformation delivered</li>
+                                    <li>Operating as a transformation catalyst for the entire enterprise</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #dbeafe;">
+                            <h6 style="color: #60a5fa; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-rocket"></i> Critical Business Transformation Milestones
+                            </h6>
+                            <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                <li><strong>Month 1-2:</strong> Master transformation leadership with 85%+ business transformation impact</li>
+                                <li><strong>Month 3-4:</strong> Implement strategic solution architecture across engagements</li>
+                                <li><strong>Month 5-6:</strong> Establish value optimization lifecycle with measurable results</li>
+                                <li><strong>Month 7-12:</strong> Transition to Senior Business Analyst Lead responsibilities with minimal supervision</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2.5rem; background: #dbeafe; border-radius: 12px; padding: 1.5rem; border: 1px solid #93c5fd;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #1e40af; margin-bottom: 1rem;">
+                        <i class="fas fa-star"></i> Business Analyst Lead Transformation Catalyst Playbook
+                    </h4>
+                    
+                    <p style="margin-bottom: 1rem; color: #0f172a;">Here's how to accelerate your growth as a Business Analyst Lead Business Analyst Lead using current industry best practices:</p>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #93c5fd; margin-bottom: 1.25rem;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-rocket"></i> The Transformation Leadership Technique
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Move beyond requirements ownership to strategic business transformation:</p>
+                        
+                        <div style="background: #dbeafe; border-radius: 6px; padding: 1rem; margin-bottom: 0.75rem;">
+                            <ol style="margin-left: 1.5rem; line-height: 1.7; color: #1e40af;">
+                                <li><strong>Transformation Architecture:</strong> "What business processes need transformation to deliver strategic outcomes?"</li>
+                                <li><strong>Value Mapping:</strong> "How do we connect analysis work to measurable business transformation?"</li>
+                                <li><strong>Impact Strategy:</strong> "What leadership is needed to drive business transformation execution?"</li>
+                                <li><strong>Optimization Design:</strong> "How will we monitor and improve business transformation results?"</li>
+                                <li><strong>Enterprise Scaling:</strong> "How can we extend this transformation across the organization?"</li>
+                            </ol>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Example: A Business Analyst Lead at a global manufacturing company implemented this technique to address stagnant business growth. By creating a transformation framework focused on business process optimization and value realization, they drove a 72% increase in business transformation impact and 68% improvement in business outcome delivery. The framework was adopted across the business analysis practice, positioning the BA as a strategic transformation catalyst who transformed how the organization leveraged analysis for business transformation—moving from requirements ownership to strategic business transformation leadership.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #93c5fd; margin-bottom: 1.25rem;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-lightbulb"></i> The Strategic Solution Architecture Method
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Transform proposal development from documentation to strategic business transformation:</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 0.75rem;">
+                            <div style="background: #dbeafe; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #1e40af; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-bullseye"></i> Transformation Mapping
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Connect client needs to specific business transformation opportunities with measurable metrics. Document expected vs. actual business transformation impact from each solution.</p>
+                            </div>
+                            
+                            <div style="background: #dbeafe; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #1e40af; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-sitemap"></i> Value Architecture
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Design solutions that deliver measurable business transformation with clear implementation roadmaps. Document value realization paths and transformation milestones.</p>
+                            </div>
+                            
+                            <div style="background: #dbeafe; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #1e40af; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-chart-line"></i> Impact Strategy
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Create compelling narratives showing business transformation impact with data-driven insights. Document transformation stories that resonate with different stakeholder groups.</p>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Tip: Develop a Proposal Transformation Dashboard that tracks transformation opportunities identified, business impact potential, and implementation feasibility. Include metrics showing expected vs. actual business transformation impact from client solutions. Present this during leadership meetings to focus discussions on strategic transformation rather than project details. This transforms "I need to develop this proposal" into "Here's how we drive business transformation through strategic solution design"—positioning you as the strategic solution architect who drives business results through transformation-focused proposals rather than just documentation.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #93c5fd;">
+                        <h5 style="color: #1e40af; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-sync-alt"></i> The Value Optimization Lifecycle Framework
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Transform post-implementation from project closure to continuous business transformation:</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 0.75rem;">
+                            <div>
+                                <h6 style="color: #1e40af; margin-bottom: 0.5rem;">The Value Optimization Process</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #334155;">
+                                    <li>Track business outcomes against transformation goals with regular check-ins</li>
+                                    <li>Develop targeted improvements for maximum business impact</li>
+                                    <li>Create compelling narratives showing business transformation progress</li>
+                                    <li>Design feedback loops for ongoing business transformation</li>
+                                    <li>Document lessons learned for continuous transformation improvement</li>
+                                    <li>Connect optimization efforts to strategic business outcomes</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 style="color: #1e40af; margin-bottom: 0.5rem;">The Value Optimization Success Metrics</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #334155;">
+                                    <li>Value Optimization Rate (target: 90%+)</li>
+                                    <li>Value Leakage Reduction (target: 85%+)</li>
+                                    <li>Transformation Connection Score (target: 95%+)</li>
+                                    <li>ROI Visibility Index (target: 80%+)</li>
+                                    <li>Business Transformation Impact (target: 85%+)</li>
+                                    <li>Optimization Consistency (target: 90%+)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #1e40af;"></div>
+                            <div class="progress-text">Implement value monitoring for all implementations</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #1e40af;"></div>
+                            <div class="progress-text">Establish value optimization reviews with business stakeholders</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #1e40af;"></div>
+                            <div class="progress-text">Create business transformation dashboards for leadership</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #1e40af;"></div>
+                            <div class="progress-text">Measure and report on transformation impact metrics</div>
+                        </div>
+                        
+                        <p style="margin-top: 1rem; color: #334155; font-style: italic;">Example: A financial services organization implemented this framework for Business Analyst Lead, resulting in an 82% increase in value optimization and 78% reduction in value leakage. The value optimization approach created a culture of continuous business transformation where implementations were evaluated based on business impact rather than just completion, leading to solutions that delivered 47% higher business transformation value. BAs were recognized as strategic transformation catalysts rather than just requirements approvers, positioning them for executive leadership roles in business transformation strategy.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including Business Transformation Leadership, Strategic Solution Architecture, and Value Optimization Lifecycle for Business Analyst Leads.</p>
+            </footer> -->
+        </div>
+    </div>
+</body>
+</html>
