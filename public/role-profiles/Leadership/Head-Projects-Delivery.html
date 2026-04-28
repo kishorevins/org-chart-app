@@ -1,0 +1,906 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Head - Projects & Delivery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #dbeafe;
+            --secondary: #0f172a;
+            --accent: #7e22ce;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #e0f2fe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px; /* Ensures minimum width for tables */
+        }
+        
+        .container {
+            max-width: none; /* Allows full width for wide tables */
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #1d4ed8);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem; /* Reduced font size for better content visibility */
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row); /* Zebra striping for readability */
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0f9ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .evolution-lens {
+            background: linear-gradient(to right, var(--accent), #7c3aed);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .evolution-title {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .transformation {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            color: var(--secondary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .transformation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        ul {
+            padding-left: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 64, 175, 0.2);
+        }
+        
+        .tag-culture {
+            background: rgba(126, 34, 206, 0.1);
+            color: var(--accent);
+            border: 1px solid rgba(126, 34, 206, 0.2);
+        }
+        
+        .tag-governance {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .main-content {
+            min-width: 1200px; /* Critical for ensuring table width */
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+                background: white;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+            
+            table {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Head - Projects & Delivery - Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">CEO of the Delivery Ecosystem: Shaping the Future of Business Through Strategic Execution</div>
+                <div class="meta">
+                    <!-- <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div> -->
+                    <div class="meta-item">
+                        <i class="fas fa-bullseye"></i>
+                        <span>Strategic Health of Portfolio Focus</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Sustainable Excellence & Market Leadership</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To be the <strong>CEO of the delivery ecosystem</strong>, shaping the future of the business. Accountable for the <strong>strategic health</strong> of the portfolioensuring today's execution fuels tomorrow's growth, and that the organizational system is designed for sustainable excellence and market leadership.
+            </div>
+            
+            <div class="highlight-box" style="background: #fef2f2; border-left-color: var(--danger);">
+                <strong>Growth Killer to Avoid:</strong> Getting bogged down in L2/L1 operational details, which robs strategic thinking time required to shape the future.
+            </div>
+
+            <!-- Category 1: Strategic Execution & Business Growth -->
+            <h2 class="section-title">
+                <i class="fas fa-rocket" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Strategic Execution & Business Growth (The Vision Realizer)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the translation of corporate strategy into actionable departmental goals and measurable outcomes. Accountable for the department's contribution to company growthboth through executing critical initiatives and proactively expanding the business footprint.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-bullseye" style="margin-right: 8px;"></i> Strategic Planning & Goal Setting
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAs / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Define department-level GMRs aligned with company strategy</li>
+                                        <li>Engage & motivate teams to commit to and achieve GMRs</li>
+                                        <li>Ensure all objectives are specific, measurable, and time-bound</li>
+                                        <li>Track & update GMR progress bi-weekly/monthly</li>
+                                        <li>Lead execution of critical departmental initiatives</li>
+                                        <li>Manage team priorities & resolve inter-departmental dependencies</li>
+                                        <li>Guide direct reports in establishing effective leadership practices including REO sessions</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve <span class="kpi-badge">=90% of departmental GMRs annually</span></li>
+                                        <li>Ensure <span class="kpi-badge">=95% of objectives are SMART goals</span></li>
+                                        <li>Provide <span class="kpi-badge">=95% on-time, accurate progress reporting</span></li>
+                                        <li><span class="kpi-badge">Successfully deliver =4 strategic initiatives per year</span></li>
+                                        <li>Maintain <span class="kpi-badge">=2 unresolved critical dependencies</span></li>
+                                        <li>Ensure <span class="kpi-badge">Direct reports conduct =4 REO sessions per quarter</span> with their teams</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>GMR Achievement Rate (Annual)</li>
+                                        <li>SMART Goal Compliance Score</li>
+                                        <li>Strategic Initiative Delivery Success Rate</li>
+                                        <li>Dependency Resolution Time</li>
+                                        <li>Progress Report Quality Index</li>
+                                        <li>REO Completion Rate for Downward Chain</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Visioning</span>
+                                        <span class="competency-tag">OKR/GMR Methodology</span>
+                                        <span class="competency-tag">Cross-Functional Leadership</span>
+                                        <span class="competency-tag">Program Management</span>
+                                        <span class="competency-tag">Executive Influence</span>
+                                        <span class="competency-tag">Leadership Development</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Departmental GMRs locked & communicated within Q1</li>
+                                        <li><span class="kpi-badge sl-badge">Bi-weekly GMR checkpoints</span> as non-negotiable calendar items</li>
+                                        <li>Maintain visible <span class="kpi-badge sl-badge">Strategic Initiative Dashboard</span></li>
+                                        <li>Verify REO execution down the chain is <span class="kpi-badge sl-badge">consistently completed</span></li>
+                                        <li>REO output is reviewed quarterly with L2s</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Business Development & P&L Ownership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAs / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Identify new business opportunities within existing accounts</li>
+                                        <li>Drive expansion of market presence & service offerings</li>
+                                        <li>Take full P&L accountability for department performance</li>
+                                        <li>Identify upsell/cross-sell during engagement</li>
+                                        <li>Design account growth frameworks</li>
+                                        <li>Update CRM with new organic leads</li>
+                                        <li>Ensure leadership practices including effective REO sessions are supported with appropriate tools, time, and follow-through</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve <span class="kpi-badge">=15% YoY revenue growth</span></li>
+                                        <li>Drive <span class="kpi-badge">=20% expansion in key accounts</span></li>
+                                        <li>Maintain <span class="kpi-badge">=90% P&L forecast accuracy</span></li>
+                                        <li>Design <span class="kpi-badge">=1 growth framework per key account</span></li>
+                                        <li>Ensure <span class="kpi-badge">100% of qualified leads in CRM within 48h</span></li>
+                                        <li>Validate <span class="kpi-badge">=90% of managers conduct REO sessions properly down chain</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Portfolio Revenue Growth Rate</li>
+                                        <li>Account Expansion Rate</li>
+                                        <li>P&L Forecast Variance</li>
+                                        <li>Lead-to-CRM Cycle Time</li>
+                                        <li>New Business Pipeline Value</li>
+                                        <li>REO Compliance Rate</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Business Acumen</span>
+                                        <span class="competency-tag">P&L Management</span>
+                                        <span class="competency-tag">Sales Mindset</span>
+                                        <span class="competency-tag">Account Management</span>
+                                        <span class="competency-tag">Data-Driven Decision Making</span>
+                                        <span class="competency-tag">Leadership Culture Design</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Conduct <span class="kpi-badge sl-badge">Quarterly business reviews (QBR)</span> for strategic accounts</li>
+                                        <li><span class="kpi-badge sl-badge">Monthly P&L review</span> with Finance partner</li>
+                                        <li>CRM is the <strong>single source of truth</strong></li>
+                                        <li>REO insights are incorporated into <span class="kpi-badge sl-badge">strategic planning cycles</span></li>
+                                        <li>Leadership practices are audited quarterly</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Organizational & Talent Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-people-group" style="margin-right: 10px; color: var(--accent);"></i>
+                Category 2: Organizational & Talent Leadership (The Culture Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the long-term health and capability of the organization. Accountable for <strong>building a self-sustaining leadership pipeline</strong> and fostering a culture that attracts, retains, and develops top talent, thereby ensuring the company's future success.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-users" style="margin-right: 8px;"></i> Organizational Development & Culture
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Promote company culture, values, and ethics</li>
+                                        <li>Ensure clarity in roles, responsibilities, and authority</li>
+                                        <li>Collaborate with peer leaders on strategic projects</li>
+                                        <li>Maintain ownership and accountability for outcomes</li>
+                                        <li>Champion effective leadership practices including REO sessions</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve <span class="kpi-badge">=95% clarity score</span> in role/responsibility surveys</li>
+                                        <li><span class="kpi-badge">100% participation in cross-departmental projects</span></li>
+                                        <li>Have <span class="kpi-badge">=1 accountability failure per year</span></li>
+                                        <li><span class="kpi-badge">Departmental culture scores meet/exceed benchmarks</span></li>
+                                        <li>Validate <span class="kpi-badge">=95% organization-wide adoption of REO sessions</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Role Clarity Index (Survey)</li>
+                                        <li>Cross-Functional Collaboration Score</li>
+                                        <li>Commitment Delivery Record</li>
+                                        <li>Culture/Engagement Score (eNPS)</li>
+                                        <li>Leadership Practice Adoption Rate</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Culture Building</span>
+                                        <span class="competency-tag">Organizational Design</span>
+                                        <span class="competency-tag">Peer Collaboration</span>
+                                        <span class="competency-tag">Executive Presence</span>
+                                        <span class="competency-tag">Accountability</span>
+                                        <span class="competency-tag">Leadership Framework Implementation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Conduct <span class="kpi-badge sl-badge">Annual "Role Clarity" exercise</span></li>
+                                        <li>Maintain <span class="kpi-badge sl-badge">"Lessons Learned" log</span> for strategic projects</li>
+                                        <li>"Accountability" as <strong>standing agenda item</strong> in leadership meetings</li>
+                                        <li>REO effectiveness as an <span class="kpi-badge sl-badge">evaluation criterion</span> for management</li>
+                                        <li>Leadership practices assessed in eNPS survey</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-user-graduate" style="margin-right: 8px;"></i> Strategic Talent & Succession Management
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Identify and mentor high-potential individuals</li>
+                                        <li>Assess current & future resource needs for growth</li>
+                                        <li>Provide inputs for capacity planning</li>
+                                        <li>Allocate delivery SMEs for key bids</li>
+                                        <li>Evaluate quality of leadership practices including REO sessions throughout organization</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">Identify and mentor =3 high-potentials annually</span></li>
+                                        <li>Achieve <span class="kpi-badge">=1 mentee promotion to L2+ every two years</span></li>
+                                        <li>Provide <span class="kpi-badge">capacity forecasts with =90% accuracy</span></li>
+                                        <li>Ensure <span class="kpi-badge">100% of key bids supported by appropriate SMEs</span></li>
+                                        <li>Review <span class="kpi-badge">REO session quality and impact quarterly</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>HiPo Identification & Development Rate</li>
+                                        <li>Succession Pipeline Strength</li>
+                                        <li>Strategic Capacity Forecast Accuracy</li>
+                                        <li>Bid Win Rate for SME-supported proposals</li>
+                                        <li>Leadership Practice Quality Index</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Talent Spotting</span>
+                                        <span class="competency-tag">Executive Mentoring</span>
+                                        <span class="competency-tag">Workforce Planning</span>
+                                        <span class="competency-tag">Succession Planning</span>
+                                        <span class="competency-tag">Talent Deployment</span>
+                                        <span class="competency-tag">Feedback Quality Assessment</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">Formal HiPo list with development plans</span></li>
+                                        <li><span class="kpi-badge sl-badge">Quarterly capacity planning ritual</span></li>
+                                        <li><span class="kpi-badge sl-badge">SME allocation as strategic priority</span></li>
+                                        <li>REO should follow <span class="kpi-badge sl-badge">structured framework</span> (Reflect, Connect, Reorient)</li>
+                                        <li>Leadership effectiveness measured through direct report satisfaction</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Governance, Excellence & Scale -->
+            <h2 class="section-title">
+                <i class="fas fa-sitemap" style="margin-right: 10px; color: var(--warning);"></i>
+                Category 3: Governance, Excellence & Scale (The System Designer)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the <strong>systems, processes, and standards</strong> that allow the organization to scale with quality, efficiency, and predictability. Accountable for moving from fixing problems to <strong>designing problem-proof systems</strong> and elevating the entire company's delivery capability.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-file-contract" style="margin-right: 8px;"></i> Governance, Reporting & Strategic Alignment
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Report progress, challenges, and outcomes to leadership</li>
+                                        <li>Define delivery SLAs for strategic accounts</li>
+                                        <li>Align delivery performance with account growth targets</li>
+                                        <li>Define joint delivery governance and escalation path</li>
+                                        <li>Review and validate technical & delivery sections of proposals</li>
+                                        <li>Ensure organizational feedback loops including REO sessions feed into continuous improvement</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Deliver <span class="kpi-badge">100% of executive reports on time</span> with actionable insights</li>
+                                        <li><span class="kpi-badge">Define SLAs for 100% of strategic accounts</span></li>
+                                        <li>Achieve <span class="kpi-badge">=95% alignment between metrics and growth goals</span></li>
+                                        <li>Ensure <span class="kpi-badge">100% proposal technical sections reviewed</span></li>
+                                        <li>Verify <span class="kpi-badge">REO insights drive organizational improvements</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Executive Report Timeliness & Actionability Score</li>
+                                        <li>SLA Coverage & Adherence Rate</li>
+                                        <li>Strategic Alignment Index</li>
+                                        <li>Proposal Quality/Validation Score</li>
+                                        <li>Improvement Implementation Rate</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Corporate Governance</span>
+                                        <span class="competency-tag">SLA Design</span>
+                                        <span class="competency-tag">Performance Management</span>
+                                        <span class="competency-tag">Due Diligence</span>
+                                        <span class="competency-tag">Risk Assessment</span>
+                                        <span class="competency-tag">Organizational Feedback Integration</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Use <span class="kpi-badge sl-badge">Standardized 7S reporting format</span></li>
+                                        <li>Account SLAs <strong>co-created with client</strong> and signed off annually</li>
+                                        <li>Implement <span class="kpi-badge sl-badge">proposal review checklist</span></li>
+                                        <li>REO findings systematically rolled up to <span class="kpi-badge sl-badge">organizational improvement efforts</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-magic" style="margin-right: 8px;"></i> Process Innovation & Organizational Excellence
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <ul>
+                                        <li>Identify areas for improvement and recommend solutions</li>
+                                        <li>Drive organization-wide process improvements</li>
+                                        <li>Lead excellence initiatives across the organization</li>
+                                        <li>Institutionalize effective leadership practices including REO sessions</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">Drive =4 organization-wide process improvements annually</span></li>
+                                        <li><span class="kpi-badge">Lead or sponsor =2 "Excellence Initiatives" per year</span></li>
+                                        <li><span class="kpi-badge">Implement =3 automation reducing effort by =15%</span></li>
+                                        <li><span class="kpi-badge">Institutionalize leadership practices with 100% adoption</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Enterprise Process Improvement Impact</li>
+                                        <li>Excellence Initiative Adoption & Results</li>
+                                        <li>Automation ROI (Investment vs. Efficiency Gain)</li>
+                                        <li>Leadership Practice Adoption Rate</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Systems Thinking</span>
+                                        <span class="competency-tag">Process Re-engineering</span>
+                                        <span class="competency-tag">Change Leadership</span>
+                                        <span class="competency-tag">Lean/Six Sigma</span>
+                                        <span class="competency-tag">Automation Strategy</span>
+                                        <span class="competency-tag">Leadership Development</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Process improvements vetted with <strong>"Scale Test"</strong></li>
+                                        <li>Excellence initiatives require <strong>charter with scope/metrics</strong></li>
+                                        <li>Automation requires <strong>business case with 12-month ROI</strong></li>
+                                        <li>Leadership practices like REO are part of <span class="kpi-badge sl-badge">mandatory training</span></li>
+                                        <li>Feedback from REO sessions is <span class="kpi-badge sl-badge">integrated into process design</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Evolution Lens -->
+            <div class="evolution-lens">
+                <h2 class="evolution-title">
+                    <i class="fas fa-sync-alt"></i> Evolution Lens (The CEO of the Ecosystem)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7;">
+                    <strong>Head - Projects & Delivery framework is about defining the game, not just playing it.</strong> You shift from managing the present to architecting the future.
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Portfolio Manager" to "Business Unit Leader"</span>
+                        </div>
+                        <p>Evolve from overseeing projects to running a business-within-the-business, with full P&L accountability and growth targets.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "People Leader" to "Culture & Succession Architect"</span>
+                        </div>
+                        <p>Expand focus beyond immediate team to shaping organizational culture and ensuring robust leadership pipeline.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Process Improver" to "System Designer"</span>
+                        </div>
+                        <p>Move from optimizing processes to designing fundamental operating systems that enable predictable scaling.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Report Provider" to "Strategic Narrator"</span>
+                        </div>
+                        <p>Transition from status updates to crafting strategic narratives that influence company direction.</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1.5rem; margin-top: 2rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-chart-pie"></i> Success Measured By
+                        </h3>
+                        <ul style="color: rgba(255,255,255,0.95); margin-left: 1.25rem;">
+                            <li><strong>Business metrics:</strong> revenue growth, P&L health, market expansion</li>
+                            <li><strong>Organizational metrics:</strong> leadership pipeline strength, culture scores</li>
+                            <li><strong>Legacy metrics:</strong> enterprise-wide improvements, excellence initiatives</li>
+                            <li><strong>Leadership practice adoption:</strong> REO compliance and effectiveness</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 300px; background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-hammer"></i> Core Philosophy
+                        </h3>
+                        <p style="color: rgba(255,255,255,0.95);">Build systems that outlast you. Focus on creating sustainable organizational capabilities rather than solving immediate problems. Systems like effective REO sessions ensure organizational learning and continuous improvement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Performance Insight
+                </h3>
+                <p>Head Project & Delivery must dedicate <strong>at least 30% of their time</strong> to future-focused activities (strategic planning, ecosystem development, leadership pipeline building). Anything less indicates operational overcommitment that undermines long-term success. Measure success by the <strong>self-sufficiency of the organization and adoption of leadership practices like REO sessions</strong> down the chain.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

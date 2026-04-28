@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solution Architect Framework </title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-light: #bfdbfe;
+            --secondary: #0f172a;
+            --accent: #8b5cf6;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #dbeafe;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #0ea5e9);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #f0f9ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .evolution-lens {
+            background: linear-gradient(to right, var(--accent), #7c3aed);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .evolution-title {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .transformation {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            color: var(--secondary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .transformation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        ul {
+            padding-left: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-period {
+            background: rgba(30, 64, 175, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(30, 64, 175, 0.2);
+        }
+        
+        .tag-quality {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-efficiency {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #eff6ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Solution Architect  - Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">The Architectural Owner: Balancing Technical Vision with Business Value</div>
+                <div class="meta">
+                    <!-- <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div> -->
+                    <div class="meta-item">
+                        <i class="fas fa-project-diagram"></i>
+                        <span>Architectural Cohesion & Financial Stewardship</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-sharp fa-solid fa-sitemap"></i>
+                        <span>The Visionary Steward</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To own the holistic technical vision, economic viability, and successful delivery of one or more projects. You are accountable for <strong>architectural integrity, financial stewardship, and stakeholder alignment</strong>balancing innovation with operational discipline. You are the bridge between business needs and technical execution.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Growth Killer to Avoid:</strong> Straying from your core architectural role into pure project management tasks that others on the delivery team should own.
+            </div>
+
+            <!-- Category 1: Solution Design & Architectural Integrity -->
+            <h2 class="section-title">
+                <i class="fas fa-diagram-project" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Solution Design & Architectural Integrity (The Owner)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the creation of robust, scalable, and maintainable technical blueprints that guide teams to predictable success. You are accountable for the quality and clarity of the architectural vision.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-blueprint" style="margin-right: 8px;"></i> Blueprinting & Documentation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Develop comprehensive architectural solutions for projects</li>
+                                        <li>Architect and document complete solution blueprints</li>
+                                        <li>Create and maintain comprehensive architecture documents</li>
+                                        <li>Maintain current architecture and workflow documentation</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Ensure <span class="tag tag-efficiency">100%</span> of projects have approved architecture before development</li>
+                                        <li>Achieve <span class="tag tag-quality">=95%</span> implementation success rate (minimal rework)</li>
+                                        <li>Reduce "architectural ambiguity" blockers by <span class="tag tag-efficiency">80%</span> through documentation</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Architecture Approval Rate</strong> & Time-to-Approval</li>
+                                        <li> <strong>Architecture Rework Rate</strong> (Changed post-implementation)</li>
+                                        <li> <strong>Documentation Currency Index</strong> (Monthly verification)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">System Design</span>
+                                        <span class="competency-tag">Technical Writing</span>
+                                        <span class="competency-tag">Diagramming (C4, UML)</span>
+                                        <span class="competency-tag">Domain Modeling</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Mandatory <span class="kpi-badge sl-badge">peer review of all designs</span> (by L3) before finalization</li>
+                                        <li><span class="kpi-badge sl-badge">Architecture Decision Records (ADRs)</span> mandatory for significant choices</li>
+                                        <li><span class="kpi-badge sl-badge">Bi-weekly sync with dev leads</span> to validate blueprint understanding</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-bolt" style="margin-right: 8px;"></i> Automation & Innovation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Create/update Infrastructure as Code (IaC) scripts</li>
+                                        <li>Design innovative solutions for novel technical challenges</li>
+                                        <li>Propose approaches to validate feasibility in complex domains</li>
+                                        <li>Evaluate emerging tools with comprehensive assessment docs</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve <span class="tag tag-efficiency">=90%</span> reusability of IaC scripts across projects</li>
+                                        <li>Propose and shepherd <span class="tag tag-period">at least one</span> innovation/novel solution per quarter</li>
+                                        <li>Produce <span class="kpi-badge">formal documented technology assessment</span> for new tools</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>IaC Reusability Score</strong> (Module reuse percentage)</li>
+                                        <li> <strong>Innovation Pipeline</strong> (Novel solutions proposed/adopted)</li>
+                                        <li> <strong>Technology Assessment Quality</strong> (Stakeholder feedback)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Infrastructure as Code</span>
+                                        <span class="competency-tag">Research & Development</span>
+                                        <span class="competency-tag">Cost-Benefit Analysis</span>
+                                        <span class="competency-tag">Technical Risk Assessment</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Store <span class="kpi-badge sl-badge">IaC in version control</span> with peer-reviewed merges</li>
+                                        <li>Require <span class="kpi-badge sl-badge">standardized "Buy vs. Build vs. Adopt" template</span> for evaluations</li>
+                                        <li><span class="kpi-badge sl-badge">Present innovation proposals</span> at quarterly Architecture Innovation Review</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Economic & Operational Stewardship -->
+            <h2 class="section-title">
+                <i class="fas fa-chart-line" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Economic & Operational Stewardship (The Steward)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the project's financial health and operational excellence. You are accountable for optimizing cost, performance, and security while ensuring long-term maintainability.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-money-bill-wave" style="margin-right: 8px;"></i> Financial Leadership
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Calculate project-level infrastructure budgets</li>
+                                        <li>Recommend Reserved Instances for cost optimization</li>
+                                        <li>Provide project-level cost optimization guidance</li>
+                                        <li>Analyze infrastructure expenditures and recommend improvements</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Deliver project budgets within <span class="tag tag-efficiency">10%</span> actual variance</li>
+                                        <li>Achieve <span class="tag tag-efficiency">=15%</span> annual cost reduction through optimization</li>
+                                        <li>Attain <span class="tag tag-efficiency">=25%</span> RI utilization for eligible resources</li>
+                                        <li><span class="kpi-badge">Conduct quarterly cost reviews</span> (100% completion)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Budget Accuracy</strong> (Actual vs. Forecast)</li>
+                                        <li> <strong>Cost Savings Realized</strong> (Quarterly tracking)</li>
+                                        <li> <strong>RI Utilization Rate</strong></li>
+                                        <li> <strong>Review Compliance</strong> (Quarterly completed)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Cloud Cost Management</span>
+                                        <span class="competency-tag">Financial Forecasting</span>
+                                        <span class="competency-tag">Benchmarking</span>
+                                        <span class="competency-tag">Cost Modeling</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Submit <span class="kpi-badge sl-badge">formal budget for approval</span> during project initiation</li>
+                                        <li>Produce <span class="kpi-badge sl-badge">monthly cost anomaly reports</span> for all projects</li>
+                                        <li><span class="kpi-badge sl-badge">Document RI recommendations</span> with payback analysis</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-shield-alt" style="margin-right: 8px;"></i> Performance, Security & Maintenance
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Establish performance optimization standards</li>
+                                        <li>Integrate performance considerations into designs</li>
+                                        <li>Review security tasks and confirm implementation</li>
+                                        <li>Assess and strengthen cloud resource security</li>
+                                        <li>Develop maintenance and upgrade plans</li>
+                                        <li>Conduct website and conversion rate optimization audits</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Achieve <span class="tag tag-efficiency">=30%</span> performance improvement in one critical system per year</li>
+                                        <li>Secure <span class="tag tag-quality">0 critical security findings</span> in post-implementation reviews</li>
+                                        <li>Publish <span class="tag tag-period">12-month maintenance & upgrade roadmap</span> per project</li>
+                                        <li>Conduct <span class="tag tag-period">bi-annual security reviews</span> (with cost reviews)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Performance Improvement Metrics</strong> (Latency, throughput)</li>
+                                        <li> <strong>Security Posture Score</strong> (Based on review findings)</li>
+                                        <li> <strong>Maintenance Plan Coverage</strong> (% of systems with plan)</li>
+                                        <li> <strong>Audit Completion Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Performance Engineering</span>
+                                        <span class="competency-tag">Security Hardening</span>
+                                        <span class="competency-tag">Reliability Engineering</span>
+                                        <span class="competency-tag">SEO/CRO Fundamentals</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Make performance budgets <span class="kpi-badge sl-badge">non-functional requirements</span></li>
+                                        <li>Require <span class="kpi-badge sl-badge">security review checklist</span> completion pre-production</li>
+                                        <li><span class="kpi-badge sl-badge">Communicate maintenance windows</span> 30 days in advance</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Delivery Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-user-tie" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Delivery Leadership & Strategic Contribution (The Liaison)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the bridge between the customer/business and the technical team. You are accountable for accurate scoping, feasible planning, and ensuring the solution delivers business value.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-file-contract" style="margin-right: 8px;"></i> Pre-Sales & Project Shaping
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Contribute technical expertise to project proposals</li>
+                                        <li>Provide architecture plans, cost estimates, and ETAs</li>
+                                        <li>Lead customer requirement calls for technical scope</li>
+                                        <li>Participate in technical/functional discovery sessions</li>
+                                        <li>Validate Statement of Work for technical accuracy</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">Contribute to 3+ solution proposals per quarter</span></li>
+                                        <li><span class="kpi-badge">Lead 5+ customer technical calls per month</span></li>
+                                        <li>Achieve <span class="tag tag-quality">=95%</span> stakeholder satisfaction on technical alignment</li>
+                                        <li>Ensure <span class="tag tag-quality">0 major technical scope gaps</span> post-SOW signing</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Proposal Contribution Rate</strong></li>
+                                        <li> <strong>Customer Call Leadership</strong> (Feedback scores)</li>
+                                        <li> <strong>Scope Accuracy</strong> (Change requests from misses)</li>
+                                        <li> <strong>Stakeholder Satisfaction</strong> (NPS or survey)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Requirements Gathering</span>
+                                        <span class="competency-tag">Estimation</span>
+                                        <span class="competency-tag">Risk Assessment</span>
+                                        <span class="competency-tag">Client Communication</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">Mandatory participation</span> in discovery (medium/high complexity)</li>
+                                        <li>Require <span class="kpi-badge sl-badge">SOW Technical Validation Sign-off</span> before contracts</li>
+                                        <li><span class="kpi-badge sl-badge">Document all proposal contributions</span> in knowledge base</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-handshake" style="margin-right: 8px;"></i> Partner & Capability Management
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Define and communicate organizational technical delivery capabilities</li>
+                                        <li>Assess technical feasibility of partner integrations</li>
+                                        <li>Ensure partner solutions meet project quality/compliance standards</li>
+                                        <li>Review/validate technical components of partner proposals</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Maintain <span class="tag tag-period">up-to-date "Capability Catalog"</span> for org/team</li>
+                                        <li>Perform <span class="tag tag-quality">100%</span> tech due diligence on partner integrations</li>
+                                        <li>Reject/remediate <span class="tag tag-quality">100%</span> failing partner solutions</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Capability Catalog Currency</strong> (Monthly reviews)</li>
+                                        <li> <strong>Partner Integration Success Rate</strong> (On-time, on-spec)</li>
+                                        <li> <strong>Standards Adherence</strong> (% passing partner reviews)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Vendor Management</span>
+                                        <span class="competency-tag">Integration Patterns</span>
+                                        <span class="competency-tag">Compliance Frameworks</span>
+                                        <span class="competency-tag">Negotiation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">Require standard "Technical Due Diligence" reports</span> for assessments</li>
+                                        <li><span class="kpi-badge sl-badge">All partner software must undergo security review</span></li>
+                                        <li><span class="kpi-badge sl-badge">Review Capability Catalog quarterly</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 4: Continuous Growth & Mentorship -->
+            <h2 class="section-title">
+                <i class="fas fa-chart-line" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 4: Continuous Growth & Mentorship (The Multiplier)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own your professional evolution from a project-focused architect to a strategic thinker, while actively elevating the talent around you. Accountable for deepening expertise and creating future architects.</p>
+            
+            <!-- Subcategory 4.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-graduation-cap" style="margin-right: 8px;"></i> Strategic Expertise & Certification
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <em>Derived from performance & learning expectations</em>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Complete <span class="tag tag-period">1 relevant cert every 6-12 months</span> (cloud, sec, tech)</li>
+                                        <li><span class="kpi-badge">Define or improve 2+ architectural standards annually</span></li>
+                                        <li><span class="kpi-badge">Proactively drive improvement in design quality & documentation</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Certification Progress</strong> (Milestones per year)</li>
+                                        <li> <strong>Standards Created/Revised</strong> (# per year)</li>
+                                        <li> <strong>Design Quality Trend</strong> (Peer review scores over time)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Specialized Knowledge</span>
+                                        <span class="competency-tag">Standards Development</span>
+                                        <span class="competency-tag">Process Improvement</span>
+                                        <span class="competency-tag">Technical Governance</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Maintain <span class="kpi-badge sl-badge">public "Learning Plan"</span> aligned with org strategy</li>
+                                        <li><span class="kpi-badge sl-badge">Socialize standards in "Solution Discussion Panel"</span></li>
+                                        <li><span class="kpi-badge sl-badge">Contribute "Lesson Learned" case study per project</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 4.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-users-between-lines" style="margin-right: 8px;"></i> Mentorship & Team Elevation
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Actively mentor junior architects and developers</li>
+                                        <li>Proactively share knowledge to elevate team capabilities</li>
+                                        <li>Create feedback loops with teams for continuous improvement</li>
+                                        <li>Manage REO (Reflect, Listen, Connect, Reorient) sessions with direct reports</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">Mentor at least one L1 Associate toward promotion goals</span></li>
+                                        <li><span class="kpi-badge">Conduct =4 REO (monthly) sessions per quarter per direct report</span></li>
+                                        <li><span class="kpi-badge">Document REO outcomes addressing individual development areas</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Mentorship Output</strong> (# mentored, promotion rates)</li>
+                                        <li> <strong>Knowledge Sharing Impact</strong> (Pattern adoptions)</li>
+                                        <li> <strong>Team Feedback</strong> (360 review: supportive leadership)</li>
+                                        <li> <strong>REO Completion Rate</strong> (Documented quarterly)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Coaching</span>
+                                        <span class="competency-tag">Feedback Delivery</span>
+                                        <span class="competency-tag">Public Speaking</span>
+                                        <span class="competency-tag">Empathy</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge sl-badge">Hold bi-weekly office hours</span> for architectural guidance</li>
+                                        <li><span class="kpi-badge sl-badge">REO session template</span> must include all three components:
+                                            <ul style="margin-top: 0.25rem; list-style-position: inside; padding-left: 0.25rem;">
+                                                <li><strong>Reflect:</strong> Active listening to understand performance and challenges</li>
+                                                <li><strong>Connect:</strong> Meaningful conversation to build alignment</li>
+                                                <li><strong>Reorient:</strong> Providing constructive feedback and direction</li>
+                                            </ul>
+                                        </li>
+                                        <li><span class="kpi-badge sl-badge">Verify REO execution</span> with documentation/feedback each quarter</li>
+                                        <li><span class="kpi-badge sl-badge">REO is explicitly for SA & Senior SA only</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Evolution Lens Section -->
+            <div class="evolution-lens">
+                <h2 class="evolution-title">
+                    <i class="fas fa-sync-alt"></i> Evolution Lens (Into a Senior Architect - L3)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7;">
+                    <strong>The Solution Architect - framework is about holistic ownership and strategic influence. You graduate from validating parts to owning the whole.</strong>
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Validator" to "Owner"</span>
+                        </div>
+                        <p>You shift from proving feasibility to being accountable for the entire architecture's success. You take full ownership of the blueprint and its implementation outcomes.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Technician" to "Steward"</span>
+                        </div>
+                        <p>Own not just the "how" but the "how much" (cost) and "how well" (performance, security, maintainability). Balance technical excellence with financial responsibility.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Team Enabler" to "Delivery Leader"</span>
+                        </div>
+                        <p>Expand focus from unblocking developers to shaping projects, managing stakeholders, and ensuring business value delivery. Lead through multiple intermediaries.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Apprentice" to "Mentor"</span>
+                        </div>
+                        <p>You're now the one being shadowed. Your success is multiplied through the growth of your mentees. Elevate others as you continue to deepen your own expertise.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-star"></i> Your Success Is Measured By...
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        Predictability of your projects (budget, timeline, quality), optimization from your stewardship (cost, performance), and strategic alignment you achieve. You're building the business acumen, stakeholder management, and systems thinking required to govern an enterprise portfolio. Avoid micromanaging, which prevents necessary transition to strategic leadership.
+                    </p>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Performance Insight
+                </h3>
+                <p>Solution Architects must dedicate <strong>at least 40% of their time</strong> to solution design and financial stewardship activities (Architecture, Cost Optimization, Technical Leadership). REO sessions with direct reports (Associate  reporting personnel) must include the three components: <strong>Reflect</strong> (active listening), <strong>Connect</strong> (meaningful conversation), and <strong>Reorient</strong> (constructive feedback for improvement). <strong>REO is exclusively for Solution Architect & Senior Solution Architect</strong> as Immediate Reporting Persons (IRPs).</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

@@ -13,15 +13,15 @@ export const ROLE_FILE_MAP: Record<string, string> = {
   // pse3: will be updated in future
 
   // ── Technical Leadership ────────────────────────────────────────────
-  atl:  `${BASE}/role-profiles/Technical%20Lead%20-%20ATL%20,%20TL%20,%20STL.html`,
-  tl:   `${BASE}/role-profiles/Technical%20Lead%20-%20ATL%20,%20TL%20,%20STL.html`,
-  stl:  `${BASE}/role-profiles/Technical%20Lead%20-%20ATL%20,%20TL%20,%20STL.html`,
+  atl:  `${BASE}/role-profiles/Techlead/Technical%20Lead%20-%20ATL%20.html`,
+  tl:   `${BASE}/role-profiles/Techlead/Technical%20Lead%20-%20TL.html`,
+  stl:  `${BASE}/role-profiles/Techlead/Technical%20Lead%20-STL.html`,
 
   // ── Solution Architecture ───────────────────────────────────────────
-  asa1: `${BASE}/role-profiles/solution-architect.html`,
+  asa1: `${BASE}/role-profiles/Leadership/solution-architect-L1.html`,
   asa2: `${BASE}/role-profiles/solution-architect.html`,
-  sa1:  `${BASE}/role-profiles/solution-architect.html`,
-  sa2:  `${BASE}/role-profiles/solution-architect.html`,
+  sa1:  `${BASE}/role-profiles/Leadership/solution-architect-L2.html`,
+  sa2:  `${BASE}/role-profiles/Leadership/solution-architect-L3.html`,
 
   // ── Quality Assurance ───────────────────────────────────────────────
   ate:  `${BASE}/role-profiles/Testing/Testing-Framework-Level-1.html`,
@@ -42,11 +42,11 @@ export const ROLE_FILE_MAP: Record<string, string> = {
   sbal: `${BASE}/role-profiles/BusinessAnalyst/L7%20-%20Enterprise-Architect-Framework-Level-7.html`,
 
   // ── Project / Delivery Management ──────────────────────────────────
-  apm1: `${BASE}/role-profiles/project-management%20-%20APM%20,%20PM%20,%20Head%20-%20PD.html`,
-  apm2: `${BASE}/role-profiles/project-management%20-%20APM%20,%20PM%20,%20Head%20-%20PD.html`,
-  pm1:  `${BASE}/role-profiles/project-management%20-%20APM%20,%20PM%20,%20Head%20-%20PD.html`,
-  pm2:  `${BASE}/role-profiles/project-management%20-%20APM%20,%20PM%20,%20Head%20-%20PD.html`,
-  hpd:  `${BASE}/role-profiles/Head-Projects-Delivery.html`,
+  apm1: `${BASE}/role-profiles/Leadership/project-management%20-%20APM.html`,
+  apm2: `${BASE}/role-profiles/Leadership/project-management%20-%20APM.html`,
+  pm1:  `${BASE}/role-profiles/Leadership/project-management%20-%20PM.html`,
+  pm2:  `${BASE}/role-profiles/Leadership/project-management%20-%20PM.html`,
+  hpd:  `${BASE}/role-profiles/Leadership/Head-Projects-Delivery.html`,
 
   // ── Partnerships / Business Development ────────────────────────────
   pman: `${BASE}/role-profiles/Sales/Partnership%20-%20L1%20-%20Partnership-Manager-Framework-The-Ecosystem-Architect.html`,
@@ -68,9 +68,9 @@ export const ROLE_FILE_MAP: Record<string, string> = {
   hm:   `${BASE}/role-profiles/Marketing/Head-of-Marketing-Framework-The-Revenue-Visionary.html`,
 
   // ── Executive Leadership ────────────────────────────────────────────
-  ad:   `${BASE}/role-profiles/people-leadership%20-%20VP,%20D,%20AD.html`,
-  dir:  `${BASE}/role-profiles/people-leadership%20-%20VP,%20D,%20AD.html`,
-  vp:   `${BASE}/role-profiles/people-leadership%20-%20VP,%20D,%20AD.html`,
+  ad:   `${BASE}/role-profiles/Leadership/people-leadership%20-%20AD.html`,
+  dir:  `${BASE}/role-profiles/Leadership/people-leadership%20-%20D.html`,
+  vp:   `${BASE}/role-profiles/Leadership/people-leadership%20-%20VP.html`,
   // rd: will be updated in future
 
 }

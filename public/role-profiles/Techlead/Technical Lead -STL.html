@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Technical Lead</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #701a75;
+            --primary-light: #fae8ff;
+            --secondary: #0f172a;
+            --accent: #9333ea;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #f5f0ff;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary), #7e22ce);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #faf5ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .evolution-lens {
+            background: linear-gradient(to right, var(--accent), #7c3aed);
+            color: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2.5rem 0;
+        }
+        
+        .evolution-title {
+            font-size: 2rem;
+            margin-bottom: 1.25rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .transformation {
+            background: white;
+            border-radius: 8px;
+            padding: 1.25rem;
+            margin: 1rem 0;
+            color: var(--secondary);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .transformation-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        ul {
+            padding-left: 1.25rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-period {
+            background: rgba(112, 26, 117, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(112, 26, 117, 0.2);
+        }
+        
+        .tag-quality {
+            background: rgba(4, 120, 87, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(4, 120, 87, 0.2);
+        }
+        
+        .tag-efficiency {
+            background: rgba(146, 64, 14, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(146, 64, 14, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #fae8ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .REO-badge {
+            display: inline-block;
+            background: var(--warning);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 0.75rem;
+            margin-left: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Senior Technical  Lead - Performance, Accountability & Service Framework</h1>
+                <div class="subtitle">Strategic Technicallogy Leader: Driving Organizational Excellence at Scale</div>
+                <div class="meta">
+<!--                     <div class="meta-item"> -->
+<!--                         <i class="fas fa-calendar-alt"></i> -->
+<!--                         <span>Current Date: May 16, 2024</span> -->
+<!--                     </div> -->
+                    <div class="meta-item">
+                        <i class="fas fa-business-time"></i>
+                        <span>Strategic Alignment & Organizational Health</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-landmark"></i>
+                        <span>The Visionary Strategist</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To evolve from a project-centric technical leader to an organization-wide technical visionary and strategist. You are accountable for <strong>shaping business-Technicallogy alignment</strong>, <strong>elevating organizational standards</strong>, and <strong>ensuring the engineering function is a core driver of sustainable business growth</strong>.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Growth Killer to Avoid:</strong> Getting pulled into delivery work or swimming in execution details activities that L1/L2 Leads should own which prevents your strategic perspective.
+            </div>
+
+            <!-- Category 1: Technical Strategy & Business Alignment -->
+            <h2 class="section-title">
+                <i class="fas fa-globe" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Technical Strategy & Business Alignment (The Strategist)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the translation of business strategy into actionable technical roadmap. You ensure each technical initiative demonstrably contributes to long-term business objectives.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-table-columns" style="margin-right: 8px;"></i> Strategic Translation & Initiative Roadmapping
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Breaking down organizational goals into technical initiatives</li>
+                                        <li>Aligning technical strategy with business objectives</li>
+                                        <li>Ensuring long-term tech strategy supports growth</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Produce <span class="kpi-badge">clear Technical Initiatives Roadmap</span> for next 4 quarters</li>
+                                        <li>Secure VP/C-level agreement that tech roadmap is "essential" for goals</li>
+                                        <li>Demonstrate technical initiatives <span class="kpi-badge">directly enabled new revenue or cost savings</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Initiative-to-Goal Linkage Clarity</strong> (Stakeholder survey)</li>
+                                        <li> <strong>Technical Initiative Completion Rate</strong> vs. Goals</li>
+                                        <li> <strong>Business Impact of Initiatives</strong> (Revenue/cost mitigation)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Business Acumen</span>
+                                        <span class="competency-tag">Strategic Planning</span>
+                                        <span class="competency-tag">Financial Modeling</span>
+                                        <span class="competency-tag">Executive Communication</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Manage <span class="kpi-badge sl-badge">quarterly "Technical Strategy Memo"</span> linking tech to business</li>
+                                        <li>Implement <span class="kpi-badge sl-badge">"Initiative Intake Process"</span> requiring strategic alignment cases</li>
+                                        <li>Establish <span class="kpi-badge sl-badge">"Tech Strategy Review"</span> with leadership every 6 months</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-arrows-up-to-line" style="margin-right: 8px;"></i> Cross-Unit Leadership & Synergy
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Communicating progress with other business units</li>
+                                        <li>Collaborating with specialized teams for synergy</li>
+                                        <li>Championing technical excellence across organization</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Eliminate <span class="kpi-badge">technical initiative duplication</span> through proactive coordination</li>
+                                        <li>Launch <span class="tag tag-period">1 high-impact cross-functional initiative</span> annually</li>
+                                        <li>Improve lowest-performing team's _engineering standards_ by <span class="tag tag-efficiency">15% YoY</span></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Initiative Duplication Index</strong> (Redundant projects)</li>
+                                        <li> <strong>Cross-Functional Initiative Impact</strong></li>
+                                        <li> <strong>Engineering Metrics Trend</strong> (DORA metrics)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Influence Without Authority</span>
+                                        <span class="competency-tag">Diplomacy</span>
+                                        <span class="competency-tag">Program Management</span>
+                                        <span class="competency-tag">Benchmarking</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Host <span class="kpi-badge sl-badge">monthly "Technical Leadership Sync"</span> across units</li>
+                                        <li>Create <span class="kpi-badge sl-badge">"Shared Technicallogy Solutions" registry</span></li>
+                                        <li>Define and evangelize <span class="kpi-badge sl-badge">"Engineering Excellence Charter"</span></li>
+                                        <li>Ensure REO best practices cascade across leadership levels</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Operational Excellence & Systemic Innovation -->
+            <h2 class="section-title">
+                <i class="fas fa-cogs" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Operational Excellence & Systemic Innovation (The Architect of Scale)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the systemic health, efficiency, and innovative capacity of engineering organization. You build culture of continuous improvement beyond project audits.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-bar" style="margin-right: 8px;"></i> Systemic Governance & Financial Oversight
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Conducting regular project audits and initiating architectural improvements</li>
+                                        <li>Overseeing cloud billing trends and investigating cost spikes</li>
+                                        <li>Leading production launch planning and execution</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Sponsor <span class="tag tag-period">2+ critical architecture initiatives</span> per year from audit findings</li>
+                                        <li>Maintain cloud costs <span class="kpi-badge">below revenue growth rate</span></li>
+                                        <li>Attain <span class="tag tag-quality">100%</span> launch success with zero Sev-1 incidents</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Architectural Improvement Backlog Health</strong></li>
+                                        <li> <strong>Cloud Cost Efficiency Ratio</strong></li>
+                                        <li> <strong>Production Launch Success Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Architectural Refactoring</span>
+                                        <span class="competency-tag">Cloud FinOps</span>
+                                        <span class="competency-tag">SRE Principles</span>
+                                        <span class="competency-tag">Post-Mortem Leadership</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Institute <span class="kpi-badge sl-badge">bi-annual "Architectural Deep Dive"</span> resulting in action plan</li>
+                                        <li>Establish <span class="kpi-badge sl-badge">Cloud Cost Council</span> for monthly cost reviews</li>
+                                        <li>Mandate standardized <span class="kpi-badge sl-badge">"Launch Playbook"</span> with approval</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-lightbulb" style="margin-right: 8px;"></i> Culture & Practice Evangelism
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Fostering innovation and CI mindset at strategic level</li>
+                                        <li>Driving adoption of technical best practices</li>
+                                        <li>Balancing hands-on coding with strategic leadership</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Increase <span class="kpi-badge">process improvement proposals</span> from engineers YoY</li>
+                                        <li>Achieve <span class="tag tag-efficiency">90%</span> adoption of critical best practices within <span class="tag tag-period">6 months</span></li>
+                                        <li>Spend <span class="tag tag-period">30%</span> time on hands-on activities for credibility</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Innovation Pipeline Volume</strong></li>
+                                        <li> <strong>Best Practice Adoption Rate</strong></li>
+                                        <li> <strong>Strategic vs. Tactical Time Allocation</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Change Leadership</span>
+                                        <span class="competency-tag">Evangelism</span>
+                                        <span class="competency-tag">Community Building</span>
+                                        <span class="competency-tag">Technical Depth Maintenance</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Launch an <span class="kpi-badge sl-badge">"Innovation Time" program</span> and measure outputs</li>
+                                        <li>Create <span class="kpi-badge sl-badge">"Guilds" or "Communities of Practice"</span></li>
+                                        <li>Block <span class="kpi-badge sl-badge">"Technical Grounding Time"</span> on calendar</li>
+                                        <li>Ensure REO practices are embedded in leadership culture through guidance</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Leadership, Governance & Talent Development -->
+            <h2 class="section-title">
+                <i class="fas fa-people-group" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Leadership, Governance & Talent Development (The Multiplier)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To own the growth of technical leadership within the organization and the governance of key operational rhythms. You're accountable for developing next-gen leads with institutionalized knowledge.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-person-chalkboard" style="margin-right: 8px;"></i> Leadership Development & Performance
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Conducting scheduled feedback and REO sessions for direct reports</li>
+                                        <li>Overseeing L1 Leads' effectiveness in fostering innovation</li>
+                                        <li>Mentoring as leadership responsibilities within balance</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Ensure <span class="tag tag-quality">100%</span> direct reports have measurable leadership goals</li>
+                                        <li>Success in mentoring <span class="tag tag-period">1 high-potential engineer</span> into leadership per 18 months</li>
+                                        <li>Verify systemic blockers identified by L1s get resolved within SLAs</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Team Lead Engagement Scores</strong> (Survey)</li>
+                                        <li> <strong>Internal Promotion Rate</strong> (To Lead roles)</li>
+                                        <li> <strong>Systemic Blocker MTTR</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Executive Coaching</span>
+                                        <span class="competency-tag">Succession Planning</span>
+                                        <span class="competency-tag">Talent Calibration</span>
+                                        <span class="competency-tag">Delegation & Empowerment</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Implement <span class="kpi-badge sl-badge">"Leadership Growth Plan" template</span></li>
+                                        <li>Run <span class="kpi-badge sl-badge">quarterly "Lead Sync" for leadership challenges</span></li>
+                                        <li>Require L1 Leads to maintain <span class="kpi-badge sl-badge">"Systemic Blocker Dashboard"</span></li>
+                                        <li>Conduct <span class="kpi-badge sl-badge">REO sessions with L2 leads</span> emphasizing the framework</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-file-shield" style="margin-right: 8px;"></i> Operational Governance & Communication
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="280px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="200px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / ORGANIZATIONAL NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li>Executing maintenance tasks and sharing status reports</li>
+                                        <li>Preparing strategic project status reporting</li>
+                                        <li>Governing documentation, requirements, and timesheet approval</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Transform maintenance reports into <span class="kpi-badge">strategic narratives</span> on health, risk, trends</li>
+                                        <li>Provide clear, non-technical <span class="kpi-badge">strategic project health</span> views to stakeholders</li>
+                                        <li>Attain <span class="tag tag-quality">100%</span> audit-passing compliance without personal involvement</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li> <strong>Stakeholder Satisfaction with Reporting</strong></li>
+                                        <li> <strong>Project Portfolio Risk Visibility Index</strong></li>
+                                        <li> <strong>Process Compliance Rate</strong> (Audits)</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Data Storytelling</span>
+                                        <span class="competency-tag">Risk Communication</span>
+                                        <span class="competency-tag">Process Design</span>
+                                        <span class="competency-tag">Audit Readiness</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Automate <span class="kpi-badge sl-badge">core status reports</span> freeing for analysis</li>
+                                        <li>Establish <span class="kpi-badge sl-badge">"Governance Checklist"</span> for L1/L2 leads</li>
+                                        <li>Delegate timesheet approval while retaining process oversight</li>
+                                        <li>Verify consistent implementation of REO framework through leadership channels</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Evolution Lens Section -->
+            <div class="evolution-lens">
+                <h2 class="evolution-title">
+                    <i class="fas fa-sync-alt"></i> Evolution Lens (From L2 Lead to Senior L3 Lead)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7;">
+                    <strong>The Senior Technical Lead framework marks the transition from tactical guardian to strategic architect of the engineering organization:</strong>
+                </p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Project Architect" to "Portfolio Strategist"</span>
+                        </div>
+                        <p>Shape the <em>portfolio</em> of technical work and its alignment with multi-year business goals, not just individual project plans. Your roadmap directly maps to organizational OKRs.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Team Guardian" to "Organization-Wide Evangelist"</span>
+                        </div>
+                        <p>Your quality mandate expands to raise standards across <em>all teams</em>, driving best practice adoption and cultural change at an org-wide level through communities of practice and strategic incentives.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Removing Blockers" to "Designing Frictionless Systems"</span>
+                        </div>
+                        <p>Move beyond solving immediate problems to <em>redesigning processes</em>, build platforms, and architecture to prevent systemic blockers from arising a proactive rather than reactive stance.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Managing Cloud Costs" to "Owning Technical ROI"</span>
+                        </div>
+                        <p>Accountable for the financial efficiency and strategic value of the entire Technicallogy investment, directly linking tech spend to business health metrics and outcomes.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Mentoring Juniors" to "Developing Leaders"</span>
+                        </div>
+                        <p>Mentorship focus pivots to growing the <em>L1 and L2 leads</em> who will inherit and scale your technical vision through structured leadership programs and strategic assignment.</p>
+                    </div>
+                    
+                    <div class="transformation">
+                        <div class="transformation-header">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>From "Ensuring Execution" to "Governing Outcomes"</span>
+                        </div>
+                        <p>Establish the systems, standards, and rhythms (like auditing, strategy reviews, and REO culture) that ensure excellence happens consistently without your direct intervention.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2.5rem; display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-chart-pie"></i> Your Success Is Measured By:
+                        </h3>
+                        <ul style="color: rgba(255,255,255,0.95); margin-left: 1.25rem;">
+                            <li><strong>Strategic Impact:</strong> ROI on initiatives vs. business goals, roadmap fulfillment rate</li>
+                            <li><strong>Organizational Health:</strong> Engineering metric trends, knowledge base richness, leadership pipeline strength</li>
+                            <li><strong>Leadership Culture:</strong> REO consistency across leadership tiers, structured feedback prevalence, leadership autonomy index</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: rgba(255,255,255,0.15); padding: 1.25rem; border-radius: 8px;">
+                        <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                            <i class="fas fa-star"></i> Leadership Philosophy:
+                        </h3>
+                        <p style="color: rgba(255,255,255,0.95);">
+                            "As a Senior Technical Lead, success isn't demonstrated in the work you <em>do</em>, but in the quality systems you <em>build and govern</em>. Your leadership culture should consist of regular, structured interactions focused on these three pillars that increase in frequency as leadership accountability rises:
+                        </p>
+                        <ul style="color: rgba(255,255,255,0.95); margin: 0.75rem 0 0 1.5rem;">
+                            <li><strong>Reflect:</strong> Active listening to understand performance and challenges</li>
+                            <li><strong>Connect:</strong> Meaningful conversation to build alignment and shared understanding</li>
+                            <li><strong>Reorient:</strong> Providing developmental direction through structured feedback</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.95); margin-top: 0.75rem;">
+                            These components form the REO framework�which for Techno Lead  & Senior Techno Lead - is the consistent leadership rhythm that builds authentic relationships through purposeful dialogue and structured growth.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert-box">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Performance Insight
+                </h3>
+                <p>Senior Technical Leads must dedicate <strong>at least 50% of their time</strong> to strategic activities (technical roadmap, syndication of practices across business units, leadership development). Your impact is measured by organizational self-sufficiency, trust from business leadership, and <strong>reliable implementation of REO and leadership frameworks across Technical Lead & Senior Technical Lead</strong>. Remember that REO is explicitly designed as a Technical Lead & Senior Technical Lead practice where Immediate Reporting Persons (IRPs) must ensure all supervisor interactions include the essential components: <strong>Reflect</strong> (active listening), <strong>Connect</strong> (meaningful conversation), and <strong>Reorient</strong> (constructive feedback for improvement).</p>
+                
+                <div style="margin-top: 1.25rem; background: #fffbf0; padding: 1rem; border-radius: 8px; border-left: 3px solid var(--warning);">
+                    <h4 style="display: flex; align-items: center; gap: 6px; margin-bottom: 0.5rem; color: var(--warning);">
+                        <i class="fas fa-star"></i> REO Culture as Strategic Imperative
+                    </h4>
+                    <p style="margin-bottom: 0.5rem;">
+                        At Senior Technical Lead, you don't just participate in REO sessions - you're responsible for building a culture where they're the consistent rhythm of leadership. Every interaction between Techno Lead & Senior Techno Lead  should naturally incorporate these three components to:
+                    </p>
+                    <ul style="margin-left: 1.25rem; margin-bottom: 0.5rem;">
+                        <li>Build psychological safety through active listening (Reflect)</li>
+                        <li>Create strategic alignment with business goals (Connect)</li>
+                        <li>Drive continuous improvement through structured feedback (Reorient)</li>
+                    </ul>
+                    <p style="font-size: 0.95rem; opacity: 0.9;">
+                        This leadership framework ensures that engagement happens through purposeful dialogue, not just periodic check-ins. It builds team confidence and intellectual debt management while maintaining visible leadership expectations. Use your quarterly talent reviews to assess not just individual performance but the health of this leadership culture across the organization.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Associate Director Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f7249;
+            --primary-light: #def7ec;
+            --secondary: #0f172a;
+            --accent: #064e3b;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ecfdf5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.6; color: #1e293b; background-color: #ffffff; padding: 20px; min-width: 1200px; }
+        .container { max-width: none; margin: 0 auto; padding: 0 15px; }
+        header { background: linear-gradient(135deg, var(--primary), #166534); color: white; border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--card-shadow); position: relative; overflow: hidden; }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .subtitle { font-size: 1.25rem; opacity: 0.9; max-width: 900px; }
+        .meta { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .meta-item { background: rgba(255, 255, 255, 0.15); padding: 0.5rem 1rem; border-radius: 50px; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 0.5rem; }
+        .highlight-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 1rem 1.25rem; margin-bottom: 1rem; border-radius: 10px; box-shadow: var(--card-shadow); }
+        .highlight-box-danger { background: #fef2f2; border-left-color: var(--danger); }
+        .section-title { font-size: 1.85rem; margin: 2rem 0 1rem 0; color: var(--secondary); display: flex; align-items: center; gap: 10px; }
+        .subcategory-card { background: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-color); }
+        .subcategory-header { background: var(--primary-light); padding: 1rem 1.25rem; font-size: 1.15rem; font-weight: 700; color: var(--secondary); border-bottom: 1px solid var(--border-color); }
+        .card-body { padding: 1.25rem; }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th, td { border: 1px solid var(--gray-300); padding: 1rem; vertical-align: top; }
+        th { background: var(--table-header); font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.02em; text-align: left; }
+        tbody tr:nth-child(even) { background: var(--alt-row); }
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.45rem; }
+        .key-points { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .competency-tag { background: #ecfeff; color: #155e75; border: 1px solid #a5f3fc; padding: 0.3rem 0.55rem; border-radius: 999px; font-size: 0.86rem; font-weight: 600; }
+        .kpi-badge { display: inline-block; background: #dcfce7; color: #166534; padding: 0.14rem 0.5rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-left: 0.25rem; }
+        .sl-badge { background: #e0f2fe; color: #075985; }
+        footer { margin-top: 2rem; background: linear-gradient(135deg, #0f172a, #1e293b); color: white; border-radius: 12px; padding: 1.75rem 2rem; box-shadow: var(--card-shadow); }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+        .footer-grid h3 { margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .footer-grid ul { padding-left: 1rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+<header>
+    <h1>Associate Director  - Performance, Accountability & Service Framework</h1>
+    <div class="subtitle">The Execution Integrator: Owning cross-functional discipline, operating stability, and delivery coordination across departments.</div>
+    <div class="meta">
+        <!-- <div class="meta-item"><i class="fas fa-calendar-alt"></i><span>Current Date: March 24, 2026</span></div> -->
+        <div class="meta-item"><i class="fas fa-layer-group"></i><span>Cross-Functional Execution & Operations</span></div>
+        <div class="meta-item"><i class="fas fa-compass"></i><span>People, Systems & Execution</span></div>
+    </div>
+</header>
+<div class="highlight-box"><strong>Overarching Goal:</strong> To make strategy executable by aligning departments, removing friction, stabilizing delivery, and ensuring that presales, operations, and delivery work as one coordinated system.</div>
+<div class="highlight-box highlight-box-danger"><strong>Growth Killer to Avoid:</strong> Acting as a status collector instead of an execution owner. This role fails when it only chases updates but does not resolve dependencies, enforce discipline, and drive closure.</div>
+<h2 class="section-title"><i class="fas fa-gears" style="color: var(--primary);"></i> Category 1: Execution System Ownership (The Integrator)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To keep the execution engine running smoothly across multiple departments, projects, and priorities.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-sitemap" style="margin-right: 8px;"></i> Cross-Functional Coordination</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Alignment between delivery, presales, QA, engineering, support, and operations</li><li>Early identification of dependency clashes between teams</li><li>Ensuring that cross-team commitments are realistic and followed through</li></ul></td>
+                            <td><ul><li>Zero major project delays caused by unmanaged internal handoff gaps</li><li>Drive weekly cross-functional dependency closure</li><li>Maintain clear owner + due date for every major dependency</li></ul></td>
+                            <td><ul><li> Dependency Closure Rate</li><li> Escalations Resolved Within SLA</li><li> Cross-Team Delay %</li><li> Action Item Aging</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Execution Governance</span><span class="competency-tag">Stakeholder Management</span><span class="competency-tag">Prioritization</span><span class="competency-tag">Follow-through</span><span class="competency-tag">Conflict Handling</span></div></td>
+                            <td><ul><li>Run weekly execution review <span class="kpi-badge sl-badge">WEEKLY</span></li><li>Escalate unresolved blockers within <span class="kpi-badge sl-badge">24 HOURS</span></li><li>No dependency can remain ownerless after review</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-diagram-project" style="margin-right: 8px;"></i> Operating Rhythm & Discipline</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Execution cadence across departments</li><li>Standard use of trackers, reviews, work logs, and governance routines</li><li>Consistent reporting quality for leadership visibility</li></ul></td>
+                            <td><ul><li>100% core teams follow the same execution rhythm</li><li>No leadership surprises on delivery health</li><li>Improve predictability of commitments month over month</li></ul></td>
+                            <td><ul><li> Review Cadence Compliance</li><li> Reporting Completeness</li><li> On-Time Milestone %</li><li> Forecast Accuracy</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Operational Discipline</span><span class="competency-tag">Program Management</span><span class="competency-tag">Data Hygiene</span><span class="competency-tag">Meeting Leadership</span></div></td>
+                            <td><ul><li>Publish consolidated execution dashboard <span class="kpi-badge sl-badge">WEEKLY</span></li><li>Close review minutes within <span class="kpi-badge sl-badge">SAME DAY</span></li><li>Flag slippage before customer impact</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-people-arrows" style="color: var(--primary);"></i> Category 2: People & Department Alignment (The Stabilizer)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To ensure teams work together smoothly, understand priorities, and execute without internal friction.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-user-group" style="margin-right: 8px;"></i> Leadership Handshake Across Departments</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Working alignment between Heads of Department and project leaders</li><li>Translation of leadership decisions into team-level action</li><li>Ensuring ownership boundaries are clear and respected</li></ul></td>
+                            <td><ul><li>Eliminate recurring confusion on who owns what</li><li>Create consistent accountability across all active initiatives</li><li>Strengthen manager discipline and execution maturity</li></ul></td>
+                            <td><ul><li> Ownership Clarity Score</li><li> Repeat Escalation Frequency</li><li> Manager Action Closure Rate</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Leadership Alignment</span><span class="competency-tag">Decision Clarification</span><span class="competency-tag">Organizational Awareness</span><span class="competency-tag">Influence Without Authority</span></div></td>
+                            <td><ul><li>Every critical action must have one primary owner</li><li>Resolve role confusion within <span class="kpi-badge">1 REVIEW CYCLE</span></li><li>Use written action logs for leadership commitments</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-traffic-light" style="margin-right: 8px;"></i> Execution Risk Management</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Early surfacing of delivery, resourcing, process, and handoff risks</li><li>Maintaining operational calm during pressure periods</li><li>Coordinating recovery plans when projects drift</li></ul></td>
+                            <td><ul><li>Catch risk before it becomes customer-visible</li><li>Reduce fire-fighting and unplanned escalations</li><li>Keep recovery plans practical and time-bound</li></ul></td>
+                            <td><ul><li> Risks Raised Early %</li><li> Recovery Plan Success Rate</li><li> Red Project Stabilization Time</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Risk Management</span><span class="competency-tag">Structured Problem Solving</span><span class="competency-tag">Decision Support</span><span class="competency-tag">Escalation Management</span></div></td>
+                            <td><ul><li>Raise amber/red project signals <span class="kpi-badge sl-badge">IMMEDIATELY</span></li><li>Recovery plan owner assigned within <span class="kpi-badge sl-badge">24 HOURS</span></li><li>Track risk aging until closure</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-briefcase" style="color: var(--primary);"></i> Category 3: Business Execution Support (The Bridge)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To ensure presales commitments, resource plans, and delivery realities stay aligned.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-file-signature" style="margin-right: 8px;"></i> Presales to Delivery Alignment</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Smooth transition from proposal to project execution</li><li>Validation of commitments on scope, timelines, assumptions, and team readiness</li><li>Ensuring no major blind spot exists between sold solution and delivery reality</li></ul></td>
+                            <td><ul><li>Reduce margin leakage caused by weak handovers</li><li>Avoid commitment mismatch between sales and execution</li><li>Improve project start readiness</li></ul></td>
+                            <td><ul><li> Handover Readiness Score</li><li> Scope Leakage %</li><li> Margin Protection on New Projects</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Commercial Awareness</span><span class="competency-tag">Delivery Planning</span><span class="competency-tag">Scope Review</span><span class="competency-tag">Stakeholder Alignment</span></div></td>
+                            <td><ul><li>Mandatory internal handover before project kickoff</li><li>Challenge risky assumptions <span class="kpi-badge">BEFORE SIGN-OFF</span></li><li>No project starts without owner clarity</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-boxes-stacked" style="margin-right: 8px;"></i> Resource & Capacity Coordination</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Balancing demand and team loading across departments</li><li>Highlighting capacity gaps before delivery impact</li><li>Supporting leadership in prioritization when resources are constrained</li></ul></td>
+                            <td><ul><li>Reduce overloading of critical teams</li><li>Improve utilization quality without breaking teams</li><li>Support leadership with realistic staffing decisions</li></ul></td>
+                            <td><ul><li> Capacity Risk Alerts Raised</li><li> Utilization Balance</li><li> Unplanned Allocation Changes</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Capacity Planning</span><span class="competency-tag">Negotiation</span><span class="competency-tag">Trade-off Management</span><span class="competency-tag">Execution Judgment</span></div></td>
+                            <td><ul><li>Review critical bandwidth risks <span class="kpi-badge sl-badge">WEEKLY</span></li><li>Escalate structural gaps before customer impact</li><li>Document priority trade-offs clearly</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<footer>
+  <div class="footer-grid">
+    <div><h3><i class="fas fa-bullseye"></i> Success Signal</h3><p>Departments do not just coexist  they move in sync. Delivery is predictable, handoffs are clean, and leaders trust the execution system.</p></div>
+    <div><h3><i class="fas fa-triangle-exclamation"></i> Failure Signal</h3><p>Frequent internal friction, repeated follow-ups, unclear ownership, late escalations, and projects drifting because teams are not synchronized.</p></div>
+    <div><h3><i class="fas fa-people-group"></i> Main Interfaces</h3><ul><li>Heads of Department</li><li>Project / Delivery Leaders</li><li>Presales & Solution Teams</li><li>Operations / HR / Finance</li><li>Director / VP leadership</li></ul></div>
+  </div>
+</footer>
+</div>
+</body>
+</html>

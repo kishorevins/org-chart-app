@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Director Framework</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3f7249;
+            --primary-light: #def7ec;
+            --secondary: #0f172a;
+            --accent: #064e3b;
+            --success: #047857;
+            --warning: #92400e;
+            --danger: #b91c1c;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #ecfdf5;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; line-height: 1.6; color: #1e293b; background-color: #ffffff; padding: 20px; min-width: 1200px; }
+        .container { max-width: none; margin: 0 auto; padding: 0 15px; }
+        header { background: linear-gradient(135deg, var(--primary), #166534); color: white; border-radius: 12px; padding: 2.5rem; margin-bottom: 2rem; box-shadow: var(--card-shadow); position: relative; overflow: hidden; }
+        h1 { font-size: 2.5rem; margin-bottom: 1rem; line-height: 1.2; }
+        .subtitle { font-size: 1.25rem; opacity: 0.9; max-width: 900px; }
+        .meta { display: flex; gap: 1.5rem; margin-top: 1.5rem; flex-wrap: wrap; }
+        .meta-item { background: rgba(255, 255, 255, 0.15); padding: 0.5rem 1rem; border-radius: 50px; backdrop-filter: blur(4px); display: flex; align-items: center; gap: 0.5rem; }
+        .highlight-box { background: #f0fdf4; border-left: 5px solid var(--success); padding: 1rem 1.25rem; margin-bottom: 1rem; border-radius: 10px; box-shadow: var(--card-shadow); }
+        .highlight-box-danger { background: #fef2f2; border-left-color: var(--danger); }
+        .section-title { font-size: 1.85rem; margin: 2rem 0 1rem 0; color: var(--secondary); display: flex; align-items: center; gap: 10px; }
+        .subcategory-card { background: white; border-radius: 12px; box-shadow: var(--card-shadow); overflow: hidden; margin-bottom: 1.5rem; border: 1px solid var(--border-color); }
+        .subcategory-header { background: var(--primary-light); padding: 1rem 1.25rem; font-size: 1.15rem; font-weight: 700; color: var(--secondary); border-bottom: 1px solid var(--border-color); }
+        .card-body { padding: 1.25rem; }
+        table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+        th, td { border: 1px solid var(--gray-300); padding: 1rem; vertical-align: top; }
+        th { background: var(--table-header); font-size: 0.92rem; text-transform: uppercase; letter-spacing: 0.02em; text-align: left; }
+        tbody tr:nth-child(even) { background: var(--alt-row); }
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 0.45rem; }
+        .key-points { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+        .competency-tag { background: #ecfeff; color: #155e75; border: 1px solid #a5f3fc; padding: 0.3rem 0.55rem; border-radius: 999px; font-size: 0.86rem; font-weight: 600; }
+        .kpi-badge { display: inline-block; background: #dcfce7; color: #166534; padding: 0.14rem 0.5rem; border-radius: 999px; font-size: 0.78rem; font-weight: 700; margin-left: 0.25rem; }
+        .sl-badge { background: #e0f2fe; color: #075985; }
+        footer { margin-top: 2rem; background: linear-gradient(135deg, #0f172a, #1e293b); color: white; border-radius: 12px; padding: 1.75rem 2rem; box-shadow: var(--card-shadow); }
+        .footer-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.25rem; }
+        .footer-grid h3 { margin-bottom: 0.75rem; font-size: 1.1rem; }
+        .footer-grid ul { padding-left: 1rem; }
+    </style>
+</head>
+<body>
+<div class="container">
+<header>
+    <h1>Director  - Performance, Accountability & Service Framework</h1>
+    <div class="subtitle">The Customer & Outcome Owner: Turning company strategy into retention, expansion, customer value, and revenue outcomes.</div>
+    <div class="meta">
+        <!-- <div class="meta-item"><i class="fas fa-calendar-alt"></i><span>Current Date: March 24, 2026</span></div> -->
+        <div class="meta-item"><i class="fas fa-layer-group"></i><span>Customer Success, Revenue Expansion & Strategic Accounts</span></div>
+        <div class="meta-item"><i class="fas fa-compass"></i><span>Customer Point of View</span></div>
+    </div>
+</header>
+<div class="highlight-box"><strong>Overarching Goal:</strong> To convert organizational strategy into measurable business outcomes by protecting existing customers, growing account value, improving customer trust, and expanding long-term revenue.</div>
+<div class="highlight-box highlight-box-danger"><strong>Growth Killer to Avoid:</strong> Becoming reactive and account-servicing only. This role fails when it protects todays revenue but does not build tomorrows customer expansion, strategic account growth, and durable relationships.</div>
+<h2 class="section-title"><i class="fas fa-handshake-angle" style="color: var(--primary);"></i> Category 1: Customer Value Ownership (The Relationship Builder)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To own the health, depth, and long-term commercial value of customer relationships.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-heart-circle-check" style="margin-right: 8px;"></i> Customer Success & Retention</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Renewal confidence, satisfaction, and trust across managed accounts</li><li>Early intervention in at-risk customers</li><li>Executive visibility into account health and relationship strength</li></ul></td>
+                            <td><ul><li>Protect recurring revenue</li><li>Improve renewal probability and customer confidence</li><li>Reduce avoidable churn and unmanaged dissatisfaction</li></ul></td>
+                            <td><ul><li> Retention Rate</li><li> Renewal Rate</li><li> Customer Health Score</li><li> Escalation Recovery Success</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Executive Communication</span><span class="competency-tag">Relationship Management</span><span class="competency-tag">Escalation Recovery</span><span class="competency-tag">Commercial Judgment</span></div></td>
+                            <td><ul><li>Review key accounts <span class="kpi-badge sl-badge">MONTHLY</span></li><li>High-risk account recovery plan within <span class="kpi-badge sl-badge">72 HOURS</span></li><li>No silent unhappy customers</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-chart-line" style="margin-right: 8px;"></i> Upsell, Cross-Sell & Account Growth</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Growth of wallet share in strategic accounts</li><li>Identifying adjacent needs, new service fit, and expansion opportunities</li><li>Building multi-threaded relationships beyond one contact</li></ul></td>
+                            <td><ul><li>Increase revenue per account</li><li>Move customers from transactional work to strategic partnership</li><li>Create predictable account growth pipeline</li></ul></td>
+                            <td><ul><li> Expansion Revenue</li><li> Account Penetration</li><li> Multi-Service Adoption</li><li> Opportunity Conversion Rate</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Account Strategy</span><span class="competency-tag">Consultative Selling</span><span class="competency-tag">Value Discovery</span><span class="competency-tag">Negotiation</span></div></td>
+                            <td><ul><li>Account growth plan for top customers <span class="kpi-badge">QUARTERLY</span></li><li>Bring one new value idea per strategic review</li><li>Track white-space opportunities visibly</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-bullseye" style="color: var(--primary);"></i> Category 2: Business Outcome Translation (The Converter)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To connect leadership strategy with real customer-facing execution and commercial results.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-route" style="margin-right: 8px;"></i> Strategic Account Direction</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Which accounts deserve strategic focus</li><li>Where leadership attention should be invested</li><li>How customer strategy aligns with company growth goals</li></ul></td>
+                            <td><ul><li>Prioritize accounts with the highest strategic value</li><li>Focus teams on accounts that can scale profitably</li><li>Create clear account-based growth plays</li></ul></td>
+                            <td><ul><li> Strategic Account Growth</li><li> Leadership Time ROI</li><li> Account Profitability Trend</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Portfolio Thinking</span><span class="competency-tag">Strategic Prioritization</span><span class="competency-tag">P&L Awareness</span><span class="competency-tag">Executive Influence</span></div></td>
+                            <td><ul><li>Top account plan reviewed <span class="kpi-badge sl-badge">QUARTERLY</span></li><li>Escalate strategic account risk early</li><li>Maintain named sponsor for key relationships</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-money-bill-trend-up" style="margin-right: 8px;"></i> Business Development Through Existing Customers</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Generating credible growth through existing customer trust</li><li>Turning delivery outcomes into case studies, referrals, and expansion conversations</li><li>Bringing market signals back into leadership discussions</li></ul></td>
+                            <td><ul><li>Lower cost of growth by using customer base well</li><li>Improve conversion from trust to new work</li><li>Build stronger referenceability</li></ul></td>
+                            <td><ul><li> Revenue from Existing Customers</li><li> Referral Count</li><li> Proposal Win Rate in Existing Accounts</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Business Development</span><span class="competency-tag">Storytelling</span><span class="competency-tag">Commercial Positioning</span><span class="competency-tag">Market Awareness</span></div></td>
+                            <td><ul><li>Capture value proof after major delivery wins</li><li>Move happy customers toward advocacy intentionally</li><li>Coordinate with sales before major proposals</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<h2 class="section-title"><i class="fas fa-people-roof" style="color: var(--primary);"></i> Category 3: Customer-Oriented Leadership (The Orchestrator)</h2>
+<p style="margin-bottom: 1.2rem; color: var(--gray-700);"><strong>Goal:</strong> To align internal teams around customer outcomes without losing execution control or margin discipline.</p>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-users-gear" style="margin-right: 8px;"></i> Internal Alignment for Customer Outcomes</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Ensuring delivery, presales, support, and account teams act in one direction for customer success</li><li>Balancing customer needs with internal capability and profitability</li><li>Escalating when customer asks threaten delivery health or margin</li></ul></td>
+                            <td><ul><li>Deliver consistent customer experience</li><li>Reduce internal fragmentation around accounts</li><li>Protect revenue quality, not just revenue volume</li></ul></td>
+                            <td><ul><li> Customer Escalation Frequency</li><li> Margin on Strategic Accounts</li><li> Cross-Functional Response Quality</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Cross-Functional Leadership</span><span class="competency-tag">Decision Trade-offs</span><span class="competency-tag">Customer Advocacy</span><span class="competency-tag">Business Discipline</span></div></td>
+                            <td><ul><li>No major customer commitment without internal alignment</li><li>Escalate margin-risk commitments early</li><li>Run joint reviews for high-value accounts</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<div class="subcategory-card">
+            <div class="subcategory-header"><i class="fas fa-comments-dollar" style="margin-right: 8px;"></i> Executive Stakeholder Management</div>
+            <div class="card-body" style="padding:0;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="170px">Accountable For</th>
+                            <th width="230px">Objective(s)</th>
+                            <th width="250px">Key KPIs & Metrics</th>
+                            <th width="220px">Required Competencies</th>
+                            <th width="230px">SLAs / Team Norms</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><ul><li>Relationship quality with client decision-makers</li><li>Confidence of CEO / VP in account posture</li><li>Clarity of key messages during sensitive account situations</li></ul></td>
+                            <td><ul><li>Build durable executive trust</li><li>Handle sensitive conversations with confidence</li><li>Keep leadership informed without noise</li></ul></td>
+                            <td><ul><li> Executive Sponsor Coverage</li><li> Strategic Meeting Outcomes</li><li> Escalation Containment Rate</li></ul></td>
+                            <td><div class="key-points"><span class="competency-tag">Executive Presence</span><span class="competency-tag">Negotiation</span><span class="competency-tag">Narrative Control</span><span class="competency-tag">Trust Building</span></div></td>
+                            <td><ul><li>Brief leadership before strategic customer meetings</li><li>No escalation reaches crisis stage without response owner</li><li>Document critical client commitments</li></ul></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+<footer>
+  <div class="footer-grid">
+    <div><h3><i class="fas fa-bullseye"></i> Success Signal</h3><p>Customers stay, grow, and trust the company more deeply. Strategy becomes visible in revenue expansion, better retention, and stronger strategic accounts.</p></div>
+    <div><h3><i class="fas fa-triangle-exclamation"></i> Failure Signal</h3><p>Revenue depends on constant new hunting because existing accounts do not expand, risks are caught late, and customer value is not being converted into durable growth.</p></div>
+    <div><h3><i class="fas fa-people-group"></i> Main Interfaces</h3><ul><li>VP / CEO</li><li>Associate Directors & Delivery Leaders</li><li>Sales / Business Development</li><li>Solution / Presales</li><li>Customer Stakeholders</li></ul></div>
+  </div>
+</footer>
+</div>
+</body>
+</html>
