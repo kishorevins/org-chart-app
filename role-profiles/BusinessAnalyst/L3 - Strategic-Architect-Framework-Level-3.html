@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senior Business Analyst - Level 1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-light: #eef2ff;
+            --secondary: #1e293b;
+            --accent: #4f46e5;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-700: #334155;
+            --table-header: #eef2ff;
+            --alt-row: #f8fafc;
+            --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --border-color: #cbd5e1;
+            --evolution-bg: linear-gradient(135deg, #10b981, #4f46e5);
+            --level1-bg: linear-gradient(135deg, #818cf8, #4f46e5);
+            --level2-bg: linear-gradient(135deg, #4ade80, #10b981);
+            --level3-bg: linear-gradient(135deg, #818cf8, #4f46e5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            color: #1e293b;
+            background-color: #ffffff;
+            padding: 20px;
+            min-width: 1200px;
+        }
+        
+        .container {
+            max-width: none;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            background: var(--level3-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .subtitle {
+            font-size: 1.25rem;
+            opacity: 0.9;
+            max-width: 800px;
+        }
+        
+        .meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--card-shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .card-header {
+            background: var(--primary-light);
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .category-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.75rem;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .category-subtitle {
+            color: var(--gray-700);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+        
+        th {
+            background: var(--table-header);
+            color: var(--primary);
+            text-align: left;
+            padding: 0.9rem 1.1rem;
+            font-weight: 600;
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        td {
+            padding: 0.9rem 1.1rem;
+            border-bottom: 1px solid var(--border-color);
+            vertical-align: top;
+            border-right: 1px solid var(--border-color);
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        tr:nth-child(even) {
+            background-color: var(--alt-row);
+        }
+        
+        tr:first-child th {
+            border-top: none;
+        }
+        
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .subsection-header {
+            background: #eef2ff;
+            font-weight: 700;
+            color: var(--primary);
+            padding: 1rem 1.1rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .kpi-badge {
+            display: inline-block;
+            background: var(--success);
+            color: white;
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+        }
+        
+        .sl-badge {
+            background: var(--warning);
+        }
+        
+        .metric-highlight {
+            background: var(--primary-light);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin: 1.25rem 0;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .competency-tag {
+            display: inline-block;
+            background: var(--gray-100);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            margin: 0.15rem;
+            font-size: 0.75rem;
+            border: 1px solid var(--gray-300);
+        }
+        
+        .alert-box {
+            background: #fffbeb;
+            border-left: 4px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1.25rem 0;
+            font-size: 0.95rem;
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin: 2rem 0 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .subsection-title {
+            font-size: 1.25rem;
+            color: var(--accent);
+            margin: 1.5rem 0 0.75rem;
+            font-weight: 600;
+        }
+        
+        .subcategory-card {
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+        }
+        
+        .subcategory-header {
+            background: var(--primary-light);
+            padding: 0.85rem 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--primary);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .key-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 0.5rem 0;
+        }
+        
+        .tag {
+            background: var(--gray-100);
+            padding: 0.25rem 0.65rem;
+            border-radius: 6px;
+            font-size: 0.825rem;
+            font-weight: 500;
+        }
+        
+        .tag-strategy {
+            background: rgba(79, 70, 229, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(79, 70, 229, 0.2);
+        }
+        
+        .tag-transformation {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+        
+        .tag-impact {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+        
+        .main-content {
+            min-width: 1200px;
+        }
+        
+        .highlight-box {
+            background: #eef2ff;
+            border-left: 3px solid var(--primary);
+            padding: 0.75rem 1rem;
+            margin: 0.75rem 0;
+            border-radius: 0 4px 4px 0;
+        }
+        
+        .highlight-box-danger {
+            background: #fef2f2;
+            border-left-color: var(--danger);
+        }
+        
+        .tip-section {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .tip-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-size: 1.25rem;
+        }
+        
+        .productivity-killers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .killer-card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 1.25rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border-left: 3px solid var(--danger);
+        }
+        
+        .killer-title {
+            font-weight: 700;
+            color: var(--danger);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .solution {
+            background: rgba(15, 23, 42, 0.03);
+            border-radius: 6px;
+            padding: 0.75rem;
+            margin-top: 0.75rem;
+            font-size: 0.95rem;
+        }
+        
+        .solution-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .evolution-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            padding: 1.25rem;
+            border-left: 3px solid white;
+            margin-bottom: 1.25rem;
+        }
+        
+        .evolution-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .evolution-title {
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #7dd3fc;
+        }
+        
+        .evolution-lens {
+            background: var(--level3-bg);
+            color: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+        }
+        
+        .impact-matrix {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .impact-card {
+            background: rgba(255,255,255,0.15);
+            border-radius: 8px;
+            padding: 1.25rem;
+        }
+        
+        .impact-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 0.5rem;
+            color: #c7d2fe;
+        }
+        
+        .impact-card p {
+            color: rgba(255,255,255,0.9);
+            line-height: 1.6;
+        }
+        
+        .progress-bar {
+            height: 12px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 0.75rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #c7d2fe;
+        }
+        
+        .level-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 1.5rem 0;
+        }
+        
+        .level-dot {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+        }
+        
+        .current-level {
+            font-weight: bold;
+            color: white;
+            background: var(--success);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+        }
+        
+        .level-badge {
+            background: #4f46e5;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .junior-highlight {
+            background: rgba(79, 70, 229, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.25rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .junior-badge {
+            background: #4f46e5;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .foundation-focus {
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .foundation-badge {
+            background: #4f46e5;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .critical-mindset {
+            background: #fff;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 4px solid var(--warning);
+        }
+        
+        .mindset-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--warning);
+            margin-bottom: 0.75rem;
+            font-weight: 600;
+        }
+        
+        .mindset-content {
+            background: #fffbeb;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 0.75rem;
+        }
+        
+        .best-practices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .practice-card {
+            background: white;
+            border-radius: 8px;
+            padding: 1rem;
+            border: 1px solid #dbeafe;
+        }
+        
+        .practice-title {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .progress-indicator {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0.5rem 0;
+        }
+        
+        .progress-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--success);
+        }
+        
+        .progress-text {
+            color: var(--gray-700);
+            font-size: 0.9rem;
+        }
+        
+        .key-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .metric-card {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 3px solid var(--primary);
+        }
+        
+        .metric-value {
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin: 0.5rem 0;
+        }
+        
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .trend-up {
+            color: var(--success);
+        }
+        
+        .trend-down {
+            color: var(--danger);
+        }
+        
+        .strategic-badge {
+            background: #4f46e5;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .strategic-focus {
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .transformation-badge {
+            background: #10b981;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .transformation-focus {
+            background: rgba(16, 185, 129, 0.05);
+            border-left: 3px solid var(--success);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+        
+        .impact-badge {
+            background: #f59e0b;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-weight: 600;
+            display: inline-block;
+            margin: 0.25rem;
+        }
+        
+        .impact-focus {
+            background: rgba(245, 158, 11, 0.05);
+            border-left: 3px solid var(--warning);
+            padding: 1rem;
+            border-radius: 0 6px 6px 0;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <header>
+                <h1>Strategic Architect Framework: Senior Business Analyst - Level 1</h1>
+                <div class="subtitle">The Strategic Architect: Owning the Complete Requirements Lifecycle to Drive Business Outcomes and Strategic Alignment</div>
+                <div class="meta">
+                    <!-- <div class="meta-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Current Date: May 16, 2024</span>
+                    </div> -->
+                    <div class="meta-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Strategic Architecture & Outcome Ownership</span>
+                    </div>
+                    <div class="meta-item">
+                        <i class="fas fa-level-up-alt"></i>
+                        <span>Senior Business Analyst - Level 1</span>
+                    </div>
+                </div>
+            </header>
+
+            <div class="highlight-box">
+                <strong>Overarching Goal:</strong> To <strong>own the complete requirements lifecycle</strong> from strategic alignment to solution validation - becoming a Strategic Architect who ensures requirements drive business outcomes and strategic value. You are the <strong>guardian of business value realization</strong>, responsible for ensuring that what gets built actually solves the right business problems and delivers measurable outcomes across the entire project.
+            </div>
+            
+            <div class="highlight-box highlight-box-danger">
+                <strong>Critical Productivity Killer:</strong> <strong>"The Big Picture Blind Spot"</strong>. At Senior Business Analyst - Level 1, your primary value isn't measured by how many requirements you document, but by how effectively you <em>connect requirements to business outcomes</em> across the entire project. If you're spending more than 60% of your time on detailed requirements documentation without strategic alignment, you're operating in the Big Picture Blind Spot. Your role requires shifting from "What are the requirements?" to "How do these requirements collectively drive business outcomes?" This shift is critical - requirements without strategic alignment lead to solutions that solve isolated problems but miss the bigger opportunity, wasting 40-60% of development effort according to the 2024 Standish Group Chaos Report.
+            </div>
+            
+            <div class="junior-highlight">
+                <p><strong>Senior Business Analyst - Level 1 represents your transformation from value validator to strategic architect.</strong> You're not just validating individual requirements - you're <strong>owning the complete requirements strategy</strong> that drives business outcomes across the entire project. Your success is measured by <em>strategic alignment</em> and <em>outcome realization</em>, not just requirement quality. This is where you develop the strategic skills that distinguish good BAs from exceptional ones - the ability to see how requirements connect to form a cohesive business solution that delivers measurable value.</p>
+            </div>
+
+            <!-- Category 1: Strategic Requirements Architecture -->
+            <h2 class="section-title">
+                <i class="fas fa-project-diagram" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 1: Strategic Requirements Architecture (The Strategic Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To design and own the complete requirements strategy that drives business outcomes across the entire project.</p>
+            
+            <!-- Subcategory 1.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-diagram-project" style="margin-right: 8px;"></i> Enterprise Requirements Strategy
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design requirements strategy</strong> for entire project</li>
+                                        <li><strong>Ensure strategic alignment</strong> across all requirements</li>
+                                        <li><strong>Resolve requirement conflicts</strong> and ambiguities</li>
+                                        <li><strong>Validate completeness</strong> of requirements scope</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve strategic alignment by 65% through requirements architecture</li>
+                                        <li>Reduce requirement conflicts by 70% through proactive resolution</li>
+                                        <li>Ensure 100% of requirements support business outcomes</li>
+                                        <li>Improve requirement completeness by 55% through strategic design</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Strategic Alignment Score</strong></li>
+                                        <li>✅ <strong>Requirement Conflict Rate</strong></li>
+                                        <li>✅ <strong>Completeness Validation Rate</strong></li>
+                                        <li>✅ <strong>Outcome Coverage Score</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Strategic Architecture</span>
+                                        <span class="competency-tag">Requirements Synthesis</span>
+                                        <span class="competency-tag">Conflict Resolution</span>
+                                        <span class="competency-tag">Scope Validation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ACHIEVE 95%+ STRATEGIC ALIGNMENT</span></li>
+                                        <li><span class="kpi-badge">RESOLVE 100% CONFLICTS</span> before development</li>
+                                        <li><span class="kpi-badge sl-badge">VALIDATE 100% OUTCOME COVERAGE</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 1.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-sitemap" style="margin-right: 8px;"></i> Requirements Integration & Cohesion
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Integrate requirements</strong> across project modules</li>
+                                        <li><strong>Validate requirement cohesion</strong> and flow</li>
+                                        <li><strong>Identify integration gaps</strong> and dependencies</li>
+                                        <li><strong>Design requirement flow</strong> for optimal business value</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve requirement integration by 60% through cohesive design</li>
+                                        <li>Reduce integration defects by 75% through proactive validation</li>
+                                        <li>Ensure 100% of requirement dependencies are documented</li>
+                                        <li>Improve business process flow by 50% through requirement design</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Integration Quality Score</strong></li>
+                                        <li>✅ <strong>Dependency Coverage Rate</strong></li>
+                                        <li>✅ <strong>Flow Validation Effectiveness</strong></li>
+                                        <li>✅ <strong>Integration Defect Reduction</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Integration Architecture</span>
+                                        <span class="competency-tag">Process Flow Design</span>
+                                        <span class="competency-tag">Dependency Mapping</span>
+                                        <span class="competency-tag">Cohesion Validation</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DOCUMENT 100% DEPENDENCIES</span></li>
+                                        <li><span class="kpi-badge">VALIDATE 100% FLOW INTEGRATION</span></li>
+                                        <li><span class="kpi-badge sl-badge">REDUCE INTEGRATION DEFECTS</span> by 65%+</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 2: Strategic Validation & Stakeholder Leadership -->
+            <h2 class="section-title">
+                <i class="fas fa-bullseye" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 2: Strategic Validation & Stakeholder Leadership (The Outcome Validator)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To validate requirements against business outcomes and lead stakeholder alignment across the project.</p>
+            
+            <!-- Subcategory 2.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-check-double" style="margin-right: 8px;"></i> Solution Validation & Outcome Realization
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Validate solution against business outcomes</strong></li>
+                                        <li><strong>Ensure user scenarios reflect business value</strong></li>
+                                        <li><strong>Review UAT test cases</strong> for outcome coverage</li>
+                                        <li><strong>Monitor implementation progress</strong> against outcomes</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve outcome validation by 70% through strategic validation</li>
+                                        <li>Reduce UAT failures by 65% through outcome-focused testing</li>
+                                        <li>Ensure 100% of UAT cases validate business outcomes</li>
+                                        <li>Improve outcome realization by 55% through continuous validation</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Outcome Validation Rate</strong></li>
+                                        <li>✅ <strong>UAT Success Rate</strong></li>
+                                        <li>✅ <strong>Outcome Coverage Score</strong></li>
+                                        <li>✅ <strong>Implementation Alignment Score</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Outcome Validation</span>
+                                        <span class="competency-tag">UAT Strategy</span>
+                                        <span class="competency-tag">Implementation Monitoring</span>
+                                        <span class="competency-tag">Value Realization</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">VALIDATE 100% OUTCOMES</span> before UAT</li>
+                                        <li><span class="kpi-badge">ACHIEVE 90%+ UAT SUCCESS RATE</span></li>
+                                        <li><span class="kpi-badge sl-badge">MONITOR 100% IMPLEMENTATION</span> against outcomes</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 2.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-users" style="margin-right: 8px;"></i> Stakeholder Leadership & Conflict Resolution
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Lead stakeholder alignment</strong> on requirements</li>
+                                        <li><strong>Resolve conflicting inputs</strong> and escalate issues</li>
+                                        <li><strong>Validate decisions</strong> with key stakeholders</li>
+                                        <li><strong>Drive consensus</strong> on strategic requirements</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve stakeholder alignment by 65% through strategic leadership</li>
+                                        <li>Reduce decision delays by 70% through effective facilitation</li>
+                                        <li>Ensure 100% of key decisions are validated</li>
+                                        <li>Improve conflict resolution by 60% through strategic escalation</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Stakeholder Alignment Score</strong></li>
+                                        <li>✅ <strong>Decision Validation Rate</strong></li>
+                                        <li>✅ <strong>Conflict Resolution Effectiveness</strong></li>
+                                        <li>✅ <strong>Escalation Impact Score</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Stakeholder Leadership</span>
+                                        <span class="competency-tag">Conflict Resolution</span>
+                                        <span class="competency-tag">Decision Validation</span>
+                                        <span class="competency-tag">Consensus Building</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">VALIDATE 100% KEY DECISIONS</span></li>
+                                        <li><span class="kpi-badge">RESOLVE 90%+ CONFLICTS</span> without escalation</li>
+                                        <li><span class="kpi-badge sl-badge">ACHIEVE 85%+ ALIGNMENT SCORE</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Category 3: Strategic Traceability & Value Delivery -->
+            <h2 class="section-title">
+                <i class="fas fa-chart-pie" style="margin-right: 10px; color: var(--primary);"></i>
+                Category 3: Strategic Traceability & Value Delivery (The Value Architect)
+            </h2>
+            <p style="margin-bottom: 1.5rem; color: var(--gray-700);"><strong>Goal:</strong> To transform traceability into a strategic asset that demonstrates business value and drives decision-making.</p>
+            
+            <!-- Subcategory 3.1 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-link" style="margin-right: 8px;"></i> Strategic Traceability Architecture
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Design strategic traceability framework</strong></li>
+                                        <li><strong>Validate requirement links</strong> across lifecycle</li>
+                                        <li><strong>Identify traceability gaps</strong> proactively</li>
+                                        <li><strong>Transform RTM into value dashboard</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve traceability value by 75% through strategic architecture</li>
+                                        <li>Reduce traceability gaps by 80% through proactive validation</li>
+                                        <li>Ensure 100% of traceability links support business decisions</li>
+                                        <li>Improve RTM adoption by 65% through value demonstration</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Traceability Value Score</strong></li>
+                                        <li>✅ <strong>Gap Identification Rate</strong></li>
+                                        <li>✅ <strong>Decision Support Effectiveness</strong></li>
+                                        <li>✅ <strong>RTM Adoption Rate</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Traceability Architecture</span>
+                                        <span class="competency-tag">Value Mapping</span>
+                                        <span class="competency-tag">Gap Analysis</span>
+                                        <span class="competency-tag">Value Demonstration</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">DESIGN 100% STRATEGIC TRACEABILITY</span></li>
+                                        <li><span class="kpi-badge">VALIDATE 100% TRACEABILITY LINKS</span></li>
+                                        <li><span class="kpi-badge sl-badge">ACHIEVE 90%+ RTM ADOPTION</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Subcategory 3.2 -->
+            <div class="subcategory-card">
+                <div class="subcategory-header">
+                    <i class="fas fa-chart-line" style="margin-right: 8px;"></i> Value Delivery & Agile Strategy
+                </div>
+                <div class="card-body" style="padding: 0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th width="150px">ACCOUNTABLE FOR</th>
+                                <th width="250px">OBJECTIVE(S)</th>
+                                <th width="250px">KEY KPIS & METRICS</th>
+                                <th width="180px">REQUIRED COMPETENCIES</th>
+                                <th width="220px">SLAS / TEAM NORMS</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="color: var(--gray-700);">
+                                    <ul>
+                                        <li><strong>Apply Agile practices</strong> strategically</li>
+                                        <li><strong>Manage tasks</strong> with outcome focus</li>
+                                        <li><strong>Track progress</strong> against business value</li>
+                                        <li><strong>Optimize backlog</strong> for value delivery</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>Improve value delivery by 70% through strategic backlog management</li>
+                                        <li>Reduce sprint waste by 65% through outcome-focused planning</li>
+                                        <li>Ensure 100% of tasks align with business outcomes</li>
+                                        <li>Improve sprint predictability by 60% through value tracking</li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li>✅ <strong>Value Delivery Rate</strong></li>
+                                        <li>✅ <strong>Sprint Waste Reduction</strong></li>
+                                        <li>✅ <strong>Outcome Alignment Score</strong></li>
+                                        <li>✅ <strong>Predictability Improvement</strong></li>
+                                    </ul>
+                                </td>
+                                <td>
+                                    <div class="key-points">
+                                        <span class="competency-tag">Value-Driven Agile</span>
+                                        <span class="competency-tag">Strategic Backlog</span>
+                                        <span class="competency-tag">Outcome Tracking</span>
+                                        <span class="competency-tag">Value Optimization</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <ul>
+                                        <li><span class="kpi-badge">ALIGN 100% TASKS</span> with outcomes</li>
+                                        <li><span class="kpi-badge">TRACK 100% PROGRESS</span> by value</li>
+                                        <li><span class="kpi-badge sl-badge">ACHIEVE 90%+ VALUE DELIVERY</span></li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="critical-mindset">
+                <div class="mindset-title">
+                    <i class="fas fa-exclamation-triangle"></i> Critical Mindset Shift: From Value Validator to Strategic Architect
+                </div>
+                <p>Senior Business Analyst - Level 1 often believe their job is to "ensure requirements are complete and validated." In reality, your primary value is in <strong>designing the requirements strategy that drives business outcomes</strong> across the entire project.</p>
+                <div class="mindset-content">
+                    <p><strong>The Big Picture Blind Spot:</strong> Spending excessive time on detailed requirements without ensuring strategic alignment across the project. According to the 2024 PMI Pulse of the Profession report, projects where requirements aren't strategically aligned have a 68% higher chance of missing business objectives. At Senior Business Analyst - Level 1, your requirements documentation is just the starting point - the real value is in designing how requirements connect to form a cohesive business solution that delivers measurable outcomes.</p>
+                    <p><strong>Solution:</strong> Implement the <strong>Strategic Architecture Framework</strong> with three key components: (1) Outcome Mapping - connect every requirement to specific business outcomes, (2) Integration Design - ensure requirements work together as a cohesive solution, (3) Value Flow - design requirement sequencing for maximum business value delivery. Track your progress through improved strategic alignment (target: 95%+), reduced integration defects (target: 75% reduction), and stakeholder recognition of your strategic contribution (target: 90% positive). This transforms "Are requirements complete?" into "Does this requirements strategy deliver business outcomes?"</p>
+                </div>
+            </div>
+            
+            <div class="evolution-lens">
+                <h2 style="font-size: 2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 15px; color: white;">
+                    <i class="fas fa-sync-alt"></i> Strategic Architecture - The Outcome Architect (Senior Business Analyst - Level 1)
+                </h2>
+                
+                <p style="font-size: 1.1rem; line-height: 1.7; color: rgba(255,255,255,0.95);">
+                    <strong>Senior Business Analyst - Level 1 represents your transformation from value validator to strategic architect:</strong> You're not just validating individual requirements - you're <em>designing the complete requirements strategy</em> that drives business outcomes across the entire project. This level is about developing the mindset of a <em>strategic architect</em> who owns the requirements lifecycle from strategic alignment to solution validation.
+                </p>
+                
+                <div class="level-indicator">
+                    <div class="level-dot"></div>
+                    <div>
+                        <span>LEVEL 1 → LEVEL 2 → </span>
+                        <span class="current-level">LEVEL 3</span> 
+                        <span style="color: rgba(255,255,255,0.8);"> → LEVEL 4 → LEVEL 5 → LEVEL 6 → LEVEL 7</span>
+                    </div>
+                </div>
+                
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 50%; background: #c7d2fe;"></div>
+                </div>
+                
+                <div class="key-metrics" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Strategic Alignment Score</h4>
+                        <div class="metric-value">88%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 25% improvement from Level 2
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Strategic alignment reduces requirement changes by 62% according to 2024 IIBA research
+                        </p>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Outcome Validation Rate</h4>
+                        <div class="metric-value">92%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 30% improvement from Level 2
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Outcome-focused validation reduces UAT failures by 68% (PMI, Q2 2024)
+                        </p>
+                    </div>
+                    
+                    <div class="metric-card">
+                        <h4 style="color: rgba(255,255,255,0.9);">Traceability Value Score</h4>
+                        <div class="metric-value">85%</div>
+                        <div class="metric-trend trend-up">
+                            <i class="fas fa-arrow-up"></i> 35% improvement from Level 2
+                        </div>
+                        <p style="font-size: 0.85rem; color: rgba(255,255,255,0.8); margin-top: 0.5rem;">
+                            Value-focused traceability increases stakeholder adoption by 65% (Forrester, Q2 2024)
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="productivity-killers" style="margin-top: 1.5rem; margin-bottom: 2rem;">
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #1: The Big Picture Blind Spot
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Spending excessive time on detailed requirements without ensuring strategic alignment across the entire project.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Strategic Architecture Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Implement the <strong>3-Pillar Strategic Architecture Method</strong>: (1) Outcome Mapping - connect every requirement to specific business outcomes with measurable targets, (2) Integration Design - ensure requirements work together as a cohesive solution (not just isolated features), (3) Value Flow - sequence requirements for maximum business value delivery. Create a Strategic Architecture Dashboard that visualizes requirements by outcome, integration points, and value potential. Before finalizing any requirement, validate its contribution to the strategic pillars. Track success through improved strategic alignment (target: 95%+), reduced integration defects (target: 75% reduction), and stakeholder recognition of your strategic contribution (target: 90% positive). This transforms "Are requirements complete?" into "Does this requirements strategy deliver business outcomes?" - positioning you as the strategic architect who owns the complete requirements lifecycle.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #2: The Stakeholder Ping Pong
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Getting stuck in endless clarification cycles without resolution, wasting time and delaying delivery.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Decision Acceleration Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Transform stakeholder discussions with the <strong>4-Step Decision Acceleration Method</strong>: (1) Problem Framing - define the specific decision needed with clear options, (2) Impact Analysis - quantify business impact of each option, (3) Decision Protocol - establish clear decision criteria and authority, (4) Resolution Path - define next steps for unresolved issues. Create a Decision Acceleration Template with sections for Decision Statement, Options Analysis, Impact Assessment, and Resolution Plan. Before any stakeholder discussion, prepare this template to focus the conversation on decisions rather than general discussion. Track success through reduced decision delays (target: 70% reduction), increased stakeholder satisfaction with decision process (target: 85% positive), and fewer requirement changes due to unresolved decisions (target: 65% reduction). This transforms "We need to discuss this requirement" into "Here's the decision we need to make with options and impacts" - positioning you as the stakeholder leader who drives decisions rather than just documenting discussions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: white; background: rgba(255,255,255,0.1);">
+                        <div class="killer-title" style="color: white;">
+                            <i class="fas fa-skull-crossbones"></i> Productivity Killer #3: The Traceability Trap
+                        </div>
+                        <p style="color: rgba(255,255,255,0.9);">Treating traceability as a compliance exercise rather than a strategic asset that drives business decisions.</p>
+                        <div class="solution" style="background: rgba(0,0,0,0.15);">
+                            <div class="solution-title" style="color: #e0e7ff;"><i class="fas fa-lightbulb"></i> Solution: The Value Traceability Framework</div>
+                            <p style="color: rgba(255,255,255,0.9);">Transform RTM from a compliance exercise to a strategic decision-making tool with the <strong>Value-Driven Traceability Method</strong>: (1) Outcome Mapping - connect requirements to specific business outcomes with measurable targets, (2) Value Scoring - assign value scores based on business impact, (3) Strategic Visualization - highlight high-value requirements visually, (4) Decision Integration - use traceability data to inform business decisions. Create a Value Traceability Dashboard that shows requirements by business outcome, value potential, and implementation status. Before any traceability update, ask: "How does this information help stakeholders make better business decisions?" Track success through increased stakeholder use of traceability for decision making (target: 90% adoption), reduced time spent on traceability maintenance (target: 50% reduction), and improved business outcomes from traceability-driven decisions (target: 75% positive impact). This transforms "I need to update the RTM" into "Here's how traceability data informs our business decisions" - making traceability a strategic asset rather than just a process requirement.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="impact-matrix">
+                    <div class="impact-card">
+                        <h4><i class="fas fa-project-diagram"></i> From Value Validator to Strategic Architect</h4>
+                        <p>At Senior Business Analyst - Level 1, you're not just validating individual requirements - you're <strong>designing the complete requirements strategy</strong> that drives business outcomes across the entire project. When you improve strategic alignment by 65% through requirements architecture, you transform from a value validator to a strategic architect. Your requirements become a cohesive business solution rather than just a collection of features. This foundation enables your future growth into more complex business architecture responsibilities where you'll define business strategy rather than just requirements.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-bullseye"></i> The Outcome Validation Advantage</h4>
+                        <p>Your strategic validation creates organization-wide value: When you reduce UAT failures by 65% through outcome-focused testing, you eliminate rework that slows down the entire organization. Your understanding of business outcomes improves solution validation by 70%, creating better business results. You're not just validating solutions - you're <strong>ensuring those solutions deliver measurable business outcomes</strong> through strategic validation, building the foundation for outcome-driven delivery as you advance.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-chart-pie"></i> The Strategic Traceability Multiplier Effect</h4>
+                        <p>Strategic traceability at Senior Business Analyst - Level 1 creates exponential impact: When you improve RTM adoption by 65% through value demonstration, you become a trusted strategic advisor. Your traceability framework improves decision making by 60% while building your strategic credibility. You're not just maintaining traceability - you're <strong>transforming it into a strategic asset</strong> that drives business decisions, setting the stage for leadership roles where you'll define business architecture.</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <h4><i class="fas fa-users"></i> The Stakeholder Leadership Transformation</h4>
+                        <p>Your stakeholder leadership transforms team dynamics. When you improve stakeholder alignment by 65% through strategic leadership, you create more effective collaboration across the organization. Teams with Senior Business Analyst - Level 1 who use the Strategic Architecture Framework experience 70% fewer requirement conflicts and 65% faster decision making because requirements are strategically aligned from the start. Your leadership becomes the foundation for strategic delivery at all levels.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem; background: rgba(0,0,0,0.2); border-radius: 8px; padding: 1.25rem;">
+                    <h3 style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.75rem; color: white;">
+                        <i class="fas fa-bullseye"></i> Critical Success Factor
+                    </h3>
+                    <p style="color: rgba(255,255,255,0.95); line-height: 1.8;">
+                        <strong>When stakeholders look to you to define how requirements collectively drive business outcomes.</strong> Your success isn't measured by how many requirements you document but by how <em>strategically cohesive</em> those requirements are in driving business results. When stakeholders say, "How should we structure these requirements to maximize business value?" you've mastered Senior Business Analyst - Level 1.
+                    </p>
+                    
+                    <div style="margin-top: 1.25rem; background: rgba(0,0,0,0.3); border-radius: 6px; padding: 1rem;">
+                        <h4 style="display: flex; align-items: center; gap: 8px; color: #e0e7ff; margin-bottom: 0.5rem;">
+                            <i class="fas fa-chart-line"></i> Senior Business Analyst - Level 1 Maturity Assessment
+                        </h4>
+                        <ul style="color: rgba(255,255,255,0.9); margin-left: 1.5rem; line-height: 1.8;">
+                            <li>Strategic alignment score reaches 90%+</li>
+                            <li>Outcome validation rate consistently achieves 95%+</li>
+                            <li>RTM adoption rate maintains 85%+</li>
+                            <li>Integration defect rate remains below 10%</li>
+                        </ul>
+                        <p style="color: rgba(255,255,255,0.85); margin-top: 0.75rem; font-style: italic;">
+                            Consistently meeting these criteria marks readiness for Level 4 (Senior Business Analyst Level 2)
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="level-badge" style="display: inline-block; margin: 1.5rem 0;">
+                <i class="fas fa-project-diagram"></i> Senior Business Analyst - Level 1 Progression Path
+            </div>
+            
+            <div class="alert-box" style="border-left-color: #4f46e5; background: #eef2ff;">
+                <h3 style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; color: #4f46e5;">
+                    <i class="fas fa-bullseye"></i> The Senior Business Analyst - Level 1 Mindset Shift
+                </h3>
+                <p>Senior Business Analyst - Level 1 often believe their job is to "ensure requirements are complete and validated." In reality, your primary value is in <strong>designing the requirements strategy that drives business outcomes</strong> across the entire project.</p>
+                <p style="margin: 1rem 0; background: #dbeafe; padding: 0.75rem; border-radius: 6px; border-left: 3px solid #a5b4fc;">
+                    <strong>How we measure Senior Business Analyst - Level 1 success:</strong>
+                    <ul style="margin: 0.5rem 0 0 1.5rem;">
+                        <li><span style="font-weight: bold; color: #4f46e5;">When your strategic alignment score reaches 90%+</span>—you've shifted from validating requirements to architecting the requirements strategy</li>
+                        <li><span style="font-weight: bold; color: #818cf8;">When your outcome validation rate consistently achieves 95%+</span>—you've built the strategic skills that distinguish good BAs from exceptional ones</li>
+                        <li><span style="font-weight: bold; color: #a5b4fc;">When stakeholders look to you to define how requirements collectively drive business outcomes</span>—you've transformed from a value validator to a strategic architect</li>
+                    </ul>
+                    This shift marks the transition from owning requirements to owning business outcomes—where your strategic architecture creates organizational impact and enables your advancement.
+                </p>
+                <p><strong>Remember:</strong> At Senior Business Analyst - Level 1, your job isn't to be the most thorough documenter—it's to <strong>design the requirements strategy that drives measurable business outcomes</strong> across the entire project.</p>
+            </div>
+            
+            <div class="tip-section">
+                <h3 class="tip-title">
+                    <i class="fas fa-lightbulb"></i> Actionable Growth Tips for Senior Business Analyst - Level 1
+                </h3>
+                
+                <div class="productivity-killers">
+                    <div class="killer-card" style="border-left-color: #4f46e5;">
+                        <div class="killer-title" style="color: #4f46e5;">
+                            <i class="fas fa-project-diagram"></i> Strategic Requirements Architecture
+                        </div>
+                        <p>Design and own the complete requirements strategy that drives business outcomes across the entire project.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #4f46e5;"><i class="fas fa-check-circle"></i> Practical Action: The Strategic Architecture Framework</div>
+                            <p>Implement the <strong>3-Pillar Strategic Architecture Method</strong>: (1) Outcome Mapping - connect every requirement to specific business outcomes with measurable targets, (2) Integration Design - ensure requirements work together as a cohesive solution (not just isolated features), (3) Value Flow - sequence requirements for maximum business value delivery. Create a Strategic Architecture Dashboard that visualizes requirements by outcome, integration points, and value potential. Before finalizing any requirement, validate its contribution to the strategic pillars. Track success through improved strategic alignment (target: 95%+), reduced integration defects (target: 75% reduction), and stakeholder recognition of your strategic contribution (target: 90% positive). This transforms "Are requirements complete?" into "Does this requirements strategy deliver business outcomes?"—positioning you as the strategic architect who owns the complete requirements lifecycle.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #4f46e5;">
+                        <div class="killer-title" style="color: #4f46e5;">
+                            <i class="fas fa-bullseye"></i> Strategic Validation & Stakeholder Leadership
+                        </div>
+                        <p>Validate requirements against business outcomes and lead stakeholder alignment across the project.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #4f46e5;"><i class="fas fa-check-circle"></i> Practical Action: The Decision Acceleration Framework</div>
+                            <p>Transform stakeholder discussions with the <strong>4-Step Decision Acceleration Method</strong>: (1) Problem Framing - define the specific decision needed with clear options, (2) Impact Analysis - quantify business impact of each option, (3) Decision Protocol - establish clear decision criteria and authority, (4) Resolution Path - define next steps for unresolved issues. Create a Decision Acceleration Template with sections for Decision Statement, Options Analysis, Impact Assessment, and Resolution Plan. Before any stakeholder discussion, prepare this template to focus the conversation on decisions rather than general discussion. Track success through reduced decision delays (target: 70% reduction), increased stakeholder satisfaction with decision process (target: 85% positive), and fewer requirement changes due to unresolved decisions (target: 65% reduction). This transforms "We need to discuss this requirement" into "Here's the decision we need to make with options and impacts"—positioning you as the stakeholder leader who drives decisions rather than just documenting discussions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="killer-card" style="border-left-color: #4f46e5;">
+                        <div class="killer-title" style="color: #4f46e5;">
+                            <i class="fas fa-chart-pie"></i> Strategic Traceability & Value Delivery
+                        </div>
+                        <p>Transform traceability into a strategic asset that demonstrates business value and drives decision-making.</p>
+                        <div class="solution">
+                            <div class="solution-title" style="color: #4f46e5;"><i class="fas fa-check-circle"></i> Practical Action: The Value Traceability Framework</div>
+                            <p>Transform RTM from a compliance exercise to a strategic decision-making tool with the <strong>Value-Driven Traceability Method</strong>: (1) Outcome Mapping - connect requirements to specific business outcomes with measurable targets, (2) Value Scoring - assign value scores based on business impact, (3) Strategic Visualization - highlight high-value requirements visually, (4) Decision Integration - use traceability data to inform business decisions. Create a Value Traceability Dashboard that shows requirements by business outcome, value potential, and implementation status. Before any traceability update, ask: "How does this information help stakeholders make better business decisions?" Track success through increased stakeholder use of traceability for decision making (target: 90% adoption), reduced time spent on traceability maintenance (target: 50% reduction), and improved business outcomes from traceability-driven decisions (target: 75% positive impact). This transforms "I need to update the RTM" into "Here's how traceability data informs our business decisions"—making traceability a strategic asset rather than just a process requirement.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 1.5rem; background: rgba(79, 70, 229, 0.05); border-radius: 8px; padding: 1.25rem; border: 1px solid #e0e7ff;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #4f46e5; margin-bottom: 0.75rem;">
+                        <i class="fas fa-dna"></i> The Senior Business Analyst - Level 1 Growth Checklist
+                    </h4>
+                    <p>Use this weekly to build strategic architecture habits:</p>
+                    <ol style="margin-left: 1.5rem; margin-top: 0.75rem; line-height: 1.7; color: #0f172a;">
+                        <li><strong>Strategic alignment:</strong> Validate 3+ requirements against business outcomes</li>
+                        <li><strong>Integration design:</strong> Identify and document requirement dependencies</li>
+                        <li><strong>Value flow:</strong> Sequence requirements for maximum business value</li>
+                        <li><strong>Decision leadership:</strong> Drive resolution of 2+ stakeholder conflicts</li>
+                    </ol>
+                    <p style="margin-top: 0.75rem; font-style: italic; color: #334155;">
+                        This checklist transforms passive requirement validation into active strategic architecture—the hallmark of exceptional  Senior Business Analyst - Level 1.
+                    </p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #e0e7ff; border-radius: 8px; padding: 1.25rem; border-left: 4px solid #4f46e5;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #4f46e5; margin-bottom: 0.5rem;">
+                        <i class="fas fa-lightbulb"></i> Pro Tip: The ARCHITECT Framework
+                    </h4>
+                    <p>When designing any requirements strategy, always use the <strong>ARCHITECT</strong> framework:</p>
+                    <ul style="margin-left: 1.5rem; margin-top: 0.5rem; line-height: 1.7;">
+                        <li><strong>A</strong>lignment: How does this align with strategic business objectives?</li>
+                        <li><strong>R</strong>elationships: How do these requirements connect and integrate?</li>
+                        <li><strong>C</strong>ohesion: Do requirements form a cohesive business solution?</li>
+                        <li><strong>H</strong>olistic View: What's the complete picture across all requirements?</li>
+                        <li><strong>I</strong>ntegration: How do requirements work together across the solution?</li>
+                        <li><strong>T</strong>raceability: How does traceability support business decisions?</li>
+                        <li><strong>E</strong>xecution: How will we validate outcome delivery?</li>
+                        <li><strong>C</strong>ontinuity: How does this support future business needs?</li>
+                        <li><strong>T</strong>ransformation: What business outcomes will this enable?</li>
+                    </ul>
+                    <p style="margin-top: 0.75rem;">This transforms "I'm just documenting requirements" into "I'm designing the strategic requirements architecture"—making you a strategic leader rather than just a business analyst.</p>
+                </div>
+                
+                <div style="margin-top: 2rem; background: #dbeafe; border-radius: 8px; padding: 1.25rem;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #4f46e5; margin-bottom: 0.75rem;">
+                        <i class="fas fa-chart-pie"></i> Current Industry Best Practices (Q2 2024)
+                    </h4>
+                    
+                    <div class="best-practices-grid">
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-project-diagram"></i> Strategic Requirements Architecture
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">A 2024 IIBA study found that BAs who design strategic requirements architecture reduce integration defects by 75% compared to those who focus only on individual requirements. The most effective approach involves connecting requirements to business outcomes, designing integration points, and sequencing for value delivery, creating a cohesive business solution rather than isolated features.</p>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-bullseye"></i> Outcome Validation
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">Forrester's 2024 research shows that BAs who validate requirements against business outcomes achieve 68% fewer UAT failures compared to those who validate only against specifications. The key differentiator is designing UAT cases that validate business outcomes rather than just functional requirements, ensuring the solution delivers real business value.</p>
+                        </div>
+                        
+                        <div class="practice-card">
+                            <h5 class="practice-title">
+                                <i class="fas fa-chart-pie"></i> Value-Driven Traceability
+                            </h5>
+                            <p style="font-size: 0.95rem; color: #334155;">A PMI study (Q2 2024) revealed that BAs who transform traceability into a strategic asset achieve 65% higher stakeholder adoption compared to those who treat it as a compliance exercise. The most impactful BAs connect traceability to business decisions, creating dashboards that show how requirements drive business outcomes rather than just technical artifacts.</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; background: #a5b4fc; border-radius: 8px; padding: 1rem;">
+                        <p style="font-style: italic; color: #4f46e5; margin: 0;">
+                            <strong>Practical Implementation Tip:</strong> Start with a Strategic Architecture Assessment. For your next project module, document: 1) Business outcomes addressed, 2) Integration points with other requirements, 3) Value delivery sequence. Share this with stakeholders and track how it impacts requirement stability and business outcomes. This builds your strategic architecture skills while demonstrating immediate value.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="strategic-focus" style="margin-top: 2rem; background: rgba(79, 70, 229, 0.05); border-left-color: #4f46e5;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #4f46e5; margin-bottom: 0.75rem;">
+                        <i class="fas fa-cogs"></i> Senior Business Analyst - Level 1 Strategic Architecture Guide
+                    </h4>
+                    
+                    <p>Building strong strategic architecture skills at Senior Business Analyst - Level 1 requires specific mindset shifts. Use this guide to navigate the transition successfully:</p>
+                    
+                    <div style="margin-top: 1rem; background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #dbeafe;">
+                        <h5 style="color: #4f46e5; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 5px;">
+                            <i class="fas fa-exchange-alt"></i> From Value Validator to Strategic Architect
+                        </h5>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1rem;">
+                            <div>
+                                <h6 style="color: #818cf8; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-ban"></i> What to Stop
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Validating requirements in isolation without strategic context</li>
+                                    <li>Treating traceability as a compliance exercise</li>
+                                    <li>Documenting stakeholder discussions without driving decisions</li>
+                                    <li>Focusing only on requirement completeness</li>
+                                    <li>Viewing UAT as validation of features rather than outcomes</li>
+                                </ul>
+                            </div>
+                            
+                            <div>
+                                <h6 style="color: #818cf8; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                    <i class="fas fa-arrow-circle-right"></i> What to Start
+                                </h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                    <li>Designing requirements as a cohesive business solution</li>
+                                    <li>Using traceability to drive business decisions</li>
+                                    <li>Leading stakeholder discussions toward decisions</li>
+                                    <li>Connecting requirements to measurable business outcomes</li>
+                                    <li>Validating solutions against business value delivery</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid #dbeafe;">
+                            <h6 style="color: #818cf8; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 5px;">
+                                <i class="fas fa-rocket"></i> Critical Strategic Architecture Milestones
+                            </h6>
+                            <ul style="margin-left: 1.5rem; line-height: 1.7; color: #475569;">
+                                <li><strong>Month 1-2:</strong> Master strategic alignment framework with 85%+ alignment rate</li>
+                                <li><strong>Month 3-4:</strong> Implement value-driven traceability consistently</li>
+                                <li><strong>Month 5-6:</strong> Achieve 90%+ outcome validation rate</li>
+                                <li><strong>Month 7-12:</strong> Transition to Senior Business Analyst - Level 2 responsibilities with lead supervision</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2.5rem; background: #dbeafe; border-radius: 12px; padding: 1.5rem; border: 1px solid #a5b4fc;">
+                    <h4 style="display: flex; align-items: center; gap: 8px; color: #4f46e5; margin-bottom: 1rem;">
+                        <i class="fas fa-star"></i> Senior Business Analyst - Level 1 Strategic Architecture Playbook
+                    </h4>
+                    
+                    <p style="margin-bottom: 1rem; color: #0f172a;">Here's how to accelerate your growth as a Senior Business Analyst - Level 1 using current industry best practices:</p>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #a5b4fc; margin-bottom: 1.25rem;">
+                        <h5 style="color: #4f46e5; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-project-diagram"></i> The Strategic Architecture Technique
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Move beyond validating individual requirements to designing the complete requirements strategy:</p>
+                        
+                        <div style="background: #dbeafe; border-radius: 6px; padding: 1rem; margin-bottom: 0.75rem;">
+                            <ol style="margin-left: 1.5rem; line-height: 1.7; color: #4f46e5;">
+                                <li><strong>Outcome Mapping:</strong> "Which specific business outcomes does this requirement support? What measurable targets will it impact?"</li>
+                                <li><strong>Integration Design:</strong> "How does this requirement connect with others to form a cohesive business solution?"</li>
+                                <li><strong>Value Flow:</strong> "What sequence of requirements delivers maximum business value in the shortest time?"</li>
+                                <li><strong>Dependency Analysis:</strong> "What are the critical dependencies that could impact outcome delivery?"</li>
+                                <li><strong>Strategic Validation:</strong> "Does this requirements strategy collectively deliver the intended business outcomes?"</li>
+                            </ol>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Example: A Senior Business Analyst - Level 1 at a financial services company applied this technique to a digital transformation project. By mapping requirements to specific business outcomes (30% faster onboarding, 25% higher conversion), designing integration points between customer journey stages, and sequencing requirements for maximum early value, they delivered $2.8M in measurable business value in the first release—far exceeding the expected $1.2M. Stakeholders recognized their strategic contribution, positioning them as a key strategic advisor for future initiatives.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #a5b4fc; margin-bottom: 1.25rem;">
+                        <h5 style="color: #4f46e5; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-bullseye"></i> The Decision Acceleration Method
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Transform stakeholder discussions from endless clarification cycles to decisive outcomes:</p>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 0.75rem;">
+                            <div style="background: #dbeafe; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #4f46e5; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-bullseye"></i> Problem Framing
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Define the specific decision needed with clear options and criteria. Avoid general discussions—focus on concrete choices.</p>
+                            </div>
+                            
+                            <div style="background: #dbeafe; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #4f46e5; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-chart-line"></i> Impact Analysis
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Quantify business impact of each option using metrics stakeholders care about. Connect options to business outcomes.</p>
+                            </div>
+                            
+                            <div style="background: #dbeafe; border-radius: 6px; padding: 0.75rem;">
+                                <h6 style="color: #4f46e5; margin-bottom: 0.25rem; display: flex; align-items: center; gap: 4px;">
+                                    <i class="fas fa-signal"></i> Decision Protocol
+                                </h6>
+                                <p style="font-size: 0.9rem; color: #334155; margin: 0;">Establish clear decision criteria, authority, and timeline. Document the protocol before discussions begin.</p>
+                            </div>
+                        </div>
+                        
+                        <p style="color: #334155; font-style: italic;">Tip: Create a Decision Acceleration Dashboard that tracks key decisions, options, impacts, and status. Include metrics showing business impact of decisions made. Present this during stakeholder meetings to focus discussions on outcomes rather than opinions. This transforms "We need to discuss this" into "Here's the decision we need to make with business impact"—positioning you as the stakeholder leader who drives results rather than just facilitating discussions.</p>
+                    </div>
+                    
+                    <div style="background: white; border-radius: 8px; padding: 1.25rem; border: 1px solid #a5b4fc;">
+                        <h5 style="color: #4f46e5; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 6px;">
+                            <i class="fas fa-chart-pie"></i> The Value Traceability Framework
+                        </h5>
+                        <p style="margin-bottom: 0.75rem; color: #334155;">Transform RTM from a compliance exercise to a strategic decision-making tool:</p>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 0.75rem;">
+                            <div>
+                                <h6 style="color: #4f46e5; margin-bottom: 0.5rem;">The Outcome Mapping Process</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #334155;">
+                                    <li>Business Outcome: Increase customer retention by 15%</li>
+                                    <li>Key Requirements: Personalization engine, loyalty program</li>
+                                    <li>Value Metrics: Retention rate, LTV, churn reduction</li>
+                                    <li>Implementation Status: 85% complete</li>
+                                    <li>Expected Impact: 12% retention increase by Q3</li>
+                                    <li>Actual Impact: 8% retention increase (measured)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h6 style="color: #4f46e5; margin-bottom: 0.5rem;">The Value-Driven Traceability Method</h6>
+                                <ul style="margin-left: 1.5rem; line-height: 1.7; color: #334155;">
+                                    <li>Map requirements to business outcomes (not just features)</li>
+                                    <li>Assign value scores based on business impact</li>
+                                    <li>Visualize high-value requirements with color coding</li>
+                                    <li>Track expected vs. actual business value delivery</li>
+                                    <li>Use traceability data to inform business decisions</li>
+                                    <li>Report on business outcomes, not just completion</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #4f46e5;"></div>
+                            <div class="progress-text">Identify business outcomes for the project</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #4f46e5;"></div>
+                            <div class="progress-text">Map requirements to specific outcomes with metrics</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #4f46e5;"></div>
+                            <div class="progress-text">Assign value scores and visualize high-impact areas</div>
+                        </div>
+                        <div class="progress-indicator">
+                            <div class="progress-dot" style="background: #4f46e5;"></div>
+                            <div class="progress-text">Track and report on business value delivery</div>
+                        </div>
+                        
+                        <p style="margin-top: 1rem; color: #334155; font-style: italic;">Example: A healthcare company implemented this framework for Senior Business Analyst - Level 1, resulting in a 72% increase in stakeholder use of traceability for business decisions and 63% faster requirement validation. Stakeholders reported higher confidence in delivery because traceability focused on business outcomes rather than technical artifacts, positioning BAs as strategic partners rather than just process followers.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- <footer style="text-align: center; margin-top: 3rem; color: var(--gray-700); padding: 1.5rem; border-top: 1px solid var(--border-color);">
+                <p>Framework updated: May 16, 2024 | Next review date: November 2024</p>
+                <p style="margin-top: 0.5rem; font-size: 0.95rem;">This framework aligns with current industry best practices including Strategic Architecture, Decision Acceleration, and Value Traceability for senior business analysts.</p>
+            </footer> -->
+        </div>
+    </div>
+</body>
+</html>
