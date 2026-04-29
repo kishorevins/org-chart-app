@@ -1,4 +1,4 @@
-﻿const DeveloperFrameworkLevel6 = () => {
+const DeveloperFrameworkLevel6 = () => {
   return (
     <iframe
       src="/role-profiles/Developer/Developer-Framework-Level-6.html"

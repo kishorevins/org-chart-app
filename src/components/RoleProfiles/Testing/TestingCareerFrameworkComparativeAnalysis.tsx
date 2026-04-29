@@ -1,4 +1,4 @@
-﻿const TestingCareerFrameworkComparativeAnalysis = () => {
+const TestingCareerFrameworkComparativeAnalysis = () => {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '')
   return (
     <iframe

@@ -1,4 +1,4 @@
-﻿const TechnicalLeadATLTLSTL = () => {
+const TechnicalLeadATLTLSTL = () => {
   return (
     <iframe
       src="/role-profiles/Technical%20Lead%20-%20ATL%20%2C%20TL%20%2C%20STL.html"

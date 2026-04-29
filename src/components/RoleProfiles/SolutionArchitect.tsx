@@ -1,4 +1,4 @@
-﻿const SolutionArchitect = () => {
+const SolutionArchitect = () => {
   return (
     <iframe
       src="/role-profiles/solution-architect.html"

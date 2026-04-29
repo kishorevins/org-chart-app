@@ -1,4 +1,4 @@
-﻿const L3MarketingSpecialistFrameworkTheExecutionEngine = () => {
+const L3MarketingSpecialistFrameworkTheExecutionEngine = () => {
   return (
     <iframe
       src="/role-profiles/Marketing/L3%20-%20Marketing-Specialist-Framework-The-Execution-Engine.html"

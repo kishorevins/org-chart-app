@@ -1,4 +1,4 @@
-﻿const ProjectManager = () => {
+const ProjectManager = () => {
   return (
     <iframe
       src="/role-profiles/Project-Manager.html"

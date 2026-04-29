@@ -1,4 +1,4 @@
-﻿const VPPeoplePerformance = () => {
+const VPPeoplePerformance = () => {
   return (
     <iframe
       src="/role-profiles/VP-People-Performance.html"

@@ -1,4 +1,4 @@
-﻿const SalesL1BusinessDevelopmentRepresentativeFrameworkRoleDefinition = () => {
+const SalesL1BusinessDevelopmentRepresentativeFrameworkRoleDefinition = () => {
   return (
     <iframe
       src="/role-profiles/Sales/Sales%20-%20L1-%20Business-Development-Representative-Framework-Role-Definition.html"

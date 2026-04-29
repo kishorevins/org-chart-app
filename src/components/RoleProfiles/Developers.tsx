@@ -1,4 +1,4 @@
-﻿const Developers = () => {
+const Developers = () => {
   return (
     <iframe
       src="/role-profiles/developers.html"

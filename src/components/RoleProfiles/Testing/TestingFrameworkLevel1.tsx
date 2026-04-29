@@ -1,4 +1,4 @@
-﻿const TestingFrameworkLevel1 = () => {
+const TestingFrameworkLevel1 = () => {
   const base = import.meta.env.BASE_URL.replace(/\/$/, '')
   return (
     <iframe

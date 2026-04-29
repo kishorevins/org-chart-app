@@ -1,4 +1,4 @@
-﻿const AssociateProjectmanager = () => {
+const AssociateProjectmanager = () => {
   return (
     <iframe
       src="/role-profiles/Associate-Project-manager.html"

@@ -1,4 +1,4 @@
-﻿const L1MarketingExecutiveFrameworkTheGrowthCatalyst = () => {
+const L1MarketingExecutiveFrameworkTheGrowthCatalyst = () => {
   return (
     <iframe
       src="/role-profiles/Marketing/L1%20-%20Marketing-Executive-Framework-The-Growth-Catalyst.html"

@@ -1,4 +1,4 @@
-﻿const PartnershipL2SeniorAllianceManagerFrameworkTheStrategicGrowthArchitect = () => {
+const PartnershipL2SeniorAllianceManagerFrameworkTheStrategicGrowthArchitect = () => {
   return (
     <iframe
       src="/role-profiles/Sales/Partnership%20-%20L2%20-%20Senior-Alliance-Manager-Framework-The-Strategic-Growth-Architect.html"

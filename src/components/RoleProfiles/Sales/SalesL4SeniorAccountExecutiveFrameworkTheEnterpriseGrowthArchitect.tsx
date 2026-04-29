@@ -1,4 +1,4 @@
-﻿const SalesL4SeniorAccountExecutiveFrameworkTheEnterpriseGrowthArchitect = () => {
+const SalesL4SeniorAccountExecutiveFrameworkTheEnterpriseGrowthArchitect = () => {
   return (
     <iframe
       src="/role-profiles/Sales/Sales%20-%20L4%20-%20Senior-Account-Executive-Framework-The-Enterprise-Growth-Architect.html"

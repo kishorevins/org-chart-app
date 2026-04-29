@@ -1,7 +1,7 @@
 const BusinessAnalystCareerProgressionFrameworksComparativeAnalysis = () => {
   return (
     <iframe
-      src="/org-chart-app/role-profiles/BusinessAnalyst/Business-Analyst-Career-Progression-Frameworks-Comparative-Analysis.html"
+      src="/role-profiles/BusinessAnalyst/Business-Analyst-Career-Progression-Frameworks-Comparative-Analysis.html"
       style={{ width: '100%', height: '100vh', border: 'none' }}
       title="Business-Analyst-Career-Progression-Frameworks-Comparative-Analysis"
     />

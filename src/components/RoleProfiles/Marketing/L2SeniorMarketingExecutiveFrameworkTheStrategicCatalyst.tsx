@@ -1,4 +1,4 @@
-﻿const L2SeniorMarketingExecutiveFrameworkTheStrategicCatalyst = () => {
+const L2SeniorMarketingExecutiveFrameworkTheStrategicCatalyst = () => {
   return (
     <iframe
       src="/role-profiles/Marketing/L2%20-%20Senior-Marketing-Executive-Framework-The-Strategic-Catalyst.html"

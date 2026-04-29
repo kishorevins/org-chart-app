@@ -1,4 +1,4 @@
-﻿const HeadSkillDevelopment = () => {
+const HeadSkillDevelopment = () => {
   return (
     <iframe
       src="/role-profiles/Head-Skill-Development.html"

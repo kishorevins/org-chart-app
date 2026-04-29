@@ -1,4 +1,4 @@
-﻿const PartnershipL1PartnershipManagerFrameworkTheEcosystemArchitect = () => {
+const PartnershipL1PartnershipManagerFrameworkTheEcosystemArchitect = () => {
   return (
     <iframe
       src="/role-profiles/Sales/Partnership%20-%20L1%20-%20Partnership-Manager-Framework-The-Ecosystem-Architect.html"

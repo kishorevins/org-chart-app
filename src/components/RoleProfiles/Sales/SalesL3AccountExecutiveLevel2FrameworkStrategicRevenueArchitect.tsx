@@ -1,4 +1,4 @@
-﻿const SalesL3AccountExecutiveLevel2FrameworkStrategicRevenueArchitect = () => {
+const SalesL3AccountExecutiveLevel2FrameworkStrategicRevenueArchitect = () => {
   return (
     <iframe
       src="/role-profiles/Sales/Sales%20-%20L3%20-%20Account-Executive-Level-2-Framework-Strategic-Revenue-Architect.html"

@@ -1,4 +1,4 @@
-﻿const SalesL2AccountExecutiveLevel1FrameworkRevenueCloser = () => {
+const SalesL2AccountExecutiveLevel1FrameworkRevenueCloser = () => {
   return (
     <iframe
       src="/role-profiles/Sales/Sales%20-%20L2%20-%20Account-Executive-Level-1-Framework-Revenue-Closer.html"

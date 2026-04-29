@@ -1,4 +1,4 @@
-﻿const HeadOfMarketingFrameworkTheRevenueVisionary = () => {
+const HeadOfMarketingFrameworkTheRevenueVisionary = () => {
   return (
     <iframe
       src="/role-profiles/Marketing/Head-of-Marketing-Framework-The-Revenue-Visionary.html"

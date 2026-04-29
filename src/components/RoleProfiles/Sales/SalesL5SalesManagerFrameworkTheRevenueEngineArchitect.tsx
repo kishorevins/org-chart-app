@@ -1,4 +1,4 @@
-﻿const SalesL5SalesManagerFrameworkTheRevenueEngineArchitect = () => {
+const SalesL5SalesManagerFrameworkTheRevenueEngineArchitect = () => {
   return (
     <iframe
       src="/role-profiles/Sales/Sales%20-%20L5%20-%20Sales-Manager-Framework-The-Revenue-Engine-Architect.html"

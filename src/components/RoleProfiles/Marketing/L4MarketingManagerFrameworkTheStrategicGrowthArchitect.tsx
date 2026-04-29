@@ -1,4 +1,4 @@
-﻿const L4MarketingManagerFrameworkTheStrategicGrowthArchitect = () => {
+const L4MarketingManagerFrameworkTheStrategicGrowthArchitect = () => {
   return (
     <iframe
       src="/role-profiles/Marketing/L4%20-%20Marketing-Manager-Framework-The-Strategic-Growth-Architect.html"
