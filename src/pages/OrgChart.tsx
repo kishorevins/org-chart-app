@@ -4,7 +4,7 @@ import { ROLE_FILE_MAP } from '../data/roleFileMap'
 import './OrgChart.css'
 
 // ─── Types ──────────────────────────────────────────────────────────────────
-type ColorKey = 'white' | 'green' | 'blue' | 'purple' | 'yellow'
+type ColorKey = 'white' | 'green' | 'blue' | 'purple' | 'yellow' | 'orange'
 
 type Role = {
   id: string
@@ -38,9 +38,9 @@ const ROLES: Role[] = [
   { id: 'sse1', title: 'Senior Software Engineer L1',       desc: 'Owns modules, performs code reviews, supports junior developers, improves performance, and ensures module stability and maintainability.', level: 3,  track: 0, color: 'white',  connectsTo: ['sse2'] },
   { id: 'sse2', title: 'Senior Software Engineer L2',       desc: 'Develops and owns features independently, writes high-quality code, ensures unit testing, fixes defects, and contributes to stable and maintainable module development.', level: 4,  track: 0, color: 'blue',   connectsTo: ['sse3', 'atl'] },
   { id: 'sse3', title: 'Senior Software Engineer L3',       desc: 'Drives technical strategy across multiple systems, ensures architecture aligns with business goals, resolves complex cross-system issues, and leads quality, technical debt, and engineering excellence initiatives across the organization.', level: 5,  track: 0, color: 'green',  connectsTo: ['pse1'] },
-  { id: 'pse1', title: 'Principal Software Engineer L1',    desc: 'Defines organization-wide technical vision, drives architecture standardization, leads complex system design decisions, and ensures engineering practices, scalability, and long-term technology direction across multiple systems and teams.', level: 6,  track: 0, color: 'green',  connectsTo: ['pse2', 'tl'] },
+  { id: 'pse1', title: 'Principal Software Engineer L1',    desc: 'Defines organization-wide technical vision, drives architecture standardization, leads complex system design decisions, and ensures engineering practices, scalability, and long-term technology direction across multiple systems and teams.', level: 6,  track: 0, color: 'green',  connectsTo: ['pse2', 'stl'] },
   { id: 'pse2', title: 'Principal Software Engineer L2',    desc: 'Drives organization-wide technical direction, defines architecture standards, leads complex system design, and ensures scalable, high-performance solutions while mentoring senior engineers and influencing engineering excellence.', level: 7,  track: 0, color: 'green',  connectsTo: ['pse3', 'asa1'] },
-  { id: 'pse3', title: 'Principal Software Engineer L3',    desc: 'Organization-wide engineering authority; defines long-term technical strategy and drives platform-level innovation across the company.', level: 8,  track: 0, color: 'purple', connectsTo: ['asa1', 'sa1'] },
+  { id: 'pse3', title: 'Principal Software Engineer L3',    desc: 'Organization-wide engineering authority; defines long-term technical strategy and drives platform-level innovation across the company.', level: 8,  track: 0, color: 'purple', connectsTo: ['asa2', 'sa1'] },
 
   // ── Tech Lead / Architect ────────────────────────────────────────────
   { id: 'atl',  title: 'Associate Technical Lead',          desc: 'Supports module-level technical execution by guiding developers, ensuring code quality, and assisting in delivery and issue resolution to achieve stable and efficient outcomes.', level: 5,  track: 1, color: 'green',  connectsTo: ['tl']   },
@@ -59,9 +59,9 @@ const ROLES: Role[] = [
   { id: 'pm2',  title: 'Project Manager L2',                desc: 'Manages project delivery, customer communication, planning, budgeting, risk management, and ensures projects are delivered on time, within scope, and budget.', level: 11, track: 2, color: 'purple', connectsTo: ['hpd']  },
   
   { id: 'hpd',  title: 'Head — Project & Delivery',         desc: 'Owns end-to-end delivery organization, ensures project execution excellence, drives delivery predictability, manages profitability, and builds strong delivery capability aligned with business goals.', level: 12, track: 2, color: 'blue',   connectsTo: ['ad']   },
-  { id: 'ad',   title: 'Associate Director',                desc: 'Manages multiple teams or functions, ensures operational performance, supports strategic execution, and bridges execution teams with senior leadership.', level: 13, track: 2, color: 'blue',   connectsTo: ['dir']  },
-  { id: 'dir',  title: 'Director',                          desc: 'Owns business unit or major function, responsible for revenue, delivery, and strategy execution while driving leadership development and long-term department growth.', level: 14, track: 2, color: 'blue',   connectsTo: ['vp']   },
-  { id: 'vp',   title: 'Vice President',                    desc: 'Drives organizational strategy execution, oversees multiple departments or business units, ensures growth, profitability, leadership alignment, and organizational performance.', level: 15, track: 2, color: 'blue'  },
+  { id: 'ad',   title: 'Associate Director',                desc: 'Manages multiple teams or functions, ensures operational performance, supports strategic execution, and bridges execution teams with senior leadership.', level: 13, track: 2, color: 'orange', connectsTo: ['dir']  },
+  { id: 'dir',  title: 'Director',                          desc: 'Owns business unit or major function, responsible for revenue, delivery, and strategy execution while driving leadership development and long-term department growth.', level: 14, track: 2, color: 'orange', connectsTo: ['vp']   },
+  { id: 'vp',   title: 'Vice President',                    desc: 'Drives organizational strategy execution, oversees multiple departments or business units, ensures growth, profitability, leadership alignment, and organizational performance.', level: 15, track: 2, color: 'orange' },
 
   // ── Quality Engineering ──────────────────────────────────────────────
   { id: 'ate',  title: 'Associate Testing Engineer',        desc: 'Executes test cases by following defined QA processes, maintains test artifacts, ensures traceability, learns testing tools and practices, and contributes to quality through disciplined and consistent execution.',                  level: 1,  track: 3, color: 'white',  connectsTo: ['te']  },
@@ -406,10 +406,11 @@ export default function OrgChart() {
       <div className="org-page-header">
         <h1 className="org-page-title">Career Growth Path</h1>
         <div className="org-legend">
-          <span className="leg leg-white">Individual Contributor</span>
+          <span className="leg leg-white">Delivery Stream</span>
           <span className="leg leg-blue">Transitioning Level</span>
           <span className="leg leg-green">Lead / Senior Lead</span>
           <span className="leg leg-purple">Management</span>
+          <span className="leg leg-orange">Executive Leadership</span>
           <span className="leg leg-yellow">R&amp;D</span>
         </div>
       </div>
@@ -458,7 +459,7 @@ export default function OrgChart() {
                 className={`org-row${isEmpty ? ' org-row-empty' : ''}`}
               >
                 <div className="org-row-gutter">
-                  {!isEmpty && <span className="org-level-badge">L{level}</span>}
+                  {!isEmpty && <span className="org-level-badge">Level {level}</span>}
                 </div>
                 {cells.map((role, colIdx) => (
                   <div key={colIdx} className="org-cell">
